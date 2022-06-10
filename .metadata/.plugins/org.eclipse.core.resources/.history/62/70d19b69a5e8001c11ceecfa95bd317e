@@ -1,0 +1,10 @@
+package namoo.tutorial.network;
+//Application Class
+public class helloWorld {
+	public static void main(String[] args) {
+		System.out.println("Heo World ");
+		String string ="Heo World";
+		System.out.println(string);
+		
+	}
+}

@@ -1,0 +1,12 @@
+package namoo.tutorial.network;
+//Application Class
+public class helloWorld {
+	public static void main(String[] args) {
+		System.out.println("Heo World ");
+		String string ="Heo World";
+		System.out.println(string);
+		int[] a= {1,2,3,4};
+		System.out.println(a[1]);
+	}
+}
+
