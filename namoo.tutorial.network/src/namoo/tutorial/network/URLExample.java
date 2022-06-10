@@ -24,12 +24,9 @@ public class URLExample {
 /*
 			try {
 				InputStream a = url.openStream();
-				while(true) {
+			
 					int ch =a.read();
-					if(ch == -1) break;
-					System.out.print((char)ch);
-				}
-				a.close();
+		
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
