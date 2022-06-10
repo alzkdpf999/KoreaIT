@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-
+import java.net.URLClassLoader;
 
 /*
  *  Url을 추상화한 클래스
@@ -21,7 +21,7 @@ public class URLExample {
 			System.out.println(url.getPort()); // 없으므로 -1 출력
 			System.out.println(url.getHost()); // www.seoul.go.kr
 			// url에 실제 데이터 읽어오기
-/*
+
 			try {
 				InputStream a = url.openStream();
 				while(true) {
@@ -35,7 +35,7 @@ public class URLExample {
 				e.printStackTrace();
 			}
 
-*/
+
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
