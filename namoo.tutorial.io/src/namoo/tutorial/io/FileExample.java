@@ -2,6 +2,7 @@ package namoo.tutorial.io;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.Properties;
 //	https://lifeinprogram.tistory.com/19 getProperty 사용법을 위한 사이트
@@ -41,7 +42,18 @@ public class FileExample {
 		System.out.println("length():" +file.length()+"bytes"); // 파일 크기
 		System.out.println("isFile():" +file.isFile()); // 파일인지(t) 아닌지(f)
 		System.out.println("isDirectory():" +file.isDirectory()); //디렉토리인지(t) 아닌지(f)
-
+		System.out.println("lastModified():"+file.lastModified()); //마지막으로 변경된 시간을 얻는다.
+		//1970년도 기준으로 밀리초를 반환 그래서 고칠 필요 있음
+		Calendar calendar= Calendar.getInstance(); //칼렌더 객체 가져오기 현재 날짜 static method
+		System.out.println(calendar.get(Calendar.YEAR)); 
+		
+		calendar.setTimeInMillis(file.lastModified());
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH)+1 ;
+		int DATE = calendar.get(Calendar.DATE);
+		
+		System.out.println(calendar);
+		System.out.println(year+"-"+month+"-"+DATE);
 		//파일 목록 조회
 		File directory = new File("./");
 		File[] directoryList = directory.listFiles(); // 배열안에 저장 디렉토리인것만
