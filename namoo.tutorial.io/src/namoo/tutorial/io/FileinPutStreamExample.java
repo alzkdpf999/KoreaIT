@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-// 파일에서 데이터 읽어드들이기
+// 파일에서 데이터 읽어들이기
 public class FileinPutStreamExample {
 	public static void main(String[] args) {
 		String path = "D:\\lecture\\ee\\license.txt";
