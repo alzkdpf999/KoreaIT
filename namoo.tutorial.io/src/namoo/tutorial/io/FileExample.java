@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Enumeration;
+import java.util.Formatter;
 import java.util.Properties;
 //	https://lifeinprogram.tistory.com/19 getProperty 사용법을 위한 사이트
 //파일(디렉토리) 정보 조회 및 조작
@@ -46,17 +47,19 @@ public class FileExample {
 		//1970년도 기준으로 밀리초를 반환 그래서 고칠 필요 있음
 		Calendar calendar= Calendar.getInstance(); //칼렌더 객체 가져오기 현재 날짜 static method
 		System.out.println(calendar.get(Calendar.YEAR)); 
-		
-		calendar.setTimeInMillis(file.lastModified());
+
+		calendar.setTimeInMillis(file.lastModified()); // 수정된 날짜가 밀리초이기 때문에 우리가 알고 있는 시각으로 가져오기
 		int year = calendar.get(Calendar.YEAR);
 		int month = calendar.get(Calendar.MONTH)+1 ;
 		int DATE = calendar.get(Calendar.DATE);
-		
+		int hour = calendar.get(Calendar.HOUR_OF_DAY);
+		int minute = calendar.get(Calendar.MINUTE);
 		System.out.println(calendar);
-		System.out.println(year+"-"+month+"-"+DATE);
+		System.out.println(year+"-"+month+"-"+DATE+"-"+ hour+"-"+minute);
+		
 		//파일 목록 조회
 		File directory = new File("./");
-		File[] directoryList = directory.listFiles(); // 배열안에 저장 디렉토리인것만
+		File[] directoryList = directory.listFiles(); // ./에 있는 모든 파일 가져오기
 		for(File List: directoryList) {
 			String tf = List.isDirectory() ? "[D]" : "[F]"; //디렉토리이면 D 파일이면 F를 출력 
 			if(tf.equals("[F]")) {
@@ -64,7 +67,5 @@ public class FileExample {
 			}
 			System.out.println(tf + " : " + List);
 		}
-		
 	}
-
 }
