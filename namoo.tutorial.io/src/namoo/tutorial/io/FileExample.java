@@ -65,5 +65,24 @@ public class FileExample {
 			}
 			System.out.println(tf + " : " + List);
 		}
+		
+//		빈 디렉토리 생성
+		File dir = new File("my-dir");
+		boolean ok = dir.mkdir(); // mkdirs는 없는 부모이면 부모까지 생성
+		if(ok) {
+			System.out.println("디렉토리 생성 완료");
+		}
+		else {
+			System.out.println("디렉토리 생성 실패");
+		}
+		File dirs = new File("some/my-dir");
+		boolean OK = dirs.mkdirs(); // mkdirs 여러개를 만들어줌 
+		if(OK) {
+			System.out.println("디렉토리 생성 완료");
+		}
+		else {
+			System.out.println("디렉토리 생성 실패");
+		}
+		
 	}
 }
