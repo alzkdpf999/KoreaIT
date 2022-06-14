@@ -5537,3 +5537,6 @@ This warning can be switched off on the Team > Git > Confirmations and Warnings 
 
 !ENTRY org.eclipse.equinox.p2.artifact.repository 2 0 2022-06-14 18:56:10.238
 !MESSAGE No digest algorithm is available to verify download of org.eclipse.update.feature,com.genuitec.eclipse.theming.feature,1.11.0.202206131352.
+
+!ENTRY org.eclipse.equinox.p2.repository 2 0 2022-06-14 21:52:21.074
+!MESSAGE Using unsafe http transport to retrieve http://downloads.genuitec.com/downloads/products/devstyle/updates/ds20220613, see CVE-2021-41033. Consider using https instead.
