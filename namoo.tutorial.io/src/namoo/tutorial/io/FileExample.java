@@ -21,17 +21,16 @@ public class FileExample {
 			String element =(String) e.nextElement(); //가져올게 있으면 가져와라  (value)
 			System.out.println(element);
 		}
-
-
+		System.out.println("======================================================================");
 		while(keys.hasMoreElements()) { 
 			String key=(String) keys.nextElement();
 			String value= pro.getProperty(key); System.out.println(key + " = " + value);
 		}
-
+		System.out.println("======================================================================");
 		//File.separator \을 줌
 		String download = System.getProperty("user.home")+ File.separator+"Downloads";
 		System.out.println(download);
-
+		System.out.println("======================================================================");
 		File file= new File("./sample.txt");
 		boolean ex = file.exists(); //파일이 존재하는지(t) 존재안하는지(f)   
 		System.out.println(ex);
@@ -46,17 +45,16 @@ public class FileExample {
 		System.out.println("lastModified():"+file.lastModified()); //마지막으로 변경된 시간을 얻는다.
 		//1970년도 기준으로 밀리초를 반환 그래서 고칠 필요 있음
 		Calendar calendar= Calendar.getInstance(); //칼렌더 객체 가져오기 현재 날짜 static method
-		System.out.println(calendar.get(Calendar.YEAR)); 
-
 		calendar.setTimeInMillis(file.lastModified()); // 수정된 날짜가 밀리초이기 때문에 우리가 알고 있는 시각으로 가져오기
-		int year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH)+1 ;
-		int DATE = calendar.get(Calendar.DATE);
-		int hour = calendar.get(Calendar.HOUR_OF_DAY);
-		int minute = calendar.get(Calendar.MINUTE);
-		System.out.println(calendar);
-		System.out.println(year+"-"+month+"-"+DATE+"-"+ hour+"-"+minute);
-		
+//		int year = calendar.get(Calendar.YEAR);
+//		int month = calendar.get(Calendar.MONTH)+1 ;
+//		int DATE = calendar.get(Calendar.DATE);
+//		int hour = calendar.get(Calendar.HOUR_OF_DAY);
+//		int minute = calendar.get(Calendar.MINUTE);
+//		System.out.println(calendar);
+//		System.out.println(year+"-"+month+"-"+DATE+"-"+ hour+"-"+minute);
+		System.out.println(String.format("%1$tF %1$tR",calendar));
+		System.out.println("======================================================================");
 		//파일 목록 조회
 		File directory = new File("./");
 		File[] directoryList = directory.listFiles(); // ./에 있는 모든 파일 가져오기
