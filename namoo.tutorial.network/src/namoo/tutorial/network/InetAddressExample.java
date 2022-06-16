@@ -14,7 +14,7 @@ public class InetAddressExample {
 		System.out.println(address+" "+"\n"+name);
 		
 		//google 도메인 아이핀
-		String domain="www.naver.com";
+		String domain="www.google.com";
 		InetAddress go=InetAddress.getByName(domain);
 			System.out.println(go.getHostAddress());
 		} catch (UnknownHostException e) {

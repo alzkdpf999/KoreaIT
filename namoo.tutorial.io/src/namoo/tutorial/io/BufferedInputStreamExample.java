@@ -1,3 +1,4 @@
+
 package namoo.tutorial.io;
 
 import java.io.BufferedInputStream;
@@ -20,19 +21,17 @@ public class BufferedInputStreamExample {
 //			while((data = bis.read()) != -1) {
 ////				System.out.println(data);
 //			}
-			System.out.println(1);
-			
 			
 			System.out.println(bis.read());
 			System.out.println(bis.read());
 			System.out.println(bis.read());
 			bis.mark(0); // 일단 마크
-			System.out.println(bis.read());
+			System.out.println(bis.read()); //1
 			System.out.println(bis.read());
 			bis.skip(20); //건너뛸려는 바이트 수
 			System.out.println(bis.read());
 			bis.reset(); //이러면 마킹 위치로 감
-			System.out.println(bis.read());
+			System.out.println(bis.read()); //1부분과 같아짐
 			bis.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
