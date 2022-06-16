@@ -36,10 +36,14 @@ public class SocketExample {
 				//서버로 메시지 전송
 				out.println(message);
 				out.flush();
+				if(message.equalsIgnoreCase("bye")) //대소문자 구분없이 bye를 입력하면 루프문 빠져나오기
+					{System.out.println("서버를 종료합니다.");
+					break;}
 				String data=in.readLine();
 				System.out.println(data);
 			
-			//			out.close(); socket만 닫아도 괜찮음 
+			//			out.close(); socket만 닫아도 괜찮음
+			
 			}
 			socket.close();
 	

@@ -34,6 +34,10 @@ public class ServerSocketExample {
 				while((data=in.readLine())!=null) {
 				
 				System.out.println("수신데이터 : " +	data);
+				if(data.equalsIgnoreCase("bye")) {
+					System.out.println("클라이언트가 접속을 종료합니다.");
+					break;
+				}
 				//클라이언트에게 메시지 에코(echo)
 				out.println(data);
 				out.flush();
