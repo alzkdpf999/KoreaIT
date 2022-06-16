@@ -21,7 +21,7 @@ public class SocketExample {
 	static final int PORT = 2022; 
 	public static void main(String[] args) {
 		try {
-			Socket socket=new Socket(IP, PORT);
+			Socket socket=new Socket(IP2, PORT);
 			System.out.println("서버와 연결 성공");
 
 
