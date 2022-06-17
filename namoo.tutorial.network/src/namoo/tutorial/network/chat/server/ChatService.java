@@ -79,4 +79,12 @@ public class ChatService {
 		running = false;
 		serversocket.close();
 	}
+	/**
+	 * 모든 접속한 클라이언트에게 메시지 전송
+	 */
+	public void sendAllMessage(String message) {
+		for(ChatThread chatThread : clients) {
+			chatThread.sendMessage(message);
+		}
+	}
 }

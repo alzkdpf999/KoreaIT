@@ -66,10 +66,8 @@ public class ChatThread extends Thread {
 				* out.println(data);
 				* out.flush();
 				*/
-				List<ChatThread> clients=chatService.getClients();
-				for(ChatThread chatThread : clients) {
-					chatThread.sendMessage(data);
-				}
+				// 모든 클라언트에게 메시지 전송 chatservice에 들어가야 맞는 코딩
+				chatService.sendAllMessage(data);
 			}
 			socket.close(); // socket.close만 해도 상관없음
 		} catch (IOException e) {
