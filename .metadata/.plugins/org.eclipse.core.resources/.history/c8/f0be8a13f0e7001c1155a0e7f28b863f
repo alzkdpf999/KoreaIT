@@ -1,8 +1,0 @@
-package namoo.tutorial.network;
-//Application Class
-public class helloWorld {
-	public static void main(String[] args) {
-		System.out.println("¾È³ç");
-		
-	}
-}
