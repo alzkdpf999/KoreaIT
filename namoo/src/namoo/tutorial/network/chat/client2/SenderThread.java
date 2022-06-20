@@ -47,6 +47,7 @@ public class SenderThread extends Thread {
 			if (inputMessage.equalsIgnoreCase("bye")) {
 				break;
 			}
+			
 //			#2. 채팅 메시지 전송
 			sendMessage("chat!★!" + nickName + "!★!" +  inputMessage);
 			
