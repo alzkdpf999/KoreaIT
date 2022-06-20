@@ -49,6 +49,7 @@ public class SenderThread extends Thread {
 			}
 //			#2. 채팅 메시지 전송
 			sendMessage("chat!★!" + nickName + "!★!" +  inputMessage);
+			
 		}
 //		#3. 퇴장 메시지 전송
 		sendMessage("disconnect!★!" + nickName);

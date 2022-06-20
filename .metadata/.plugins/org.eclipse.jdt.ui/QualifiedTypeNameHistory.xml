@@ -33,4 +33,5 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="namoo.tutorial.network.chat.server.ChatThread"/>
     <fullyQualifiedTypeName name="namoo.tutorial.network.chat.server.ChatService"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
 </qualifiedTypeNameHistroy>
