@@ -24,7 +24,7 @@ public class Thread extends java.lang.Thread {
 	public void run() {
 
 		try {
-			String message =null;
+			String message=null;
 			Scanner sc= new Scanner(System.in);
 			while((message =sc.nextLine())!=null) {
 
