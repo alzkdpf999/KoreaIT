@@ -19,6 +19,7 @@ public class ChatService {
 	//살아있는지 죽어있는지
 	private boolean running;
 	private List<ChatThread> clients; //고객을 하나하나 저장시키는
+	
 	public ChatService(int size) {
 		clients = new ArrayList<ChatThread>(size);
 		
@@ -63,6 +64,7 @@ public class ChatService {
 				ChatThread chatthread = new ChatThread(socket,this); //this 객체 자신
 				clients.add(chatthread);
 				chatthread.start();
+	
 				
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

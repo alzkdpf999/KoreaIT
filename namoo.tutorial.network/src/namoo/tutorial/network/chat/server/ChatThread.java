@@ -14,7 +14,7 @@ import java.util.List;
  * @author 정충효
  *
  */
-public class ChatThread extends Thread {
+public class ChatThread extends java.lang.Thread {
 
 	private Socket socket;
 	private BufferedReader in;
@@ -66,7 +66,7 @@ public class ChatThread extends Thread {
 				* out.println(data);
 				* out.flush();
 				*/
-				// 모든 클라언트에게 메시지 전송 chatservice에 들어가야 맞는 코딩
+			
 				chatService.sendAllMessage(data);
 			}
 			socket.close(); // socket.close만 해도 상관없음
