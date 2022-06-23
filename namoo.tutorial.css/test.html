@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <h2 style="font-weight: bold;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">기본 정보 입력</h2>
+
+    <table border="1" >
+        <tr>
+           <td> <label for="fname">이름</label></td>
+           <td><input type="text" name="fname" id="fname"></td>
+        </tr>
+        <tr>
+            <td><label for="fn">아이디</label> </td>
+            <td><input type="text" name="fn" id="fn"></td>
+        </tr>
+        <tr>
+            <td><label for="lname">비밀번호</label></td>
+            <td><input type="password" id="lname"></td>
+        </tr>
+        <tr>
+            <td><label for="ln">비밀번호확인</label></td>
+            <td> <input type="password" id="ln"></td>
+        </tr>
+        <tr>
+            <td><label for="email">이메일</label> </td>
+            <td>
+                <input type="email" name="" id="telepyhone">
+                <label for="@">@</label>
+                <select name="@" id="@">
+                    
+                    <option value="선택 하세요" id="1"selected>선택 하세요</option>
+                    <option value="직접 입력" id="test">직접 입력</option>
+                    <option value="naem.com" id="2">naver.com</option>
+                    <option value="nate.com" id="3">nate.com</option>
+                    <option value="gmail.com" id="4">gmail.com</option>
+                    <option value="daum.com" id="5">daum.com</option>
+                </select>
+                <input type="text" name="em" id="em" placeholder="ex) naver.com" >
+                    
+            </td>    
+        </tr>
+        <tr>
+            <td><label for="tel">연락처</label></td>
+            <td><input type="tel" name="" id="tel"></td>
+        </tr>
+        <tr>
+            <td><label for="tel">메일 수신 여부</label></td>
+            <td>
+                <input type="radio" name="1" id="1">
+                <label for="1">받음</label>
+                <input type="radio" name="1" id="2">
+                <label for="2">받지 않음</label>
+            </td>
+        </tr>
+        <tr>
+            <td><label for="checkbox">관심분야</label></td>
+            <td>
+                <input type="checkbox">자바
+                <input type="checkbox">C++
+                <input type="checkbox">파이썬
+                <input type="checkbox">안드로이드
+            </td>
+        </tr>
+
+    </table><br>
+    <input type="reset" name="" id="reset" value="취소">
+    <input type="submit" name="" id="Submit" value="저장">
+
+</body>
+</html>
