@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSS 그리드 레이아웃 적용 홈페이지</title>
+    <style>
+      * {
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      .item1 {
+        grid-area: header;
+        background-color: antiquewhite;
+      }
+      .item2 {
+        grid-area: menu;
+        background-color: aqua;
+      }
+      .item3 {
+        grid-area: main;
+        background-color: aquamarine;
+      }
+      .item4 {
+        grid-area: right;
+        background-color: bisque;
+      }
+      .item5 {
+        grid-area: footer;
+        background-color: blueviolet;
+      }
+
+      .grid-container {
+        display: grid;
+        grid-template-areas:
+          "header header header header header header"
+          "menu main main main main right"
+          "footer footer footer footer footer footer";
+        grid-template-rows: 150px minmax(500px, auto) 150px;
+        gap: 5px;
+        padding: 5px;
+      }
+
+      .grid-container > div {
+        text-align: center;
+        padding: 20px 0;
+        font-size: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="grid-container">
+      <div class="item1">Header</div>
+      <div class="item2">Menu</div>
+      <div class="item3">Main</div>
+      <div class="item4">Right</div>
+      <div class="item5">Footer</div>
+    </div>
+  </body>
+</html>
