@@ -31,8 +31,13 @@ console.log(typeof undefined); //undefined
 let person = {
   name : 'Hack ',
   age: 10,
-  weight: 67.8
+  weight: 67.8,
+  sayHello :function(){
+    console.log('hello~~');
+  }
 };
+
 console.log(person.name);
 console.log(person.age);
 console.log(person['weight']);
+person.sayHello();
