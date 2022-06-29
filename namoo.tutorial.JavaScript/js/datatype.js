@@ -41,3 +41,10 @@ console.log(person.name);
 console.log(person.age);
 console.log(person['weight']);
 person.sayHello();
+
+let text= "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos quae odio alias saepe nobis, molestiae nostrum ipsa fugiat ipsam provident assumenda facere vitae odit quisquam dicta doloribus sapiente officia perferendis?";
+let c=text.charAt(7); // 인자 위치에 문자 가져오기 .을 찍는 순간 객체화된다.
+let a=text.toUpperCase();
+console.log(a);
+console.log(c);
+console.log(typeof text);
