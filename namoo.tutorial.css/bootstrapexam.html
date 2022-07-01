@@ -47,7 +47,10 @@
                 <th><label for="fn">아이디</label> </th>
                 <td>
                     <input type="text" class="form-control" placeholder="Username" aria-label="Username">
-                    <button type="button" class="btn btn-light">중복체크</button>
+                    <button type="button" class="btn btn-light" onclick="showEvent()">중복체크 </button>
+                    <script>function showEvent() {
+                        alert("이벤트 발생!");
+                    }</script>
                 </td>
             </tr>
             <tr>
@@ -61,7 +64,7 @@
             <tr>
                 <th><label for="exampleFormControlInput1" class="form-label">이메일</label> </th>
                 <td>
-                    <input type="email" class="form-control" id="exampleFormControlInput1">
+                    <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="ID">
                     <span class="input-group-text" id="basic-addon1">@</span>
                     <select name="@" id="@" calss="form-select">
 
@@ -125,5 +128,4 @@
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
 </body>
-
 </html>
