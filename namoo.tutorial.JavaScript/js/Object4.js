@@ -44,8 +44,10 @@ console.log(student.__proto__.constructor === Student);
 console.log(student.constructor === Student);
 console.log(Student.constructor === Function);
 
-console.log(student instanceof Object);
 console.log(student.constructor === Student);//constructor는 반드시 일치하는 경우만
 if(student.constructor === Student){
     console.log("Student로 부터 만들어진 인스턴스네여");
 }
+
+console.log(student instanceof Object);
+console.log(student instanceof Student); //모두 다 true가 만들어짐
