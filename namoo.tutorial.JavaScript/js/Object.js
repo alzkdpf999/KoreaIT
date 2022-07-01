@@ -34,3 +34,18 @@ console.log('age' in myDog);
 for (const key in myDog) {
     console.log(`${myDog[key]}: ${key}`);
 }
+
+//팩토리 함수 
+function createDog(name, age , kind){
+    return {
+        name : name,
+        age : age,
+        kind : kind,
+        eat: function(){
+            console.log("siasisai");
+        }
+    }
+}
+
+let yourDog =createDog('두부',3,'비숑');
+console.dir(yourDog);
