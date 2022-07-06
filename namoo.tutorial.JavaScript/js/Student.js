@@ -14,7 +14,7 @@ Student.prototype.getsum = function(){
 }
 
 Student.prototype.getAverage = function(){
-  return this.getsum()/3 ;
+  return (this.getsum()/3).toFixed(2) ;
 }
 
 Student.prototype.toString = function(){
