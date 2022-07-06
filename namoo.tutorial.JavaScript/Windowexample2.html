@@ -6,14 +6,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <script>
-    function openWindow(){
-      open("windowExample2.html","pop","width=400","height=200")
+    function openClose(){
+      let id = document.myform.id.value; //변수에다가 저장 여기서 도큐먼트는 여기서의
+      opener.document.myform.id.value=id; //원래 필드에다가 입력하기 위해서 opener 가 필요 
+      //여기서 도큐먼트는 1에서의 
+      self.close(); //this.close(), window.close()로도 가능
     }
   </script>
 </head>
 
 <body>
-  <form action="javascript:openClose();" method="get">
+  <form action="javascript:openClose();" method="get" name="myform">
     <label for="">아이디:</label>
     <input type="text" name="id" maxlength="8">
     <button>선택</button>
