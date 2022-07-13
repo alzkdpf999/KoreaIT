@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <style>
+    #dom{
+      background: yellow;
+    }
+    .some{
+      background-color: red;
+    }
+  </style>
+  <script defer src="/namoo.tutorial.JavaScript/js/dom2.js"></script>
+</head>
+
+<body>
+  <h2>Document Object Model</h2>
+  <p>문서 객체 모델은 ....</p>
+  <ul id="dom">
+    <li class="list">검색</li>
+    <li class="list">수정</li>
+    <li class="list">삭제</li>
+  </ul>
+  <h2>Browser Object Model</h2>
+  <p>브라우저 객체 모델은</p>
+  <ul id="bom">
+    <li>window</li>
+    <li>Location</li>
+    <li>History</li>
+  </ul>
+  <ul id="number">
+  </ul>
+
+  <script>
+    console.dir(document); //문서자체
+    console.dir(document.constructor);
+    console.log(document.nodeType);
+    console.log(document.nodeName);
+    console.log(document.nodeValue);
+    console.log(document.documentElement);
+    console.log(document.documentElement.nodeType);
+    console.log(document.documentElement.nodeValue);
+
+  </script>
+  <span>eheh </span>
+  <span>sksm</span>
+
+</body>
+</html>

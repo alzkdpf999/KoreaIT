@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+  <!-- 인라인 이벤트 처리 방식 (비권장!!!) 테스트 용으로만  -->
+  <div onclick="alert('hello')">hi</div>
+  <div onclick="eventHandler()">hi</div>
+
+  <div id="button">hi</div>
+  <div id="button2">hi</div>
+  <script type="text/javascript">
+    //고전 이벤트 처리 모델
+    //이벤트 타겟 찾기
+    let eventTaget = document.querySelector("#button");
+    //이벤트 타겟에 이벤트 핸들러(리스너) 등록
+    eventTaget.onclick = ()=> {
+      alert('hello2');
+    }
+    function eventHandler(){
+      alert("이벤트 처리");
+    }
+    eventTaget.onclick= eventHandler;
+
+    // 익명함수로 이벤트 리스너 등록
+    eventTaget.onclick = function(){
+      eventTaget.style.background = 'red'   
+    }
+
+    //표준 이벤트 모델 이 방식을 쓰는게 좋음
+    let eventTaget2 = document.querySelector("#button2");
+    eventTaget2.addEventListener("click",() => {
+    eventTaget2.style.background ='yellow';
+},false);
+    eventTaget2.addEventListener("dblclick",() => eventTaget2.style.border = '2px solid blue'
+,false);
+
+  </script>
+</body>
+</html>
