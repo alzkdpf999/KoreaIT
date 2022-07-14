@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" onclick="alert('권장x')">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script>
+    window.addEventListener("load",function(event) {
+    
+      window.addEventListener("resize",function(event){
+        console.log("사이즈 변경");
+        document.querySelector("body").innerHTML = `<h2>창의 크기는 ${window.innerWidth} X ${window.innerHeight}</h2>`;
+      });
+    });//,true); //true는 캡쳐링 하겠다는 말 false 가 기본값
+  </script>
+</head>
+<body>
+  <div>클릭</div>
+</body>
+</html>
