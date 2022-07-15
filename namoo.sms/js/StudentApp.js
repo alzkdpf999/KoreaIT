@@ -1,7 +1,5 @@
 import {Student} from "./Student.js";
 import {StudentManager} from "./StudentManager.js";
-
-
 /* let studentManager = new StudentManager();
 let student = new Student(1,'jack',90,100,50);
 studentManager.add(student);
@@ -19,7 +17,7 @@ list.forEach(student => {
 //학번 조회
 
 document.querySelector("#smsearch").addEventListener("click",function(event){
-  const a=document.getElementById('ssn').value;
+  const a=document.querySelector('#ssn').value;
   console.log(a);
   })
 
@@ -27,9 +25,9 @@ document.querySelector("#smsearch").addEventListener("click",function(event){
 document.querySelector("#register").addEventListener("click",function(event){
   let studentManager = new StudentManager();
   studentManager.add(new Student(2,'ghos',90,100,50))
-  
   const list =studentManager.list();
-  listAll(list);
+  // listAll(list);
+  test(list);
 })
 let printList = `<ul>
 <li>학번</li>
@@ -48,4 +46,29 @@ function listAll(list){
     printList+=`</ul>`;
   }
   document.querySelector("#list").innerHTML = printList
+}
+function test(list) {
+  let ul= document.createElement("ul");
+  for (const index of list) {
+    for (const key in index) {
+      let li= document.createElement("li");
+      if(typeof(index[key]) === 'function' || key == 'schoolName'){
+        continue;
+      }
+      let txt = document.createTextNode(index[key]);
+      li.setAttribute('margin', '5');
+      
+      li.appendChild(txt);
+      ul.appendChild(li);
+    }
+    let txt = document.createTextNode(`${index.getAverage()}`);
+    let li = document.createElement("li")
+    li.setAttribute('margin','5');
+    li.appendChild(txt);
+    
+    ul.appendChild(li);
+    
+  }
+  document.querySelector("#list").appendChild(ul);
+  
 }
