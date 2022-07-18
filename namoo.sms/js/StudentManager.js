@@ -29,10 +29,11 @@ StudentManager.prototype.find = function(ssn){
   // 더 쉬운 방법
   
   return  this.array.find(function(student){
+    
     return student.ssn == ssn;
   });
 }
-//초기화
+//초기화 보류
 StudentManager.prototype.removeAll= function(){
   this.array.length =0;
   
