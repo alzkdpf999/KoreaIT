@@ -33,10 +33,21 @@ StudentManager.prototype.find = function(ssn){
     return student.ssn == ssn;
   });
 }
-//초기화 보류
-StudentManager.prototype.removeAll= function(){
-  this.array.length =0;
-  
+StudentManager.prototype.filter= function(ssn){
+  return this.array.filter(function(student){
+    return student.ssn ==ssn;
+  })
 }
-
+StudentManager.prototype.idfilter= function(name){
+  return this.array.filter(function(student){
+    return student.name == name;
+  })
+}
+//삭제
+StudentManager.prototype.removefilter= function(ssn,name){
+  return this.array.filter(function(student){
+    let result = (student.name !== name || student.ssn !== ssn);
+    return result;
+  })
+}
 export {StudentManager};

@@ -9,21 +9,70 @@
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <title>Document</title>
   <style>
+    h3{
+      position: absolute;
+      left: 90px;
+      top: 20px
+      
+    }
+    form{
+      position: absolute;
+      left: 20px;
+      top: 50px;
+      margin: 10px;
+    }
+    
+    table{
+      align-items: center;
+      justify-content: center;
+      border: 1px solid blue;
+      
+    }
+    label{
+      padding: 5px;
+    }
     label,input {
       margin: 4px;
+      
     }
-
-    button {
+    button { 
+      margin-top: 4px;
       margin-left: 8px;
     }
-
     button#temp {
       margin-left: 4px;
     }
-
-  
-    th{
+    th{ 
       text-align: center;
+    }
+    #score,#insert{
+      width: 70px;
+    }
+    #bu{
+      width: 100px; 
+    }
+    ul{
+      
+      padding-left: 0px;  
+      margin: 5px;
+    }
+    li{
+      background-color: gray;
+      position: relative;
+      left: 20px;
+      display: inline-block;
+      border: 1px solid ;
+
+      width: 72px;
+      margin: 5px;
+      text-align: center;
+      color: white;
+    }
+    .li_table{
+      
+      margin-top: 2px;
+      border: 1px solid black;
+      background-color: black
     }
   </style>
 </head>
@@ -31,36 +80,72 @@
 <body>
   <h3>KOREA IT ACADEMY 중학교 성적 관리</h3>
   <form action="">
-    <table>
+    <table class="table table-striped table-dark" >
       <tr>
         <th><label for="tel">학번</label></th>
         <td>
-          <input type="tel" class="form-control" placeholder="18" maxlength="2">
+          <input type="tel" class="form-control" placeholder="18" maxlength="2" id="insert">
         </td>
-        <td><button type="button" class="btn btn-outline-success">조회</button>
-          <button type="button" class="btn btn-outline-success" id="temp">삭제</button>
-          <input type="reset" value="초기화" class="btn btn-outline-danger">
-        </td>
-  
+        <td><button type="button" class="btn btn-outline-success">조회</button></td>
+        <td><button type="button" class="btn btn-outline-success" id="temp">삭제</button></td>
+        <td colspan="2"><input type="reset" value="초기화" class="btn btn-outline-danger"></td>
       </tr>
       <tr>
         <th>
           <label for="fname">이름</label>
         </th>
-        <td><input type="text" class="form-control" placeholder="홍길동" aria-label="Username"></td>
+        <td><input type="text" class="form-control" placeholder="홍길동" aria-label="Username" id="insert"></td>
+        <td colspan="4"><button type="button" class="btn btn-outline-success">검색</button></td>
       </tr>
       <tr>
-        <td><label for="korea" id="score">국어</label></td>
-        <td><input type="tel" class="form-control" placeholder="90" maxlength="3" id="score"></td>
-        <td><label for="english" id="score">영어</label></td>
-        <td><input type="tel" class="form-control" placeholder="90" maxlength="3" id="score"></td>
-        <td><label for="math" id="score">수학</label></td>
-        <td><input type="tel" class="form-control" placeholder="90" maxlength="3" id="score"></td>
+        <th ><label for="korea" id="score">국어</label></th>
+        <td ><input type="tel" class="form-control" placeholder="90" maxlength="3" id="score"></td> 
+        <th ><label for="english" id="score">영어</label></th>
+        <td ><input type="tel" class="form-control" placeholder="90" maxlength="3" id="score"></td>
+        <th ><label for="math" id="score">수학</label></th>
+        <td ><input type="tel" class="form-control" placeholder="90" maxlength="3" id="score"></td>
+      </tr> 
+      <tr align="center">
+        <td colspan="3"><button type="button" class="btn btn-outline-success" id="bu">등록</button></td>
+        <td colspan="3"><button type="button" class="btn btn-outline-success" id="bu">전체검색</button></td>
       </tr>
-  
-  
-  
     </table>
+    
+    <div class="li_table bg-dark">
+      <ul >
+        <li>학번</li>
+        <li>이름</li>
+        <li>국어</li>
+        <li>영어</li>
+        <li>수학</li>
+        <li>평균</li>
+      </ul>
+      <ul>
+        <li>1</li>
+        <li>jack</li>
+        <li>20</li>
+        <li>30</li>
+        <li>50</li>
+        <li>33.3</li>
+      </ul>
+      <ul>
+        <li>2</li>
+        <li>dack</li>
+        <li>80</li>
+        <li>90</li>
+        <li>50</li>
+        <li>73.3</li>
+      </ul>
+      <ul>
+        <li>3</li>
+        <li>oack</li>
+        <li>100</li>
+        <li>80</li>
+        <li>90</li>
+        <li>90</li>
+      </ul>
+      
+    </div>
   </form>
   
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
@@ -69,3 +154,11 @@
 </body>
 
 </html>
+
+<!--<th class="float-start"><label for="korea" id="score">국어</label></th>
+        <td><input type="number" class="form-control" placeholder="90" maxlength="3" id="score"></td> 
+  <th><label for="english" id="score">영어</label></th>
+        <td><input type="number" class="form-control" placeholder="90" maxlength="3" id="score"></td>
+        <th><label for="math" id="score">수학</label></th>
+        <td><input type="number" class="form-control" placeholder="90" maxlength="3" id="score"></td> -->
+

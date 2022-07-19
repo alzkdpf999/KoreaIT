@@ -25,15 +25,16 @@
           <input id="ssn" type="tel" class="form-control" placeholder="18" maxlength="2" id="insert">
         </td>
         <td><button type="button" class="btn btn-outline-success" id="smsearch">조회</button></td>
-        <td><button type="button" class="btn btn-outline-danger" id="temp">삭제</button></td>
+        <td><button type="button" class="btn btn-outline-danger" id="remove">삭제</button></td>
         <td colspan="2"><input type="reset" value="초기화" class="btn btn-outline-danger"></td>
       </tr>
       <tr>
         <th>
           <label for="fname">이름</label>
         </th>
-        <td><input  id="id" type="text" class="form-control" placeholder="홍길동" aria-label="Username" id="insert"></td>
-        <td colspan="4"><button type="button" class="btn btn-outline-success">검색</button></td>
+        <td><input  id="name" type="text" class="form-control" placeholder="홍길동" aria-label="Username" id="insert"></td>
+        <td><button type="button" class="btn btn-outline-success" id="search">검색</button></td>
+        <td colspan="3"><button type="button" class="btn btn-outline-danger" id="removeall">전체삭제</button></td>
       </tr>
       <tr>
         <th ><label for="korea" id="score">국어</label></th>
@@ -45,10 +46,9 @@
       </tr> 
       <tr align="center">
         <td colspan="3"><button type="button" class="btn btn-outline-success" id="register">등록</button></td>
-        <td colspan="3"><button type="button" class="btn btn-outline-success" id="search">전체검색</button></td>
+        <td colspan="3"><button type="button" class="btn btn-outline-success" id="allSearch">전체검색</button></td>
       </tr>
     </table>
-    
     <div class="li_table bg-dark" id = "list">
       <ul>
         <li>학번</li>
@@ -58,31 +58,6 @@
         <li>수학</li>
         <li>평균</li>
       </ul>
-      <!-- <ul>
-        <li>1</li>
-        <li>jack</li>
-        <li>20</li>
-        <li>30</li>
-        <li>50</li>
-        <li>33.3</li>
-      </ul>
-      <ul>
-        <li>2</li>
-        <li>dack</li>
-        <li>80</li>
-        <li>90</li>
-        <li>50</li>
-        <li>73.3</li>
-      </ul>
-      <ul>
-        <li>3</li>
-        <li>oack</li>
-        <li>100</li>
-        <li>80</li>
-        <li>90</li>
-        <li>90</li>
-      </ul> -->
-      
     </div>
   </form>
   
