@@ -1,3 +1,4 @@
 /.metadata/
 /*.sql/
 /sqlFIle/
+/./sqlFIle/!db.txt/
