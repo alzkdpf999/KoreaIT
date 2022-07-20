@@ -27,3 +27,6 @@ spool C:/화면캡처.txt // 화면캡처
 
 다하고 나서 
 spool off 하면 캡처 종료
+
+실행순서 
+FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY

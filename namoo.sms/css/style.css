@@ -2,12 +2,7 @@ body{
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 200px;
-
- /* position: fixed;
- left:50%;
- top:50%;
- transform: translate(-50%,-50%); */
+  margin-top: 100px;
 }
 form{
   margin: 10px;
@@ -50,14 +45,14 @@ li{
   display: inline-block;
   border: 1px solid ;
   width: 72px;
-  margin: 5px;
+  margin: 7px;
   text-align: center;
   color: white;
 }
 .li_table{
   margin-top: 2px;
   border: 1px solid black;
-  background-color: black
+  
 }
 #rm{
   padding-left: 2px;

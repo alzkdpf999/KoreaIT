@@ -8,12 +8,7 @@ let printList='';
 //이름 검색
 document.querySelector("#search").addEventListener("click",function(event){
   printList=`<ul>
-  <li>학번</li>
-  <li>이름</li>
-  <li>국어</li>
-  <li>영어</li>
-  <li>수학</li>
-  <li>평균</li>
+  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
 </ul>`;
   let searchAllManager = studentManager;
   const findname = document.querySelector('#name').value;
@@ -33,12 +28,7 @@ document.querySelector("#search").addEventListener("click",function(event){
 //학번 조회
 document.querySelector("#smsearch ").addEventListener("click",function(event){
   printList=`<ul>
-  <li>학번</li>
-  <li>이름</li>
-  <li>국어</li>
-  <li>영어</li>
-  <li>수학</li>
-  <li>평균</li>
+  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
 </ul>`;
   let searchStudentManager = studentManager;
   // console.log(searchStudentManager.list());x
@@ -74,12 +64,7 @@ document.querySelector("#register").addEventListener("click",function(event){
   let array=studentManager.array;
   if(count != 0){
     printList = `<ul>
-  <li>학번</li>
-  <li>이름</li>
-  <li>국어</li>
-  <li>영어</li>
-  <li>수학</li>
-  <li>평균</li>
+  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
   </ul>`;
     let list = studentManager.list();
     for(let index = 0; index<list.length;index++)
@@ -100,12 +85,14 @@ function resigsterList(list) {
   for (const index of list) {
     for (const key in index) {
       let li= document.createElement("li");
+      let p = document.createElement("br")
       if(typeof(index[key]) === 'function' || key == 'schoolName'){
         continue;
       }
       let txt = document.createTextNode(index[key]);
       li.appendChild(txt);
       ul.appendChild(li);
+      
     }
     let txt = document.createTextNode(`${index.getAverage()}`);
     let li = document.createElement("li")
@@ -124,12 +111,7 @@ function listAll(list){
 //전체검색
 document.querySelector("#allSearch").addEventListener("click",function(event){
   printList = `<ul>
-  <li>학번</li>
-  <li>이름</li>
-  <li>국어</li>
-  <li>영어</li>
-  <li>수학</li>
-  <li>평균</li>
+  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
   </ul>`;
   let list =studentManager.list()
   for(let index =0; index<list.length;index++)
@@ -147,12 +129,7 @@ function searchAll(index){
 //전체 삭제
 document.querySelector("#removeall").addEventListener("click",function(event){
   printList = `<ul>
-  <li>학번</li>
-  <li>이름</li>
-  <li>국어</li>
-  <li>영어</li>
-  <li>수학</li>
-  <li>평균</li>
+  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
   </ul>`;
   document.querySelector("#list").innerHTML = printList
   studentManager.array.length=0;
@@ -161,12 +138,7 @@ document.querySelector("#removeall").addEventListener("click",function(event){
 document.querySelector("#remove").addEventListener("click",function(event){
   let removeManager = studentManager;
   printList = `<ul>
-  <li>학번</li>
-  <li>이름</li>
-  <li>국어</li>
-  <li>영어</li>
-  <li>수학</li>
-  <li>평균</li>
+  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
   </ul>`;
   const removeName = document.querySelector('#name').value;
   const removeSsn = document.querySelector('#ssn').value;

@@ -152,3 +152,176 @@ FROM dual;
 -- 이번달 마지막 날짜
 SELECT SYSDATE, LAST_DAY(SYSDATE) "이번달 마지막날"
 FROM dual;
+
+--형변환 함수 (to_char() => 주로 사용)
+SELECT TO_CHAR(12345), TO_CHAR(12345.67)
+FROM dual;
+
+SELECT TO_CHAR(12345, '999,999'), TO_CHAR(12345.677, '999,999.99')
+FROM dual;
+
+SELECT TO_CHAR(12345, '000,000'), TO_CHAR(12345.677, '000,000.00')
+FROM dual;
+
+SELECT TO_CHAR(150, '$9999'), TO_CHAR(150, '$0000')
+FROM dual;
+
+SELECT TO_CHAR(150, 'S9999'), TO_CHAR(150, 'S0000')
+FROM dual;
+
+SELECT TO_CHAR(150, '9999MI'), TO_CHAR(-150, '9999MI')
+FROM dual;
+
+SELECT TO_CHAR(150, '9999EEEE'), TO_CHAR(150, '99999B')
+FROM dual;
+
+SELECT TO_CHAR(150, 'RN'), TO_CHAR(150, 'rn')
+FROM dual;
+
+SELECT TO_CHAR(10, 'X'), TO_CHAR(10, 'x'), TO_CHAR(15, 'X')
+FROM dual;
+
+SELECT TO_CHAR(SYSDATE, 'YYYY-MM-DD AM HH:MI:SS DAY')
+FROM dual;
+
+SELECT first_name, hire_date, TO_CHAR(hire_date, 'YYYY-MM-DD HH24:MI')
+FROM employees;
+
+-- 입사년도가 2002년도인 사원들
+SELECT first_name, hire_date
+FROM employees
+WHERE TO_CHAR(hire_date, 'YYYY') = '2002';
+
+--to_number
+SELECT TO_NUMBER('12345') + 1
+FROM dual;
+
+SELECT TO_NUMBER('12,345', '00,000') + 1
+FROM dual;
+
+SELECT TO_NUMBER('1000') + TO_NUMBER('2,000', '0,000') + 1
+FROM dual;
+
+--to_date
+SELECT TO_DATE('2021/12/31 18:45:23', 'YYYY/MM/DD HH24:MI:SS')
+FROM dual;
+
+SELECT first_name, hire_date
+FROM employees
+WHERE hire_date = TO_DATE('2003-06-17', 'YYYY-MM-DD');
+
+SELECT first_name, hire_date
+FROM employees
+WHERE hire_date = TO_DATE(20030617, 'YYYY-MM-DD');
+
+--NVL(a,b) NVL2(a,b,c) 둘다 a가 NULL이면 무조건 마지막에 있는 값이 나옴
+--NVL은 b NVL2는 c 가 나옴 
+SELECT NVL(NULL, 10) FROM dual;
+
+SELECT 10*NULL, 10*NVL(NULL, 1)
+FROM dual;
+
+SELECT first_name, salary, NVL(commission_pct, 0)
+FROM employees;
+
+SELECT first_name, salary, commission_pct, TO_CHAR( (salary + ( salary * commission_pct ) ) * 12,'$999,999') "연봉"
+FROM employees;
+
+SELECT first_name, salary, commission_pct, TO_CHAR( (salary + ( salary * NVL(commission_pct,0) ) ) * 12,'$999,999') "연봉"
+FROM employees;
+
+SELECT first_name, salary, NVL2(commission_pct, commission_pct, 0)
+FROM employees;
+
+SELECT first_name, salary, NVL2(TO_CHAR(commission_pct), TO_CHAR(commission_pct), '신입사원') "인센티브"
+FROM employees;
+
+--조건문
+SELECT first_name, job_id,
+DECODE(job_id, 'IT_PROG', '개발자',
+'AC_MRG', '관리자',
+'FI_ACCOUNT', '회계사',
+'직원') "직종"
+FROM employees;
+
+SELECT first_name, job_id, salary,
+DECODE(job_id, 'IT_PROG', salary * 1.5,
+'AC_MRG', salary * 1.3,
+'AC_ASST', salary * 1.1,
+salary) "인상급여"
+FROM employees;
+
+SELECT first_name,
+department_id,
+CASE
+WHEN department_id = 10 THEN '영업부'
+WHEN department_id = 20 THEN '총무부'
+WHEN department_id = 30 THEN '인사부'
+ELSE '인사발령'
+END "부서명"
+FROM employees
+ORDER BY department_id ASC;
+
+--그룹 함수
+-- 전체 사원수(NULL은 포함 안됨)
+SELECT COUNT(employee_id) FROM employees;
+-- 전체 사원수(NULL 포함)
+SELECT COUNT(*) FROM employees;
+-- 커미션 받는 사원의 수
+SELECT COUNT(commission_pct)
+FROM employees;
+
+SELECT COUNT(*) "전체사원수", COUNT(commission_pct) "커미션사원수"
+FROM employees;
+-- 급여 총액(NULL은 무시)
+SELECT SUM(salary)
+FROM employees;
+-- 급여 평균(NULL은 무시)
+SELECT AVG(salary)
+FROM employees;
+-- 커미션 평균
+SELECT AVG(commission_pct), AVG(NVL(commission_pct, 0))
+FROM employees;
+
+-- 최대값, 최소값
+SELECT MAX(salary), MIN(salary), MAX(commission_pct), MIN(commission_pct)
+FROM employees;
+
+SELECT MAX(hire_date), MIN(hire_date), MAX(hire_date) - MIN(hire_date) "짬밥차"
+FROM employees;
+
+-- GROUP BY 절(특정 컬럼을 기준으로 그룹핑)
+SELECT department_id
+FROM employees
+GROUP BY department_id;
+
+-- 부서별 급여총액, 평균
+SELECT department_id, SUM(salary), AVG(salary)
+FROM employees
+GROUP BY department_id;
+
+-- HAVING 절(그룹에 대한 조건)
+SELECT department_id, SUM(salary) "총합", AVG(salary) "avg"
+FROM employees
+GROUP BY department_id
+--HAVING department_id = 10;
+ORDER BY "avg";
+
+SELECT department_id, SUM(salary), AVG(salary)
+FROM employees
+GROUP BY department_id
+HAVING AVG(salary) >= 3000;
+
+SELECT department_id, MAX(salary), MIN(salary)
+FROM employees
+GROUP BY department_id
+HAVING MAX(salary) > 20000;
+
+SELECT hire_date, COUNT(*) 
+FROM employees
+GROUP BY hire_date
+ORDER BY hire_date;
+--ORDER BY COUNT(*);
+
+SELECT first_name, department_name
+FROM employees, departments;
