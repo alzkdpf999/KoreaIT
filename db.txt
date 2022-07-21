@@ -31,4 +31,3 @@ spool off 하면 캡처 종료
 실행순서 
 FROM -> WHERE -> GROUP BY -> HAVING -> SELECT -> ORDER BY
 
-<!-- https://us06web.zoom.us/rec/play/sZVdV1nPamNS3z0FXFImnhNywMy4-huiFxjmSPgX0nuxs0PA-M3ckYzZ2p_EszFAyUD-pPJiEcPL3_sj.ZbuwlnHXPaZkvtwO?continueMode=true&_x_zm_rtaid=4VlZ-pH6QVOdK_SwLLotOw.1658320332782.e82e33dd1479fdd5480a661f81356544&_x_zm_rhtaid=184 -->
