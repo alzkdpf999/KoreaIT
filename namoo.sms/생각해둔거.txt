@@ -1,0 +1,2 @@
+일단 count랑 printList 보안처리 해놓고
+
