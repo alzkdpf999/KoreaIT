@@ -2,14 +2,42 @@ import {Student} from "./Student.js";
 import {StudentManager} from "./StudentManager.js";
 
 let studentManager = new StudentManager();
-let count=0;
-let printList='';
-
-//이름 검색
-document.querySelector("#search").addEventListener("click",function(event){
-  printList=`<ul>
+let init_list=initList();
+let cnt=increamentCount()
+function increamentCount() {
+  //은닉화시켜주면서 인스턴스 변수처럼 쓰게 하고 싶을 때 
+    let count = 0;
+    return function(){ 
+      if(arguments.length ==1){
+        count=0;
+        return count;
+      }
+      else return ++count;
+      
+    }
+  }
+function initList(){
+  let printList='';
+  return function(){
+    if(arguments.length==0){
+      printList=`<ul>
   <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
 </ul>`;
+      return printList;
+    }else{
+      for(let i=0; i<arguments.length;i++){
+      printList += `<ul>`
+      printList += `<li>${arguments[i].ssn}</li><li>${arguments[i].name}</li><li>${arguments[i].korean}</li><li>${arguments[i].english}</li><li>${arguments[i].math}</li><li>${arguments[i].getAverage()}</li>`;
+      printList += `</ul>`;
+      }
+      return printList;
+      
+    }
+  }
+}
+//이름 검색
+document.querySelector("#search").addEventListener("click",function(event){
+  let printList=init_list();
   let searchAllManager = studentManager;
   const findname = document.querySelector('#name').value;
   let findStudentname = searchAllManager.idfilter(findname);
@@ -21,15 +49,14 @@ document.querySelector("#search").addEventListener("click",function(event){
     listAll(findStudentname[index]);
   }
 }
-  ++count;
-  // console.log(count);     
+
+  console.log(cnt());     
   })
 
 //학번 조회
 document.querySelector("#smsearch ").addEventListener("click",function(event){
-  printList=`<ul>
-  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
-</ul>`;
+  let printList=init_list();
+  console.log(printList);
   let searchStudentManager = studentManager;
   // console.log(searchStudentManager.list());x
   const findSsn = document.querySelector('#ssn').value;
@@ -44,8 +71,8 @@ document.querySelector("#smsearch ").addEventListener("click",function(event){
     listAll(findStudent[index]);
   }
 }
-  ++count;
-  console.log(count);
+
+  console.log(cnt()); 
   })
 
 //등록
@@ -62,17 +89,16 @@ document.querySelector("#register").addEventListener("click",function(event){
   const ma=parseInt(document.querySelector('#ma').value);
   studentManager.add(new Student(ssn,name,kr,en,ma))
   let array=studentManager.array;
-  if(count != 0){
-    printList = `<ul>
-  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
-  </ul>`;
+  if(cnt() != 0){
+    let printList=init_list();
+    console.log(printList);
     let list = studentManager.list();
     for(let index = 0; index<list.length;index++)
   {
     searchAll(list[index]);
   }
   
-    count = 0;
+    cnt(1);
   }else{
     resigsterList(array.slice(array.length-1,array.length));
   } 
@@ -103,16 +129,12 @@ function resigsterList(list) {
 }
 //부분 서치
 function listAll(list){
-  printList += `<ul>`
-  printList += `<li>${list.ssn}</li><li>${list.name}</li><li>${list.korean}</li><li>${list.english}</li><li>${list.math}</li><li>${list.getAverage()}</li>`;
-  printList += `</ul>`;
+  let printList=init_list(list);
   document.querySelector("#list").innerHTML = printList
 }
 //전체검색
 document.querySelector("#allSearch").addEventListener("click",function(event){
-  printList = `<ul>
-  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
-  </ul>`;
+  let printList=init_list();
   let list =studentManager.list()
   for(let index =0; index<list.length;index++)
   {
@@ -121,39 +143,37 @@ document.querySelector("#allSearch").addEventListener("click",function(event){
 })
 //전체 검색./
 function searchAll(index){
-  printList+=`<ul>`
-  printList+= `<li>${index.ssn}</li><li>${index.name}</li><li>${index.korean}</li><li>${index.english}</li><li>${index.math}</li><li>${index.getAverage()}</li>`;
-  printList+=`</ul>`;
+  let printList=init_list(index);
   document.querySelector("#list").innerHTML = printList
 }
 //전체 삭제
 document.querySelector("#removeall").addEventListener("click",function(event){
-  printList = `<ul>
-  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
-  </ul>`;
+  let printList=init_list();
   document.querySelector("#list").innerHTML = printList
   studentManager.array.length=0;
 })
 //이름 and 삭제 
 document.querySelector("#remove").addEventListener("click",function(event){
   let removeManager = studentManager;
-  printList = `<ul>
-  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
-  </ul>`;
+  let printList = init_list();
   const removeName = document.querySelector('#name').value;
   const removeSsn = document.querySelector('#ssn').value;
   let removeStudent = removeManager.removefilter(removeSsn,removeName);
   // let removeList =removeStudent.list()
   console.log(removeStudent);
   studentManager.array.length = 0;
-  for(let index =0; index<=removeStudent.length;index++)
+  for(let index =0; index<removeStudent.length;index++)
   {
-    if(index == removeStudent.length){
-      console.log(removeStudent.length);
-      document.querySelector("#list").innerHTML = printList
-    }else{
-      searchAll(removeStudent[index]);
-      studentManager.array.push(removeStudent[index]);
-  } 
-}
+    console.log(index+"번째"+removeStudent[index]);
+    studentManager.array.push(removeStudent[index]);
+  }
+  AllSearch(removeStudent);
+
 })
+function AllSearch(temp){
+  let printList = init_list();let a=0;
+  for(let i=0;i<temp.length;i++){
+  printList = init_list(temp[i]);
+  }
+  document.querySelector("#list").innerHTML = printList;
+}
