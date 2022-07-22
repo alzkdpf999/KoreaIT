@@ -1,0 +1,69 @@
+--스키마 == 물리적 저장공간 기본적으로 사용자 단위
+
+--select * from hr.employees 다른 스키마에 접속할려면 이름.테이블명을 하면 가능
+/*
+CREATE | 데이터베이스 객체 생성
+DROP   | 데이터베이스 객체 삭제
+ALTER  | 데이터베이스 객체 변경
+*/
+/*
+-- 테이블 생성
+CREATE TABLE [schema.]테이블명(
+컬럼명1 데이터타입 [디폴트값] [컬럼제약조건],
+컬럼명2 데이터타입 [디폴트값] [컬럼제약조건],
+[컬럼명n 데이터타입 [디폴트값] [컬럼제약조건]]
+)
+-- 시퀀스 생성
+CREATE SEQUENCE 시퀀스명;
+-- 뷰 생성
+CREATE VIEW 뷰명;
+-- 인덱스 생성
+CREATE INDEX 인덱스명;
+*/
+/*
+CHAR(size) size 바이트 크기의 고정 길이 문자 데이터 타입 (최소크기: 1바이트, 최대크기: 2,000바이트)
+
+VARCHAR2(size) size 바이트 크기의 가변 길이 문자 데이터 타입 (최소크기: 1바이트, 최대크기: 4,000바이트)
+
+NUMBER(precision, scale)
+--------------------------------------------------------------------------------
+숫자를 저장하기 위한 데이터 타입 (소수점 포함 전체 precision자리 중 소수점 이하 s자리)
+(precision: 1~38, scale: -84~127)
+scale를 생략한 채 precision만 지정하면 소수점 이하는 반올림되어 정수가 저장되며,
+precision, scale 모두 생략하면 입력한 숫자 만큼 공간이 할당
+--------------------------------------------------------------------------------
+
+DATE 날짜 및 시간 데이터를 저장하기 위한 데이터 타입(7Byte)
+LONG 가변 길이 문자 데이터 타입(1~2GB)
+CLOB 대용량의 텍스트 데이터 저장을 위한 데이터 타입(1~4GB)
+BLOB 대용량의 이진 데이터 저장을 위한 데이터 타입(1~4GB)
+이미지나 영상은 잘 저장 안해놓음 보통 따로 저장한다.
+*/
+
+/*
+CREATE TABLE departments2(
+deptno NUMBER CONSTRAINT deptno_pk PRIMARY KEY, --제약사항은 옵션
+dname VARCHAR2(40),
+loc VARCHAR2(50)) ;
+*/
+
+/*CREATE TABLE person(
+     hiredate DATE DEFAULT SYSDATE);*/
+
+CREATE TABLE person(
+    ssn CHAR(13) CONSTRAINT person_ssn_pk NOT NULL,
+    name VARCHAR2(10) NOT NULL,
+    age NUMBER(3) CONSTRAINT person_age_ck CHECK(age BETWEEN 10 AND 100),
+    manager number(6) CONSTRAINT person_mg_fk REFERENCES employees(employee_id),
+    email VARCHAR2(50) CONSTRAINT person_email_uk UNIQUE,
+    gender CHAR(1) CONSTRAINT person_gender_ck CHECK(gender IN ('M','F')),
+    hiredate DATE DEFAULT SYSDATE);
+    
+select * from user_tables;
+
+select * from user_constraints
+where table_name = 'PERSON';
+
+--테이블 삭제
+drop table person;
+

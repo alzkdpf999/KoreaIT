@@ -24,3 +24,4 @@ Student.prototype.toString = function(){
 Student.prototype.schoolName = "Korea 중학교";
 
 export {Student};
+export {}

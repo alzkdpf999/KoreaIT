@@ -1,0 +1,45 @@
+--1
+select employee_id,last_name,salary, hire_date
+from employees
+where salary < 5000 or salary > 15000;
+
+--2
+select employee_id,last_name,salary,job_id,To_CHAR(hire_date,'YYYY-MM-DD') "입사일"
+from  employees
+where department_id = 50 and job_id ='ST_MAN' 
+and hire_date = '2004/07/18';
+--TO_DATE('2004-07-18', 'YYYY-MM-DD');
+
+--3
+select *
+from employees
+where TO_CHAR(hire_date,'YYYY') >'2002' and job_id in ('ST_MAN','ST_CLERK');
+--(job_id = 'ST_MAN' or job_id = 'ST_CLERK');
+
+--4
+select *
+from employees
+where manager_id IS NULL;
+--NVL(manager_id, -999) = -999;
+
+--5
+select last_name,salary
+from employees
+where last_name LIKE 'J%' or last_name LIKE 'A%' or last_name LIKE 'M%';
+--instr을 사용해서 했었음
+desc employees
+
+--6
+select TO_CHAR(hire_date,'YY') year,count(hire_date) "신입사원 수"
+from employees
+group by TO_CHAR(hire_date,'YY')
+order by year;
+
+--7
+select employee_id
+from employees
+where MOD(employee_id,2) = 1;
+
+--8
+select sysdate today,TO_CHAR(NEXT_DAY(ADD_MONTHS(sysdate,6),6), 'YYYY-MM-DD HH24:MI:SS DAY')"6개월 후 금요일"
+FROM dual;

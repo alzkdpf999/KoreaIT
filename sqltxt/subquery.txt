@@ -1,0 +1,174 @@
+--서브쿼리를 사용하지 않을 경우
+SELECT salary
+FROM employees
+WHERE LOWER(last_name)='seo';
+
+SELECT *
+FROM employees
+WHERE salary=2700;
+
+--단일행 서브 쿼리
+SELECT *
+FROM employees
+WHERE salary = (SELECT salary
+                FROM employees
+                    WHERE LOWER(last_name)= 'seo');
+                    
+--전체사원 평균급여보다 더 많은 급여를 받는 사원 목록 조회
+--F5를 누르면 서브쿼리만 실행 가능
+SELECT *
+FROM employees
+WHERE salary > (SELECT AVG(NVL(salary,0))
+                FROM employees);
+ /*  SELECT AVG(NVL(salary,0))
+FROM employees; */
+
+--(IN)30번 부서에 소속된 사원들과 동일한 업무(30)를 가지는 전체 사원목록 조회
+SELECT employee_id,last_name, job_id,department_id
+FROM employees
+WHERE job_id IN (SELECT job_id
+                FROM employees
+                WHERE department_id = 30);
+        
+--(ANY)30번 부서에 소속된 사원중 최소급여자보다 더 많은 급여를 받는 전체사원 목록
+SELECT *
+FROM employees
+WHERE salary > ANY (SELECT salary
+                FROM employees
+                WHERE department_id = 30);
+                /*
+                    (SELECT MIN(salary)
+                    FROM employees
+                    WHERE department_id=30)
+                */
+                
+--(ALL)30번 부서에 소속된 사원중 최대급여자보다 더 많은 급여를 받는 전체사원 목록
+SELECT *
+FROM employees
+WHERE salary > ALL(SELECT salary
+                FROM employees
+                WHERE department_id = 30);
+                /*
+                    (SELECT MAX(salary)
+                    FROM employees
+                    WHERE department_id=30)
+                */
+--(EXISTS) 하나라도 있으면 true
+SELECT *
+FROM employees
+WHERE EXISTS(SELECT *
+             FROM departments
+             WHERE department_id = 30)
+AND department_id = 30;
+
+--부서별 최소급여를 받는 사원 정보
+--부서별 최소급여이므로 department_id,salary를 조건절로 붙히고 
+--group by로 department를 각각 한 묶음으로 잡는다 
+--이 방식은 잘 안씀
+SELECT *
+FROM employees
+WHERE (department_id,salary) IN (SELECT department_id,MIN(salary)
+                                 FROM employees
+                                 GROUP BY department_id);
+                                 
+--INLINE VIEW 굉장히 많이 사용되는 서브쿼리이다
+-- 부서별 최대 급여자 정보 확인
+SELECT e.employee_id, e.first_name, e.department_id, e.salary
+FROM employees e
+JOIN (SELECT department_id, MAX(salary) maxsal
+                FROM employees
+                GROUP BY department_id) i
+ON e.department_id = i.department_id
+WHERE e.salary = i.maxsal;
+
+select e.employee_id, e.department_id, e.salary
+FROM employees e
+JOIN (SELECT department_id, MIN(salary) minsal
+           FROM employees
+           GROUP BY department_id ) i
+ON e.department_id = i.department_id --AND e.salary = i.minsal and거나 where 쓰거나
+WHERE e.salary = i.minsal;
+
+--스칼라 서브쿼리 성능이 좋지 않음 그래서 잘 사용을 안한다.
+-- 107개 출력
+----------------------------------------------------------------------
+SELECT employee_id,
+first_name,
+(SELECT department_name
+FROM departments d
+WHERE d.department_id = e.department_id) "department_name"
+FROM employees e;
+
+select employee_id,first_name,department_name
+from employees e
+left outer join departments d
+on d.department_id = e.department_id ;
+---------------------------------------------------------------------
+select rowid , rownum
+from employees;
+-- rowed, 사원 번호, 사원 이름 조회
+SELECT ROWID, employee_id, first_name
+FROM employees;
+
+
+SELECT ROWNUM, employee_id
+FROM employees;
+
+SELECT ROWNUM, employee_id
+FROM employees
+ORDER BY employee_id DESC;
+
+-- 사원 3명 조회
+SELECT ROWNUM, employee_id, first_name
+FROM employees
+WHERE ROWNUM <= 3;
+/*
+ 주의
+ 첫번째 행의 rownum이 1이므로
+ 1 > 1은 false가 되어 rownum은 더이상 증가하지 않으며, 하나의 행도 반환되지 않음
+*/
+SELECT ROWNUM, employee_id, first_name
+FROM employees
+WHERE ROWNUM > 1;
+
+
+
+/* 특정 컬럼을 기준으로 정렬하여 상위 5개(범위)를 조회하고자 한다면 */
+-- 예)전체 사원의 급여순으로 5명 가져오기
+-- 전체 급여 순위가 아닌 처음 5명안에서의 급여순위가 됨
+--order by가 가장 마지막에 실행되기 때문에
+SELECT first_name, salary
+FROM employees
+WHERE ROWNUM <=5
+ORDER BY salary DESC;
+-- 이렇게 바꿔야 한다
+SELECT *
+FROM (SELECT *
+    FROM employees
+    ORDER BY salary DESC)
+WHERE ROWNUM <= 5;
+
+-- 급여순으로 페이징 처리
+-- 글 목록 페이지 만들때 유용함
+SELECT page,
+
+employee_id,
+first_name,
+salary
+
+FROM (SELECT CEIL(ROWNUM / 10) page, --여기서 10은 한 페이지에 글 갯수 1이면 1 
+--2이면 2 100이면 100개씩
+
+employee_id,
+first_name,
+salary
+
+FROM (SELECT ROWNUM,
+employee_id,
+first_name,
+salary
+FROM employees
+ORDER BY salary DESC));
+
+
+

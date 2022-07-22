@@ -1,9 +1,15 @@
 import {Student} from "./Student.js";
 import {StudentManager} from "./StudentManager.js";
+import {Careful} from "./Careful.js";
 
 let studentManager = new StudentManager();
 let init_list=initList();
 let cnt=increamentCount()
+let careful = new Careful();
+careful.movefocus();
+//prototype에 넣기 StudentMangager에 넣어서
+
+
 function increamentCount() {
   //은닉화시켜주면서 인스턴스 변수처럼 쓰게 하고 싶을 때 
     let count = 0;
@@ -97,13 +103,14 @@ document.querySelector("#register").addEventListener("click",function(event){
   {
     searchAll(list[index]);
   }
-  
-    cnt(1);
+  cnt(1);
   }else{
     resigsterList(array.slice(array.length-1,array.length));
   } 
-  
-  
+
+  // careful.movefocus("name");
+  careful.movefocus();
+  careful.resigsterAfterInit();
 })
 //등록 함수
 function resigsterList(list) {

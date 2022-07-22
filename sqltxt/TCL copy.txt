@@ -1,0 +1,58 @@
+/*
+ COMMIT과 ROLLBACK
+ COMMIT : 변경사항 저장(데이터파일에 반영)
+ ROLLBACK : 변경사항 취소
+ COMMIT과 ROLLBACK의 장점
+ 데이터의 일관성을 제공
+ 데이터를 영구적으로 변경하기 전에 데이터 변경을 확인
+ 관련된 작업을 논리적으로 그룹화
+ COMMIT, ROLLBACK 문장으로 트랜잭션의 논리를 제어
+ COMMIT이나 ROLLBACK 이전의 데이터 상태
+ 데이터 이전의 상태로 북구가 가능
+ 현재 사용자는 SELECT문장으로 DML작업의 결과를 확인 가능
+ 다른 사용자는 SELECT문장으로 현재 사용자 사용한 DML문장의 결과를 확인할 수 없다
+ 변경상태의 행은 LOCK이 설정되어서 COMMIT/ROLLBACK 이전에는 다른 사용자가 변경할 수 없다
+ COMMIT 이후의 데이터 상태
+ 데이터베이스에 데이터를 영구적으로 변경
+ 데이터의 이전 상태는 완전히 상실
+ 모든 사용자가 결과를 볼 수 있다
+ 변경된 행의 LOCK이 해제되고 다른 사용자가 변경할 수 있다
+*/
+/*
+ SAVEPOINT
+ SAVEPOINT는 현재의 트랜잭션을 작게 분할하는 명령어이다
+ 저장된 SAVEPOINT는 ROLLBACK TO SAVEPOINT문을 사용하여 지정한 곳까지 ROLLBACK 할 수 있다
+ 여러개의 SQL문을 수행하는 트랜잭션의 경우, 사용자가 트랜잭션 중간 단계에서 SAVEPOINT를 지정할 수 있다
+ SAVEPOINT는 차후 ROLLBACK과 함께 사용하며, 현재 트랜잭션 내의 특정 SAVEPOINT까지 ROLLBACK 할 수 있다
+
+ SAVEPOINT 만들기
+ SAVEPOINT 포인트명;
+
+ SAVEPOINT ROLLBACK
+ ROLLBACK TO 포인트명;
+*/
+INSERT INTO departments (department_id, department_name)
+VALUES (departments_seq.NEXTVAL, '교육실');
+
+commit ;
+rollback;
+
+select * from departments;
+
+savepoint sp1;
+
+INSERT INTO departments (department_id, department_name)
+VALUES (departments_seq.NEXTVAL, '교육실');
+
+savepoint sp2;
+
+UPDATE employees
+    SET department_id= 50
+WHERE employee_id = 127;
+
+rollback to sp2;
+
+select *
+from departments;
+
+commit;

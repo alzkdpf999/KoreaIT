@@ -1,0 +1,95 @@
+--DML INSERT
+/*
+모든 컬럼에 값 입력 시 컬럼명을 생략할 수 있다(컬럼 순서는 일치해야 한다)
+? 원하는 컬럼만 입력할 경우, 즉 NULL을 허용하는 컬럼은 입력 생략
+ INSERT INTO DEPT(컬럼명1, 컬럼명2,...) VALUES(컬럼값1, 컬럼값2, ...)
+*/
+/*
+NOT NULL    | NN | NULL을 허용하지 않는다
+UNIQUE      | UK | 중복된 값을 허용하지 않는다(NULL 허용)
+PRIMARY KEY | PK | NULL을 허용하지 않고 중복된 값을 허용하지 않는다
+(UNIQUE + NOT NULL 결합)
+
+FOREIGN KEY | FK | 참조하는 테이블(부모)의 컬럼의 값이 존재하면 값을 허용한다(NULL 허용)
+CHECK       | CK | 저장 가능한 데이터 값의 범위나 조건을 지정하여 설정한 값 만을 허용한다
+PK만 NULL 불가
+*/
+
+-- departments 테이블 구조 확인
+desc departments;
+
+-- 데이터 딕셔너리 조회 제약사항을 출력하기
+select *
+from user_constraints
+where table_name='DEPARTMENTS'; --테이블 이름은 무조건 대문자 입력
+
+--부서데이틀에 행 입력
+--명시적 NULL 입력 이 방식을 더 선호하는 편이 좋다...
+INSERT INTO departments (department_id,department_name,manager_id,location_id)
+VALUES (900,'eduction',NULL,NULL);
+
+--묵시적 NULL입력
+INSERT INTO departments (department_id,department_name)
+VALUES (910,'eduction2');
+
+select *
+from departments;
+
+--시퀀스(일련번호 자동생성)를 이용한 부서번호 입력
+--데잍어 디셔너리에서 sequence 조회 
+select *
+from user_sequences;
+
+--seq.nextval 자동으로 다음 값이 들어간다. 280이 들어간다
+INSERT INTO departments (department_id,department_name)
+VALUES (departments_seq.nextval,'education3');
+
+select *
+from departments;
+-- 구조만 복사하고 싶으면 where절에다가 일부터 false를 만들어준다.
+CREATE TABLE dept
+    AS SELECT *
+       FROM departments
+       WHERE 0 = 1;
+-- 이제 모든 내용을 dept에 넣어주기 행 복사
+INSERT INTO dept
+    SELECT * FROM departments;
+    
+select *
+from dept;
+
+
+--UPDATE 수정하는 방식
+/*
+UPDATE table_name
+SET 컬럼명1 = 컬럼값1,
+컬럼명2 = 컬럼값2, ...
+WHERE 검색조건 ... 
+WHERE절을 안주면 모든 행이 다 바뀐다. **주의**
+*/
+
+--50에서 30으로 바뀌는 것을 볼 수 있음
+select employee_id,department_id
+from employees
+where employee_id =127;
+
+UPDATE employees
+    SET department_id= 30
+WHERE employee_id = 127;
+
+select employee_id,department_id
+from employees
+where employee_id =127;
+--급여 변동
+UPDATE employees
+SET salary = salary / 1.1 * 1.2;
+
+--DELETE 
+/*
+DELETE FROM table_name
+WHERE 검색조건 ...
+WHERE절을 안주면 모든 행 삭제 **주의**
+*/
+delete from departments
+where department_name like 'eduction%';
+
