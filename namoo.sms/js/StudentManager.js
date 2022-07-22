@@ -46,7 +46,9 @@ StudentManager.prototype.idfilter= function(name){
 //삭제
 StudentManager.prototype.removefilter= function(ssn,name){
   return this.array.filter(function(student){
-    let result = (student.name !== name || student.ssn !== ssn);
+    // let result = (student.name !== name || student.ssn !== ssn);
+    let result = (student.name === name && student.ssn === ssn);
+    console.log(result);
     return result;
   })
 }
