@@ -169,18 +169,20 @@ document.querySelector("#remove").addEventListener("click",function(event){
   // let removeList =removeStudent.list()
   console.log(removeStudent);
   studentManager.array.length = 0;
-  for(let index =0; index<removeStudent.length;index++)
+  for(let index =0; index<=removeStudent.length;index++)
   {
-    console.log(index+"번째"+removeStudent[index]);
-    studentManager.array.push(removeStudent[index]);
+    if(removeStudent.length == 0){
+      document.querySelector("#list").innerHTML = printList
+    }else{
+      if(index ==removeStudent.length)
+      {
+        continue;
+      }else{
+        searchAll(removeStudent[index]);
+      studentManager.array.push(removeStudent[index]);
+      }
+  } 
   }
-  AllSearch(removeStudent);
+  // AllSearch(removeStudent);
 
 })
-function AllSearch(temp){
-  let printList = init_list();let a=0;
-  for(let i=0;i<temp.length;i++){
-  printList = init_list(temp[i]);
-  }
-  document.querySelector("#list").innerHTML = printList;
-}
