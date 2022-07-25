@@ -50,6 +50,7 @@ loc VARCHAR2(50)) ;
 /*CREATE TABLE person(
      hiredate DATE DEFAULT SYSDATE);*/
 
+--테이블 구조와 제약사항은 분리해서 만드는게 좋음
 CREATE TABLE person(
     ssn CHAR(13) CONSTRAINT person_ssn_pk NOT NULL,
     name VARCHAR2(10) NOT NULL,
@@ -66,4 +67,156 @@ where table_name = 'PERSON';
 
 --테이블 삭제
 drop table person;
+drop table sawon;
+--테이블 생성 시 NOT NULL 제약조건만 추가하고, 테이블 변경(ALTER) 명령어를 이용하여 제약조건을 추가한다
+CREATE TABLE sawon (
+id NUMBER(5),
+name VARCHAR2(10) NOT NULL,
+gender CHAR(1) NOT NULL,
+hiredate DATE DEFAULT SYSDATE,
+manager_id NUMBER(6)
+);
 
+SELECT * FROM user_constraints
+WHERE table_name = 'SAWON';
+
+/* #2. 생성된 테이블에 제약조건 추가  ALTER, ADD*/
+ALTER TABLE sawon
+ADD ( CONSTRAINT sawon_id_pk PRIMARY KEY(id),
+CONSTRAINT sawon_gender_ck CHECK (gender IN('M', 'F')),
+CONSTRAINT sawon_mgid_fk FOREIGN KEY(manager_id) REFERENCES
+employees(employee_id));
+
+SELECT * FROM user_constraints
+WHERE table_name = 'SAWON';
+
+/* #3. 개발 편의를 위한 제약조건 비활성화/활성화 */
+ALTER TABLE sawon
+DISABLE CONSTRAINT sawon_id_pk CASCADE --참조하는 다른 것들도 비활성화 시키기
+DISABLE CONSTRAINT sawon_gender_ck
+DISABLE CONSTRAINT sawon_mgid_fk;
+
+ALTER TABLE sawon
+ENABLE CONSTRAINT sawon_id_pk
+ENABLE CONSTRAINT sawon_gender_ck
+ENABLE CONSTRAINT sawon_mgid_fk;
+
+select *
+from sawon;
+--hiredate는 default가 있기에 굳이 안해도 가능 
+insert into sawon(id, name, gender,manager_id)
+VALUES(1,'정충효','M',110);
+
+create table emp3
+as 
+select * from employees
+where 0=1;
+
+select * from emp3;
+
+drop table emp3;
+
+--참조하고 있으면 drop이 안됌 그래서 CASCADE CONSTRAINTS
+
+--drop은 하나하나씩 삭제한다고 하면 TRUNCATE는 테이블 구조 전체를 들어냄 단 메모리 공간이 사라짐
+--인덱스 또한 한번에 날려버림 하지만 외래키가 참조중인 테이블은 TRUNCATE할 수 없음
+
+create sequence test_seq;
+
+insert into sawon(id,name,gender,manager_id) values(test_seq.nextval,'jack','M',110);
+select * from sawon;
+
+select * from user_sequences;
+-- 뷰는 복잡한 질의를 간소화하거나, 보안상 직접적으로 테이블 접근을 제한하기 위해 사용한다.
+
+select * from user_views;
+
+select * from emp_details_view;
+
+--10번 부서의 사원 정보만 조회할 수 있는 뷰 생성
+CREATE OR REPLACE view emp_view
+as select employee_id, last_name,department_id
+from employees
+where department_id = 10;
+
+--딕셔너리 조회
+select * from emp_view;
+
+--10번 부서의 사원에 대해서만 insert,update 할 수 있는 뷰 생성
+create or replace view emp_view
+as select employee_id,last_name, email,hire_date,job_id,department_id
+from employees
+where department_id = 10
+with check option;
+
+insert into emp_view (employee_id,last_name,email,hire_date,job_id,department_id)
+values (employees_seq.nextval,'jack','jack@korea.com',sysdate,'AD_VP',10);
+
+--INSERT ERROR
+insert into emp_view (employee_id,last_name,email,hire_date,job_id,department_id)
+values (employees_seq.nextval,'jack','jack@korea.com',sysdate,'AD_VP',20);
+
+
+--읽기 전용 뷰 생성
+create or replace view emp_view
+as select employee_id,last_name, email,hire_date,job_id,department_id
+from employees
+where department_id = 10
+with READ ONLY;
+
+--INSERT ERROR
+insert into emp_view (employee_id,last_name,email,hire_date,job_id,department_id)
+values (employees_seq.nextval,'jack','jack@korea.com',sysdate,'AD_VP',10);
+
+CREATE OR REPLACE VIEW emp_view
+    AS SELECT e.employee_id id,
+            e.first_name name,
+            j.job_title,
+            d.department_name dname,
+            l.city city
+        FROM employees e
+            JOIN jobs j
+                ON e.job_id = j.job_id
+            JOIN departments d
+                ON e.department_id = d.department_id
+            JOIN locations l
+                ON d.location_id = l.location_id;
+                
+select * from emp_view;
+
+--보안을 위한 직급별 뷰 생성
+create or replace view emp_jjang_view
+as select * from employees;
+
+create or replace view emp_bujang_view
+as select employee_id,first_name,salary
+from employees;
+
+select *
+from emp_jjang_view;
+
+select *
+from emp_bujang_view;
+------------------------------------------------------
+select *
+from user_indexes
+where table_name = 'EMPLOYEES';
+
+--인덱스에서 사용하는 가상컬럼(rowid) 조회
+select rowid, employee_id
+from employees;
+
+--수동 인덱스 생성
+create index emp_salary_idx
+on employees(salary);
+
+select employee_id, last_name,salary
+from employees
+where salary between 10000 and 12000;
+
+--자동 인덱스 사용
+select employee_id,last_name,salary
+from employees
+where email='JSEO';
+--시노님(SYNONYM)==동의어 데이터베이스 객체에 대한 참조 
+-- select 처럼 별칭을 쓰는것 유지보수하기 좋다.
