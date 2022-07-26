@@ -14,6 +14,7 @@ and hire_date = '2004/07/18';
 select *
 from employees
 where TO_CHAR(hire_date,'YYYY') >'2002' and job_id in ('ST_MAN','ST_CLERK');
+
 --(job_id = 'ST_MAN' or job_id = 'ST_CLERK');
 
 --4
@@ -43,3 +44,176 @@ where MOD(employee_id,2) = 1;
 --8
 select sysdate today,TO_CHAR(NEXT_DAY(ADD_MONTHS(sysdate,6),6), 'YYYY-MM-DD HH24:MI:SS DAY')"6개월 후 금요일"
 FROM dual;
+
+--9 
+select employee_id,first_name,NVL(TO_CHAR(manager_id),'대빵') "상사"
+from employees;
+
+--10 
+select  employee_id "사원번호",last_name "사원명",
+CASE
+WHEN mod(employee_id, 3)= 0 THEN '영화배우팀'
+WHEN mod(employee_id, 3) = 1 THEN '개그맨팀'
+ELSE '가수팀'
+END "팀"
+from employees;
+
+--11
+select last_name "이름", LPAD( TO_CHAR('(' || '$' || salary || ')'),3+LENGTH(salary)+FLOOR(salary / 1000),'*') "급여그래프"
+--TO_CHAR(salary,'$000000000000') "급여 그래프",TO_CHAR(FLOOR(salary / 1000)) "test"
+from employees;
+
+--12
+SELECT department_id ,count(hire_date)
+FROM employees
+WHERE TO_CHAR(hire_date,'YYYY-MM') BETWEEN '2002-03' AND '2003-02'
+group by department_id;
+
+--13
+SELECT job_id, AVG(NVL(salary,0)) "avg"
+FROM employees
+GROUP BY job_id
+HAVING AVG(NVL(salary,0)) < 10000
+order by "avg"desc;
+
+--14 
+SELECT TO_CHAR(hire_date, 'MM')  월별 , COUNT(*)  입사자수 FROM employees
+GROUP BY TO_CHAR(hire_date, 'MM')
+ORDER BY 월별;
+
+--15
+select e.employee_id,e.last_name,j.job_title,d.department_name,l.city
+from employees e 
+    join departments d
+        on e.department_id=d.department_id
+    join locations l
+        on d.location_id = l.location_id
+    join jobs j
+        on e.job_id = j.job_id
+where l.city = 'London';
+
+--16
+select e.last_name,d.department_name
+from employees e
+    join departments d
+        on e.department_id = d.department_id
+where e.last_name LIKE 'A%';
+
+--17
+select e.employee_id,e.last_name,e.salary,d.department_name
+from employees e
+    join departments d
+        on e.department_id = d.department_id
+where e.salary > 3000 and e.salary < 5000;
+
+--18
+select e.last_name,TO_CHAR(e.hire_date,'YYYY"년"MM"월"DD"일" "("DAY")"')
+from employees e
+    join departments d
+        on e.department_id = d.department_id
+where d.department_name = 'Accounting';
+
+--19
+select *
+from employees e
+    join departments d
+        on e.department_id = d.department_id
+where  not(e.last_name = 'Landry') and e.department_id = (select department_id
+                            from employees
+                            where last_name ='Landry');
+
+--20
+select last_name,hire_date
+from employees 
+where  hire_date > (select hire_date
+                        from employees 
+                            where last_name = 'Lee');
+                            
+--21
+select last_name,salary
+from employees 
+where  salary > (select salary
+                        from employees 
+                            where last_name = 'Lee');
+
+--22
+select last_name,salary
+from employees
+where salary IN (select salary  
+                    from employees
+                        where department_id = 50);
+                
+--23 
+select employee_id,last_name,salary
+from employees
+where salary > (select AVG(salary)
+                    from employees);
+
+--24
+select employee_id,last_name,department_id
+from employees
+where department_id in (select department_id
+                        from employees
+                            where last_name LIKE '%T%');
+            
+--25
+select employee_id,last_name,salary
+from employees
+where salary = (select max(salary)
+    from employees
+        where department_id =10) and NOT(department_id =10);
+        
+--26
+select department_id,employee_id,last_name,salary
+from employees
+where salary > (select max(salary)
+                    from employees
+                        where job_id = 'IT_PROG');
+                        
+--27
+select employee_id,last_name,salary,department_id
+from employees
+where department_id in (select department_id
+from employees
+where salary > (select AVG(salary)
+                    from employees)
+and
+    last_name LIke '%u%');
+
+--27 예외
+select employee_id,last_name,salary,department_id
+from employees
+where department_id in (select department_id
+from employees
+where last_name LIke '%u%') and  salary > (select AVG(salary) from employees);
+
+--28
+select job_id,avg(salary)
+from employees
+group by job_id
+having avg(salary) =(select min(avg(salary)) from employees
+                        group by job_id);
+
+
+
+
+select job_id, salary
+from employees
+where job_id = 'PU_CLERK';
+
+/* 이렇게 쓰면
+SELECT  SUM(DECODE(TO_CHAR(hire_date, 'MM'), '01', 1)) "1월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '02', 1)) "2월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '03', 1)) "3월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '04', 1)) "4월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '05', 1)) "5월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '06', 1)) "6월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '07', 1)) "7월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '08', 1)) "8월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '09', 1)) "9월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '10', 1)) "10월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '11', 1)) "11월",
+        SUM(DECODE(TO_CHAR(hire_date, 'MM'), '12', 1)) "12월"
+FROM   employees; */
+
+
