@@ -1,6 +1,14 @@
 import {Student} from "./Student.js"
+
+// Array를 이용하여 다수의 학생 관리
+function StudentManager() {
+  //this = {};
+  this.array = [];
+  //return this;
+}
 let init_list=initList();
 let cnt=increamentCount()
+
 function increamentCount() {
   //은닉화시켜주면서 인스턴스 변수처럼 쓰게 하고 싶을 때 
     let count = 0;
@@ -32,13 +40,6 @@ function initList(){
     }
   }
 }
-// Array를 이용하여 다수의 학생 관리
-function StudentManager() {
-  //this = {};
-  this.array = [];
-  //return this;
-}
-
 //학생 등록 
 StudentManager.prototype.add =function(student){
   if(student == undefined){
