@@ -28,7 +28,7 @@ public class SelectExample2 {
 			}
 			result.close();
 			pstmt.close();
-			conn.close(); //커넥션풀에 커넥션 반납ㄴ
+			con.close(); //커넥션풀에 커넥션 반납ㄴ
 	}
 
 }

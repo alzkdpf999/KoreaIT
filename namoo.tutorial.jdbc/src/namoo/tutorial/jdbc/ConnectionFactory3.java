@@ -5,13 +5,8 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Properties;
-
 import javax.sql.DataSource;
-
 import org.apache.commons.dbcp2.BasicDataSource;
-
-
-
 
 /**
  * 프로퍼티 파일 사용하기
@@ -37,6 +32,13 @@ public class ConnectionFactory3 {
 		ds.setMaxIdle(10); // Idle 상태에 풀이 소유하는 최대 커넥션 개수
 		ds.setMaxWaitMillis(1000); // 커넥션이 존재하지 않을 때 커넥션 획득에 대기할 시간
 		dataSource = ds;
+	}
+	//임시로 테스트를 위해
+	public DataSource getDataSource() {
+		return dataSource;
+	}
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
 	}
 	/**
 	 * 프로퍼티를 동적으로 스트림을 얻어오기 위해서 이렇게 사용

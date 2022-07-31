@@ -1,2 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<typeInfoHistroy/>
+<typeInfoHistroy>
+    <typeInfo handle="=namoo.tutorial.jdbc/src&lt;namoo.user.dao{UserDao.java[UserDao" modifiers="513" timestamp="1659089483020"/>
+    <typeInfo handle="=namoo.tutorial.jdbc/src&lt;namoo.common.factory{DaoFactory.java[DaoFactory" modifiers="513" timestamp="1659011077149"/>
+</typeInfoHistroy>
