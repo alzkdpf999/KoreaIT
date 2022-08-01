@@ -1,0 +1,15 @@
+*{
+  margin: 0px 0px;
+}
+h1{
+  background-color: yellow;
+  color: white;
+}
+span,p{
+  background-color: black;
+  color: white;
+}
+.a{
+  font-weight: bold; font-size: 100px;
+}
+/*  우선 순위 * < Tag < class < ID */

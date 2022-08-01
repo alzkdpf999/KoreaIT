@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My title</title>
+</head>
+<body>
+    <input type="button" value="버튼" id="target">
+    <h1 id="text"></h1>
+
+    <script>
+        var target = document.getElementById("target");
+        var text = document.getElementById("text");
+
+        target.addEventListener("click", function() {
+            alert("버튼 클릭!!");
+        })
+        target.addEventListener("mouseover", onMouseOver);
+        target.addEventListener("mouseout", onMouseOut);
+
+        function onMouseOver() {
+            document.getElementById("text").innerText = "마우스가 올라갔어요"
+        }
+
+        function onMouseOut() {
+            document.getElementById("text").innerText = "마우스가 빠져나갔어요"
+        }
+    </script>
+</body>
+</html>
