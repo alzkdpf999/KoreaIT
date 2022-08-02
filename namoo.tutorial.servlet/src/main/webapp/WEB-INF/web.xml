@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://Java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
   <display-name>namoo.tutorial.servlet</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
@@ -38,5 +38,25 @@
   <servlet-mapping>
     <servlet-name>DetailServlet</servlet-name>
     <url-pattern>/detail.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>LifecycleServlet</display-name>
+    <servlet-name>LifecycleServlet</servlet-name>
+    <servlet-class>namoo.tutorial.servlet.LifecycleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LifecycleServlet</servlet-name>
+    <url-pattern>/cycle.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>FormServlet</display-name>
+    <servlet-name>FormServlet</servlet-name>
+    <servlet-class>namoo.tutorial.servlet.FormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>FormServlet</servlet-name>
+    <url-pattern>/form.do</url-pattern>
   </servlet-mapping>
 </web-app>

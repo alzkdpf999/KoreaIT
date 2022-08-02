@@ -82,7 +82,7 @@ document.querySelector("#register").addEventListener("click",function(event){
   let list = studentManager.list();
   for(let index = 0; index<list.length;index++)
   {
-    searchAll(list[index]);
+    studentManager.searchAll(list[index]);
   }
   let index = careful.empty(ssn,name,kr,en,ma);  
   let select = careful.emptyfocus(index);
@@ -121,7 +121,10 @@ document.querySelector("#remove").addEventListener("click",function(event){
   let printList = init_list();
   const removeName = document.querySelector('#name').value;
   const removeSsn = document.querySelector('#ssn').value;
-  let removeStudent = removeManager.removefilter(removeSsn,removeName);
+  let removeStudent = removeManager.removefilter(removeSsn,removeName,true);
+  let test= removeManager.removeStudent(removeSsn,removeName);
+  let re= test.list();
+  console.log(re);
   // let removeList =removeStudent.list()
   studentManager.array.length = 0;
   for(let index =0; index<=removeStudent.length;index++)
@@ -138,6 +141,5 @@ document.querySelector("#remove").addEventListener("click",function(event){
       }
   } 
   }
-  // AllSearch(removeStudent);
 
 })

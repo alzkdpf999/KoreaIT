@@ -53,11 +53,25 @@ StudentManager.prototype.idfilter= function(name){
   })
 }
 
-//삭제
-StudentManager.prototype.removefilter= function(ssn,name){
+//삭제 true면 삭제하고 남은 학생들 false면 삭제한 학생
+StudentManager.prototype.removefilter= function(ssn,name,bool=true){
+  return this.array.filter(function(student){
+    if(bool === true){
+      let result = (student.name !== name || student.ssn !== ssn); 
+    
+      return result;
+    }else{
+      let result = (student.name === name && student.ssn === ssn); 
+    
+      return result;
+    }
+  })
+}
+//삭제한 학생 확인
+StudentManager.prototype.removeStudent= function(ssn,name){
   return this.array.filter(function(student){
 
-    let result = (student.name !== name || student.ssn !== ssn); 
+    let result = (student.name === name && student.ssn === ssn); 
     
     return result;
   })
