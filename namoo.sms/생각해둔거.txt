@@ -5,3 +5,5 @@
 정렬 버튼식 점수별, 평균별,이름별, 학번별로 창 띄어서 클릭으로 
 메세지창
 http://www.fullwork.co.kr/bbs/board.php?bo_table=fw_tip&wr_id=11&sst=wr_good&sod=asc&sop=and&page=1
+
+1.등록,삭제 확인은 삭제할 시 거기에 해당하는 학생의 학번,이름이 나오고 확인 취소 버튼 2개
