@@ -7,30 +7,10 @@ let careful = new Careful();
 careful.movefocus();
 //prototype에 넣기 StudentMangager에 넣어서
 
-// let init_list=studentManager.initList();
+let init_list=studentManager.initList();
 
 
-/*
-function initList(){
-  let printList='';
-  return function(){
-    if(arguments.length==0){
-      printList=`<ul>
-  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
-</ul>`;
-      return printList;
-    }else{
-      for(let i=0; i<arguments.length;i++){
-      printList += `<ul>`
-      printList += `<li>${arguments[i].ssn}</li><li>${arguments[i].name}</li><li>${arguments[i].korean}</li><li>${arguments[i].english}</li><li>${arguments[i].math}</li><li>${arguments[i].getAverage()}</li>`;
-      printList += `</ul>`;
-      }
-      return printList;
-      
-    }
-  }
-}
-*/
+
 //이름 검색
 document.querySelector("#search").addEventListener("click",function(event){
   let printList=init_list();
@@ -42,7 +22,8 @@ document.querySelector("#search").addEventListener("click",function(event){
   }else{
   for(let index = 0; index<findStudentname.length;index++)
   {
-    listAll(findStudentname[index]);
+    printList=init_list(findStudentname[index]);
+    searchAllManager.listAll(printList);
   }
 }
 
@@ -58,12 +39,11 @@ document.querySelector("#smsearch ").addEventListener("click",function(event){
     document.querySelector("#list").innerHTML = printList
   }else{
   for(let index =0; index<findStudent.length;index++)
-  {
-    listAll(findStudent[index]);
+  { printList=init_list(findStudent[index]);
+    searchStudentManager.listAll(printList);
   }
 }
   })
-
 //등록
 document.querySelector("#register").addEventListener("click",function(event){
   //학번 
@@ -77,18 +57,19 @@ document.querySelector("#register").addEventListener("click",function(event){
   //수학
   const ma=parseInt(document.querySelector('#ma').value);
   studentManager.add(new Student(ssn,name,kr,en,ma))
-  let array=studentManager.array;
-  let printList=studentManager.init_list();
+  let printList=init_list();
   let list = studentManager.list();
   for(let index = 0; index<list.length;index++)
   {
-    studentManager.searchAll(list[index]);
+    printList=init_list(list[index])
+    studentManager.searchAll(printList);
   }
   let index = careful.empty(ssn,name,kr,en,ma);  
   let select = careful.emptyfocus(index);
   if(ssn && name && kr && en && ma) careful.resigsterAfterInit();
   careful.movefocus(select);
 })
+
 
 //부분 서치
 function listAll(list){
@@ -100,15 +81,11 @@ document.querySelector("#allSearch").addEventListener("click",function(event){
   let printList=init_list();
   let list =studentManager.list()
   for(let index =0; index<list.length;index++)
-  {
-    searchAll(list[index]);
+  { 
+    printList=init_list(list[index]);
+    studentManager.searchAll(printList);
   }
 })
-//전체 검색./
-function searchAll(index){
-  let printList=init_list(index);
-  document.querySelector("#list").innerHTML = printList
-}
 //전체 삭제
 document.querySelector("#removeall").addEventListener("click",function(event){
   let printList=init_list();
@@ -123,9 +100,6 @@ document.querySelector("#remove").addEventListener("click",function(event){
   const removeSsn = document.querySelector('#ssn').value;
   let removeStudent = removeManager.removefilter(removeSsn,removeName,true);
   let test= removeManager.removeStudent(removeSsn,removeName);
-  // let re= test.list();
-  // console.log(re);
-  // let removeList =removeStudent.list()
   studentManager.array.length = 0;
   for(let index =0; index<=removeStudent.length;index++)
   {
@@ -136,7 +110,8 @@ document.querySelector("#remove").addEventListener("click",function(event){
       {
         continue;
       }else{
-        searchAll(removeStudent[index]);
+        printList=init_list(removeStudent[index])
+        removeManager.searchAll(printList);
       studentManager.array.push(removeStudent[index]);
       }
   } 
