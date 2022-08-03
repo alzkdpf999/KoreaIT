@@ -7,6 +7,7 @@ function Careful() { // Function 프로토타입 객체가 부모
   //return this 도 자동으로 해줌
 }
 
+
 Careful.prototype.empty = function () {
   let index;
   for (const num in arguments) {
@@ -47,4 +48,28 @@ Careful.prototype.resigsterAfterInit = function () {
   //수학
   document.querySelector('#ma').value = '';
 }
+Careful.prototype.openCenter=function(url,name,width,height){
+  let left = (screen.availWidth - width) /2;
+  let top = (screen.availHeight - height) /2;
+  let option = "letf="+left+",top="+top+",width="+width+",height="+height;
+  let pop=window.open(url,name,option);
+  pop.addEventListener("beforeunload",function(event){
+    if(this.opener.document.querySelector("#sort").value=="ssn")
+    {
+      console.log(1);
+      let a=this.opener.document.querySelectorAll('h3');
+      a.forEach(element => {
+        element.style.border= '2px dotted red';
+      });
+    
+    }
+  })
+  
+}
+Careful.prototype.closeCenter=function(num){
+  val = document.querySelectorAll("#sort")[num].value;
+  opener.document.querySelector("#sort").value=val;
+  self.close();
+}
 export { Careful };
+

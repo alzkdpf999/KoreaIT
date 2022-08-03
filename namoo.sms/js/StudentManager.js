@@ -4,11 +4,16 @@ import {Student} from "./Student.js"
 function StudentManager() {
   //this = {};
   this.array = [];
-  let init_list=function(){
+  //return this;
+}
+
+StudentManager.prototype.initList=function(){
+  let printList='';
+  return function init_list(){
     if(arguments.length==0){
       printList=`<ul>
   <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
-  </ul>`;
+</ul>`;
       return printList;
     }else{
       for(let i=0; i<arguments.length;i++){
@@ -17,30 +22,10 @@ function StudentManager() {
       printList += `</ul>`;
       }
       return printList;
+      
     }
   }
-  //return this;
 }
-
-// StudentManager.prototype.initList=function(){
-//   let printList='';
-//   return function init_list(){
-//     if(arguments.length==0){
-//       printList=`<ul>
-//   <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
-// </ul>`;
-//       return printList;
-//     }else{
-//       for(let i=0; i<arguments.length;i++){
-//       printList += `<ul>`
-//       printList += `<li>${arguments[i].ssn}</li><li>${arguments[i].name}</li><li>${arguments[i].korean}</li><li>${arguments[i].english}</li><li>${arguments[i].math}</li><li>${arguments[i].getAverage()}</li>`;
-//       printList += `</ul>`;
-//       }
-//       return printList;
-//     }
-//   }
-// }
-
 //학생 등록 
 StudentManager.prototype.add =function(student){
   if(student == undefined){
@@ -91,13 +76,13 @@ StudentManager.prototype.removeStudent= function(ssn,name){
     return result;
   })
 }
-StudentManager.prototype.listAll= function(list){
-  let printList=init_list(list);
-  document.querySelector("#list").innerHTML = printList
-}
-//전체 검색./
-StudentManager.prototype.searchAll = function(index){
-  let printList=init_list(index);
-  document.querySelector("#list").innerHTML = printList
-}
-export {StudentManager};
+// StudentManager.prototype.listAll= function(list){
+//   let printList=init_list(list);
+//   document.querySelector("#list").innerHTML = printList
+// }
+// //전체 검색./
+// StudentManager.prototype.searchAll = function(index){
+//   let printList=init_list(index);
+//   document.querySelector("#list").innerHTML = printList
+// }
+// export {StudentManager};

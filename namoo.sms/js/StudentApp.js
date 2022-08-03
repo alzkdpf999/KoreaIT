@@ -7,30 +7,8 @@ let careful = new Careful();
 careful.movefocus();
 //prototype에 넣기 StudentMangager에 넣어서
 
-// let init_list=studentManager.initList();
+let init_list=studentManager.initList();
 
-
-/*
-function initList(){
-  let printList='';
-  return function(){
-    if(arguments.length==0){
-      printList=`<ul>
-  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
-</ul>`;
-      return printList;
-    }else{
-      for(let i=0; i<arguments.length;i++){
-      printList += `<ul>`
-      printList += `<li>${arguments[i].ssn}</li><li>${arguments[i].name}</li><li>${arguments[i].korean}</li><li>${arguments[i].english}</li><li>${arguments[i].math}</li><li>${arguments[i].getAverage()}</li>`;
-      printList += `</ul>`;
-      }
-      return printList;
-      
-    }
-  }
-}
-*/
 //이름 검색
 document.querySelector("#search").addEventListener("click",function(event){
   let printList=init_list();
@@ -78,11 +56,11 @@ document.querySelector("#register").addEventListener("click",function(event){
   const ma=parseInt(document.querySelector('#ma').value);
   studentManager.add(new Student(ssn,name,kr,en,ma))
   let array=studentManager.array;
-  let printList=studentManager.init_list();
+  let printList=init_list();
   let list = studentManager.list();
   for(let index = 0; index<list.length;index++)
   {
-    studentManager.searchAll(list[index]);
+    searchAll(list[index]);
   }
   let index = careful.empty(ssn,name,kr,en,ma);  
   let select = careful.emptyfocus(index);
@@ -121,8 +99,10 @@ document.querySelector("#remove").addEventListener("click",function(event){
   let printList = init_list();
   const removeName = document.querySelector('#name').value;
   const removeSsn = document.querySelector('#ssn').value;
-  let removeStudent = removeManager.removefilter(removeSsn,removeName,true);
-  let test= removeManager.removeStudent(removeSsn,removeName);
+  let removeStudent = removeManager.removefilter(removeSsn,removeName);
+  let test= removeManager.removeStudent(removeSsn,removeName,false);
+  console.log(test);
+  console.log(removeStudent);
   // let re= test.list();
   // console.log(re);
   // let removeList =removeStudent.list()
@@ -141,5 +121,9 @@ document.querySelector("#remove").addEventListener("click",function(event){
       }
   } 
   }
+})
 
+document.querySelector("#sort").addEventListener("click",function(event){
+  careful.openCenter('SortCheck.html',"pop",500,200);
+  console.log(document.querySelector("#sort").value);
 })
