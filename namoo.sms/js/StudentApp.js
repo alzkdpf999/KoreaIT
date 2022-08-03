@@ -8,13 +8,6 @@ careful.movefocus();
 //prototype에 넣기 StudentMangager에 넣어서
 
 let init_list=studentManager.initList();
-<<<<<<< HEAD
-
-=======
-
-
-
->>>>>>> c3b143f298a95df0e2e933d0b7c66113d4a2ad75
 //이름 검색
 document.querySelector("#search").addEventListener("click",function(event){
   let printList=init_list();
@@ -62,20 +55,13 @@ document.querySelector("#register").addEventListener("click",function(event){
   //수학
   const ma=parseInt(document.querySelector('#ma').value);
   studentManager.add(new Student(ssn,name,kr,en,ma))
-<<<<<<< HEAD
   let array=studentManager.array;
-=======
->>>>>>> c3b143f298a95df0e2e933d0b7c66113d4a2ad75
   let printList=init_list();
   let list = studentManager.list();
   for(let index = 0; index<list.length;index++)
   {
-<<<<<<< HEAD
-    searchAll(list[index]);
-=======
     printList=init_list(list[index])
     studentManager.searchAll(printList);
->>>>>>> c3b143f298a95df0e2e933d0b7c66113d4a2ad75
   }
   let index = careful.empty(ssn,name,kr,en,ma);  
   let select = careful.emptyfocus(index);
