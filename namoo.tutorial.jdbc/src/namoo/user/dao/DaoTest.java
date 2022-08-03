@@ -21,9 +21,9 @@ public class DaoTest {
 //		
 		UserDao userDao=jdbcDaoFactory.getInstance().getUserDao();
 		
-//		User user =new User("qack","1234","Jack","qack@naver.com");
+		User user =new User("qack","1234","Jack","qack@naver.com");
 		try {
-//			userDao.create(user);
+			userDao.create(user);
 //			System.out.println("정상 가입 완료");
 //			User user = userDao.read("bangry");
 //			if(user!=null) {
@@ -31,12 +31,12 @@ public class DaoTest {
 //			}else {
 //				System.out.println("존재X");
 //			}
-		List<User> list =userDao.list();
-		Iterator<User> iter=list.iterator();
-		while(iter.hasNext()) {
-			User user = iter.next();
-			System.out.println(user.toString());
-		}
+//		List<User> list =userDao.list();
+//		Iterator<User> iter=list.iterator();
+//		while(iter.hasNext()) {
+//			User user = iter.next();
+//			System.out.println(user.toString());
+//		}
 		} catch (SQLException e) {
 			System.out.println("회원가입 처리중 예외 발생"+e);
 			

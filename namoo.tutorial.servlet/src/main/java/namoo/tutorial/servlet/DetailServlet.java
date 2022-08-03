@@ -46,9 +46,10 @@ public class DetailServlet extends HttpServlet {
 			System.out.println(key + ":"+ value);
 			
 		}
-		System.out.println(request.getReomoteAddr());
+		System.out.println(request.getRemoteAddr());
 		System.out.println(request.getContextPath());
 		System.out.println(request.getQueryString());
+		System.out.println(request.getContentType());
 
 	}
 

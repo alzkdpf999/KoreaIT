@@ -28,6 +28,10 @@ public class HelloServlet extends HttpServlet {
 		//;하고 한 칸 뛰우고 인코딩 방식을 알려줌
 		String message = "서블릿은 동적 HTML 작성을 위한 웹 컴포넌트 입니다.";
 		PrintWriter out=response.getWriter();
+//		response.setStatus(HttpServletResponse.SC_NOT_FOUND); //404를 가리킴
+//		response.sendError(HttpServletResponse.SC_NOT_FOUND);
+//		response.sendError(HttpServletResponse.SC_BAD_REQUEST);//400
+//		response.sendError(HttpServletResponse.SC_FORBIDDEN);//403 금지됨 
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
