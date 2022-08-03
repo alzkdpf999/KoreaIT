@@ -26,6 +26,7 @@ StudentManager.prototype.initList=function(){
     }
   }
 }
+
 //학생 등록 
 StudentManager.prototype.add =function(student){
   if(student == undefined){
@@ -76,13 +77,15 @@ StudentManager.prototype.removeStudent= function(ssn,name){
     return result;
   })
 }
-// StudentManager.prototype.listAll= function(list){
-//   let printList=init_list(list);
-//   document.querySelector("#list").innerHTML = printList
-// }
-// //전체 검색./
-// StudentManager.prototype.searchAll = function(index){
-//   let printList=init_list(index);
-//   document.querySelector("#list").innerHTML = printList
-// }
-// export {StudentManager};
+
+StudentManager.prototype.listAll= function(printList){
+  
+  document.querySelector("#list").innerHTML = printList
+}
+//전체 검색./
+StudentManager.prototype.searchAll = function(printList){
+
+  document.querySelector("#list").innerHTML = printList
+}
+export {StudentManager};
+

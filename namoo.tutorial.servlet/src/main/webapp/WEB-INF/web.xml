@@ -10,8 +10,6 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   <servlet>
-    <description>최초로 만든 서블릿</description>
-    <display-name>HelloServlet</display-name>
     <servlet-name>HelloServlet</servlet-name>
     <servlet-class>namoo.tutorial.servlet.HelloServlet</servlet-class>
   </servlet>
@@ -19,6 +17,17 @@
     <servlet-name>HelloServlet</servlet-name>
     <url-pattern>/hello.do</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DBServlet</display-name>
+    <servlet-name>DBServlet</servlet-name>
+    <servlet-class>namoo.tutorial.servlet.DBServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DBServlet</servlet-name>
+    <url-pattern>/db.do</url-pattern>
+  </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>GugudanServlet</display-name>
@@ -29,26 +38,29 @@
     <servlet-name>GugudanServlet</servlet-name>
     <url-pattern>/gugudan</url-pattern>
   </servlet-mapping>
-  <servlet>
+  
+   <servlet>
     <description></description>
-    <display-name>DetailServlet</display-name>
-    <servlet-name>DetailServlet</servlet-name>
-    <servlet-class>namoo.tutorial.servlet.DetailServlet</servlet-class>
+    <display-name>BoardListServlet</display-name>
+    <servlet-name>BoardListServlet</servlet-name>
+    <servlet-class>namoo.tutorial.servlet.BoardListServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DetailServlet</servlet-name>
-    <url-pattern>/detail.do</url-pattern>
+    <servlet-name>BoardListServlet</servlet-name>
+    <url-pattern>/list.do</url-pattern>
   </servlet-mapping>
-  <servlet>
+  
+   <servlet>
     <description></description>
-    <display-name>LifecycleServlet</display-name>
-    <servlet-name>LifecycleServlet</servlet-name>
-    <servlet-class>namoo.tutorial.servlet.LifecycleServlet</servlet-class>
+    <display-name>BoardwriteServlet</display-name>
+    <servlet-name>BoardwriteServlet</servlet-name>
+    <servlet-class>namoo.tutorial.servlet.BoardwriteServlet</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>LifecycleServlet</servlet-name>
-    <url-pattern>/cycle.do</url-pattern>
+    <servlet-name>BoardwriteServlet</servlet-name>
+    <url-pattern>/write.do</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>FormServlet</display-name>
@@ -59,4 +71,27 @@
     <servlet-name>FormServlet</servlet-name>
     <url-pattern>/form.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>LifecycleServlet</display-name>
+    <servlet-name>LifecycleServlet</servlet-name>
+    <servlet-class>namoo.tutorial.servlet.LifecycleServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LifecycleServlet</servlet-name>
+    <url-pattern>/cycle.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>MimeServlet</display-name>
+    <servlet-name>MimeServlet</servlet-name>
+    <servlet-class>namoo.tutorial.servlet.MimeServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MimeServlet</servlet-name>
+    <url-pattern>/mime.do</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

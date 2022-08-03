@@ -8,7 +8,13 @@ careful.movefocus();
 //prototype에 넣기 StudentMangager에 넣어서
 
 let init_list=studentManager.initList();
+<<<<<<< HEAD
 
+=======
+
+
+
+>>>>>>> c3b143f298a95df0e2e933d0b7c66113d4a2ad75
 //이름 검색
 document.querySelector("#search").addEventListener("click",function(event){
   let printList=init_list();
@@ -20,7 +26,8 @@ document.querySelector("#search").addEventListener("click",function(event){
   }else{
   for(let index = 0; index<findStudentname.length;index++)
   {
-    listAll(findStudentname[index]);
+    printList=init_list(findStudentname[index]);
+    searchAllManager.listAll(printList);
   }
 }
 
@@ -36,12 +43,12 @@ document.querySelector("#smsearch ").addEventListener("click",function(event){
     document.querySelector("#list").innerHTML = printList
   }else{
   for(let index =0; index<findStudent.length;index++)
-  {
-    listAll(findStudent[index]);
+  { printList=init_list(findStudent[index]);
+    searchStudentManager.listAll(printList);
   }
 }
   })
-
+  
 //등록
 document.querySelector("#register").addEventListener("click",function(event){
   //학번 
@@ -55,12 +62,20 @@ document.querySelector("#register").addEventListener("click",function(event){
   //수학
   const ma=parseInt(document.querySelector('#ma').value);
   studentManager.add(new Student(ssn,name,kr,en,ma))
+<<<<<<< HEAD
   let array=studentManager.array;
+=======
+>>>>>>> c3b143f298a95df0e2e933d0b7c66113d4a2ad75
   let printList=init_list();
   let list = studentManager.list();
   for(let index = 0; index<list.length;index++)
   {
+<<<<<<< HEAD
     searchAll(list[index]);
+=======
+    printList=init_list(list[index])
+    studentManager.searchAll(printList);
+>>>>>>> c3b143f298a95df0e2e933d0b7c66113d4a2ad75
   }
   let index = careful.empty(ssn,name,kr,en,ma);  
   let select = careful.emptyfocus(index);
@@ -68,31 +83,24 @@ document.querySelector("#register").addEventListener("click",function(event){
   careful.movefocus(select);
 })
 
-//부분 서치
-function listAll(list){
-  let printList=init_list(list);
-  document.querySelector("#list").innerHTML = printList
-}
 //전체검색
 document.querySelector("#allSearch").addEventListener("click",function(event){
   let printList=init_list();
   let list =studentManager.list()
   for(let index =0; index<list.length;index++)
-  {
-    searchAll(list[index]);
+  { 
+    printList=init_list(list[index]);
+    studentManager.searchAll(printList);
   }
 })
-//전체 검색./
-function searchAll(index){
-  let printList=init_list(index);
-  document.querySelector("#list").innerHTML = printList
-}
+
 //전체 삭제
 document.querySelector("#removeall").addEventListener("click",function(event){
   let printList=init_list();
   document.querySelector("#list").innerHTML = printList
   studentManager.array.length=0;
 })
+
 //이름 and 삭제 
 document.querySelector("#remove").addEventListener("click",function(event){
   let removeManager = studentManager;
@@ -103,9 +111,6 @@ document.querySelector("#remove").addEventListener("click",function(event){
   let test= removeManager.removeStudent(removeSsn,removeName,false);
   console.log(test);
   console.log(removeStudent);
-  // let re= test.list();
-  // console.log(re);
-  // let removeList =removeStudent.list()
   studentManager.array.length = 0;
   for(let index =0; index<=removeStudent.length;index++)
   {
@@ -116,7 +121,8 @@ document.querySelector("#remove").addEventListener("click",function(event){
       {
         continue;
       }else{
-        searchAll(removeStudent[index]);
+        printList=init_list(removeStudent[index])
+        removeManager.searchAll(printList);
       studentManager.array.push(removeStudent[index]);
       }
   } 
