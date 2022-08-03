@@ -60,4 +60,24 @@
     <url-pattern>/form.do</url-pattern>
   </servlet-mapping>
 
+-<servlet>
+
+<description/>
+
+<display-name>MimeServlet</display-name>
+
+<servlet-name>FormServlet</servlet-name>
+
+<servlet-class>namoo.tutorial.servlet.MimeServlet</servlet-class>
+
+</servlet>
+
+
+-<servlet-mapping>
+
+<servlet-name>MimeServlet</servlet-name>
+
+<url-pattern>/mime.do</url-pattern>
+
+</servlet-mapping>
 </web-app>

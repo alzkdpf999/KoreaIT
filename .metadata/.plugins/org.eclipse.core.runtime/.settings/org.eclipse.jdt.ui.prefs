@@ -1,6 +1,7 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=dd18ad03a3c264addf45255b84015efcd991ef3b
+command=C\:\\Program Files\\Java\\jdk-11.0.15.1\\bin\\javadoc.exe
 content_assist_category_order=org.eclipse.jdt.ui.javaTypeProposalCategory\:0\u0000org.eclipse.jdt.ui.templateProposalCategory\:1\u0000org.eclipse.jdt.ui.swtProposalCategory\:2\u0000org.eclipse.jdt.ui.javaNoTypeProposalCategory\:65538\u0000org.eclipse.jdt.ui.javaChainProposalCategory\:4\u0000org.eclipse.jdt.ui.textProposalCategory\:65540\u0000org.eclipse.jdt.ui.javaAllProposalCategory\:65541\u0000org.eclipse.jdt.ui.javaPostfixProposalCategory\:65542\u0000
 content_assist_completion_replacement_background=200,200,0
 content_assist_completion_replacement_foreground=194,0,0
