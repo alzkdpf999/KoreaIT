@@ -44,6 +44,7 @@ document.querySelector("#smsearch ").addEventListener("click",function(event){
   }
 }
   })
+  
 //등록
 document.querySelector("#register").addEventListener("click",function(event){
   //학번 
@@ -70,12 +71,6 @@ document.querySelector("#register").addEventListener("click",function(event){
   careful.movefocus(select);
 })
 
-
-//부분 서치
-function listAll(list){
-  let printList=init_list(list);
-  document.querySelector("#list").innerHTML = printList
-}
 //전체검색
 document.querySelector("#allSearch").addEventListener("click",function(event){
   let printList=init_list();
@@ -86,12 +81,14 @@ document.querySelector("#allSearch").addEventListener("click",function(event){
     studentManager.searchAll(printList);
   }
 })
+
 //전체 삭제
 document.querySelector("#removeall").addEventListener("click",function(event){
   let printList=init_list();
   document.querySelector("#list").innerHTML = printList
   studentManager.array.length=0;
 })
+
 //이름 and 삭제 
 document.querySelector("#remove").addEventListener("click",function(event){
   let removeManager = studentManager;
