@@ -7,7 +7,7 @@ let careful = new Careful();
 careful.movefocus();
 //prototype에 넣기 StudentMangager에 넣어서
 
-let init_list=studentManager.initList();
+// let init_list=studentManager.initList();
 
 
 /*
@@ -78,7 +78,7 @@ document.querySelector("#register").addEventListener("click",function(event){
   const ma=parseInt(document.querySelector('#ma').value);
   studentManager.add(new Student(ssn,name,kr,en,ma))
   let array=studentManager.array;
-  let printList=init_list();
+  let printList=studentManager.init_list();
   let list = studentManager.list();
   for(let index = 0; index<list.length;index++)
   {
@@ -123,8 +123,8 @@ document.querySelector("#remove").addEventListener("click",function(event){
   const removeSsn = document.querySelector('#ssn').value;
   let removeStudent = removeManager.removefilter(removeSsn,removeName,true);
   let test= removeManager.removeStudent(removeSsn,removeName);
-  let re= test.list();
-  console.log(re);
+  // let re= test.list();
+  // console.log(re);
   // let removeList =removeStudent.list()
   studentManager.array.length = 0;
   for(let index =0; index<=removeStudent.length;index++)
