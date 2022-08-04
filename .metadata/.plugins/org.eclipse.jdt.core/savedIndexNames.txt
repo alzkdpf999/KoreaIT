@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 INDEX VERSION 1.131+C:\Users\user\Desktop\KoreaIT\.metadata\.plugins\org.eclipse.jdt.core
 510823431.index
 3556864542.index
@@ -50,3 +51,17 @@ INDEX VERSION 1.131+C:\Users\user\Desktop\KoreaIT\.metadata\.plugins\org.eclipse
 275866551.index
 1501049548.index
 3848425819.index
+=======
+INDEX VERSION 1.131+D:\prj\.metadata\.plugins\org.eclipse.jdt.core
+1582959018.index
+3461996836.index
+897413177.index
+3848425819.index
+3599639412.index
+1501049548.index
+2494625476.index
+3556864542.index
+1865797976.index
+1212487915.index
+275866551.index
+>>>>>>> ece2effa1de1adfd576351a587c62551df8927ea

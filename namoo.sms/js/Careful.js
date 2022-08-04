@@ -56,13 +56,13 @@ Careful.prototype.openCenter=function(url,name,width,height){
   pop.addEventListener("beforeunload",function(event){
     if(this.opener.document.querySelector("#sort").value=="ssn")
     {
-      console.log(1);
       let a=this.opener.document.querySelectorAll('h3');
       a.forEach(element => {
         element.style.border= '2px dotted red';
       });
-    
+      
     }
+  
   })
   
 }

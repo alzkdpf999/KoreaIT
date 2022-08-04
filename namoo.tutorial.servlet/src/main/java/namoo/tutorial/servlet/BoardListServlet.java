@@ -16,7 +16,7 @@ public class BoardListServlet extends HttpServlet {
        
    	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
    		//DB에서 게시판 리스트 조회
-   		response.setContentType("text/plain; charset=utf-8");//출력하고자 하는 데이터를 알려줌
+   		response.setContentType("text/html; charset=utf-8");//출력하고자 하는 데이터를 알려줌
 		PrintWriter out=response.getWriter();
 //		response.sendError(HttpServletResponse.SC_FORBIDDEN);//403 금지됨 
 		out.println("<!DOCTYPE html>");

@@ -12,8 +12,13 @@ eclipse.preferences.version=1
 iconcolormode=primary
 iconreplacement=true
 includeThemingInOomph=false
+<<<<<<< HEAD
 last.download.attempt.time=1659600574003
 lastConfiguration=1659600566110
+=======
+last.download.attempt.time=1659532700680
+lastConfiguration=1659607212669
+>>>>>>> ece2effa1de1adfd576351a587c62551df8927ea
 newinstall=false
 overridePEFontSize=false
 showWelcomeDialog=false
