@@ -22,6 +22,7 @@ StudentManager.prototype.initList=function(){
       printList += `</ul>`;
       }
       return printList;
+      
     }
   }
 }
@@ -76,6 +77,7 @@ StudentManager.prototype.removeStudent= function(ssn,name){
     return result;
   })
 }
+
 StudentManager.prototype.listAll= function(printList){
   
   document.querySelector("#list").innerHTML = printList
@@ -86,3 +88,4 @@ StudentManager.prototype.searchAll = function(printList){
   document.querySelector("#list").innerHTML = printList
 }
 export {StudentManager};
+

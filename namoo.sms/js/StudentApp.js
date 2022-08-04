@@ -8,9 +8,6 @@ careful.movefocus();
 //prototype에 넣기 StudentMangager에 넣어서
 
 let init_list=studentManager.initList();
-
-
-
 //이름 검색
 document.querySelector("#search").addEventListener("click",function(event){
   let printList=init_list();
@@ -58,6 +55,7 @@ document.querySelector("#register").addEventListener("click",function(event){
   //수학
   const ma=parseInt(document.querySelector('#ma').value);
   studentManager.add(new Student(ssn,name,kr,en,ma))
+  let array=studentManager.array;
   let printList=init_list();
   let list = studentManager.list();
   for(let index = 0; index<list.length;index++)
@@ -95,8 +93,10 @@ document.querySelector("#remove").addEventListener("click",function(event){
   let printList = init_list();
   const removeName = document.querySelector('#name').value;
   const removeSsn = document.querySelector('#ssn').value;
-  let removeStudent = removeManager.removefilter(removeSsn,removeName,true);
-  let test= removeManager.removeStudent(removeSsn,removeName);
+  let removeStudent = removeManager.removefilter(removeSsn,removeName);
+  let test= removeManager.removeStudent(removeSsn,removeName,false);
+  console.log(test);
+  console.log(removeStudent);
   studentManager.array.length = 0;
   for(let index =0; index<=removeStudent.length;index++)
   {
@@ -113,5 +113,9 @@ document.querySelector("#remove").addEventListener("click",function(event){
       }
   } 
   }
+})
 
+document.querySelector("#sort").addEventListener("click",function(event){
+  careful.openCenter('SortCheck.html',"pop",500,200);
+  console.log(document.querySelector("#sort").value);
 })
