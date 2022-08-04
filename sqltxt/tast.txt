@@ -217,3 +217,37 @@ SELECT  SUM(DECODE(TO_CHAR(hire_date, 'MM'), '01', 1)) "1월",
 FROM   employees; */
 
 
+
+
+--사용자 정보 저장을 위한 회원 테이블
+CREATE TABLE users( 
+    id      VARCHAR2(10),--pk
+    passwd  VARCHAR2(8) NOT NULL,
+    name    VARCHAR2(20) NOT NULL,
+    email   VARCHAR2(50), --uique 
+    regdate DATE DEFAULT SYSDATE
+    );
+    
+ALTER TABLE users
+    ADD (
+            CONSTRAINT users_id_pk PRIMARY KEY(id),
+            CONSTRAINT users_email_uk UNIQUE(email)
+    );
+    
+select *
+from user_constraints;
+
+INSERT INTO users(id,passwd,name,email)
+VALUES ('bangry','1111','정충효','bangry@naver.com');
+
+commit;
+drop table users;
+select * from users;
+
+Select id,passwd,name,email,TO_CHAR(regdate,'YYYY-MM-DD DAY') AS regdate
+from users
+where id = 'bangry';
+
+Select id,passwd,name,email,TO_CHAR(regdate,'YYYY-MM-DD DAY') regdate
+from users
+where id = 'bangry' and passwd= '1111';  

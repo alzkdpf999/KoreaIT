@@ -67,7 +67,7 @@ Careful.prototype.openCenter=function(url,name,width,height){
   
 }
 Careful.prototype.closeCenter=function(num){
-  val = document.querySelectorAll("#sort")[num].value;
+  let val = document.querySelectorAll("#sort")[num].value;
   opener.document.querySelector("#sort").value=val;
   self.close();
 }
