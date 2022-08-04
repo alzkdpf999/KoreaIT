@@ -29,7 +29,7 @@ public class DBServlet extends HttpServlet {
 			out.print("<html>");
 			out.print("<head>");
 			out.print("<meta charset=\"utf-8\">");
-			out.print("<title>무료 다운로드 받은 table 관련 CSS 파일</title>");
+			out.print("<title>가입 인원</title>");
 			out.print("<link rel=\"stylesheet\" type=\"text/css\" href=\"css/table.css\">");
 			out.print("</head>");
 			out.print("<body>");
@@ -47,7 +47,7 @@ public class DBServlet extends HttpServlet {
 			out.print("</thead>");
 			out.print("<tfoot>");
 			out.print("<tr>");
-			out.print("<td colspan=\"4\">Total: ? 명</td>");
+			out.print("<td colspan=\"4\">Total:"+list.size()+ "명</td>");
 			out.print("</tr>");
 			out.print("</tfoot>");
 			out.print("<tbody>");
