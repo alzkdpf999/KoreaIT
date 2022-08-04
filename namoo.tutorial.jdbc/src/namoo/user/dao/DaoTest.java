@@ -21,7 +21,7 @@ public class DaoTest {
 //		
 		UserDao userDao=jdbcDaoFactory.getInstance().getUserDao();
 		
-		User user =new User("qack","1234","Jack","qack@naver.com");
+		User user =new User("test","12345","Jack","qacqwk@naver.com");
 		try {
 			userDao.create(user);
 //			System.out.println("정상 가입 완료");
