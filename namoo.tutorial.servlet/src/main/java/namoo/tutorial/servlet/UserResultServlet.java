@@ -34,8 +34,6 @@ public class UserResultServlet extends HttpServlet {
 		out.println("<li>"+user.getEmail()+"</li>");
 		out.println("</ul>");
 		out.println("<a href='index.html'>홈으로</a>");
-		RequestDispatcher rd = request.getRequestDispatcher("gugudan");
-		rd.include(request, response);
 		out.println("</body>");
 		out.println("</html>");
 	}

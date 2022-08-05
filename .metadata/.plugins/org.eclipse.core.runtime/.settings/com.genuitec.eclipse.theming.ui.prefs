@@ -1,6 +1,6 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=dd18ad03a3c264addf45255b84015efcd991ef3b
+>>>>>>>=ece2effa1de1adfd576351a587c62551df8927ea
 PEFontSize=11
 applyBackground=false
 approved.defs.file.last.changed.time=1649720987000
@@ -12,13 +12,8 @@ eclipse.preferences.version=1
 iconcolormode=primary
 iconreplacement=true
 includeThemingInOomph=false
-<<<<<<< HEAD
-last.download.attempt.time=1659600574003
-lastConfiguration=1659600566110
-=======
 last.download.attempt.time=1659532700680
-lastConfiguration=1659607212669
->>>>>>> ece2effa1de1adfd576351a587c62551df8927ea
+lastConfiguration=1659700916896
 newinstall=false
 overridePEFontSize=false
 showWelcomeDialog=false

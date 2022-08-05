@@ -102,8 +102,7 @@
 		<description></description>
 		<display-name>UserCreateServlet</display-name>
 		<servlet-name>UserCreateServlet</servlet-name>
-		<servlet-class>namoo.tutorial.servlet.UserCreateServlet
-		</servlet-class>
+		<servlet-class>namoo.tutorial.servlet.UserCreateServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UserCreateServlet</servlet-name>
@@ -115,8 +114,7 @@
 		<description></description>
 		<display-name>ServletConfigServlet</display-name>
 		<servlet-name>ServletConfigServlet</servlet-name>
-		<servlet-class>namoo.tutorial.servlet.ServletConfigServlet
-		</servlet-class>
+		<servlet-class>namoo.tutorial.servlet.ServletConfigServlet</servlet-class>
 		<init-param>
 			<description></description>
 			<param-name>user</param-name>
@@ -138,8 +136,7 @@
 		<description></description>
 		<display-name>UserResultServlet</display-name>
 		<servlet-name>UserResultServlet</servlet-name>
-		<servlet-class>namoo.tutorial.servlet.UserResultServlet
-		</servlet-class>
+		<servlet-class>namoo.tutorial.servlet.UserResultServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>UserResultServlet</servlet-name>
@@ -150,11 +147,65 @@
 		<description></description>
 		<display-name>ServletContextServlet</display-name>
 		<servlet-name>ServletContextServlet</servlet-name>
-		<servlet-class>namoo.tutorial.servlet.ServletContextServlet
-		</servlet-class>
+		<servlet-class>namoo.tutorial.servlet.ServletContextServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ServletContextServlet</servlet-name>
 		<url-pattern>/context.do</url-pattern>
 	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>IncludeServlet</display-name>
+		<servlet-name>IncludeServlet</servlet-name>
+		<servlet-class>namoo.tutorial.servlet.IncludeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>IncludeServlet</servlet-name>
+		<url-pattern>/include.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>HttpSessionServlet</display-name>
+		<servlet-name>HttpSessionServlet</servlet-name>
+		<servlet-class>namoo.tutorial.servlet.HttpSessionServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HttpSessionServlet</servlet-name>
+		<url-pattern>/session.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>HttpSessionServlet2</display-name>
+		<servlet-name>HttpSessionServlet2</servlet-name>
+		<servlet-class>namoo.tutorial.servlet.HttpSessionServlet2</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>HttpSessionServlet2</servlet-name>
+		<url-pattern>/session2.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<description></description>
+		<display-name>LoginServlet</display-name>
+		<servlet-name>LoginServlet</servlet-name>
+		<servlet-class>namoo.tutorial.servlet.LoginServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>LoginServlet</servlet-name>
+		<url-pattern>/login.do</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+    <description></description>
+    <display-name>IndexServlet</display-name>
+    <servlet-name>IndexServlet</servlet-name>
+    <servlet-class>namoo.tutorial.servlet.IndexServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexServlet</servlet-name>
+    <url-pattern>/index.do</url-pattern>
+  </servlet-mapping>
 </web-app>
