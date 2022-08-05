@@ -4,23 +4,30 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import namoo.user.dto.User;
-
-
-public class IndexServlet extends HttpServlet {  
+//쿠기 사용
+public class IndexServlet2 extends HttpServlet {  
 	private static final long serialVersionUID = 1L;
 
 
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		HttpSession session =request.getSession();
-		User user =(User) session.getAttribute("user");
+//		HttpSession session =request.getSession();
+//		User user =(User) session.getAttribute("user");
+		String loginId=null;
+		String regdate=null;
+		Cookie[] cookies = request.getCookies();
+		if(cookies != null) {
+			for(Cookie cookie : cookies) {
+				if(cookie.getName().equals("id")) loginId = cookie.getValue();
+				if(cookie.getName().equals("date")) regdate = cookie.getValue();
+			}
+		}
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out=response.getWriter();
 		out.println("<!DOCTYPE html>");
@@ -33,11 +40,11 @@ public class IndexServlet extends HttpServlet {
 		out.println("</head>");
 		out.println("<body>");
 		out.println("<h2 style=\"font-weight: bold;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;\">기본 정보 입력</h2>");
-		if(user != null) {
-			out.println("<h4>"+user.getId()+"("+user.getRegdate()+")님 로그인 중</h4>");
+		if(loginId != null) {
+			out.println("<h4>"+loginId+"("+regdate+")님 로그인 중</h4>");
 			out.println("<a href ='login.do'>로그아웃</a>"); //링크는 무조건 get방식임
 		}else {
-			out.println("<form method=\"post\" action=\"login.do\">");
+			out.println("<form method=\"post\" action=\"login2.do\">");
 			out.println("<table border=\"1\">");
 			out.println(" <tr>");
 			out.println("<th><label for=\"id\">아이디</label> </th>");

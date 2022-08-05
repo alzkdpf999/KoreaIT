@@ -208,4 +208,26 @@
     <servlet-name>IndexServlet</servlet-name>
     <url-pattern>/index.do</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>LoginServlet2</display-name>
+    <servlet-name>LoginServlet2</servlet-name>
+    <servlet-class>namoo.tutorial.servlet.LoginServlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>LoginServlet2</servlet-name>
+    <url-pattern>/login2.do</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>IndexServlet2</display-name>
+    <servlet-name>IndexServlet2</servlet-name>
+    <servlet-class>namoo.tutorial.servlet.IndexServlet2</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>IndexServlet2</servlet-name>
+    <url-pattern>/index2.do</url-pattern>
+  </servlet-mapping>
 </web-app>
