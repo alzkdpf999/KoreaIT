@@ -43,31 +43,46 @@ document.querySelector("#smsearch ").addEventListener("click",function(event){
   })
   
 //등록
-document.querySelector("#register").addEventListener("click",function(event){
-  //학번 
-  const ssn=document.querySelector('#ssn').value;
-  //이름
-  const name=document.querySelector('#name').value;
-  //국어
-  const kr= parseInt(document.querySelector('#kr').value);
-  //영어
-  const en=parseInt(document.querySelector('#en').value);
-  //수학
-  const ma=parseInt(document.querySelector('#ma').value);
-  studentManager.add(new Student(ssn,name,kr,en,ma))
-  let array=studentManager.array;
-  let printList=init_list();
-  let list = studentManager.list();
-  for(let index = 0; index<list.length;index++)
-  {
-    printList=init_list(list[index])
-    studentManager.searchAll(printList);
-  }
-  let index = careful.empty(ssn,name,kr,en,ma);  
-  let select = careful.emptyfocus(index);
-  if(ssn && name && kr && en && ma) careful.resigsterAfterInit();
-  careful.movefocus(select);
-})
+document.querySelector("#reg").addEventListener("click",function(event){
+
+  let POP = careful.openCenter('registerCheck.html',"pop",500,200);
+  //   //학번 
+  //   const ssn=document.querySelector('#ssn').value;
+  //   //이름
+  //   const name=document.querySelector('#name').value;
+  //   //국어
+  //   const kr= parseInt(document.querySelector('#kr').value);
+  //   //영어
+  //   const en=parseInt(document.querySelector('#en').value);
+  //   //수학
+  //   const ma=parseInt(document.querySelector('#ma').value);
+  //   studentManager.add(new Student(ssn,name,kr,en,ma))
+  //   let array=studentManager.array;
+  //   let printList=init_list();
+  //   let list = studentManager.list();
+  //   for(let index = 0; index<list.length;index++)
+  //   {
+  //     printList=init_list(list[index])
+  //     studentManager.searchAll(printList);
+  //   }
+  //   let index = careful.empty(ssn,name,kr,en,ma);  
+  //   let select = careful.emptyfocus(index);
+  //   if(ssn && name && kr && en && ma) careful.resigsterAfterInit();
+  //   careful.movefocus(select);
+  // })
+  
+  // //전체검색
+  // document.querySelector("#allSearch").addEventListener("click",function(event){
+  //   let printList=init_list();
+  //   let list =studentManager.list()
+  //   for(let index =0; index<list.length;index++)
+  //   { 
+  //     printList=init_list(list[index]);
+  //     studentManager.searchAll(printList);
+  //   }
+  // document.querySelector('#case').innerHTML='<h4>등록하시겠습니까?</h4>';
+
+})  
 
 //전체검색
 document.querySelector("#allSearch").addEventListener("click",function(event){
@@ -117,5 +132,15 @@ document.querySelector("#remove").addEventListener("click",function(event){
 
 document.querySelector("#sort").addEventListener("click",function(event){
   careful.openCenter('SortCheck.html',"pop",500,200);
-  console.log(document.querySelector("#sort").value);
+  // // console.log(document.querySelector("#sort").value);
+  // let sortManager = studentManager;
+  // sortManager.sorting("nma");
+  // // console.log(sortManager);
+  // let printList=init_list();
+  // let list =studentManager.list()
+  // for(let index =0; index<list.length;index++)
+  // { 
+  //   printList=init_list(list[index]);
+  //   studentManager.searchAll(printList);
+  // }
 })
