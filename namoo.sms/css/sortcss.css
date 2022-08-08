@@ -6,7 +6,8 @@ div.btn{
     flex-direction: column;
 } 
 button{
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 *{
     margin: 0;
@@ -15,4 +16,10 @@ button{
 h4{
     font-style: normal;
     font-weight: bold;
+}
+#delh4{
+    text-indent: 20px;
+}
+#check{
+    margin-left: -10px;
 }

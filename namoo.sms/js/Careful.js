@@ -24,6 +24,9 @@ Careful.prototype.empty = function () {
 
   return index;
 }
+Careful.prototype.getStudent = function () {
+  return studentManager;
+}
 Careful.prototype.emptyfocus = function (index) {
   let arr = ["ssn", "name", "kr", "en", "ma"];
 
@@ -55,7 +58,7 @@ Careful.prototype.resigsterAfterInit = function () {
 }
 
 Careful.prototype.sortPrinting = function (id) {
-  
+
   studentManager.sorting(id);
   console.log(id);
   printList = init_list();
@@ -66,13 +69,13 @@ Careful.prototype.sortPrinting = function (id) {
   }
 }
 
-Careful.prototype.initTagValue = function(id,val){
-  let arr = ["reg","remove","removeall","sort"];
+Careful.prototype.initTagValue = function (id, val) {
+  let arr = ["reg", "remove", "removeall", "sort"];
   let b = arr.filter(x => x == id)
   for (const value of arr) { //자바처럼 값을 가지고옴 
-    if(b != value){
-      opener.document.querySelector(`#${value}`).value = '';
-    }else{
+    if (b != value) {
+      opener.document.querySelector(`#${value}`).value = ' ';
+    } else {
       opener.document.querySelector(`#${id}`).value = val;
     }
   }
@@ -105,70 +108,72 @@ Careful.prototype.openCenter = function (url, name, width, height) {
         printList = init_list(list[index])
         studentManager.searchAll(printList);
       }
-      let index = Careful.prototype.empty(ssn, name, kr, en, ma);
-      let select = Careful.prototype.emptyfocus(index);
       if (ssn && name && kr && en && ma) Careful.prototype.resigsterAfterInit();
-      Careful.prototype.movefocus(select);
-    }
-    let sortVal = this.opener.document.querySelector('#sort').value;
-    console.log(sortVal);
-    switch (sortVal) {
+    } else if (this.opener.document.querySelector('#remove').value == "remove") {
+      printList = init_list();
+      const removeName = document.querySelector('#name').value;
+      const removeSsn = document.querySelector('#ssn').value;
+      if (removeName && removeSsn) Careful.prototype.resigsterAfterInit();
+      let unDeletedStudent = studentManager.removefilter(removeSsn, removeName);
+      // let deletedStudent= studentManager.removefilter(removeSsn,removeName,false);
+      let out = studentManager.array.findIndex(i => i.ssn == removeSsn && i.name == removeName);
+      // console.log(out);
+      if (out != -1) studentManager.array.splice(out, 1);
 
-      case "ssn":
-        Careful.prototype.sortPrinting("ssn");
-        break;
-      case "name":
-        Careful.prototype.sortPrinting("name");
-        break;
-      case "kr":
-        Careful.prototype.sortPrinting("kr");
-        break;
-      case "en":
-        Careful.prototype.sortPrinting("en");
-        break;
-      case "math":
-        Careful.prototype.sortPrinting("math");
-        break;
-      case "avg":
-        Careful.prototype.sortPrinting("avg");
-        break;
+      for (let index = 0; index <= unDeletedStudent.length; index++) {
+        if (unDeletedStudent.length == 0) {
+          document.querySelector("#list").innerHTML = printList
+        } else {
+          if (index == unDeletedStudent.length) {
+            continue;
+          } else {
+            printList = init_list(unDeletedStudent[index])
+            studentManager.searchAll(printList);
+          }
+        }
+      }
+    } else if (this.opener.document.querySelector('#removeall').value == "removeall") {
+      printList = init_list();
+      document.querySelector("#list").innerHTML = printList
+      studentManager.array.length = 0;
+    } else {
+      let sortVal = this.opener.document.querySelector('#sort').value;
+      switch (sortVal) {
+
+        case "ssn":
+          Careful.prototype.sortPrinting("ssn");
+          break;
+        case "name":
+          Careful.prototype.sortPrinting("name");
+          break;
+        case "kr":
+          Careful.prototype.sortPrinting("kr");
+          break;
+        case "en":
+          Careful.prototype.sortPrinting("en");
+          break;
+        case "math":
+          Careful.prototype.sortPrinting("math");
+          break;
+        case "avg":
+          Careful.prototype.sortPrinting("avg");
+          break;
+      }
     }
-    return pop;
+    this.opener.document.querySelector('#reg').value = '';
+    this.opener.document.querySelector('#remove').value='';
+    this.opener.document.querySelector('#removeall').value='';
+    this.opener.document.querySelector('#sort').value='';
   })
 }
-
-// Careful.prototype.closePop = function (id) {
-//   let val = document.querySelector(`#${id}`).value;
-//   console.log(val);
-//   if (id.includes('sort')) {
-//     opener.document.querySelector(`#reg`).value = '';
-//     opener.document.querySelector(`#remove`).value = '';
-//     opener.document.querySelector(`#removeall`).value = '';
-//     opener.document.querySelector('#sort').value = '';
-//     opener.document.querySelector(`#sort`).value = val;
-//   } else {
-
-//     if (!id.includes('cancle')) {
-//       opener.document.querySelector(`#${id}`).value = val;
-//     } else {
-//       opener.document.querySelector(`#reg`).value = '';
-//       opener.document.querySelector(`#remove`).value = '';
-//       opener.document.querySelector(`#removeall`).value = '';
-
-//       // console.log(opener.document.querySelector(`#reg`).value);
-//     }
-//   }
-//   self.close();
-// }
 
 
 Careful.prototype.closePop = function (id) {
   let val = document.querySelector(`#${id}`).value;
-  console.log(val);
   if (id.includes('sort')) {
-    Careful.prototype.initTagValue("sort",val)
+    Careful.prototype.initTagValue("sort", val)
   } else {
-    Careful.prototype.initTagValue(id,val);
+    Careful.prototype.initTagValue(id, val);
   }
   self.close();
 }

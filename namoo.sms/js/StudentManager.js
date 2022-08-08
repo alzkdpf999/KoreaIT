@@ -13,7 +13,7 @@ StudentManager.prototype.initList = function () {
     if (arguments.length == 0) {
       printList = `<ul>
   <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
-</ul>`;
+</ul>`
       return printList;
     } else {
       for (let i = 0; i < arguments.length; i++) {
@@ -56,27 +56,20 @@ StudentManager.prototype.idfilter = function (name) {
 
 //삭제 true면 삭제하고 남은 학생들 false면 삭제한 학생
 StudentManager.prototype.removefilter = function (ssn, name, bool = true) {
+  
   return this.array.filter(function (student) {
+    let result;
     if (bool === true) {
-      let result = (student.name !== name || student.ssn !== ssn);
+      result = (student.name !== name || student.ssn !== ssn);
 
-      return result;
+      
     } else {
-      let result = (student.name === name && student.ssn === ssn);
-
-      return result;
+      result = (student.name === name && student.ssn === ssn);
     }
-  })
-}
-//삭제한 학생 확인
-StudentManager.prototype.removeStudent = function (ssn, name) {
-  return this.array.filter(function (student) {
-
-    let result = (student.name === name && student.ssn === ssn);
-
     return result;
   })
 }
+
 
 StudentManager.prototype.listAll = function (printList) {
 
@@ -108,28 +101,28 @@ StudentManager.prototype.sorting = function (identy) {
 
         if (x.korean == y.korean)
           return x.ssn - y.ssn;
-        else return x.korean - y.korean;
+        else return y.korean - x.korean;
       })
       break;
     case "en":
       this.array.sort(function (x, y) {
         if (x.english == y.english)
           return x.ssn - y.ssn;
-        else return x.english - y.english;
+        else return y.english - x.english;
       })
       break;
     case "math":
       this.array.sort(function (x, y) {
         if (x.math == y.math)
           return x.ssn - y.ssn;
-        else return x.math - y.math;
+        else return y.math - x.math;
       })
       break;
     default:
       this.array.sort(function (x, y) {
         if (x.getAverage() == y.getAverage())
           return x.ssn - y.ssn;
-        else return x.getAverage() - y.getAverage();
+        else return y.getAverage() - x.getAverage();
       })
   }
 }
