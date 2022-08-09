@@ -2,6 +2,8 @@ package namoo.tutorial.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
@@ -25,7 +27,7 @@ public class IndexServlet2 extends HttpServlet {
 		if(cookies != null) {
 			for(Cookie cookie : cookies) {
 				if(cookie.getName().equals("id")) loginId = cookie.getValue();
-				if(cookie.getName().equals("date")) regdate = cookie.getValue();
+				if(cookie.getName().equals("date")) regdate = URLDecoder.decode(cookie.getValue(),"utf-8");
 			}
 		}
 		response.setContentType("text/html; charset=utf-8");
@@ -42,7 +44,7 @@ public class IndexServlet2 extends HttpServlet {
 		out.println("<h2 style=\"font-weight: bold;font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;\">기본 정보 입력</h2>");
 		if(loginId != null) {
 			out.println("<h4>"+loginId+"("+regdate+")님 로그인 중</h4>");
-			out.println("<a href ='login.do'>로그아웃</a>"); //링크는 무조건 get방식임
+			out.println("<a href ='login2.do'>로그아웃</a>"); //링크는 무조건 get방식임
 		}else {
 			out.println("<form method=\"post\" action=\"login2.do\">");
 			out.println("<table border=\"1\">");

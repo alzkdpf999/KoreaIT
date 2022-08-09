@@ -1,9 +1,25 @@
-.btn{
+div.btn{
     display: flex;
-    justify-content: center;
+    justify-content: center;    
     align-items: center;
-    min-height: 10px;
+    min-height: 100vh;
+    flex-direction: column;
 } 
 button{
-    margin-left: 10px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+h4{
+    font-style: normal;
+    font-weight: bold;
+}
+#delh4{
+    text-indent: 20px;
+}
+#check{
+    margin-left: -10px;
 }
