@@ -15,7 +15,7 @@
   </context-param>
   <context-param>
     <param-name>fileStorage</param-name>
-    <param-value>C:/Users/user/Desktop/KoreaIT/namoo.tutorial.servlet/src/main/webapp/WEB-INF/fileStorage</param-value>
+    <param-value>D:/koreaIt/namoo.tutorial.servlet/src/main/webapp/WEB-INF/fileStorage</param-value>
   </context-param>
   <context-param>
     <param-name>limitFileSize</param-name>

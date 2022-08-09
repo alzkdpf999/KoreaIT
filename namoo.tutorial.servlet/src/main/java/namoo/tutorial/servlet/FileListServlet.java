@@ -21,10 +21,9 @@ public class FileListServlet extends HttpServlet {
 
 	public void init() throws ServletException {
 		fileStorage = getServletContext().getInitParameter("fileStorage");
-
 	}
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		process(request, response);
+//		process(request, response);
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		File directory = new File(fileStorage);
@@ -40,7 +39,7 @@ public class FileListServlet extends HttpServlet {
 		out.print("<br>");
 
 		out.print("<table>");
-		out.print("<caption>Flight Schedule</caption>");
+		out.print("<caption>무료 자료실</caption>");
 		out.print("<thead>");
 		out.print("<tr>");
 		out.print("<th id=\"fn\" scope=\"col\">순번</th>");
@@ -61,7 +60,7 @@ public class FileListServlet extends HttpServlet {
 			System.out.println(fileName1 +": "+ filesize);
 			out.print("<tr>");
 			out.print("<td>"+i+"</td>");
-			out.print("<td><a href ='list.do?file="+fileName1+"'>"+fileName1+"</a></td>");
+			out.print("<td><a href ='download.do?file="+fileName1+"'>"+fileName1+"</a></td>");
 			out.print("<td>"+filesize+"</td>");
 			out.print("</tr>");
 			i++;
@@ -71,7 +70,8 @@ public class FileListServlet extends HttpServlet {
 		out.print("</body>");
 		out.print("</html>");
 	}
-	public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
+	/*
+	 * public void process(HttpServletRequest request, HttpServletResponse response) throws ServletException,IOException {
 
 		String fileName = request.getParameter("file");
 		if (fileName == null || fileName.equals(""))
@@ -104,7 +104,5 @@ public class FileListServlet extends HttpServlet {
 			if(in != null) in.close();
 		}
 	}
-
-
-
+*/
 }
