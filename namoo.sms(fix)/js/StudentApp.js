@@ -11,7 +11,11 @@ let init_list = studentManager.initList();
 let printList;
 let list;
 let out, kr, ssn, name, en, ma;
-
+ssn = document.querySelector("#ssn").value;
+name = document.querySelector("#name").value;
+kr = document.querySelector("#kr").value;
+en = document.querySelector("#en").value;
+ma = document.querySelector("#ma").value;
 const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\" |a-z|A-Z |ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
 const regNum = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\" |0-9]/g;
 const regLimit = /[^0-9]/g;
@@ -50,11 +54,11 @@ document.querySelector("#smsearch ").addEventListener("click", function (event) 
 
 //등록
 document.querySelector("#reg").addEventListener("click", function (event) {
-  ssn = document.querySelector("#ssn").value;
-  name = document.querySelector("#name").value;
-  kr = document.querySelector("#kr").value;
-  en = document.querySelector("#en").value;
-  ma = document.querySelector("#ma").value;
+  // ssn = document.querySelector("#ssn").value;
+  // name = document.querySelector("#name").value;
+  // kr = document.querySelector("#kr").value;
+  // en = document.querySelector("#en").value;
+  // ma = document.querySelector("#ma").value;
 
   out = studentManager.array.findIndex(i => i.ssn == ssn);
   document.querySelector("#table").value = out;
@@ -65,6 +69,8 @@ document.querySelector("#reg").addEventListener("click", function (event) {
   let index = careful.empty(ssn, name, kr, en, ma);
   let select = careful.emptyfocus(index);
   careful.movefocus(select);
+  // let div=document.querySelector("#case");
+  // div.style.display= 'none';
 })
 
 //전체검색

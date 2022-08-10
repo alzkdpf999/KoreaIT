@@ -35,6 +35,7 @@
 	}
 %>
 	</table> <br>
+	<%--  다른 버전으로 출력 --%>
 	<table border="1">
 <%
 for(int i=2;i<10;i++){
