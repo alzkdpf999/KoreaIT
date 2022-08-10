@@ -6,7 +6,6 @@ function StudentManager() {
   this.array = [];
   //return this;
 }
-
 StudentManager.prototype.initList = function () {
   let printList = '';
   return function init_list() {
