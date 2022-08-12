@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="dto.User"/>
+    <fullyQualifiedTypeName name="namoo.user.dto.User"/>
+    <fullyQualifiedTypeName name="namoo.common.factory.jdbcDaoFactory"/>
+</qualifiedTypeNameHistroy>

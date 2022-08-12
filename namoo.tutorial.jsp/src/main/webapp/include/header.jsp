@@ -4,6 +4,6 @@
 	<p>Resize the browser window to see the effect.</p>
 	<div class="topnav">
 		<a href="#">Link</a> <a href="#">Link</a> <a href="#">Link</a> <a
-			href="">Member List</a> <a href="" style="float: right">Sign Up</a>
+			href="">Member List</a> <a href="/user/signupForm.html" style="float: right">Sign Up</a>
 	</div>
 </div>
