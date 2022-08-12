@@ -102,7 +102,24 @@ body {
 }
 
 /** Login Form */
-input[type=text], input[type=password] {
+input[type=text], input[type=password]{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+div#ui{
+	padding: 0px;
+}
+div#ui input[type=text]#id{
+	width: 80%;
+	float: left
+}
+
+input[type=email] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -147,7 +164,7 @@ div {
 }
 
 .search input[type=text] {
-	float: left;
+	 float: left;
     padding: 8px 16px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -169,4 +186,14 @@ div {
 
 input[type=submit]:hover {
     background-color: #45a049;
+}
+button.check{
+	margin-top: 14px;
+	background-color: black;
+	width: 20%;
+  height: 30px;
+  padding: 0px;
+}
+button.check:hover{
+	background-color: gray;
 }
