@@ -17,6 +17,7 @@ document.querySelector("#id").addEventListener("input",function(event){
 
 document.querySelector("#CheckId").addEventListener("click",function(event){
 	opener.document.querySelector("#id").value=document.querySelector("#id").value;
+	opener.document.querySelector("#dbCheckId").setAttribute("disabled","disabled");
 	self.close();
 })
 document.querySelector("#cancle").addEventListener("click",function(event){

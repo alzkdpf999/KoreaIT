@@ -22,21 +22,22 @@
 					<h3>회원 가입</h3>
 				</div>
 				<div class="w3-responsive w3-card-4">
-					<form class="row" method="post">
+					<form class="row" method="post" action="userRegist.jsp">
 						<div class="mb-3">
 							<label for="id" class="form-label">아이디 </label>
 							<div id="ui">
 								<input type="text" class="form-control" id="id" name="id"
 									placeholder="Id" required="required">
-								<button type="submit" class="check" id="dbCheckId">중복체크</button>
+								<button type="button" class="check" id="dbCheckId">중복체크</button>
 							</div>
+							<label id="err">영어, 숫자 조합을 사용하여 최소 4글자입니다.</label>
 						</div>
-
+						
 						<div class="mb-3">
 							<label for="passwd" class="form-label">비밀번호</label> <input
 								type="password" class="form-control" id="passwd" name="passwd"
 								placeholder="Password" required="required">
-								<label id="err">영어, 특수문자, 숫자의 조합을 이용해주세요</label>
+								<label id="err">영어, 특수문자, 숫자의 조합을 사용하여 최소 8글자 입니다.</label>
 						</div>
 
 						<div class="mb-3">
@@ -66,13 +67,6 @@
 	<!-- footer start -->
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 	<!-- footer end -->
-	<div class="alert alert-warning alert-dismissible fade show"
-		role="alert" id="case">
-		<!-- <h4>전체 삭제하시겠습니까?</h4> -->
-		<div class="Allbtn">
-		<!-- 	<button type="button" id="removeall" value="removeall"
-				class="btn btn-dark">확인</button> -->
-		</div>
-	</div>
+	
 </body>
 </html>

@@ -23,8 +23,8 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
-			<item value="C:\Users\user\Desktop\KoreaIT"/>
 			<item value="D:\koreaIt"/>
+			<item value="C:\Users\user\Desktop\KoreaIT"/>
 			<item value="D:\prj"/>
 			<item value="D:\prj\namoo.tutorial.servlet"/>
 		</list>
