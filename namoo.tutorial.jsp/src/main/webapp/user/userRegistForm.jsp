@@ -6,12 +6,7 @@
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="/css/basic.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<script type="text/javascript">
-function openIdChk(){
-	window.open("/user/userIdResult.jsp","pop","width=400,height=200,left=700,top=400");  
-}
-
-</script>
+<script type="module" defer src="/js/check.js"></script>
 
 </head>
 <body>
@@ -27,32 +22,33 @@ function openIdChk(){
 					<h3>회원 가입</h3>
 				</div>
 				<div class="w3-responsive w3-card-4">
-					<form class="row" method="post" >
+					<form class="row" method="post">
 						<div class="mb-3">
 							<label for="id" class="form-label">아이디 </label>
 							<div id="ui">
 								<input type="text" class="form-control" id="id" name="id"
 									placeholder="Id" required="required">
-								<button type="submit" class="check" id="dbCheckId" onclick="openIdChk()" >중복체크</button>
+								<button type="submit" class="check" id="dbCheckId">중복체크</button>
 							</div>
 						</div>
 
 						<div class="mb-3">
 							<label for="passwd" class="form-label">비밀번호</label> <input
 								type="password" class="form-control" id="passwd" name="passwd"
-								placeholder="Password">
+								placeholder="Password" required="required">
+								<label id="err">영어, 특수문자, 숫자의 조합을 이용해주세요</label>
 						</div>
 
 						<div class="mb-3">
 							<label for="name" class="form-label">이름</label> <input
 								type="text" class="form-control" id="name" name="name"
-								placeholder="Name">
+								placeholder="Name" required="required">
 						</div>
 
 						<div class="mb-3">
 							<label for="email" class="form-label">이메일</label> <input
 								type="email" class="form-control" id="email" name="email"
-								placeholder="name@example.com">
+								placeholder="name@example.com" required="required">
 						</div>
 						<div class="col-auto">
 							<button type="submit" class="btn btn-primary mb-3">회원가입</button>
@@ -70,5 +66,13 @@ function openIdChk(){
 	<!-- footer start -->
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 	<!-- footer end -->
+	<div class="alert alert-warning alert-dismissible fade show"
+		role="alert" id="case">
+		<!-- <h4>전체 삭제하시겠습니까?</h4> -->
+		<div class="Allbtn">
+		<!-- 	<button type="button" id="removeall" value="removeall"
+				class="btn btn-dark">확인</button> -->
+		</div>
+	</div>
 </body>
 </html>

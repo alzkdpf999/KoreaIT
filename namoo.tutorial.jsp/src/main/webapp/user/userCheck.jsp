@@ -6,6 +6,13 @@
 request.setCharacterEncoding("utf-8");
 %>
 <%
-jdbcDaoFactory.getInstance().getUserDao().read(request.getParameter("id"));
+	String result = "사용 가능합니다";
+	String click = "";
+	User user = jdbcDaoFactory.getInstance().getUserDao().read(request.getParameter("id"));
+	if(user !=null) {result ="사용 불가능합니다."; click="disabled";}
 %>
-<jsp:forward page="userIdResult.jsp"/>
+<jsp:forward page="userIdResult.jsp" >
+	<jsp:param value="<%=user %>" name="user"/>
+	<jsp:param value="<%=result %>" name="result"/>
+	<jsp:param value="<%=click %>" name="disabled"/>
+</jsp:forward>
