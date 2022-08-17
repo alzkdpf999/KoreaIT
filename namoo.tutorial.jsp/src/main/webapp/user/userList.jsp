@@ -6,17 +6,31 @@
 <%
 String search = request.getParameter("searchValue");
 String type = request.getParameter("searchType");
-List<User> userList = null ;
+List<User> userList = null ; 
 int cnt = 0;
 int pageList = 1;
 if(request.getParameter("page") != null){
 	 pageList = Integer.parseInt(request.getParameter("page"));
 }
 if(search == null && type == null){
+cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage(type, search);
+userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList);
+}else if (type.equals("id") && search != null){
+cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage(type,search);
+userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10,type,search);
+}else if (type.equals("name") && search != null){
+cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage(type,search);
+userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10,type,search);
+}else if (type.equals("all") && search.equals("")){
 	cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage(null, null);
-	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList);
+	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10);
+}else if (type.equals("all") && search != null){
+	cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage("all", search); 
+	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10,type,search);
 }
- /* userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10); */
+
+/* userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10); */
+/* userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10); */
 /* List<User> userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(1,1,"id","bangry"); */
 
 
@@ -40,7 +54,7 @@ if(search == null && type == null){
 			<div class="w3-container">
 				<div class="w3-center">
 					<h3>
-						회원 목록(총 <%=cnt %>명)
+						회원 목록(총 <%=cnt%>명)
 					</h3>
 				</div>
 				<div class="search">
@@ -96,7 +110,7 @@ if(search == null && type == null){
 				<%
 				} 
 				%>
-				 <a href="userList.jsp?page=<%=Math.ceil(cnt / 10) %>">&raquo;</a>
+				 <a href="userList.jsp?page=<%=Math.ceil(cnt / 10.0) %>">&raquo;</a>
 			</div>
 			<!-- 끝부분 -->
 

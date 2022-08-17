@@ -232,28 +232,45 @@ public class jdbcUserDao implements UserDao {
 		PreparedStatement pstmt = null;
 		ResultSet result = null;
 		StringBuilder sb = new StringBuilder();
-		
-		if (searchType.equals("id")) {
-			Type.append(" WHERE id =")
-			.append(searchValue);
-		} else {
-			searchValue = "%"+searchValue+"%";
-			Type.append(" WHERE name like")
-				.append(searchValue);
-		}
-		sb.append(" SELECT id, name, passwd, email, regdate")
-		  .append(" FROM ( SELECT CEIL(rownum / ?) request_page, id, name, passwd, email, regdate")
-		  .append("        FROM   ( SELECT id, name, passwd, email, TO_CHAR(regdate, 'YYYY-MM-DD DAY') regdate")
-		  .append("                 FROM users")
-		  .append(Type)
-		  .append("                 ORDER  BY regdate DESC))")
-		  .append(" WHERE  request_page = ?");
+
 		try {
 			con = dataSource.getConnection();
-			String sql = sb.toString();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, listSize);
-			pstmt.setInt(2, page);
+			String sql = null;
+			if (searchType.equals("all")) {
+				sb.append(" SELECT id, name, passwd, email, regdate")
+						.append(" FROM ( SELECT CEIL(rownum / ?) request_page, id, name, passwd, email, regdate")
+						.append("        FROM   ( SELECT id, name, passwd, email, TO_CHAR(regdate, 'YYYY-MM-DD DAY') regdate")
+						.append("                 FROM users").append(" WHERE id = ? or name like ?")
+						.append("                 ORDER  BY regdate DESC))").append(" WHERE  request_page = ?");
+				sql = sb.toString();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, listSize);
+				pstmt.setString(2, searchValue);
+				pstmt.setString(3, "%" + searchValue + "%");
+				pstmt.setInt(4, page);
+			} else {
+				if (searchType.equals("id")) {
+					Type.append(" WHERE id =");
+
+				} else if (searchType.equals("name")) {
+					if (!searchValue.equals("")) {
+						searchValue = "%" + searchValue + "%";
+					}
+					Type.append(" WHERE name like");
+
+				}
+				sb.append(" SELECT id, name, passwd, email, regdate")
+						.append(" FROM ( SELECT CEIL(rownum / ?) request_page, id, name, passwd, email, regdate")
+						.append("        FROM   ( SELECT id, name, passwd, email, TO_CHAR(regdate, 'YYYY-MM-DD DAY') regdate")
+						.append("                 FROM users").append(Type + "?")
+						.append("                 ORDER  BY regdate DESC))").append(" WHERE  request_page = ?");
+				sql = sb.toString();
+				pstmt = con.prepareStatement(sql);
+				pstmt.setInt(1, listSize);
+				pstmt.setString(2, searchValue);
+				pstmt.setInt(3, page);
+			}
+
 			result = pstmt.executeQuery();
 			list = new ArrayList<User>();
 			while (result.next()) {
@@ -271,39 +288,49 @@ public class jdbcUserDao implements UserDao {
 
 	@Override
 	public int countByPage(String searchType, String searchValue) throws SQLException {
-		List<User> list = null;
 		StringBuilder Type = new StringBuilder();
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet result = null;
 		StringBuilder sb = new StringBuilder();
-		int cnt = 0; 
-		if (searchType == null && searchValue == null) {
-			list = list();
-			sb.append(" SELECT COUNT(id) count")
-			  .append(" FROM   users");
-
-		}else {
-			if(searchType.equals("id")) {
-				Type.append(" WHERE id =")
-					.append(searchValue);
-			}else {
-				searchValue = "%"+searchValue+"%";
-				Type.append(" WHERE name like")
-					.append(searchValue);
-				
-			}
-			sb.append(" SELECT COUNT(id) count")
-			  .append(" FROM   users")
-			  .append(  Type);			
-		}	
+		int cnt = 0;
 		try {
+			String sql = null;
 			con = dataSource.getConnection();
-			String sql = sb.toString();
-			pstmt = con.prepareStatement(sql);
+			if (searchType == null && searchValue == null) {
+				sb.append(" SELECT COUNT(id) count").append(" FROM   users");
+				sql = sb.toString();
+				pstmt = con.prepareStatement(sql);
+
+			} else if (searchType != null && searchValue != null) {
+				if (!searchType.equals("all")) {
+					if (searchType.equals("id")) {
+						Type.append(" WHERE id =");
+
+					} else if (searchType.equals("name")) {
+						if (!searchValue.equals("")) {
+							searchValue = "%" + searchValue + "%";
+						}
+						Type.append(" WHERE name like");
+
+					}
+					sb.append(" SELECT COUNT(id) count").append(" FROM   users").append(Type + "?");
+					sql = sb.toString();
+					pstmt = con.prepareStatement(sql);
+
+					pstmt.setString(1, searchValue);
+				} else {
+					sb.append(" SELECT COUNT(id) count").append(" FROM   users").append(" WHERE id = ? or name like ?");
+					sql = sb.toString();
+					pstmt = con.prepareStatement(sql);
+					pstmt.setString(1, searchValue);
+
+					pstmt.setString(2, "%" + searchValue + "%");
+				}
+			}
+
 			result = pstmt.executeQuery();
-			list = new ArrayList<User>();
-			if(result.next()) {
+			if (result.next()) {
 				cnt = result.getInt(1);
 			}
 		} finally {
