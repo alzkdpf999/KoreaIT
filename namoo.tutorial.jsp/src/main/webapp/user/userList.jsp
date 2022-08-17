@@ -6,8 +6,21 @@
 <%
 String search = request.getParameter("searchValue");
 String type = request.getParameter("searchType");
-List<User> userList = jdbcDaoFactory.getInstance().getUserDao().list();
-User searchUser = jdbcDaoFactory.getInstance().getUserDao().read(search);
+List<User> userList = null ;
+int cnt = 0;
+int pageList = 1;
+if(request.getParameter("page") != null){
+	 pageList = Integer.parseInt(request.getParameter("page"));
+}
+if(search == null && type == null){
+	cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage(null, null);
+	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList);
+}
+ /* userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10); */
+/* List<User> userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(1,1,"id","bangry"); */
+
+
+// 일단 무조건 10개씩 나온다 치면
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -15,6 +28,7 @@ User searchUser = jdbcDaoFactory.getInstance().getUserDao().read(search);
 <meta charset="utf-8">
 <title>회원목록</title>
 <link rel="stylesheet" type="text/css" href="/css/basic.css">
+<link rel="stylesheet" type="text/css" href="/css/pagination.css">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 </head>
 <body>
@@ -26,8 +40,7 @@ User searchUser = jdbcDaoFactory.getInstance().getUserDao().read(search);
 			<div class="w3-container">
 				<div class="w3-center">
 					<h3>
-						회원 목록(총
-						<%=userList.size()%>명)
+						회원 목록(총 <%=cnt %>명)
 					</h3>
 				</div>
 				<div class="search">
@@ -41,37 +54,6 @@ User searchUser = jdbcDaoFactory.getInstance().getUserDao().read(search);
 					</form>
 				</div>
 				<!-- 시작 -->
-				<%
-				if (search != null && searchUser != null && type.equals("id")) {
-				%>
-				<div class="w3-responsive w3-card-4">
-					<table class="w3-table w3-striped w3-bordered">
-						<thead>
-							<tr class="w3-theme">
-								<th>번호</th>
-								<th>아이디</th>
-								<th>이름</th>
-								<th>이메일</th>
-								<th>가입일자</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr class="w3-white">
-								<td><%=1%></td>
-								<td><%=searchUser.getId()%></td>
-								<td><%=searchUser.getName()%></td>
-								<td><%=searchUser.getEmail()%></td>
-								<td><%=searchUser.getRegdate()%></td>
-							</tr>
-
-						</tbody>
-					</table>
-				</div>
-	
-				<%
-				out.println("</div>");
-				} else {
-				%>
 				<div class="w3-responsive w3-card-4">
 					<table class="w3-table w3-striped w3-bordered">
 						<thead>
@@ -103,17 +85,24 @@ User searchUser = jdbcDaoFactory.getInstance().getUserDao().read(search);
 						</tbody>
 					</table>
 				</div>
-			
-				<%
-				out.println("</div>");
-				}
-				%>
-
-				<!-- 끝부분 -->
 
 			</div>
-			<jsp:include page="/include/aside.jsp"></jsp:include>
+			<div class="pagination">
+				<a href="userList.jsp?page=1">&laquo;</a>
+				<%
+				for (int k = 1; k <= Math.ceil(cnt / 10.0); k++){
+				%>
+				<a href="userList.jsp?page=<%=k %>" ><%=k%></a>
+				<%
+				} 
+				%>
+				 <a href="userList.jsp?page=<%=Math.ceil(cnt / 10) %>">&raquo;</a>
+			</div>
+			<!-- 끝부분 -->
+
 		</div>
-		<jsp:include page="/include/footer.jsp"></jsp:include>
+		<jsp:include page="/include/aside.jsp"></jsp:include>
+	</div>
+	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>

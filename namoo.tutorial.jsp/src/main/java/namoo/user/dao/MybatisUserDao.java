@@ -48,6 +48,30 @@ public class MybatisUserDao implements UserDao {
 	}
 	public List<User> list() throws SQLException{
 		return null;
+	}
+
+	@Override
+	public List<User> listByPage(int page) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> listByPage(int page, int listSize) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> listByPage(int page, int listSize, String searchType, String searchValue) throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int countByPage(String searchType, String searchValue) throws SQLException {
+		// TODO Auto-generated method stub
+		return 0;
 	};
 
 }

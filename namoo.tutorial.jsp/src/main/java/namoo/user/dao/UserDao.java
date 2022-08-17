@@ -26,4 +26,16 @@ public interface UserDao {
 	public User login(String id,String passwd) throws SQLException;
 	/**사용자 전체 목록 반환*/
 	public List<User> list() throws SQLException;
+	
+//	public List<User> list(String type, String value) throws SQLException;
+	/**선택페이지의 따른 목록 반환**/
+	public List<User> listByPage(int page) throws SQLException;
+	
+	//목록 수의 따른 변화
+	public List<User> listByPage(int page, int listSize) throws SQLException;
+	// 검색 타입에 따른 변화
+	public List<User> listByPage(int page, int listSize,String searchType, String searchValue) throws SQLException;
+	
+	//검색 타입과 전체에서의 총 인원 수
+	public int countByPage(String searchType, String searchValue) throws SQLException;
 }	
