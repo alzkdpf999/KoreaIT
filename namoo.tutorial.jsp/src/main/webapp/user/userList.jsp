@@ -51,7 +51,7 @@ if (type.equals("id") && search != null) {
 //페이지 개수
 int pageCount = (int) Math.ceil((double) cnt / showList);
 //페이지번호 몇개씩 보여줄까?
-int pageNum = 2;
+int pageNum = 3;
 
 //페이지 그룹별 시작페이지번호와 마지막페이지번호 계산
 //페이지 그룹번호
@@ -94,21 +94,21 @@ if (endPage > pageCount) {
 							<option value="name">이름</option>
 						</select> <input type="text" name="searchValue" placeholder="Search..">
 						<select name="searchList">
-				<%
-					for(int i=1;i<=4;i++){
-							int j=i*5;
-							if(j == showList){			
-				%>
-				<option value="<%=showList%>" selected="selected"><%=showList %></option>
-				<%
-				}else{
-					%>
-				
-						<option value="<%=j%>"><%=j %></option>
-						<%
-						}
-					}
-						%>
+							<%
+							for (int i = 1; i <= 4; i++) {
+								int j = i * 5;
+								if (j == showList) {
+							%>
+							<option value="<%=showList%>" selected="selected"><%=showList%></option>
+							<%
+							} else {
+							%>
+
+							<option value="<%=j%>"><%=j%></option>
+							<%
+							}
+							}
+							%>
 						</select> <input type="submit" value="검색">
 
 					</form>
@@ -146,9 +146,24 @@ if (endPage > pageCount) {
 
 			</div>
 			<div class="pagination">
-				 <a href="?page=<%=startPage%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&laquo;</a> 
 				<%
-				for (int k = startPage; k <= endPage; k++) {
+				int prePage = startPage - pageNum;
+				if(pageList <=0) pageList = 1;
+				if (prePage <0) {
+					prePage=1;
+				}
+				%>	
+				<a
+					href="?page=<%=1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&laquo;</a>
+					<% if(pageList == 1){
+					%><a
+					href="?page=<%=1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&lt;</a>
+			<%}else{ %>
+				<a
+					href="?page=<%=pageList - 1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&lt;</a>
+			
+				<%
+			}for (int k = startPage; k <= endPage; k++) {
 					if (k == pageList) {
 				%>
 				<a class="active"><%=k%></a>
@@ -160,9 +175,28 @@ if (endPage > pageCount) {
 				<%
 				}
 				}
+				if (pageList % pageNum == 0) {
+					if(pageList != pageCount){
 				%>
-				<a href="?page=<%=endPage%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&raquo;</a> 
-	
+				<a href="?page=<%=startPage + pageNum%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt; </a>
+				<%}else{
+					%>
+					<a href="?page=<%=pageCount%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt; </a>
+				<%} %>
+				<%
+				} else if (pageList == pageCount) {
+				%>
+				<a href="?page=<%=pageCount%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt; </a>
+				<%
+				} else {
+				%>
+				<a href="?page=<%=pageList + 1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt; </a>
+				<%
+				}
+				%>
+				<a href="?page=<%=pageCount%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&raquo;</a>
+
+
 			</div>
 			<!-- 끝부분 -->
 
