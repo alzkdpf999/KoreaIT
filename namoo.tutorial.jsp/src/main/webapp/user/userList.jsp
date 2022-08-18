@@ -1,40 +1,62 @@
 <%@page import="namoo.user.dto.User"%>
 <%@page import="namoo.common.factory.jdbcDaoFactory"%>
 <%@page import="java.util.List"%>
+
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%
+request.setCharacterEncoding("utf-8");
 String search = request.getParameter("searchValue");
 String type = request.getParameter("searchType");
-List<User> userList = null ; 
+
+String sizeNum = request.getParameter("searchList");
+
+String pageSize = request.getParameter("page");
+
+List<User> userList = null;
 int cnt = 0;
 int pageList = 1;
-if(request.getParameter("page") != null){
-	 pageList = Integer.parseInt(request.getParameter("page"));
+int showList = 10;
+
+if (pageSize != null && !pageSize.equals("")) {
+	pageList = Integer.parseInt(pageSize);
 }
-if(search == null && type == null){
-cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage(type, search);
-userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList);
-}else if (type.equals("id") && search != null){
-cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage(type,search);
-userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10,type,search);
-}else if (type.equals("name") && search != null){
-cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage(type,search);
-userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10,type,search);
-}else if (type.equals("all") && search.equals("")){
-	cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage(null, null);
-	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10);
-}else if (type.equals("all") && search != null){
-	cnt =  jdbcDaoFactory.getInstance().getUserDao().countByPage("all", search); 
-	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10,type,search);
+if (sizeNum != null && !sizeNum.equals("")) {
+	showList = Integer.parseInt(sizeNum);
 }
 
-/* userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10); */
-/* userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10); */
-/* List<User> userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(1,1,"id","bangry"); */
+if (search == null && type == null) {
+	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage(type, search);
+	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,showList);
+} else if (type.equals("id") && search != null) {
+	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage(type, search);
+	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList, showList, type, search);
+} else if (type.equals("name") && search != null) {
+	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage(type, search);
+	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList, showList, type, search);
+} else if (type.equals("all") && search.equals("")) {
+	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage(null, null);
+	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList, showList);
+} else if (type.equals("all") && search != null) {
+	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage("all", search);
+	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList, showList, type, search);
+}
 
+//페이지 개수
+int pageCount = (int) Math.ceil((double) cnt / showList);
+//페이지번호 몇개씩 보여줄까?
+int pageNum = 10;
 
-// 일단 무조건 10개씩 나온다 치면
+//페이지 그룹별 시작페이지번호와 마지막페이지번호 계산
+//페이지 그룹번호
+int groupNo = (pageList - 1) / pageNum; // 목록 식별번호
+//(1~10): 0, (11~20): 1, (21~30): 2, .....
+
+int startPage = (groupNo * pageNum) + 1;
+int endPage = (groupNo * pageNum) + pageNum;
+if (endPage > pageCount) {
+	endPage = pageCount;
+}
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -54,17 +76,25 @@ userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10,type
 			<div class="w3-container">
 				<div class="w3-center">
 					<h3>
-						회원 목록(총 <%=cnt%>명)
+						회원 목록(총
+						<%=cnt + ":" + showList + ":" + sizeNum%>명)
 					</h3>
 				</div>
 				<div class="search">
-					<form action="userList.jsp">
+					<form method="post">
+
 						<select name="searchType">
 							<option value="all">전체</option>
 							<option value="id">아이디</option>
 							<option value="name">이름</option>
 						</select> <input type="text" name="searchValue" placeholder="Search..">
-						<input type="submit" value="검색">
+						<select name="searchList">
+							<option value="5">5</option>
+							<option value="10">10</option>
+							<option value="15">15</option>
+							<option value="20">20</option>
+						</select> <input type="submit" value="검색">
+
 					</form>
 				</div>
 				<!-- 시작 -->
@@ -91,26 +121,32 @@ userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList,10,type
 								<td><%=user.getEmail()%></td>
 								<td><%=user.getRegdate()%></td>
 							</tr>
-
 							<%
 							}
 							%>
-
 						</tbody>
 					</table>
 				</div>
 
 			</div>
 			<div class="pagination">
-				<a href="userList.jsp?page=1">&laquo;</a>
+				<%-- <a href="?page=<%=1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&laquo;</a> --%>
 				<%
-				for (int k = 1; k <= Math.ceil(cnt / 10.0); k++){
+				for (int k = startPage; k <= endPage; k++) {
+					if (k == pageList) {
 				%>
-				<a href="userList.jsp?page=<%=k %>" ><%=k%></a>
+				<a class="active"><%=k%></a>
 				<%
-				} 
+				} else {
 				%>
-				 <a href="userList.jsp?page=<%=Math.ceil(cnt / 10.0) %>">&raquo;</a>
+				<a
+					href="?page=<%=k%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>"><%=k%></a>
+				<%
+				}
+				}
+				%>
+				<%-- <a
+					href="?page=<%=%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&raquo;</a> --%>
 			</div>
 			<!-- 끝부분 -->
 
