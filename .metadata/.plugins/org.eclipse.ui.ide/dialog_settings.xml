@@ -23,6 +23,11 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+<<<<<<< HEAD
+=======
+			<item value="C:\Users\user\Desktop\KIT"/>
+			<item value="C:\Users\user\Desktop\KoreaIT"/>
+>>>>>>> 7371f60f29f011b0d61dfe0692722c502a4ef96f
 			<item value="D:\koreaIt"/>
 			<item value="C:\Users\user\Desktop\KoreaIT"/>
 			<item value="D:\prj"/>
