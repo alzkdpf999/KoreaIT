@@ -3,6 +3,7 @@ package namoo.user.dao;
 import java.sql.SQLException;
 import java.util.List;
 
+import namoo.common.web.Params;
 import namoo.user.dto.User;
 
 /**
@@ -38,4 +39,10 @@ public interface UserDao {
 	
 	//검색 타입과 전체에서의 총 인원 수
 	public int countByPage(String searchType, String searchValue) throws SQLException;
+	
+	/** Params(선택페이지, 조회 목록개수, 검색유형, 검색값)에 따른 사용자 목록 반환 */	
+	public List<User> listByPage(Params params) throws SQLException;
+	
+	/** Params(검색유형, 검색값에 따른 사용자 개수 반환 - 페이징 처리 시 필요 */
+	public int countByPage(Params params) throws SQLException;
 }	

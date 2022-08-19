@@ -10,6 +10,11 @@
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
   
+  <context-param>
+  		<param-name>message</param-name>
+  		<param-value>Hello Expression Lagnguage</param-value>
+  </context-param>
+  
   <!-- 에러페이지 설정 하지만 보통 에러페이지는 제일 마지막에 한다.-->
   <!-- <error-page>
   	<exception-type>java.lang.Exception</exception-type>
@@ -40,4 +45,15 @@
   	<servlet-name>configExample</servlet-name>
   	<url-pattern>/config</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>elExample2</servlet-name>
+  	<jsp-file>/el/elExample2.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>elExample2</servlet-name>
+  	<url-pattern>/el.action</url-pattern>
+  </servlet-mapping>
+  
 </web-app>

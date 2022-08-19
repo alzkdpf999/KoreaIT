@@ -9,6 +9,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import namoo.common.web.Params;
 import namoo.user.dto.User;
 
 //기술 이름을 앞에 붙여서 하는것이 좋음
@@ -341,4 +342,14 @@ public class jdbcUserDao implements UserDao {
 		}
 		return cnt;
 	}
+	@Override
+	public List<User> listByPage(Params params) throws SQLException {
+		return listByPage(params.getPage(), params.getListSize(),  params.getSearchType(), params.getSearchValue());
+	}
+
+	@Override
+	public int countByPage(Params params) throws SQLException {
+		return countByPage(params.getSearchType(), params.getSearchValue());
+	}
+
 }

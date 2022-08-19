@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import namoo.common.web.Params;
 import namoo.user.dto.User;
 //기술 이름을 앞에 붙여서 하는것이 좋음
 public class MybatisUserDao implements UserDao {
@@ -73,5 +74,13 @@ public class MybatisUserDao implements UserDao {
 		// TODO Auto-generated method stub
 		return 0;
 	};
+	public List<User> listByPage(Params params) throws SQLException {
+		return listByPage(params.getPage(), params.getListSize(),  params.getSearchType(), params.getSearchValue());
+	}
+
+	@Override
+	public int countByPage(Params params) throws SQLException {
+		return countByPage(params.getSearchType(), params.getSearchValue());
+	}
 
 }

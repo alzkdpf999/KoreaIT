@@ -1,10 +1,18 @@
+
 <%@page import="namoo.user.dto.User"%>
 <%@page import="namoo.common.factory.jdbcDaoFactory"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.HashMap"%>
 
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%
+HashMap<String,String> options = new HashMap<String,String>(){{
+put("all","전체");
+put("id","아이디");
+put("name","이름");
+}};
+String check = request.getParameter("yes");
 request.setCharacterEncoding("utf-8");
 String search = request.getParameter("searchValue");
 String type = request.getParameter("searchType");
@@ -83,35 +91,51 @@ if (endPage > pageCount) {
 				<div class="w3-center">
 					<h3>
 						회원 목록(총
-						<%=cnt%>명)
+						<%=cnt%> 명)
 					</h3>
 				</div>
 				<div class="search">
-					<form method="post" action="userList.jsp">
+					<form method="post">
+						<input type="hidden" name="searchList" value="<%=showList%>">
 						<label for="Type"></label> <select name="searchType">
-							<option value="all">전체</option>
-							<option value="id">아이디</option>
-							<option value="name">이름</option>
-						</select> <input type="text" name="searchValue" placeholder="Search..">
-						<select name="searchList">
 							<%
-							for (int i = 1; i <= 4; i++) {
-								int j = i * 5;
-								if (j == showList) {
+							for (String option : options.keySet()) {
+								if (type.equals(option)) {
 							%>
-							<option value="<%=showList%>" selected="selected"><%=showList%></option>
+							<option value="<%=type%>" selected="selected"><%=options.get(type) %></option>
 							<%
 							} else {
 							%>
-
-							<option value="<%=j%>"><%=j%></option>
+							<option value="<%=option%>"><%=options.get(option) %></option>
 							<%
 							}
 							}
 							%>
-						</select> <input type="submit" value="검색">
 
+
+						</select> <input type="text" name="searchValue" placeholder="Search..">
+						<input type="submit" value="검색">
+						
 					</form>
+					<select name="searchList"
+						onchange="if(this.value) location.href=(this.value);">
+						<%
+						for (int i = 1; i <= 4; i++) {
+							int j = i * 5;
+							if (j == showList) {
+						%>
+						<option value="<%=showList%>" selected="selected"><%=showList%></option>
+						<%
+						} else {
+						%>
+
+						<option
+							value="http://localhost/user/userList.jsp?page=1&searchList=<%=j%>&searchType=<%=type%>&searchValue=<%=search%>"><%=j%></option>
+						<%
+						}
+						}
+						%>
+					</select>
 				</div>
 				<!-- 시작 -->
 				<div class="w3-responsive w3-card-4">
@@ -134,7 +158,7 @@ if (endPage > pageCount) {
 								<td><%=i++%></td>
 								<td><%=user.getId()%></td>
 								<td><%=user.getName()%></td>
-								<td><%=user.getEmail()%></td>
+								<td><a href="mailto:<%=user.getEmail()%>"><%=user.getEmail()%></a></td>
 								<td><%=user.getRegdate()%></td>
 							</tr>
 							<%
@@ -147,24 +171,25 @@ if (endPage > pageCount) {
 			</div>
 			<div class="pagination">
 				<%
-				int prePage = startPage - pageNum;
-				if(pageList <=0) pageList = 1;
-				if (prePage <0) {
-					prePage=1;
-				}
-				%>	
+				if (pageList <= 0)
+					pageList = 1;
+				%>
+				<%
+				if (pageList == 1) {
+				%>
+				<a>&laquo;</a> <a>&lt;</a>
+				<%
+				} else {
+				%>
 				<a
 					href="?page=<%=1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&laquo;</a>
-					<% if(pageList == 1){
-					%><a
-					href="?page=<%=1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&lt;</a>
-			<%}else{ %>
 				<a
 					href="?page=<%=pageList - 1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&lt;</a>
-			
+
 				<%
-			}for (int k = startPage; k <= endPage; k++) {
-					if (k == pageList) {
+				}
+				for (int k = startPage; k <= endPage; k++) {
+				if (k == pageList) {
 				%>
 				<a class="active"><%=k%></a>
 				<%
@@ -176,25 +201,33 @@ if (endPage > pageCount) {
 				}
 				}
 				if (pageList % pageNum == 0) {
-					if(pageList != pageCount){
+				if (pageList != pageCount) {
 				%>
-				<a href="?page=<%=startPage + pageNum%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt; </a>
-				<%}else{
-					%>
-					<a href="?page=<%=pageCount%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt; </a>
-				<%} %>
-				<%
-				} else if (pageList == pageCount) {
-				%>
-				<a href="?page=<%=pageCount%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt; </a>
+				<a
+					href="?page=<%=startPage + pageNum%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt;
+				</a>
 				<%
 				} else {
 				%>
-				<a href="?page=<%=pageList + 1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt; </a>
+				<a>&gt; </a>
 				<%
 				}
 				%>
-				<a href="?page=<%=pageCount%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&raquo;</a>
+				<%
+				} else if (pageList == pageCount) {
+				%>
+				<a>&gt; </a> <a>&raquo;</a>
+				<%
+				} else {
+				%>
+				<a
+					href="?page=<%=pageList + 1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt;
+				</a> <a
+					href="?page=<%=pageCount%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&raquo;</a>
+				<%
+				}
+				%>
+
 
 
 			</div>

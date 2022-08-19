@@ -1,9 +1,5 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=54ee2c413f501364473777af1cf38d85ef69882a
+>>>>>>>=7371f60f29f011b0d61dfe0692722c502a4ef96f
 eclipse.preferences.version=1
-<<<<<<< HEAD
-org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1660816737518" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1660816737518" name\="jdk-11.0.15.1" path\="C\:\\Program Files\\Java\\jdk-11.0.15.1"/>\r\n    </vmType>\r\n</vmSettings>\r\n
-=======
-org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1660743321676" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1660743321676" name\="jdk-11.0.16" path\="C\:\\Program Files\\Java\\jdk-11.0.16"/>\r\n    </vmType>\r\n</vmSettings>\r\n
->>>>>>> 7371f60f29f011b0d61dfe0692722c502a4ef96f
+org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1660902433297" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1660902433297" name\="jdk-11.0.15.1" path\="C\:\\Program Files\\Java\\jdk-11.0.15.1"/>\r\n    </vmType>\r\n</vmSettings>\r\n

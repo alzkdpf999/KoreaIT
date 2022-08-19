@@ -4,6 +4,8 @@
 <%
 HttpSession loginSession = request.getSession();
 User loginUser = (User) loginSession.getAttribute("loginUser");
+Cookie[] cookies = request.getCookies();
+
 %>
 
 
@@ -11,13 +13,14 @@ User loginUser = (User) loginSession.getAttribute("loginUser");
 	<div class="card">
 		<div>
 			<%
-			if (loginUser == null) {
+			if (loginUser == null ) {
 			%>
 			<form action="/user/login.jsp" method="post">
 				<input type="text" id="id" name="id" placeholder="Identifier...">
 				<input type="password" id="passwd" name="passwd"
 					placeholder="Password..."> <input type="submit"
 					value="Login">
+					<input type="checkbox" name="yes" value="yes"	>
 			</form>
 			<%
 			} else { String name = loginUser.getName();
@@ -25,7 +28,6 @@ User loginUser = (User) loginSession.getAttribute("loginUser");
 			<form action="/user/login.jsp" method="get">
 			<img src="/img/sample.png" id="profil">
 			<h3 id="asid"><%=name %>님</h3>
-			<!-- <a href="/user/login.jsp">로그아웃</a> -->
 			<input type="submit" value="로그아웃">
 			</form>
 			<%
