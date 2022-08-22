@@ -26,4 +26,8 @@ Validitycheck.NameKr = function(name) {
 Validitycheck.NameEn = function(name){
 	return regNameEn.test(name);
 }
+
+Validitycheck.isNull = function(value){
+  return (value == undefined || value == '');
+}
 export { Validitycheck };

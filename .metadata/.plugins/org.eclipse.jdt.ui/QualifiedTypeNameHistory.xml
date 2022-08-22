@@ -3,4 +3,6 @@
     <fullyQualifiedTypeName name="dto.User"/>
     <fullyQualifiedTypeName name="namoo.user.dto.User"/>
     <fullyQualifiedTypeName name="namoo.common.factory.jdbcDaoFactory"/>
+    <fullyQualifiedTypeName name="namoo.common.web.Params"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
 </qualifiedTypeNameHistroy>

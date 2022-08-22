@@ -87,7 +87,36 @@ public class jdbcUserDao implements UserDao {
 		}
 		return user;
 	}
-
+	public int loginResult(String id, String passwd) throws SQLException {
+		User user = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		// +는 낭비가 심해서 StringBuilder를 이용한다.
+		StringBuilder sb = new StringBuilder();
+		sb.append(" SELECT id,passwd,name,email,TO_CHAR(regdate,'YYYY-MM-DD DAY') regdate").append(" FROM users")
+				.append(" WHERE id = ? ");
+		try {
+			con = dataSource.getConnection();
+			String sql = sb.toString();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			
+			result = pstmt.executeQuery();
+			if (result.next()) {
+				if(result.getString("passwd").equals(passwd)) return 1;// 로그인 성공
+				else return 0; //비밀번호 불일치
+			}
+			return -1; //아이디 없음
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (con != null)
+				con.close(); // 예외 저대로 안발생
+		}
+	}
+	
+	
 	public User login(String id, String passwd) throws SQLException {
 		User user = null;
 		Connection con = null;
@@ -121,67 +150,6 @@ public class jdbcUserDao implements UserDao {
 		return user;
 	}
 
-	public List<User> list() throws SQLException {
-		List<User> list = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet result = null;
-		// +는 낭비가 심해서 StringBuilder를 이용한다.
-		StringBuilder sb = new StringBuilder();
-		// *로 하면 성능이 확 떨어짐
-		sb.append(" SELECT id,passwd,name,email,TO_CHAR(regdate,'YYYY-MM-DD DAY') regdate").append(" FROM users");
-		try {
-			con = dataSource.getConnection();
-			String sql = sb.toString();
-			pstmt = con.prepareStatement(sql);
-			result = pstmt.executeQuery();
-			list = new ArrayList<User>();
-			while (result.next()) {
-				User user = createUser(result);
-				list.add(user);
-			}
-		} finally {
-			if (pstmt != null)
-				pstmt.close();
-			if (con != null)
-				con.close(); // 예외 저대로 안발생
-		}
-		return list;
-
-	}
-
-	// 페이지별로 출력
-	@Override
-	public List<User> listByPage(int page) throws SQLException {
-		List<User> list = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet result = null;
-		StringBuilder sb = new StringBuilder();
-		sb.append(" SELECT id, name, passwd, email, regdate")
-				.append(" FROM ( SELECT CEIL(rownum / 10) request_page, id, name, passwd, email, regdate")
-				.append("  FROM   ( SELECT id, name, passwd, email, TO_CHAR(regdate, 'YYYY-MM-DD DAY') regdate")
-				.append("   FROM users").append("   ORDER  BY regdate DESC))").append("   WHERE  request_page = ?");
-		try {
-			con = dataSource.getConnection();
-			String sql = sb.toString();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, page);
-			result = pstmt.executeQuery();
-			list = new ArrayList<User>();
-			while (result.next()) {
-				User user = createUser(result);
-				list.add(user);
-			}
-		} finally {
-			if (pstmt != null)
-				pstmt.close();
-			if (con != null)
-				con.close(); // 예외 저대로 안발생
-		}
-		return list;
-	}
-
 	private User createUser(ResultSet result) throws SQLException {
 		User user = new User();
 		user.setId(result.getString("id"));
@@ -191,87 +159,66 @@ public class jdbcUserDao implements UserDao {
 		user.setRegdate(result.getString("regdate"));
 		return user;
 	}
+	
+	
 
 	// 선택페이지, 조회 목록개수에 따른 사용자 목록 반환
+
 	@Override
-	public List<User> listByPage(int page, int listSize) throws SQLException {
+	public List<User> listByPage(Params params) throws SQLException {
 		List<User> list = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet result = null;
 		StringBuilder sb = new StringBuilder();
+		int page = params.getPage();
+		int listSize = params.getSearchList();
+		String searchType = params.getSearchType();
+		String searchValue = params.getSearchValue();
 		sb.append(" SELECT id, name, passwd, email, regdate")
 				.append(" FROM ( SELECT CEIL(rownum / ?) request_page, id, name, passwd, email, regdate")
-				.append("  FROM   ( SELECT id, name, passwd, email, TO_CHAR(regdate, 'YYYY-MM-DD DAY') regdate")
-				.append("   FROM users").append("   ORDER  BY regdate DESC))").append("   WHERE  request_page = ?");
+				.append("        FROM   ( SELECT id, name, passwd, email, TO_CHAR(regdate, 'YYYY-MM-DD DAY') regdate")
+				.append("                 FROM users");
 		try {
 			con = dataSource.getConnection();
-			String sql = sb.toString();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, listSize);
-			pstmt.setInt(2, page);
-			result = pstmt.executeQuery();
-			list = new ArrayList<User>();
-			while (result.next()) {
-				User user = createUser(result);
-				list.add(user);
-			}
-		} finally {
-			if (pstmt != null)
-				pstmt.close();
-			if (con != null)
-				con.close(); // 예외 저대로 안발생
-		}
-		return list;
-	}
-
-	@Override
-	public List<User> listByPage(int page, int listSize, String searchType, String searchValue) throws SQLException {
-		List<User> list = null;
-		StringBuilder Type = new StringBuilder();
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet result = null;
-		StringBuilder sb = new StringBuilder();
-
-		try {
-			con = dataSource.getConnection();
-			String sql = null;
 			if (searchType.equals("all")) {
-				sb.append(" SELECT id, name, passwd, email, regdate")
-						.append(" FROM ( SELECT CEIL(rownum / ?) request_page, id, name, passwd, email, regdate")
-						.append("        FROM   ( SELECT id, name, passwd, email, TO_CHAR(regdate, 'YYYY-MM-DD DAY') regdate")
-						.append("                 FROM users").append(" WHERE id = ? or name like ?")
-						.append("                 ORDER  BY regdate DESC))").append(" WHERE  request_page = ?");
-				sql = sb.toString();
-				pstmt = con.prepareStatement(sql);
+				if (!searchValue.equals("")) {
+					sb.append(" WHERE id = ? or name like ?").append("                 ORDER  BY regdate DESC))")
+					.append(" WHERE  request_page = ?");
+					pstmt = con.prepareStatement(sb.toString());
+					pstmt.setInt(1, listSize);
+					pstmt.setString(2, searchValue);
+					pstmt.setString(3, "%" + searchValue + "%");
+					pstmt.setInt(4, page);
+				}else {
+				sb.append("                 ORDER  BY regdate DESC))")
+				.append(" WHERE  request_page = ?");
+				pstmt = con.prepareStatement(sb.toString());
 				pstmt.setInt(1, listSize);
-				pstmt.setString(2, searchValue);
-				pstmt.setString(3, "%" + searchValue + "%");
-				pstmt.setInt(4, page);
-			} else {
-				if (searchType.equals("id")) {
-					Type.append(" WHERE id =");
-
-				} else if (searchType.equals("name")) {
-					if (!searchValue.equals("")) {
-						searchValue = "%" + searchValue + "%";
-					}
-					Type.append(" WHERE name like");
-
+				pstmt.setInt(2, page);
 				}
-				sb.append(" SELECT id, name, passwd, email, regdate")
-						.append(" FROM ( SELECT CEIL(rownum / ?) request_page, id, name, passwd, email, regdate")
-						.append("        FROM   ( SELECT id, name, passwd, email, TO_CHAR(regdate, 'YYYY-MM-DD DAY') regdate")
-						.append("                 FROM users").append(Type + "?")
-						.append("                 ORDER  BY regdate DESC))").append(" WHERE  request_page = ?");
-				sql = sb.toString();
-				pstmt = con.prepareStatement(sql);
-				pstmt.setInt(1, listSize);
-				pstmt.setString(2, searchValue);
-				pstmt.setInt(3, page);
+			}else {
+				if(searchType.equals("id")) {
+					sb.append(" WHERE id = ? ")
+					.append("                 ORDER  BY regdate DESC))")
+					.append(" WHERE  request_page = ?");
+					pstmt = con.prepareStatement(sb.toString());
+					pstmt.setInt(1, listSize);
+					pstmt.setString(2, searchValue);
+					pstmt.setInt(3, page);
+					
+				}else {
+					sb.append(" WHERE name like ?")
+					.append("                 ORDER  BY regdate DESC))")
+					.append(" WHERE  request_page = ?");
+					
+					pstmt = con.prepareStatement(sb.toString());
+					pstmt.setInt(1, listSize);
+					pstmt.setString(2, "%"+searchValue+"%");
+					pstmt.setInt(3, page);
+					
+				}
 			}
-
 			result = pstmt.executeQuery();
 			list = new ArrayList<User>();
 			while (result.next()) {
@@ -288,51 +235,41 @@ public class jdbcUserDao implements UserDao {
 	}
 
 	@Override
-	public int countByPage(String searchType, String searchValue) throws SQLException {
-		StringBuilder Type = new StringBuilder();
+	public int countByPage(Params params) throws SQLException {
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet result = null;
 		StringBuilder sb = new StringBuilder();
+		String searchType = params.getSearchType();
+		String searchValue = params.getSearchValue();
 		int cnt = 0;
+		sb.append(" SELECT COUNT(id) count").append(" FROM   users");
 		try {
-			String sql = null;
 			con = dataSource.getConnection();
-			if (searchType == null && searchValue == null) {
-				sb.append(" SELECT COUNT(id) count").append(" FROM   users");
-				sql = sb.toString();
-				pstmt = con.prepareStatement(sql);
-
-			} else if (searchType != null && searchValue != null) {
-				if (!searchType.equals("all")) {
-					if (searchType.equals("id")) {
-						Type.append(" WHERE id =");
-
-					} else if (searchType.equals("name")) {
-						if (!searchValue.equals("")) {
-							searchValue = "%" + searchValue + "%";
-						}
-						Type.append(" WHERE name like");
-
-					}
-					sb.append(" SELECT COUNT(id) count").append(" FROM   users").append(Type + "?");
-					sql = sb.toString();
-					pstmt = con.prepareStatement(sql);
-
-					pstmt.setString(1, searchValue);
-				} else {
-					sb.append(" SELECT COUNT(id) count").append(" FROM   users").append(" WHERE id = ? or name like ?");
-					sql = sb.toString();
-					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, searchValue);
-
-					pstmt.setString(2, "%" + searchValue + "%");
-				}
+		if(searchType.equals("all")) {
+			if(!searchValue.equals("")) {
+				sb.append(" WHERE id = ? or name like ?");
+				pstmt = con.prepareStatement(sb.toString());
+				pstmt.setString(1, searchValue);
+				pstmt.setString(2, "%" + searchValue + "%");
+			}else {
+				pstmt = con.prepareStatement(sb.toString());
 			}
-
+		}else {
+			if(searchType.equals("id")) {
+				sb.append(" WHERE id = ?");
+				pstmt = con.prepareStatement(sb.toString());
+				pstmt.setString(1, searchValue);
+			}else {
+				sb.append(" WHERE  name like ?");
+				pstmt = con.prepareStatement(sb.toString());
+				pstmt.setString(1, "%"+searchValue+"%");
+			}
+			
+		}
 			result = pstmt.executeQuery();
 			if (result.next()) {
-				cnt = result.getInt(1);
+				cnt = result.getInt("count");
 			}
 		} finally {
 			if (pstmt != null)
@@ -341,15 +278,7 @@ public class jdbcUserDao implements UserDao {
 				con.close(); // 예외 저대로 안발생
 		}
 		return cnt;
-	}
-	@Override
-	public List<User> listByPage(Params params) throws SQLException {
-		return listByPage(params.getPage(), params.getListSize(),  params.getSearchType(), params.getSearchValue());
-	}
 
-	@Override
-	public int countByPage(Params params) throws SQLException {
-		return countByPage(params.getSearchType(), params.getSearchValue());
 	}
 
 }

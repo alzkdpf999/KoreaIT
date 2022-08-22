@@ -19,7 +19,7 @@ public class DaoTest {
 //		UserDao userDao = new MybatisUserDao(dataSource);
 		
 //		
-		UserDao userDao=jdbcDaoFactory.getInstance().getUserDao();
+		UserDao2 userDao=(UserDao2) jdbcDaoFactory.getInstance().getUserDao();
 		
 //		User user =new User("qack","1234","Jack","qack@naver.com");
 		try {
