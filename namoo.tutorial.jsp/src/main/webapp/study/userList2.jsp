@@ -1,5 +1,5 @@
-<%@page import="namoo.user.dto.User"%>
-<%@page import="namoo.common.factory.jdbcDaoFactory"%>
+<%@page import="namoo.yorizori.dto.user.User"%>
+<%@page import="namoo.yorizori.common.factory.jdbcDaoFactory"%>
 <%@page import="java.util.List"%>
 
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>

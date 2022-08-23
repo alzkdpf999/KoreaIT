@@ -1,9 +1,9 @@
-<%@page import="namoo.common.web.PageBuilder"%>
-<%@page import="namoo.common.web.Params"%>
-<%@page import="namoo.user.dao.UserDao"%>
+<%@page import="namoo.yorizori.common.web.PageBuilder"%>
+<%@page import="namoo.yorizori.common.web.Params"%>
+<%@page import="namoo.yorizori.dao.user.UserDao"%>
 <%@ page import="java.util.List"%>
-<%@ page import="namoo.common.factory.jdbcDaoFactory"%>
-<%@ page import="namoo.user.dto.User"%>
+<%@ page import="namoo.yorizori.common.factory.jdbcDaoFactory"%>
+<%@ page import="namoo.yorizori.dto.user.User"%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <% request.setCharacterEncoding("utf-8"); %>
 

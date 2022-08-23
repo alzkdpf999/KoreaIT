@@ -1,7 +1,44 @@
+--사용자 정보 저장을 위한 회원 테이블
+CREATE TABLE users( 
+    id      VARCHAR2(10),--pk
+    passwd  VARCHAR2(8) NOT NULL,   
+    name    VARCHAR2(20) NOT NULL,
+    email   VARCHAR2(50), --uique 
+    regdate DATE DEFAULT SYSDATE
+    );
+    
+ALTER TABLE users
+    ADD (
+            CONSTRAINT users_id_pk PRIMARY KEY(id),
+            CONSTRAINT users_email_uk UNIQUE(email)
+    );
+    
+select *
+from user_constraints;
+
+INSERT INTO users(id,passwd,name,email)
+VALUES ('bangry','1111','정충효','bangry@naver.com');
+
+commit;
+
+drop table users;
+select * from users;
+
+Select id,passwd,name,email,TO_CHAR(regdate,'YYYY-MM-DD DAY') AS regdate
+from users
+where id = 'bangry';
+
+Select id,passwd,name,email,TO_CHAR(regdate,'YYYY-MM-DD DAY') regdate
+from users
+where id = 'bangry' and passwd= '1111';  
+
+ALTER TABLE users MODIFY passwd VARCHAR(20);
+desc users;
+
 
 CREATE TABLE cookbook( 
     book_id      NUMBER(7),--pk
-    book_name  VARCHAR2(30),
+    book_name  VARCHAR2(30) NOT NULL,
     book_desc    VARCHAR2(200),
     author_id   VARCHAR2(30)  --fk
     );
@@ -19,39 +56,40 @@ CREATE TABLE recipe(
     writer_id VARCHAR2(30)
     );
 
-CREATE TABLE user( 
-    user_id      VARCHAR2(30),--pk
-    password  VARCHAR2(30) NOT NULL,
-    user_name    VARCHAR2(30) NOT NULL
+ALTER TABLE users
+MODIFY( 
+    id      VARCHAR2(30),--pk
+    passwd  VARCHAR2(30) ,
+    name    VARCHAR2(30) 
     );
     
 CREATE TABLE recipe_procedure( 
      recipe_id      NUMBER(7),--pk
     seq_num  NUMBER(2),
-    procedure    VARCHAR2(200) 
+    procedure    VARCHAR2(200) NOT NULL 
     );
     
 ALTER TABLE cookbook
     ADD (
             CONSTRAINT book_id_pk PRIMARY KEY(book_id),
-            CONSTRAINT author_id_fk FOREIGN KEY(author_id) REFERENCES user(user_id) 
+            CONSTRAINT author_id_fk FOREIGN KEY(author_id) REFERENCES users(id) 
     );
     
-ALTER TABLE user
-    ADD (
-            CONSTRAINT user_id_pk PRIMARY KEY(user_id)
-    );
+
 
 ALTER TABLE recipe
     ADD (
             CONSTRAINT recipe_id_pk PRIMARY KEY(recipe_id),
             CONSTRAINT book_id_fk FOREIGN KEY(book_id) REFERENCES cookbook(book_id), 
-            CONSTRAINT writer_id_fk FOREIGN KEY(writer_id) REFERENCES user(user_id)
+            CONSTRAINT writer_id_fk FOREIGN KEY(writer_id) REFERENCES users(id)
     );
 
 ALTER TABLE recipe_procedure
-    ADD (
-            CONSTRAINT seq_num_pk PRIMARY KEY(seq_num),
-            CONSTRAINT recipe_id_pk PRIMARY KEY(recipe_id),
+    ADD ( --pfk 하는법
+            CONSTRAINT recipe_id_seqmun_pk PRIMARY KEY(recipe_id ,seq_num)
+            
+    );
+ALTER TABLE recipe_procedure
+    ADD ( --pfk 하는법
             CONSTRAINT recipe_id_fk FOREIGN KEY(recipe_id) REFERENCES recipe(recipe_id)
     );

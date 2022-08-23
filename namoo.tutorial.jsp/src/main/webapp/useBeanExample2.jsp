@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-<jsp:useBean id="user" class="namoo.user.dto.User" scope="session"/>
+<jsp:useBean id="user" class="namoo.yorizori.dto.user.User" scope="session"/>
 <%-- useBean가 같은 
 	Course course = request.getAttribute("course");
 	if(course == null){

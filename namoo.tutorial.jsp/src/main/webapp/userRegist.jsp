@@ -1,6 +1,6 @@
-<%@page import="namoo.user.dao.UserDao"%>
-<%@page import="namoo.common.factory.jdbcDaoFactory"%>
-<%@page import="namoo.user.dto.User"%>
+<%@page import="namoo.yorizori.dao.user.UserDao"%>
+<%@page import="namoo.yorizori.common.factory.jdbcDaoFactory"%>
+<%@page import="namoo.yorizori.dto.user.User"%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%
 request.setCharacterEncoding("utf-8");
@@ -23,7 +23,7 @@ request.setAttribute("user",user);
 <%-- getParameter에서 처럼 param에 넣은 값을 id에 저장해주세요
 	String id가 property로 getParameter("id")의 id가 param으로 
  --%>
-<jsp:useBean id="user" class="namoo.user.dto.User" scope="request">
+<jsp:useBean id="user" class="namoo.yorizori.dto.user.User" scope="request">
 <%-- 여기서  더 간략하게  
 	<jsp:setProperty name="user" property="id" param="id"/>
 	<jsp:setProperty name="user" property="name" param="name"/>

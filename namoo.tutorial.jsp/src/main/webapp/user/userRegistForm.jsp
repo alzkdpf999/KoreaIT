@@ -23,8 +23,6 @@ display: flex;
 	<div class="row">
 		<div class="leftcolumn">
 			<div class="w3-container">
-				<div class="w3-center">
-				</div>
 				<div class="w3-responsive w3-card-4">
 					<form class="row" method="post" action="userRegist.jsp" id="signup">
 						<div class="mb-3">

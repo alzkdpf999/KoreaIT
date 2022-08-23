@@ -1,6 +1,6 @@
 
 
-<%@page import="namoo.user.dto.User"%>
+<%@page import="namoo.yorizori.dto.user.User"%>
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 
 <%
