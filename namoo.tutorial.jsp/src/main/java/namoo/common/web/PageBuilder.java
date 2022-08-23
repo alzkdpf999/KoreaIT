@@ -105,7 +105,7 @@ public class PageBuilder {
 	/** 페이징 계산 */
 	public void build(){
 		// DB로부터 검색된 행의 수에 따른 전체페이지수 계산
-		pageCount = (int)Math.ceil((double)rowCount / params.getListSize());
+		pageCount = (int)Math.ceil((double)rowCount / params.getSearchList());
 		
 		// 목록별 번호
 		listNo = (params.getPage() - 1) / params.getPageSize();

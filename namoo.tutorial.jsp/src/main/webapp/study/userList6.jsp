@@ -12,7 +12,7 @@
 <%
 HttpSession loginSession = request.getSession();
 User loginUser = (User) loginSession.getAttribute("loginUser");
-if (loginUser == null) {
+if (loginUser != null) {
 %>
 <html>
 <script>
@@ -51,9 +51,7 @@ int rowCount = 0;
 UserDao userDao = jdbcDaoFactory.getInstance().getUserDao();
 
 if (searchType == null || searchType.equals("")) {// 전체검색
-	list = userDao.listByPage(requestPage, listSize);
-	//페이징 처리에 필요한 등록 회원수 조회
-	rowCount = userDao.countByPage(null, null);
+
 } else {// 조건검색
 	list = jdbcDaoFactory.getInstance().getUserDao().listByPage(params);
 	rowCount = userDao.countByPage(params);

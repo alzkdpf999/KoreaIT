@@ -56,4 +56,15 @@
   	<url-pattern>/el.action</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+  	<servlet-name>loginScreen</servlet-name>
+  	<jsp-file>/user/loginScreen.jsp</jsp-file>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>loginScreen</servlet-name>
+  	<url-pattern>/login.do/*</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>

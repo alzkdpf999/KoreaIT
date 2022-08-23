@@ -1,76 +1,59 @@
 
+<%@page import="namoo.common.web.myPageBuilder"%>
+<%@page import="namoo.user.dao.UserDao"%>
+<%@page import="namoo.common.web.Params"%>
 <%@page import="namoo.user.dto.User"%>
 <%@page import="namoo.common.factory.jdbcDaoFactory"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.HashMap"%>
 
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
-
 <%
-HashMap<String,String> options = new HashMap<String,String>(){{
-put("all","전체");
-put("id","아이디");
-put("name","이름");
-}};
-String check = request.getParameter("yes");
-request.setCharacterEncoding("utf-8");
-String search = request.getParameter("searchValue");
-String type = request.getParameter("searchType");
-if (type == null)
-	type = "all";
-if (search == null)
-	search = "";
-String sizeNum = request.getParameter("searchList");
+HttpSession loginSession = request.getSession();
+User loginUser = (User) loginSession.getAttribute("loginUser");
+if (loginUser == null) {
+	response.sendRedirect("/");
+} else {
+	HashMap<String, String> options = new HashMap<String, String>() {
+		{
+	put("all", "전체");
+	put("id", "아이디");
+	put("name", "이름");
+		}
+	};
+	String check = request.getParameter("yes");
+	request.setCharacterEncoding("utf-8");
+	String search = request.getParameter("searchValue");
+	String type = request.getParameter("searchType");
+	if (type == null)
+		type = "all";
+	if (search == null)
+		search = "";
+	String sizeNum = request.getParameter("searchList");
 
-String pageSize = request.getParameter("page");
+	String pageSize = request.getParameter("page");
 
-List<User> userList = null;
-int cnt = 0;
-int pageList = 1;
-int showList = 10;
+	List<User> userList = null; // 리스트
+	int cnt = 0; // 지금 페이지의 목록 수
+	int pageList = 1; // 지금이 몇페이지인지
+	int showList = 10; //몇개의 정보씩
+	int pageNum = 3; //페이지 최대 몇개씩 보여줄것인지
+	if (pageSize != null && !pageSize.equals("")) {
+		pageList = Integer.parseInt(pageSize);
+	}
+	if (sizeNum != null && !sizeNum.equals("")) {
+		showList = Integer.parseInt(sizeNum);
+	}
+	Params params = new Params(pageList, showList, pageNum, type, search);
 
-if (pageSize != null && !pageSize.equals("")) {
-	pageList = Integer.parseInt(pageSize);
-}
-if (sizeNum != null && !sizeNum.equals("")) {
-	showList = Integer.parseInt(sizeNum);
-}
-/* switch (showList) {
-case 5:
-	
-case 15:
-default
-} */
+	UserDao userDao = jdbcDaoFactory.getInstance().getUserDao();
 
-if (type.equals("id") && search != null) {
-	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage(type, search);
-	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList, showList, type, search);
-} else if (type.equals("name") && search != null) {
-	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage(type, search);
-	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList, showList, type, search);
-} else if (type.equals("all") && search.equals("")) {
-	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage(null, null);
-	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList, showList);
-} else if (type.equals("all") && search != null) {
-	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage("all", search);
-	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList, showList, type, search);
-}
+	userList = userDao.listByPage(params);
+	cnt = userDao.countByPage(params);
 
-//페이지 개수
-int pageCount = (int) Math.ceil((double) cnt / showList);
-//페이지번호 몇개씩 보여줄까?
-int pageNum = 3;
-
-//페이지 그룹별 시작페이지번호와 마지막페이지번호 계산
-//페이지 그룹번호
-int groupNo = (pageList - 1) / pageNum; // 목록 식별번호
-//(1~10): 0, (11~20): 1, (21~30): 2, .....
-
-int startPage = (groupNo * pageNum) + 1;
-int endPage = (groupNo * pageNum) + pageNum;
-if (endPage > pageCount) {
-	endPage = pageCount;
-}
+	myPageBuilder pageBuilder = new myPageBuilder(params, cnt);
+	pageBuilder.build();
+	//페이지 개수
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -91,7 +74,8 @@ if (endPage > pageCount) {
 				<div class="w3-center">
 					<h3>
 						회원 목록(총
-						<%=cnt%> 명)
+						<%=cnt%>
+						명)
 					</h3>
 				</div>
 				<div class="search">
@@ -102,11 +86,11 @@ if (endPage > pageCount) {
 							for (String option : options.keySet()) {
 								if (type.equals(option)) {
 							%>
-							<option value="<%=type%>" selected="selected"><%=options.get(type) %></option>
+							<option value="<%=type%>" selected="selected"><%=options.get(type)%></option>
 							<%
 							} else {
 							%>
-							<option value="<%=option%>"><%=options.get(option) %></option>
+							<option value="<%=option%>"><%=options.get(option)%></option>
 							<%
 							}
 							}
@@ -115,7 +99,7 @@ if (endPage > pageCount) {
 
 						</select> <input type="text" name="searchValue" placeholder="Search..">
 						<input type="submit" value="검색">
-						
+
 					</form>
 					<select name="searchList"
 						onchange="if(this.value) location.href=(this.value);">
@@ -169,61 +153,54 @@ if (endPage > pageCount) {
 				</div>
 
 			</div>
+
 			<div class="pagination">
+
 				<%
-				if (pageList <= 0)
-					pageList = 1;
-				%>
-				<%
-				if (pageList == 1) {
+				if (pageBuilder.pageListLessOne()) {
 				%>
 				<a>&laquo;</a> <a>&lt;</a>
 				<%
 				} else {
 				%>
-				<a
-					href="?page=<%=1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&laquo;</a>
-				<a
-					href="?page=<%=pageList - 1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&lt;</a>
+				<a href="<%=pageBuilder.getQueryString(1)%>">&laquo;</a> <a
+					href="<%=pageBuilder.getQueryString(pageBuilder.getParams().getPage() - 1)%>">&lt;</a>
 
 				<%
 				}
-				for (int k = startPage; k <= endPage; k++) {
+				for (int k = pageBuilder.getStartPage(); k <= pageBuilder.getEndPage(); k++) {
 				if (k == pageList) {
 				%>
 				<a class="active"><%=k%></a>
 				<%
 				} else {
 				%>
-				<a
-					href="?page=<%=k%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>"><%=k%></a>
+				<a href="<%=pageBuilder.getQueryString(k)%>>"><%=k%></a>
 				<%
 				}
 				}
-				if (pageList % pageNum == 0) {
-				if (pageList != pageCount) {
+				if (pageBuilder.pageListEqEndPage()) {
+				if (!pageBuilder.pageListEqPageCount()) {
 				%>
+
 				<a
-					href="?page=<%=startPage + pageNum%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt;
-				</a>
+					href="<%=pageBuilder.getQueryString(pageBuilder.getNextStartPage())%>">&gt;
+				</a><a
+					href="<%=pageBuilder.getQueryString(pageBuilder.getPageCount())%>">&raquo;</a>
 				<%
 				} else {
-				%>
-				<a>&gt; </a>
-				<%
-				}
-				%>
-				<%
-				} else if (pageList == pageCount) {
 				%>
 				<a>&gt; </a> <a>&raquo;</a>
 				<%
+				}
+				%>
+				<%
 				} else {
 				%>
 				<a
-					href="?page=<%=pageList + 1%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&gt;
+					href="<%=pageBuilder.getQueryString(pageBuilder.getParams().getPage() + 1)%>">&gt;
 				</a> <a
-					href="?page=<%=pageCount%>&searchList=<%=showList%>&searchType=<%=type%>&searchValue=<%=search%>">&raquo;</a>
+					href="<%=pageBuilder.getQueryString(pageBuilder.getPageCount())%>">&raquo;</a>
 				<%
 				}
 				%>
@@ -231,6 +208,7 @@ if (endPage > pageCount) {
 
 
 			</div>
+
 			<!-- 끝부분 -->
 
 		</div>
@@ -239,3 +217,6 @@ if (endPage > pageCount) {
 	<jsp:include page="/include/footer.jsp"></jsp:include>
 </body>
 </html>
+<%
+}
+%>

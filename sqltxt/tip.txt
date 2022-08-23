@@ -1,0 +1,57 @@
+
+CREATE TABLE cookbook( 
+    book_id      NUMBER(7),--pk
+    book_name  VARCHAR2(30),
+    book_desc    VARCHAR2(200),
+    author_id   VARCHAR2(30)  --fk
+    );
+    
+    
+CREATE TABLE recipe( 
+    recipe_id      NUMBER(7),--pk
+    book_id  NUMBER(7), --fk
+    recipe_name    VARCHAR2(30) NOT NULL,
+    recipe_time   NUMBER(3), --uique 
+    recipe_level NUMBER(1),
+    ingredients VARCHAR2(300),
+    img_cont_type VARCHAR2(20),
+    img_file_name VARCHAR2(20),
+    writer_id VARCHAR2(30)
+    );
+
+CREATE TABLE user( 
+    user_id      VARCHAR2(30),--pk
+    password  VARCHAR2(30) NOT NULL,
+    user_name    VARCHAR2(30) NOT NULL
+    );
+    
+CREATE TABLE recipe_procedure( 
+     recipe_id      NUMBER(7),--pk
+    seq_num  NUMBER(2),
+    procedure    VARCHAR2(200) 
+    );
+    
+ALTER TABLE cookbook
+    ADD (
+            CONSTRAINT book_id_pk PRIMARY KEY(book_id),
+            CONSTRAINT author_id_fk FOREIGN KEY(author_id) REFERENCES user(user_id) 
+    );
+    
+ALTER TABLE user
+    ADD (
+            CONSTRAINT user_id_pk PRIMARY KEY(user_id)
+    );
+
+ALTER TABLE recipe
+    ADD (
+            CONSTRAINT recipe_id_pk PRIMARY KEY(recipe_id),
+            CONSTRAINT book_id_fk FOREIGN KEY(book_id) REFERENCES cookbook(book_id), 
+            CONSTRAINT writer_id_fk FOREIGN KEY(writer_id) REFERENCES user(user_id)
+    );
+
+ALTER TABLE recipe_procedure
+    ADD (
+            CONSTRAINT seq_num_pk PRIMARY KEY(seq_num),
+            CONSTRAINT recipe_id_pk PRIMARY KEY(recipe_id),
+            CONSTRAINT recipe_id_fk FOREIGN KEY(recipe_id) REFERENCES recipe(recipe_id)
+    );

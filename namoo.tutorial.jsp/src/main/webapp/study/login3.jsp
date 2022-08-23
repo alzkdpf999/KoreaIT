@@ -7,14 +7,6 @@
 </jsp:useBean>
 
 <%
-
-String path = request.getParameter("path");
-if (path == null)
-	path = "/";
-
-else if(path.contains("user/userList.jsp")){
-	path = "/user/userList.jsp";
-}
 String method = request.getMethod();
 String check = request.getParameter("yes");
 if (check == null)
@@ -25,7 +17,6 @@ if (method.equalsIgnoreCase("post")) {
 
 <%
 User loginUser = jdbcDaoFactory.getInstance().getUserDao().login(user.getId(), user.getPasswd());
-int result = jdbcDaoFactory.getInstance().getUserDao().loginResult(user.getId(),user.getPasswd());
 if (loginUser != null) {
 	HttpSession loginsession = request.getSession();
 	loginsession.setAttribute("loginUser", loginUser);
@@ -36,44 +27,32 @@ if (loginUser != null) {
 
 	} else if (check.equals("")) {
 		Cookie[] cookies = request.getCookies();
-		if (cookies != null) {
-	for (Cookie cookie : cookies) {
-		if (cookie.getName().equals("id")) {
-			cookie.setMaxAge(0);
-			cookie.setPath("/");
-			response.addCookie(cookie);
-		}
-	}
+		if(cookies != null){
+			for(Cookie cookie : cookies){
+				if(cookie.getName().equals("id")){
+					cookie.setValue("");
+					cookie.setPath("/");
+					response.addCookie(cookie);
+				}
+			}
 		}
 	}
 
-	response.sendRedirect(path);
+	response.sendRedirect("/index	.jsp");
 
-}else{
-	if (check.equals("")) {
-		Cookie[] cookies = request.getCookies();
-		if (cookies != null) {
-	for (Cookie cookie : cookies) {
-		if (cookie.getName().equals("id")) {
-			cookie.setMaxAge(0);
-			cookie.setPath("/");
-			response.addCookie(cookie);
-		}
-	}
-		}
-	}
-	%>
-	<jsp:forward page="<%=path %>">
-	<jsp:param value="<%=result %>" name="result"/>
-</jsp:forward>
-	<%
+} else {
+%>
+
+<script>
+	alert("아이디와 비밀번호를 확인해주세요");
+</script>
+<%
 }
 }
 //로그아웃 처리
 else {
 
 request.getSession().invalidate();
-if (path.equals("/user/userList.jsp")) path = "/";
-response.sendRedirect(path);
+response.sendRedirect("/index.jsp");
 }
 %>

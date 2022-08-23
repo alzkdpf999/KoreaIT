@@ -7,7 +7,7 @@ package namoo.common.web;
  */
 public class Params {
 	private int page;            /** 사용자 선택 페이지 */
-	private int listSize;        /** 조회 목록 개수 */
+	private int searchList;        /** 조회 목록 개수 */
 	private int pageSize;        /** 출력 페이지 개수 */
 	private String searchType;   /** 검색 유형 */
 	private String searchValue;  /** 검색 값 */
@@ -17,13 +17,13 @@ public class Params {
 		this(1, 15, 5, null, null);
 	}
 	
-	public Params(int page, int listSize, String searchType, String searchValue) {
-		this(page, listSize, 5, null, null);
+	public Params(int page, int searchList, String searchType, String searchValue) {
+		this(page, searchList, 5, null, null);
 	}
 	
-	public Params(int page, int listSize, int pageSize, String searchType, String searchValue) {
+	public Params(int page, int searchList, int pageSize, String searchType, String searchValue) {
 		this.page = page;
-		this.listSize = listSize;
+		this.searchList = searchList;
 		this.pageSize = pageSize;
 		this.searchType = searchType;
 		this.searchValue = searchValue;
@@ -37,12 +37,12 @@ public class Params {
 		this.page = page;
 	}
 
-	public int getListSize() {
-		return listSize;
+	public int getSearchList() {
+		return searchList;
 	}
 
-	public void setListSize(int listSize) {
-		this.listSize = listSize;
+	public void setsearchList(int listSize) {
+		this.searchList = listSize;
 	}
 	
 	public int getPageSize() {
@@ -71,7 +71,7 @@ public class Params {
 
 	@Override
 	public String toString() {
-		return "Params [page=" + page + ", listSize=" + listSize + ", pageSize=" + pageSize + ", searchType="
+		return "Params [page=" + page + ", searchList=" + searchList + ", pageSize=" + pageSize + ", searchType="
 				+ searchType + ", searchValue=" + searchValue + "]";
 	}
 

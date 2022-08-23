@@ -5,56 +5,50 @@ let id = document.querySelector("#id");
 let passwd = document.querySelector("#passwd");
 let name = document.querySelector("#name");
 let email = document.querySelector("#email");
-document.querySelector("#id").addEventListener("input",function(event){
-	
-	if(!valid.Id(id.value)){
-		document.querySelector(".check").setAttribute("disabled","disabled")
-		id.setAttribute("style", "color: red");
-		if(valid.Id(id.value)){
-			document.querySelector(".check").removeAttribute("disabled")
-			id.setAttribute("style", "color: green");
-		}
-	}
-})
-document.querySelector("#passwd").addEventListener("input",function(event){
-	console.log(passwd.value);
-	console.log(valid.Passwd(passwd.value));
-	if(!valid.Passwd(passwd.value)){
-		passwd.setAttribute("style", "color: red");
-	}
-		if(valid.Passwd(passwd.value)){
-			passwd.setAttribute("style", "color: green");
-		}	
-})
+
+document.querySelector("#signup").addEventListener("submit", function(event) {
+	document.querySelector("#dbCheckId").removeAttribute("disabled");
 
 
-document.querySelector("#name").addEventListener("input",function(event){
-	console.log(name.value);
-	console.log(valid.NameKr(passwd.value));
-	console.log(valid.NameEn(passwd.value));
-	if(!valid.NameKr(name.value) || !valid.NameEn(name.value)){
-		name.setAttribute("style", "color: red");
-	}
-		if(valid.NameKr(name.value) || valid.NameEn(name.value)){
-			name.setAttribute("style", "color: green");
-		}	
-})
 
-document.querySelector("#email").addEventListener("input",function(event){
-	console.log(email.value);
-	console.log(valid.Email(email.value));
-	if(!valid.Email(email.value)){
+	if (!valid.Email(email.value) || valid.isNull(email.value)) {
+		console.log(valid.Email(email.value));
+		email.focus();
 		email.setAttribute("style", "color: red");
+		event.preventDefault();
+	} else {
+		email.removeAttribute("style");
 	}
-		if(valid.Email(email.value)){
-			email.setAttribute("style", "color: green");
-		}	
+	if (valid.isNull(name.value) || (!valid.NameKr(name.value) && !valid.NameEn(name.value))) {
+		console.log((!valid.NameKr(name.value) || !valid.NameEn(name.value)));
+		name.focus();
+		name.setAttribute("style", "color: red");
+		event.preventDefault();
+	} else {
+		name.removeAttribute("style");
+	}
+	if (valid.isNull(passwd.value) || !valid.Passwd(passwd.value)) {
+		passwd.focus();
+		document.querySelector("#passwdErr").setAttribute("style", "color: red");
+		event.preventDefault();
+	} else {
+		passwdErr.removeAttribute("style");
+	}
+	if (valid.isNull(id.value) || !valid.Id(id.value)) {
+		id.focus();
+		document.querySelector("#idErr").setAttribute("style", "color: red");
+		event.preventDefault();
+	} else {
+		idErr.removeAttribute("style");
+	}
 })
 
 
 document.querySelector("#dbCheckId").addEventListener("click", function(event) {
-	if (!document.querySelector("#id").value) {
+	if (valid.isNull(id.value) || !valid.Id(id.value)) {
+		document.querySelector("#idErr").setAttribute("style", "color: red");
 	} else {
 		let pop = window.open("/user/userCheck.jsp?id=" + document.querySelector("#id").value, "pop", option);
+		idErr.removeAttribute("style");
 	}
 })

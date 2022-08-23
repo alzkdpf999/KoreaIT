@@ -4,14 +4,14 @@
 <%
 User loginUser = (User)request.getSession().getAttribute("loginUser"); 
 String path= "";
-if(loginUser == null) path = "/";
-else path = "/user/userList.jsp";
+if(loginUser == null) path = "/login.do/";
+
 %>
 <div class="header">
-	<h1>My Website</h1>
-	<p>Resize the browser window to see the effect.</p>
+	<a href="/" class="logo">
+	</a>
 	<div class="topnav">
 		<a href="#">Link</a> <a href="#">Link</a> <a href="#">Link</a> <a
-			href="<%=path%>">Member List</a> <a href="/user/userRegistForm.jsp" style="float: right">Sign Up</a>
+			href="<%=path+"user/userList.jsp"%>">Member List</a> <a href="/user/userRegistForm.jsp" style="float: right">Sign Up</a>
 	</div>
 </div>

@@ -34,7 +34,7 @@ case 15:
 default
 } */
 
-if (type.equals("id") && search != null) {
+/* if (type.equals("id") && search != null) {
 	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage(type, search);
 	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList, showList, type, search);
 } else if (type.equals("name") && search != null) {
@@ -46,7 +46,7 @@ if (type.equals("id") && search != null) {
 } else if (type.equals("all") && search != null) {
 	cnt = jdbcDaoFactory.getInstance().getUserDao().countByPage("all", search);
 	userList = jdbcDaoFactory.getInstance().getUserDao().listByPage(pageList, showList, type, search);
-}
+} */
 
 //페이지 개수
 int pageCount = (int) Math.ceil((double) cnt / showList);
