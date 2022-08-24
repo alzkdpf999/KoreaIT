@@ -5,4 +5,7 @@
     <fullyQualifiedTypeName name="namoo.common.factory.jdbcDaoFactory"/>
     <fullyQualifiedTypeName name="namoo.common.web.Params"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.jdbcDaoFactory"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dao.user.UserDao"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dto.user.User"/>
 </qualifiedTypeNameHistroy>
