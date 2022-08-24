@@ -15,7 +15,8 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="<%=application.getContextPath() %>/css/styles.css" rel="stylesheet" />
+<link href="<%=application.getContextPath()%>/css/styles.css"
+	rel="stylesheet" />
 </head>
 <body>
 	<!-- Navigation-->
@@ -28,7 +29,9 @@
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center ">
 				<div class="w3-responsive w3-card-4">
-					<form class="row" method="post" action="<%=application.getContextPath() %>/user/regist.do" id="signup">
+					<form class="row" method="post"
+						action="<%=application.getContextPath()%>/user/regist.do"
+						id="signup">
 						<div class="mb-3">
 							<label for="id" class="form-label">아이디 </label>
 							<div id="ui">
@@ -58,8 +61,7 @@
 								placeholder="name@example.com">
 						</div>
 						<div class="col-auto">
-							<button type="submit" class="btn btn-primary mb-3" id="signOk"
-								>회원가입</button>
+							<button type="submit" class="btn btn-primary mb-3" id="signOk">회원가입</button>
 						</div>
 					</form>
 				</div>

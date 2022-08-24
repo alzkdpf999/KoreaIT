@@ -11324,3 +11324,41 @@ input[type=text], input[type=password] {
     border-radius: 4px;
     box-sizing: border-box;
 }
+
+div#saveCheck {
+	display: flex;
+	justify-content: space-between;
+	padding: 0px;
+}
+
+#saveCheck span.text {
+	font-size: 11px;
+	margin-left: 2px;
+	color: gray;
+	opacity: 0.8;
+}
+
+.circle {
+	display: inline-block; /* 영역적용가능해짐 */
+	width: 15px;
+	height: 15px;
+	border: 1px solid rgb(118, 118, 118);
+	box-sizing: border-box;
+	border-radius: 10px; /* 모서리둥글게 처리 */
+	position: relative;
+	top: 4px;
+	cursor: pointer; /* 마우스 올렸을때 손모양 처리 */
+	background: no-repeat center/70% url(/img/check_gray.png);
+}
+
+#save:checked+.circle {
+	background-color: #67ca67;
+	border-color: #67ca67;
+	background-image: url(/img/check_white.png);
+}
+
+/* 체크박스는 display:none;을 주면 데이터 처리가 안됨 */
+#save {
+	position: absolute;
+	left: -999em;
+}

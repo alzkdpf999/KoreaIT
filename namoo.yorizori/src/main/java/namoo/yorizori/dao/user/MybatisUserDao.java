@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import namoo.yorizori.common.web.Params;
 import namoo.yorizori.dto.user.User;
 //기술 이름을 앞에 붙여서 하는것이 좋음
-public class MybatisUserDao implements UserDao2 {
+public class MybatisUserDao implements UserDao {
 
 	private DataSource dataSource;
 
@@ -52,35 +52,30 @@ public class MybatisUserDao implements UserDao2 {
 	}
 
 	@Override
-	public List<User> listByPage(int page) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<User> listByPage(int page, int listSize) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<User> listByPage(int page, int listSize, String searchType, String searchValue) throws SQLException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int countByPage(String searchType, String searchValue) throws SQLException {
+	public int loginResult(String id, String passwd) throws SQLException {
 		// TODO Auto-generated method stub
 		return 0;
-	};
+	}
+
+	@Override
 	public List<User> listByPage(Params params) throws SQLException {
-		return listByPage(params.getPage(), params.getSearchList(),  params.getSearchType(), params.getSearchValue());
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	@Override
 	public int countByPage(Params params) throws SQLException {
-		return countByPage(params.getSearchType(), params.getSearchValue());
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
+
+	/*
+	 * public List<User> listByPage(Params params) throws SQLException { return
+	 * listByPage(params.getPage(), params.getSearchList(), params.getSearchType(),
+	 * params.getSearchValue()); }
+	 * 
+	 * @Override public int countByPage(Params params) throws SQLException { return
+	 * countByPage(params.getSearchType(), params.getSearchValue()); }
+	 */
 }
