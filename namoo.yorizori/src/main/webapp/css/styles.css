@@ -11316,9 +11316,7 @@ input.passwd:focus {
 input[type=text], input[type=password] {
     width: 200px;
     padding: 12px 12px 12px 29px;
-    margin-left: 6px;
-    margin-right: 6px;
-    margin-top: 15px;
+    margin: 0px 6px;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -11361,4 +11359,8 @@ div#saveCheck {
 #save {
 	position: absolute;
 	left: -999em;
+}
+
+input[type=text].err::placeholder, input[type=password].err::placeholder{
+	color:red;
 }

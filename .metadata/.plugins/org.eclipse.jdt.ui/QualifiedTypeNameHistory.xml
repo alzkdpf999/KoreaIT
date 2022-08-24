@@ -8,7 +8,9 @@
     <fullyQualifiedTypeName name="namoo.yorizori.dao.user.UserDao"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.jdbcDaoFactory"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dto.user.User"/>
     <fullyQualifiedTypeName name="org.apache.tomcat.util.net.ApplicationBufferHandler"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dao.user.jdbcUserDao"/>
+    <fullyQualifiedTypeName name="javax.sql.DataSource"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.jdbcDaoFactory"/>
 </qualifiedTypeNameHistroy>

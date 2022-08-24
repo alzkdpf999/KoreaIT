@@ -87,37 +87,8 @@ public class jdbcUserDao implements UserDao {
 		}
 		return user;
 	}
-
-	public int loginResult(String id, String passwd) throws SQLException {
-		User user = null;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet result = null;
-		// +는 낭비가 심해서 StringBuilder를 이용한다.
-		StringBuilder sb = new StringBuilder();
-		sb.append(" SELECT id,passwd,name,email,TO_CHAR(regdate,'YYYY-MM-DD DAY') regdate").append(" FROM users")
-				.append(" WHERE id = ? ");
-		try {
-			con = dataSource.getConnection();
-			String sql = sb.toString();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, id);
-
-			result = pstmt.executeQuery();
-			if (result.next()) {
-				if (result.getString("passwd").equals(passwd))
-					return 1;// 로그인 성공
-				else
-					return 0; // 비밀번호 불일치
-			}
-			return -1; // 아이디 없음
-		} finally {
-			if (pstmt != null)
-				pstmt.close();
-			if (con != null)
-				con.close(); // 예외 저대로 안발생
-		}
-	}
+	
+	
 
 	public User login(String id, String passwd) throws SQLException {
 		User user = null;

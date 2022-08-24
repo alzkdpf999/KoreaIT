@@ -21,11 +21,11 @@ public interface UserDao {
 	public void create(User user) throws SQLException;//객체 단위로 받기 User라는 객체
 	/** 사용자 id에 해당하는 정보반환 */
 	public User read(String id) throws SQLException;
+	
 	/** 사용자 로그인*/
 //	public boolean login(String id,String passwd) throws SQLException;
 	/** 사용자 데이터를 좀 더 유용하게 쓸 수 있음*/
 	public User login(String id,String passwd) throws SQLException;
-	public int loginResult(String id, String passwd) throws SQLException;
 	/** Params(선택페이지, 조회 목록개수, 검색유형, 검색값)에 따른 사용자 목록 반환 */	
 	public List<User> listByPage(Params params) throws SQLException;
 	

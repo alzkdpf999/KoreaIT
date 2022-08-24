@@ -51,11 +51,7 @@ public class MybatisUserDao implements UserDao {
 		return null;
 	}
 
-	@Override
-	public int loginResult(String id, String passwd) throws SQLException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public List<User> listByPage(Params params) throws SQLException {
