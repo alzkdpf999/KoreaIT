@@ -67,25 +67,23 @@ public class UserLoginController extends HttpServlet {
 					}
 				}
 			} else { // 로그인 오류
-				
+
 				if (id.equals("") || id == null) {
-					id="";
-					Cookie errCookie = new Cookie("err", "-1"); //아이디 오류
+					id = "";
+					Cookie errCookie = new Cookie("err", "-1"); // 아이디 오류
 					errCookie.setPath("/");
 					errCookie.setMaxAge(60 * 60 * 24 * 30);
 					response.addCookie(errCookie);
 				} else if (!id.equals("") && id != null) {
-					Cookie errCookie = new Cookie("err", "0"); //비밀번호 오류
-
-					/*
-					 * if (jdbcDaoFactory.getInstance().getUserDao().read(id) == null) { errCookie =
-					 * new Cookie("err", "-2"); //아이디 비밀번호 오류
-					 * 
-					 * }else {
-					 * 
-					 * }
-					 */
-					Cookie errPsCookie = new Cookie("errPsw", id); //아이디 남기기
+					Cookie errCookie = null;
+					Cookie errPsCookie = null;
+					if (passwd.equals("") || passwd == null) {
+						errPsCookie = new Cookie("errPsw", id); // 아이디 남기기
+						errCookie = new Cookie("err", "0"); // 비밀번호 오류
+					} else if (!passwd.equals("") && passwd != null) {
+						errCookie = new Cookie("err", "-2");// 둘다 오류
+						errPsCookie = new Cookie("errPsw", "");
+					}
 					errPsCookie.setPath("/");
 					errPsCookie.setMaxAge(60 * 60 * 24 * 30);
 					response.addCookie(errPsCookie);

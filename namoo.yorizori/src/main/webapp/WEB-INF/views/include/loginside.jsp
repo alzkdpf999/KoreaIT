@@ -28,19 +28,19 @@ if (cookies != null) {
 			<div id="saveCheck">
 				<label for="save"> <input type="checkbox" name="yes"
 					value="yes" id="save" ${empty cookie.id.value ? '' : 'checked'}>
-					<i class="circle"></i> <span class="text">아이디 저장<%=errMsg + ":" + errId%></span>
+					<i class="circle"></i> <span class="text">아이디 저장${cookie.err.value }</span>
 				</label>
 			</div>
 			<div class="col-12">
 				<input type="text" id="id" name="id"
 					placeholder="${ cookie.err.value eq -1 ? '아이디 오류': (cookie.err.value eq -2 ? '아이디 오류' : '아이디')}"
 					class="${ cookie.err.value eq -1 ? 'id form-control err': (cookie.err.value eq -2 ? 'id form-control err' : 'id form-control')}"
-					value="<%=checkId == null ? (errMsg == -2 ? "" : (errMsg == -1 || errMsg == 1 ? "" : errId)) : checkId%>">
-			</div>
+					value="${empty cookie.id.value ? (cookie.err.value eq -2 ? '' : (cookie.err.value eq 0 ? cookie.errPsw.value : '')): cookie.id.value }">
+			</div> 
 			<div class="col-12">
 				<input type="password" id="passwd" name="passwd"
 					placeholder="${ cookie.err.value eq 0 ? '비밀번호 오류': (cookie.err.value eq -2 ? '비밀번호 오류' : '비밀번호')}"
-					class="${ cookie.err.value eq 0 ? 'passwd form-control err': (cookie.err.value eq -2 ? 'passwd form-control err' : 'passwd form-control')}">
+					class="${cookie.err.value eq 0 ? 'passwd form-control err' : (cookie.err.value eq -2 ? 'passwd form-control err' : 'passwd form-control') }">
 			</div>
 
 			<div class="col-12">
@@ -50,7 +50,7 @@ if (cookies != null) {
 			<div class="col-12">
 				<a href="user/signup.do" class="btn btn-warning">회원가입</a>
 			</div>
-${ empty cookie.id.value ? (cookie.err.value eq -2 ? '' : (cookie.err.value eq -1 || cookie.err.value eq 1 ? '' : cookie.errPsw.value))}
+
 		</form>
 	</c:when>
 	<c:when test="${!empty loginUser}">

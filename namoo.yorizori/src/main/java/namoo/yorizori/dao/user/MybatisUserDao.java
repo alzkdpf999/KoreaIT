@@ -43,6 +43,9 @@ public class MybatisUserDao implements UserDao {
 	public User read(String id) throws SQLException {
 		return null;
 	}
+	public User read(String id,String passwd) throws SQLException {
+		return null;
+	}
 
 	public User login(String id, String passwd) throws SQLException {
 		return null;
