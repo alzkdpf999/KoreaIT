@@ -34,12 +34,16 @@
  	<description>회원가입 처리 서블릿</description>
  	<servlet-name>userRegist</servlet-name>
  	 <servlet-class>namoo.yorizori.controller.user.UserRegistController</servlet-class>
- 	 	
+ 
 </servlet>
 <servlet-mapping>
 	<servlet-name>userRegist</servlet-name>
 	<url-pattern>/user/regist.do</url-pattern>
 </servlet-mapping>
  -->
+<context-param>
+	<param-name>ctx</param-name>
+	<param-value>/yorizori</param-value>
+</context-param>
 
 </web-app>

@@ -69,6 +69,7 @@ public class UserLoginController extends HttpServlet {
 			} else { // 로그인 오류
 				
 				if (id.equals("") || id == null) {
+					id="";
 					Cookie errCookie = new Cookie("err", "-1"); //아이디 오류
 					errCookie.setPath("/");
 					errCookie.setMaxAge(60 * 60 * 24 * 30);
@@ -76,15 +77,18 @@ public class UserLoginController extends HttpServlet {
 				} else if (!id.equals("") && id != null) {
 					Cookie errCookie = new Cookie("err", "0"); //비밀번호 오류
 
-					if (jdbcDaoFactory.getInstance().getUserDao().read(id) == null) {
-						errCookie = new Cookie("err", "-2"); //아이디 비밀번호 오류
-
-					}else {
-						Cookie errPsCookie = new Cookie("errPsw", id); //아이디가 존재하면 남기기
-						errPsCookie.setPath("/");
-						errPsCookie.setMaxAge(60 * 60 * 24 * 30);
-						response.addCookie(errPsCookie);
-					}
+					/*
+					 * if (jdbcDaoFactory.getInstance().getUserDao().read(id) == null) { errCookie =
+					 * new Cookie("err", "-2"); //아이디 비밀번호 오류
+					 * 
+					 * }else {
+					 * 
+					 * }
+					 */
+					Cookie errPsCookie = new Cookie("errPsw", id); //아이디 남기기
+					errPsCookie.setPath("/");
+					errPsCookie.setMaxAge(60 * 60 * 24 * 30);
+					response.addCookie(errPsCookie);
 					errCookie.setPath("/");
 					errCookie.setMaxAge(60 * 60 * 24 * 30);
 					response.addCookie(errCookie);
@@ -103,15 +107,7 @@ public class UserLoginController extends HttpServlet {
 					}
 				} else { // 아이디 저장 체크 o
 					Cookie idCookie = null;
-					if (jdbcDaoFactory.getInstance().getUserDao().read(id) != null) {
-						idCookie = new Cookie("id", id);
-						Cookie errPsCookie = new Cookie("errPsw", id); //아이디가 존재하면 남기기
-						errPsCookie.setPath("/");
-						errPsCookie.setMaxAge(60 * 60 * 24 * 30);
-						response.addCookie(errPsCookie);
-					} else {
-						idCookie = new Cookie("id", "");
-					}
+					idCookie = new Cookie("id", id);
 					idCookie.setPath("/");
 					idCookie.setMaxAge(60 * 60 * 24 * 30);
 					response.addCookie(idCookie);
