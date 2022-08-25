@@ -21,6 +21,7 @@ public interface UserDao {
 	public void create(User user) throws SQLException;//객체 단위로 받기 User라는 객체
 	/** 사용자 id에 해당하는 정보반환 */
 	public User read(String id) throws SQLException;
+	public User read(String id,String passwd) throws SQLException;
 	
 	/** 사용자 로그인*/
 //	public boolean login(String id,String passwd) throws SQLException;
