@@ -1,6 +1,6 @@
-<<<<<<< HEAD
 INDEX VERSION 1.131+C:\Users\user\Desktop\KIT\.metadata\.plugins\org.eclipse.jdt.core
 166900913.index
+2179566397.index
 1324392750.index
 2459023932.index
 4243752730.index
@@ -12,7 +12,6 @@ INDEX VERSION 1.131+C:\Users\user\Desktop\KIT\.metadata\.plugins\org.eclipse.jdt
 349837383.index
 126288189.index
 377772607.index
-1865797976.index
 537974516.index
 510823431.index
 3664490872.index
@@ -37,23 +36,6 @@ INDEX VERSION 1.131+C:\Users\user\Desktop\KIT\.metadata\.plugins\org.eclipse.jdt
 812240449.index
 3325191339.index
 2337261459.index
-3855982523.index
 2002954990.index
 1687418939.index
 1974391324.index
-=======
-INDEX VERSION 1.131+D:\koreaIt\.metadata\.plugins\org.eclipse.jdt.core
-3855982523.index
-2179566397.index
-3835025062.index
-3568512030.index
-1763592452.index
-1038692226.index
-1522545186.index
-1865797976.index
-2015585059.index
-3834509070.index
-2568963769.index
-2489213543.index
-831014579.index
->>>>>>> e12874d1228afb4f96fe567c042cb886d6ecebee
