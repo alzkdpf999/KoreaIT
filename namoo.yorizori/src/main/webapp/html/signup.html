@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="요리책 상세보기port"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<meta name="description" content="" />
+<meta name="author" content="" />
+<title>Shop Homepage - Start Bootstrap Template</title>
+<!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<!-- Bootstrap icons-->
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+	rel="stylesheet" />
+<!-- Core theme CSS (includes Bootstrap)-->
+<link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+	<!-- Navigation-->
+	
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+	<div class="container px-4 px-lg-5">
+		<a class="navbar-brand logo" href="#!">
+			
+		</a>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+				<li class="nav-item"><a class="nav-link active"
+					aria-current="page" href="#!">홈</a></li>
+				<li class="nav-item"><a class="nav-link" href="#!">요리책 등록</a></li>
+				<li class="nav-item"><a class="nav-link" href="#!">요리책 목록조회</a></li>
+
+			</ul>
+			<form class="row row-cols-lg-auto g-3 align-items-center">
+
+				<div class="col-12">
+					<div class="form-check">
+						<input class="form-check-input" type="checkbox" id="saveid">
+						<label class="form-check-label" for="saveid">아이디저장</label>
+					</div>
+				</div>
+
+				<div class="col-12">
+					<input type="text" size="8" maxlength="8" class="form-control"
+						id="id" placeholder="아이디">
+				</div>
+				<div class="col-12">
+					<input type="password" size="8" maxlength="8" class="form-control"
+						id="passwd" placeholder="비밀번호">
+				</div>
+
+				<div class="col-12">
+					<button type="submit" class="btn btn-primary">로그인</button>
+				</div>
+
+				<div class="col-12">
+					<a href="" class="btn btn-warning">회원가입</a>
+				</div>
+
+			</form>
+		</div>
+	</div>
+</nav>
+	<!-- Header-->
+	<header class="bg-dark py-5">
+		<div class="container px-4 px-lg-5 my-5">
+			<div class="text-center text-white">
+				<h1 class="display-4 fw-bolder text-warning">요리조리 요리책 서비스</h1>
+				<p class="lead fw-normal text-white-50 mb-0">
+					세상의 모든 레시피가 여기에</p>
+			</div>
+		</div>
+	</header>
+	<!-- Section-->
+	<section class="py-5">
+		<div class="container px-4 px-lg-5 mt-5">
+			<div
+				class="row gx-3 gx-lg-4 row-cols-1 row-cols-md-2 row-cols-xl-2 justify-content-center  ">
+				<div class="w3-responsive w3-card-4">
+					<form class="row justify-content-center" method="post"
+						action="${ctx }/user/regist.do"
+						id="signup">
+						<div class="mb-3 ">
+							<label for="id" class="form-label" >아이디 </label>
+							<div id="ui">
+								<input type="text" class="form-control signupId" id="id" name="id"
+									placeholder="Id">
+								<button type="button" class="check btn btn-primary" id="dbCheckId">중복체크</button>
+							</div>
+							<small id="idErr">영어 또는 숫자 조합을 사용하여 최소 4글자입니다.</small>
+						</div>
+
+						<div class="mb-3">
+							<label for="passwd" class="form-label">비밀번호</label> <input
+								type="password" class="form-control" id="passwd" name="passwd"
+								placeholder="Password"> <small id="passwdErr">영어,
+								특수문자, 숫자의 조합을 사용하여 최소 8글자 입니다.</small>
+						</div>
+
+						<div class="mb-3">
+							<label for="name" class="form-label">이름</label> <input
+								type="text" class="form-control" id="name" name="name"
+								placeholder="Name">
+						</div>
+
+						<div class="mb-3">
+							<label for="email" class="form-label">이메일</label> <input
+								type="text" class="form-control" id="email" name="email"
+								placeholder="name@example.com">
+						</div>
+						<div class="col-auto">
+							<button type="submit" class="btn btn-primary mb-3" id="signOk">회원가입</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Footer-->
+	<footer class="py-5 bg-dark">
+		<div class="container">
+			<p class="m-0 text-center text-white">Copyright &copy; YoriZori Website 2022</p>
+		</div>
+	</footer>
+	<!-- Bootstrap core JS-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+</body>
+</html>

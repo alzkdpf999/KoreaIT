@@ -12,5 +12,17 @@
     <fullyQualifiedTypeName name="org.apache.tomcat.util.net.ApplicationBufferHandler"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dao.user.jdbcUserDao"/>
     <fullyQualifiedTypeName name="javax.sql.DataSource"/>
+    <fullyQualifiedTypeName name="org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport"/>
+    <fullyQualifiedTypeName name="java.lang.ref.Reference"/>
+    <fullyQualifiedTypeName name="javax.servlet.annotation.WebListener"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.service.external.CrawlingService"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.service.external.CrawlingServiceImpl"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dto.external.Movie"/>
+    <fullyQualifiedTypeName name="java.lang.Iterable"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
     <fullyQualifiedTypeName name="namoo.yorizori.common.factory.jdbcDaoFactory"/>
+    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.ServiceFactory"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.ServiceFactoryImpl"/>
+    <fullyQualifiedTypeName name="java.awt.Checkbox"/>
 </qualifiedTypeNameHistroy>

@@ -16,7 +16,7 @@ display: flex;
 ul{
 list-style: none;
 }
-.moveLink{
+.moveLink,h2.title{
     display: flex;
     justify-content: center;
 }
@@ -36,8 +36,8 @@ list-style: none;
 	<div class="row">
 		<div class="leftcolumn">
 			<div class="card">
-				<h2>회원 가입을 환영합니다</h2>
-				<div style="height: 150px;display: flex;justify-content: center;" >
+				<h2 class="title">회원 가입을 환영합니다</h2>
+				<div style="height: 150px;display: flex;justify-content: center; padding-right: 50px;" >
 					<ul>
 						<li>아이디 : <%=user.getId() %></li>
 						<li>이  름 : : <%=user.getName() %></li>

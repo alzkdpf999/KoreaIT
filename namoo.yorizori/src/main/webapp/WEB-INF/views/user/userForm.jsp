@@ -15,8 +15,9 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="<%=application.getContextPath()%>/css/styles.css"
+<link href="${ctx}/css/styles.css"
 	rel="stylesheet" />
+	<script type="module" defer src="${ctx}/js/check.js"></script>
 </head>
 <body>
 	<!-- Navigation-->
@@ -27,26 +28,27 @@
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
 			<div
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center ">
+				class="row gx-3 gx-lg-4 row-cols-1 row-cols-md-1 row-cols-xl-2 justify-content-center  ">
 				<div class="w3-responsive w3-card-4">
-					<form class="row" method="post"
-						action="<%=application.getContextPath()%>/user/regist.do"
+					<form class="row justify-content-center" method="post"
+						action="${ctx}/user/regist.do"
 						id="signup">
-						<div class="mb-3">
-							<label for="id" class="form-label">아이디 </label>
+						<div class="mb-3 ">
+							<label for="id" class="form-label" >아이디 </label>
+							<input type="hidden" name="check" value="unCheck" id="ok">
 							<div id="ui">
-								<input type="text" class="form-control" id="id" name="id"
+								<input type="text" class="form-control signupId" id="id" name="id"
 									placeholder="Id">
-								<button type="button" class="check btn btn-info" id="dbCheckId">중복체크</button>
+								<button type="button" class="check btn btn-primary" id="dbCheckId">중복체크</button>
 							</div>
-							<label id="idErr">영어 또는 숫자 조합을 사용하여 최소 4글자입니다.</label>
+							<small id="idErr">영어 또는 숫자 조합을 사용하여 최소 4글자입니다.</small>
 						</div>
 
 						<div class="mb-3">
 							<label for="passwd" class="form-label">비밀번호</label> <input
-								type="password" class="form-control" id="passwd" name="passwd"
-								placeholder="Password"> <label id="passwdErr">영어,
-								특수문자, 숫자의 조합을 사용하여 최소 8글자 입니다.</label>
+								type="password" class="form-control validPasswd" id="passwd" name="passwd"
+								placeholder="Password"> <small id="passwdErr">영어,
+								특수문자, 숫자의 조합을 사용하여 최소 8글자 입니다.</small>
 						</div>
 
 						<div class="mb-3">
@@ -74,6 +76,6 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="js/scripts.js"></script>
+
 </body>
 </html>

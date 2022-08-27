@@ -7,7 +7,24 @@
   </welcome-file-list>
 
 
+<!-- 에러페이지 설정 -->
 
+<error-page>
+	<exception-type>namoo.yorizori.common.web.YZRuntimeException</exception-type>
+	<location>/WEB-INF/views/error/error_500.jsp</location>
+</error-page>
+
+
+<error-page>
+	<error-code>400</error-code>
+	<location>/WEB-INF/views/error/error_400.jsp</location>
+</error-page>
+
+
+<error-page>
+	<error-code>404</error-code>
+	<location>/WEB-INF/views/error/error_404.jsp</location>
+</error-page>
 
 <!-- jsp페이지로 서블릿 등록 -->
 <servlet>
@@ -30,20 +47,5 @@
 	<url-pattern>/user/signup.do</url-pattern>
 </servlet-mapping>
 
-<!-- <servlet>
- 	<description>회원가입 처리 서블릿</description>
- 	<servlet-name>userRegist</servlet-name>
- 	 <servlet-class>namoo.yorizori.controller.user.UserRegistController</servlet-class>
- 
-</servlet>
-<servlet-mapping>
-	<servlet-name>userRegist</servlet-name>
-	<url-pattern>/user/regist.do</url-pattern>
-</servlet-mapping>
- -->
-<context-param>
-	<param-name>ctx</param-name>
-	<param-value>/yorizori</param-value>
-</context-param>
 
 </web-app>
