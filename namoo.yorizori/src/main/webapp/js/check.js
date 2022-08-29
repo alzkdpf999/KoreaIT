@@ -1,4 +1,4 @@
-import { Validitycheck as valid } from "/js/Validitycheck.js";
+import { Validitycheck as valid } from "./Validitycheck.js";
 
 let option = "width=450,height=250,left=700,top=400,scrollbars=no";
 

@@ -1,4 +1,4 @@
-import { Validitycheck as valid } from "/js/Validitycheck.js";
+import { Validitycheck as valid } from "./Validitycheck.js";
 
 
 document.querySelector("#id").addEventListener("keyup",function(event){
