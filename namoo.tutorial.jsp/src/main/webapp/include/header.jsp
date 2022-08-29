@@ -13,5 +13,6 @@ if(loginUser == null) path = "/login.do/";
 	<div class="topnav">
 		<a href="#">Link</a> <a href="#">Link</a> <a href="#">Link</a> <a
 			href="<%=path+"user/userList.jsp"%>">Member List</a> <a href="/user/userRegistForm.jsp" style="float: right">Sign Up</a>
+			<a href="/yorizori/" target="_blank">Model2 기반 요리책</a>
 	</div>
 </div>

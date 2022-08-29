@@ -10,6 +10,8 @@ import javax.sql.DataSource;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
+import namoo.yorizori.dao.cookbook.CookbookDao;
+import namoo.yorizori.dao.cookbook.jdbcCookbookDao;
 import namoo.yorizori.dao.user.UserDao;
 import namoo.yorizori.dao.user.jdbcUserDao;
 /**
@@ -27,6 +29,7 @@ public class jdbcDaoFactory implements DaoFactory {
 	private DataSource dataSource;
 
 	private UserDao userDao;
+	private CookbookDao cookbookDao;
 
 	private jdbcDaoFactory() {
 		loadProperties();
@@ -73,5 +76,10 @@ public class jdbcDaoFactory implements DaoFactory {
 		}
 		return userDao;
 	}
-
+	public CookbookDao getCookbookDao() {
+		if(cookbookDao==null) {
+			cookbookDao= new jdbcCookbookDao(dataSource);
+		}
+		return cookbookDao;
+	}
 }

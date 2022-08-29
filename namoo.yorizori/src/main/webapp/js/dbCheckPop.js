@@ -1,17 +1,17 @@
 import { Validitycheck as valid } from "./Validitycheck.js";
 
 
-document.querySelector("#id").addEventListener("keyup",function(event){
+document.querySelector("#id").addEventListener("input",function(event){
 
  const val = document.querySelector(".idCheck").value;
  console.log(val);
  if(!valid.Id(val)){
 	document.querySelector("#dbCheckId").setAttribute("disabled","disabled");
-	if(valid.Id(val)){
+}
+if(valid.Id(val)){
  document.querySelector("#CheckId").setAttribute("disabled","disabled");
  document.querySelector("#dbCheckId").removeAttribute("disabled");
 	}
-}
  
 })
 

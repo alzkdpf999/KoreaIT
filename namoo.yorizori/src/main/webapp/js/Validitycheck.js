@@ -1,5 +1,5 @@
 
-const regId = /^[a-zA-Z]{1}[a-zA-Z0-9]{3,11}$/g;
+const regId = /^[a-zA-Z]+[a-zA-Z0-9]{3,11}$/;
 const regPasswd = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{8,16}$/;
 const regEmail = /[a-zA-Z0-9._+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9.]+/gm;
 const regNameKr = /[가-힣]{2,5}$/;

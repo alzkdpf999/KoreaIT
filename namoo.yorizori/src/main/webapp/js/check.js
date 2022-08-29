@@ -55,18 +55,18 @@ const email = document.querySelector("#email").value;
 
 document.querySelector("#dbCheckId").addEventListener("click", function(event) {
 	const id = document.querySelector(".signupId").value;
-	console.log(id);
+	console.log(!valid.Id(id)+":"+id);
 	if(valid.isNull(id)){
 		document.querySelector("#idErr").setAttribute("style", "color: red");
 	}
 	if(!valid.Id(id)){
 		document.querySelector("#idErr").setAttribute("style", "color: red");
-		if(valid.Id(id)){
+	}
+	if(valid.Id(id)){
 		document.querySelector("#dbCheckId").removeAttribute("disabled");
 		let pop = window.open("/yorizori/user/check.do?id=" + id, "pop", option);
 		idErr.removeAttribute("style");
 		
 		}
-	}
 	
 })
