@@ -76,7 +76,7 @@ public class UserLoginController extends HttpServlet {
 				id = "";
 				Cookie errCookie = new Cookie("err", "-1"); // 아이디 오류
 				errCookie.setPath("/");
-				errCookie.setMaxAge(60 * 60 * 24 * 30);
+				errCookie.setMaxAge(1);
 				response.addCookie(errCookie);
 			} else if (!id.equals("") && id != null) {
 				Cookie errCookie = null;
@@ -89,10 +89,10 @@ public class UserLoginController extends HttpServlet {
 					errPsCookie = new Cookie("errPsw", "");
 				}
 				errPsCookie.setPath("/");
-				errPsCookie.setMaxAge(60 * 60 * 24 * 30);
+				errPsCookie.setMaxAge(1);
 				response.addCookie(errPsCookie);
 				errCookie.setPath("/");
-				errCookie.setMaxAge(60 * 60 * 24 * 30);
+				errCookie.setMaxAge(1);
 				response.addCookie(errCookie);
 			}
 

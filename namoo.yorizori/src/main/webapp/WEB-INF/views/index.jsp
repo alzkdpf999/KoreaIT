@@ -17,6 +17,7 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${ctx }/css/styles.css" rel="stylesheet" />
 </head>
+<!-- <script type="module" defer src="${ctx}/js/err.js"></script> -->
 <body>
 	<!-- Navigation-->
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>

@@ -25,5 +25,4 @@ public class UserCheckIdController extends HttpServlet {
 		if(CheckIdUser !=null) request.setAttribute("check",CheckIdUser);
 		request.getRequestDispatcher("/WEB-INF/views/user/checkId.jsp").forward(request, response);//포워드
 	}
-
 }
