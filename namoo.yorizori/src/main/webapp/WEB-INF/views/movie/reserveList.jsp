@@ -26,8 +26,9 @@
 	<!-- Section-->
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
-			<div class="row gx-2 gx-lg-3 row-cols0 row-cols-md-1 row-cols-xl-1">
-				<div class="titleContent">
+			<div class="row gx-2 gx-lg-3 row-cols0 row-cols-md-1 row-cols-xl-1 justify-content-center">
+				<div class="titleContent col mb-5">
+				
 					<h2 class="title">외부 크롤링 서비스를 이용한 CGV 상영예정장</h2>
 					<table>
 						<c:forEach var="movie" items="${list }" varStatus="state">

@@ -12436,7 +12436,6 @@ small{
 	color: gray;
 }
 .titleContent{
-  height: 150px;
   display: flex;
   padding-right: 50px;
   flex-direction: column;
