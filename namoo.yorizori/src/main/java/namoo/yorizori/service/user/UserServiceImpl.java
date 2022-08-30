@@ -13,6 +13,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void registerUser(User user) {
+		try {
+			userDao.create(user);
+		} catch (SQLException e) {
+			throw new RuntimeException();
+		}
 	}
 
 	@Override

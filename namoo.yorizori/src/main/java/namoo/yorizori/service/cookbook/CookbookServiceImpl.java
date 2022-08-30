@@ -1,15 +1,24 @@
 package namoo.yorizori.service.cookbook;
 
+import java.sql.SQLException;
 import java.util.List;
 
+import namoo.yorizori.common.factory.jdbcDaoFactory;
+import namoo.yorizori.common.web.YZRuntimeException;
+import namoo.yorizori.dao.cookbook.CookbookDao;
+import namoo.yorizori.dao.cookbook.jdbcCookbookDao;
 import namoo.yorizori.dto.cookbook.Cookbook;
 import namoo.yorizori.dto.cookbook.Recipe;
 
 public class CookbookServiceImpl implements CookbookService{
-
+	CookbookDao cookbookDao = jdbcDaoFactory.getInstance().getCookbookDao();
 	@Override
 	public void registerCookbook(Cookbook cookbook) {
-		// TODO Auto-generated method stub
+		try {
+			cookbookDao.regist(cookbook);
+		} catch (SQLException e) {
+			throw new YZRuntimeException(e.getMessage());
+		}
 		
 	}
 

@@ -21,11 +21,14 @@
     <fullyQualifiedTypeName name="namoo.yorizori.common.factory.ServiceFactory"/>
     <fullyQualifiedTypeName name="java.awt.Checkbox"/>
     <fullyQualifiedTypeName name="namoo.yorizori.service.external.CrawlingService"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.ServiceFactoryImpl"/>
     <fullyQualifiedTypeName name="javax.sql.DataSource"/>
     <fullyQualifiedTypeName name="java.sql.SQLException"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.jdbcDaoFactory"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Cookbook"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.CookbookDao"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcCookbookDao"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Cookbook"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.common.web.YZRuntimeException"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.service.cookbook.CookbookServiceImpl"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.ServiceFactoryImpl"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.jdbcDaoFactory"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Recipe"/>
 </qualifiedTypeNameHistroy>

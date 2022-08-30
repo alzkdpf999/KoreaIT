@@ -1,6 +1,7 @@
 package namoo.yorizori.dao.cookbook;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import namoo.yorizori.dto.cookbook.Cookbook;
 
@@ -10,8 +11,13 @@ import namoo.yorizori.dto.cookbook.Cookbook;
  *  * @author 김기정
  */
 public interface CookbookDao {
-	
+	//등록
 	public void regist(Cookbook cookbook) throws SQLException;
+	public  List<Cookbook> view_All() throws SQLException;
+	//삭제
+	
+	//수정
+	
 	
 }
 
