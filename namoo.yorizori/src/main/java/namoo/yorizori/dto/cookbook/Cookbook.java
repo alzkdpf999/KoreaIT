@@ -10,7 +10,7 @@ public class Cookbook {
 	private String book_name; //요리책 이름
 	private String book_desc;// 요리책 설명
 	private String author_id;//저자 이름
-	private String view_num;
+	private String view_num;//조회수 디폴트 0
 	public Cookbook() {
 		this(null,null,null,null,null);
 	}

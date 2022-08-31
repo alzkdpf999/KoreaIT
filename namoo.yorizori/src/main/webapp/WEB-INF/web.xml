@@ -50,7 +50,7 @@
 <servlet>
  	<description>요리책 등록</description>
  	<servlet-name>cookbookForm</servlet-name>
- 	<jsp-file>/WEB-INF/cookbook/cookbookForm.jsp</jsp-file>
+ 	<jsp-file>/WEB-INF/views/cookbook/cookbookForm.jsp</jsp-file>
 </servlet>
 <servlet-mapping>
 	<servlet-name>cookbookForm</servlet-name>
@@ -60,7 +60,7 @@
 <servlet>
  	<description>레시피 등록</description>
  	<servlet-name>recipeform</servlet-name>
- 	<jsp-file>/WEB-INF/recipe/recipeForm.jsp</jsp-file>
+ 	<jsp-file>/WEB-INF/views/recipe/recipeForm.jsp</jsp-file>
 </servlet>
 <servlet-mapping>
 	<servlet-name>recipeform</servlet-name>

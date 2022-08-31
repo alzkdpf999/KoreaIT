@@ -44,6 +44,7 @@ public class CookBookRegistController extends HttpServlet {
 		ServiceFactoryImpl.getInstance().getCookbookService().registerCookbook(cookbook);
 		request.setAttribute("cookbook", cookbook);
 		response.sendRedirect(request.getContextPath()+"/cookbook/list.do");
+		System.out.println(request.getHeader("referer"));
 	}
 
 }
