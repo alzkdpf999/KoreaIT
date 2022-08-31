@@ -24,7 +24,7 @@ public class CookBookListController extends HttpServlet {
 		CookbookDao cookbookDao = jdbcDaoFactory.getInstance().getCookbookDao();
 		try {
 			request.setAttribute("book_list",cookbookDao.view_All());  
-			request.getRequestDispatcher("/WEB-INF/cookbook/cookbookList.jsp").forward(request, response);// 포워드
+			request.getRequestDispatcher("/WEB-INF/views/cookbook/cookbookList.jsp").forward(request, response);// 포워드
 		} catch (SQLException e) {
 			throw new YZRuntimeException(e.getMessage());
 		}

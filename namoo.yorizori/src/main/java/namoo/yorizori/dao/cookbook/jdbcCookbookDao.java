@@ -84,7 +84,38 @@ public class jdbcCookbookDao implements CookbookDao{
 		book.setView_num(result.getString("view_num"));
 		return book;
 	}
-
+	public  Cookbook view_All(String book_id) throws SQLException{
+		Cookbook cookbook = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		// +는 낭비가 심해서 StringBuilder를 이용한다.
+		StringBuilder sb = new StringBuilder();
+		sb.append(" Select book_id,book_name,book_desc,author_id,view_num")
+				.append(" from cookbook")
+				.append(" WHERE book_id = ?")
+				.append(" ORDER BY book_id");
+		
+		try {
+			con = dataSource.getConnection();
+			String sql = sb.toString();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,book_id);
+			result = pstmt.executeQuery();
+			if(result.next()) {
+				cookbook = createbook(result);
+			}
+		} finally {
+			if (result != null)
+				result.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (con != null)
+				con.close(); // 예외 저대로 안발생
+		}
+		return cookbook;
+	}
+	
 }
 
 

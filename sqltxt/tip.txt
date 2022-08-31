@@ -53,8 +53,12 @@ CREATE TABLE recipe(
     ingredients VARCHAR2(300),
     img_cont_type VARCHAR2(20),
     img_file_name VARCHAR2(20),
-    writer_id VARCHAR2(30)
+         VARCHAR2(30)
     );
+
+    CREATE SEQUENCE recipe_seq;
+
+    ALTER TABlE recipe ADD view_num NUMBER(7) DEFAULT 0;
 
 ALTER TABLE users
 MODIFY( 
