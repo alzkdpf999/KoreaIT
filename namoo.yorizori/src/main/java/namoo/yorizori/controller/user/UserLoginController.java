@@ -30,8 +30,9 @@ public class UserLoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String referer = request.getHeader("referer"); // 이전 페이지를가져오기
+		System.out.println(referer);
 		if(referer.contains("/user/regist.do")){
-			referer = "http://localhost/yorizori/index.do";
+			referer = request.getContextPath();
 		}
 		//request.setCharacterEncoding("utf-8");
 		String id = request.getParameter("id");

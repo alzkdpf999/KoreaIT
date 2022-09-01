@@ -56,9 +56,6 @@ CREATE TABLE recipe(
          VARCHAR2(30)
     );
 
-    CREATE SEQUENCE recipe_seq;
-
-    ALTER TABlE recipe ADD view_num NUMBER(7) DEFAULT 0;
 
 ALTER TABLE users
 MODIFY( 
@@ -97,3 +94,19 @@ ALTER TABLE recipe_procedure
     ADD ( --pfk 하는법
             CONSTRAINT recipe_id_fk FOREIGN KEY(recipe_id) REFERENCES recipe(recipe_id)
     );
+
+    CREATE SEQUENCE recipe_seq;
+
+    ALTER TABlE recipe ADD view_num NUMBER(7) DEFAULT 0;
+   
+    CREATE SEQUENCE cookbook_seq;
+
+    ALTER TABlE cookbook ADD view_num NUMBER(7) DEFAULT 0;
+
+    CREATE SEQUENCE cookseq_seq;
+
+일단 요리책목록 레시피 목록은 아이디 없어도 들어가지고
+이제 레시피 목록에서 등록버튼 없애고(무조건 책을 만들고 나서 레시피) 보기만
+나중에 내 레시피 목록에서만 보이게 
+요리책에서는 등록버튼 만들고 대신 로그인 됐을떄
+
