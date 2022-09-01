@@ -1,12 +1,12 @@
 import {Student} from "./Student.js";
 import {StudentManager} from "./StudentManager.js";
-import {Careful} from "./Careful.js";
-
+import {Careful} from "./Careful.js"
 let studentManager = new StudentManager();
 let careful = new Careful();
 careful.movefocus();
-//prototype에 넣기 StudentMangager에 넣어서
-
+let printList;
+let out, kr, ssn, name, en, ma;
+let list;
 const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\" |a-z|A-Z |ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
 const regNum = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\" |0-9]/g;
 const regLimit = /[^0-9]/g;
@@ -15,7 +15,7 @@ const regZero = /^0[0-9]+$/g;
 let init_list=studentManager.initList();
 //이름 검색
 document.querySelector("#search").addEventListener("click",function(event){
-  let printList=init_list();
+  printList=init_list();
   let searchAllManager = studentManager;
   const findname = document.querySelector('#name').value;
   let findStudentname = searchAllManager.idfilter(findname);
@@ -33,7 +33,7 @@ document.querySelector("#search").addEventListener("click",function(event){
 
 //학번 조회
 document.querySelector("#smsearch ").addEventListener("click",function(event){
-  let printList=init_list();
+  printList=init_list();
   let searchStudentManager = studentManager;
   const findSsn = document.querySelector('#ssn').value;
   let findStudent=searchStudentManager.filter(findSsn);
@@ -50,19 +50,19 @@ document.querySelector("#smsearch ").addEventListener("click",function(event){
 //등록
 document.querySelector("#register").addEventListener("click",function(event){
   //학번 
-  const ssn=document.querySelector('#ssn').value;
+  ssn=document.querySelector('#ssn').value;
   //이름
-  const name=document.querySelector('#name').value;
+  name=document.querySelector('#name').value;
   //국어
-  const kr= parseInt(document.querySelector('#kr').value);
+  kr= parseInt(document.querySelector('#kr').value);
   //영어
-  const en=parseInt(document.querySelector('#en').value);
+  en=parseInt(document.querySelector('#en').value);
   //수학
-  const ma=parseInt(document.querySelector('#ma').value);
+  ma=parseInt(document.querySelector('#ma').value);
   studentManager.add(new Student(ssn,name,kr,en,ma))
   let array=studentManager.array;
-  let printList=init_list();
-  let list = studentManager.list();
+  printList=init_list();
+  list = studentManager.list();
   for(let index = 0; index<list.length;index++)
   {
     printList=init_list(list[index])
@@ -76,7 +76,7 @@ document.querySelector("#register").addEventListener("click",function(event){
 
 //전체검색
 document.querySelector("#allSearch").addEventListener("click",function(event){
-  let printList=init_list();
+  printList=init_list();
   let list =studentManager.list()
   for(let index =0; index<list.length;index++)
   { 
@@ -87,7 +87,7 @@ document.querySelector("#allSearch").addEventListener("click",function(event){
 
 //전체 삭제
 document.querySelector("#removeall").addEventListener("click",function(event){
-  let printList=init_list();
+  printList=init_list();
   document.querySelector("#list").innerHTML = printList
   studentManager.array.length=0;
 })
@@ -95,7 +95,7 @@ document.querySelector("#removeall").addEventListener("click",function(event){
 //이름 and 삭제 
 document.querySelector("#remove").addEventListener("click",function(event){
   let removeManager = studentManager;
-  let printList = init_list();
+  printList = init_list();
   const removeName = document.querySelector('#name').value;
   const removeSsn = document.querySelector('#ssn').value;
   let removeStudent = removeManager.removefilter(removeSsn,removeName);
@@ -121,7 +121,26 @@ document.querySelector("#remove").addEventListener("click",function(event){
 })
 
 document.querySelector("#sort").addEventListener("click",function(event){
-  
+  switch (sortVal) {
+    case "ssn":
+      Careful.prototype.sortPrinting("ssn");
+      break;
+    case "name":
+      Careful.prototype.sortPrinting("name");
+      break;
+    case "kr":
+      Careful.prototype.sortPrinting("kr");
+      break;
+    case "en":
+      Careful.prototype.sortPrinting("en");
+      break;
+    case "math":
+      Careful.prototype.sortPrinting("math");
+      break;
+    case "avg":
+      Careful.prototype.sortPrinting("avg");
+      break;
+  }
 })
 
 document.querySelector("#ssn").addEventListener("input", function (event) {

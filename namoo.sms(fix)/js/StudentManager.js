@@ -87,7 +87,7 @@ StudentManager.prototype.searchAll = function(printList){
 
   document.querySelector("#list").innerHTML = printList
 }
-export {StudentManager};
+
 
 
 StudentManager.prototype.sorting = function (identy) {
