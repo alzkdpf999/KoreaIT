@@ -1,118 +1,127 @@
-import { Student } from "./Student.js";
-import { StudentManager } from "./StudentManager.js";
-import { Careful } from "./Careful.js";
+import {Student} from "./Student.js";
+import {StudentManager} from "./StudentManager.js";
+import {Careful} from "./Careful.js";
 
-// let studentManager = new StudentManager();
+let studentManager = new StudentManager();
 let careful = new Careful();
 careful.movefocus();
 //prototype에 넣기 StudentMangager에 넣어서
-let studentManager = careful.getStudent();
-let init_list = studentManager.initList();
-let printList;
-let list;
-let out, kr, ssn, name, en, ma;
-ssn = document.querySelector("#ssn").value;
-name = document.querySelector("#name").value;
-kr = document.querySelector("#kr").value;
-en = document.querySelector("#en").value;
-ma = document.querySelector("#ma").value;
+
 const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\" |a-z|A-Z |ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
 const regNum = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\" |0-9]/g;
 const regLimit = /[^0-9]/g;
 const regZero = /^0[0-9]+$/g;
 
+let init_list=studentManager.initList();
 //이름 검색
-document.querySelector("#search").addEventListener("click", function (event) {
-  printList = init_list();
+document.querySelector("#search").addEventListener("click",function(event){
+  let printList=init_list();
+  let searchAllManager = studentManager;
   const findname = document.querySelector('#name').value;
-  let findStudentname = studentManager.idfilter(findname);
-  if (findStudentname.length == 0) {
+  let findStudentname = searchAllManager.idfilter(findname);
+  if(findStudentname.length == 0){
     document.querySelector("#list").innerHTML = printList
-  } else {
-    for (let index = 0; index < findStudentname.length; index++) {
-      printList = init_list(findStudentname[index]);
-      studentManager.listAll(printList);
-    }
+  }else{
+  for(let index = 0; index<findStudentname.length;index++)
+  {
+    printList=init_list(findStudentname[index]);
+    searchAllManager.listAll(printList);
   }
+}
 
-})
+  })
 
 //학번 조회
-document.querySelector("#smsearch ").addEventListener("click", function (event) {
-  printList = init_list();
+document.querySelector("#smsearch ").addEventListener("click",function(event){
+  let printList=init_list();
+  let searchStudentManager = studentManager;
   const findSsn = document.querySelector('#ssn').value;
-  let findStudent = studentManager.filter(findSsn);
-  if (findStudent == 0) {
+  let findStudent=searchStudentManager.filter(findSsn);
+  if(findStudent == 0){
     document.querySelector("#list").innerHTML = printList
-  } else {
-    for (let index = 0; index < findStudent.length; index++) {
-      printList = init_list(findStudent[index]);
-      studentManager.listAll(printList);
-    }
+  }else{
+  for(let index =0; index<findStudent.length;index++)
+  { printList=init_list(findStudent[index]);
+    searchStudentManager.listAll(printList);
   }
-})
-
+}
+  })
+  
 //등록
-document.querySelector("#reg").addEventListener("click", function (event) {
-  // ssn = document.querySelector("#ssn").value;
-  // name = document.querySelector("#name").value;
-  // kr = document.querySelector("#kr").value;
-  // en = document.querySelector("#en").value;
-  // ma = document.querySelector("#ma").value;
-
-  out = studentManager.array.findIndex(i => i.ssn == ssn);
-  document.querySelector("#table").value = out;
-  if (ssn == '' || name == '' || kr == '' || en == '' || ma == '') careful.openCenter('registerCheckValueErr.html', "pop", 500, 200);
-  else if (out != -1) careful.openCenter('registerCheckValueErr.html', "pop", 500, 200);
-  else careful.openCenter('registerCheck.html', "pop", 500, 200);
-
-  let index = careful.empty(ssn, name, kr, en, ma);
+document.querySelector("#register").addEventListener("click",function(event){
+  //학번 
+  const ssn=document.querySelector('#ssn').value;
+  //이름
+  const name=document.querySelector('#name').value;
+  //국어
+  const kr= parseInt(document.querySelector('#kr').value);
+  //영어
+  const en=parseInt(document.querySelector('#en').value);
+  //수학
+  const ma=parseInt(document.querySelector('#ma').value);
+  studentManager.add(new Student(ssn,name,kr,en,ma))
+  let array=studentManager.array;
+  let printList=init_list();
+  let list = studentManager.list();
+  for(let index = 0; index<list.length;index++)
+  {
+    printList=init_list(list[index])
+    studentManager.searchAll(printList);
+  }
+  let index = careful.empty(ssn,name,kr,en,ma);  
   let select = careful.emptyfocus(index);
+  if(ssn && name && kr && en && ma) careful.resigsterAfterInit();
   careful.movefocus(select);
-  // let div=document.querySelector("#case");
-  // div.style.display= 'none';
 })
 
 //전체검색
-document.querySelector("#allSearch").addEventListener("click", function (event) {
-  printList = init_list();
-  list = studentManager.list()
-  for (let index = 0; index < list.length; index++) {
-    printList = init_list(list[index]);
+document.querySelector("#allSearch").addEventListener("click",function(event){
+  let printList=init_list();
+  let list =studentManager.list()
+  for(let index =0; index<list.length;index++)
+  { 
+    printList=init_list(list[index]);
     studentManager.searchAll(printList);
   }
 })
 
 //전체 삭제
-document.querySelector("#removeall").addEventListener("click", function (event) {
-  let empty = studentManager.array.length;
-  document.querySelector("#table").value = empty;
-  if(empty == 0) careful.openCenter('AlldelCheckErr.html', "pop", 500, 200);
-  else careful.openCenter('AlldelCheck.html',"pop",500,200);
+document.querySelector("#removeall").addEventListener("click",function(event){
+  let printList=init_list();
+  document.querySelector("#list").innerHTML = printList
+  studentManager.array.length=0;
 })
 
 //이름 and 삭제 
-document.querySelector("#remove").addEventListener("click", function (event) {
-  ssn = document.querySelector("#ssn").value;
-  name = document.querySelector("#name").value;
-  out = studentManager.array.findIndex(i => i.ssn == ssn && i.name == name);
-  document.querySelector("#table").value = out;
-
-  if (ssn == '' || name == '') careful.openCenter('delCheckValueErr.html', "pop", 500, 200);
-  else if (out == -1) careful.openCenter('delCheckValueErr.html', "pop", 500, 200);
-  else careful.openCenter('delCheck.html', "pop", 500, 200);
-  let index = careful.empty(ssn, name);
-  if (index <= 2) {
-    let select = careful.emptyfocus(index);
-    careful.movefocus(select);
+document.querySelector("#remove").addEventListener("click",function(event){
+  let removeManager = studentManager;
+  let printList = init_list();
+  const removeName = document.querySelector('#name').value;
+  const removeSsn = document.querySelector('#ssn').value;
+  let removeStudent = removeManager.removefilter(removeSsn,removeName);
+  let test= removeManager.removeStudent(removeSsn,removeName,false);
+  console.log(test);
+  console.log(removeStudent);
+  studentManager.array.length = 0;
+  for(let index =0; index<=removeStudent.length;index++)
+  {
+    if(removeStudent.length == 0){
+      document.querySelector("#list").innerHTML = printList
+    }else{
+      if(index ==removeStudent.length)
+      {
+        continue;
+      }else{
+        printList=init_list(removeStudent[index])
+        removeManager.searchAll(printList);
+      studentManager.array.push(removeStudent[index]);
+      }
+  } 
   }
 })
 
-document.querySelector("#sort").addEventListener("click", function (event) {
-  out = studentManager.array.findIndex(i => i.ssn == ssn && i.name == name);
-  document.querySelector("#table").value = out;
-  if(out ==  -1 ) careful.openCenter('SortCheckerr.html', "pop", 500, 200);
-  else careful.openCenter('SortCheck.html', "pop", 500, 200);
+document.querySelector("#sort").addEventListener("click",function(event){
+  
 })
 
 document.querySelector("#ssn").addEventListener("input", function (event) {
