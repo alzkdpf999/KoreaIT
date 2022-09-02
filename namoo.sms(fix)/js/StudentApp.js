@@ -1,7 +1,11 @@
 import {Student} from "./Student.js";
 import {StudentManager} from "./StudentManager.js";
 import {Careful} from "./Careful.js"
+function StudentApp(){
+
+}
 let studentManager = new StudentManager();
+
 let careful = new Careful();
 careful.movefocus();
 let printList;
@@ -106,13 +110,14 @@ document.querySelector("#remove").addEventListener("click",function(event){
   btn1.className='btn btn-dark del';
   h4.className='h4'
   btn1.setAttribute("type" ,"button");
+  btn1.setAttribute("id" ,"del1");
   h4.appendChild(txt);
   document.querySelector("#case").appendChild(h4);
   btn1.appendChild(txt1);
   document.querySelector(".Allbtn").prepend(btn1);
   
 })
-//이름 and 학번 일치하면  삭제 
+
 document.querySelector(".cancle").addEventListener("click",function(event){
   document.querySelector("#case").removeAttribute("style");
   if(document.querySelector(".del")){
@@ -122,8 +127,15 @@ document.querySelector(".cancle").addEventListener("click",function(event){
     document.querySelector(".Allbtn").removeChild(btn);
   }
 })
-if(document.querySelector(".del")){
-document.querySelector(".del").addEventListener("click",function(event){
+
+document.addEventListener('click',function(event){
+  if(event.target && event.target.id == 'del1'){
+    console.log(1);
+    document.querySelector("#case").removeAttribute("style");
+  }
+})
+//이름 and 학번 일치하면  삭제 
+/* document.querySelector(".del").addEventListener("click",function(event){
   let removeManager = studentManager;
   printList = init_list();
   const removeName = document.querySelector('#name').value;
@@ -148,11 +160,9 @@ document.querySelector(".del").addEventListener("click",function(event){
       }
   } 
   }
-  console.log(1);
   document.querySelector("#case").removeAttribute("style");
-})
+})*/
 
-}
 document.querySelector("#sort").addEventListener("click",function(event){
   switch (sortVal) {
     case "ssn":
