@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+
+
+  //성공시 resolve 실패시 reject
+  console.log("동기실행 1");
+  const id = 'bangry'
+  const passwd = '1111'
+  new Promise((resolve, reject) =>{
+    setTimeout(() => {
+      //서버와의 비동기 통신이라 가정
+      if (id === 'bangry' && passwd === '1111') {
+        resolve(id);
+      } else {
+        reject(new Error("회원정보를 확인해주세요."));
+      }
+    }, 2000);
+  }).then( (loginId) =>new Promise((resolve, reject) => {
+        resolve(loginId += "(jack)");
+      })
+    )
+    .then((user) => alert(user)
+  )
+    .catch((error) => 
+      alert(error)
+    )
+    .finally(() => alert("무조건 실행"));
+    console.dir(promise);
+</script>
+
+<body>
+
+</body>
+
+</html>
