@@ -4,8 +4,7 @@
 <c:choose>
 
 	<c:when test="${empty loginUser}">
-		<form action="${ctx}/user/login.do"
-			method="post" name="login"
+		<form action="${ctx}/user/login.do" method="post" name="login"
 			class="row row-cols-lg-auto g-3 align-items-center">
 
 			<div id="saveCheck">
@@ -19,7 +18,7 @@
 					placeholder="${ cookie.err.value eq -1 ? '아이디 오류': (cookie.err.value eq -2 ? '아이디 오류' : '아이디')}"
 					class="${ cookie.err.value eq -1 ? 'id form-control err login': (cookie.err.value eq -2 ? 'id form-control err login' : ' login id form-control')}"
 					value="${empty cookie.id.value ? (cookie.err.value eq -2 ? '' : (cookie.err.value eq 0 ? cookie.errPsw.value : '')): cookie.id.value }">
-			</div> 
+			</div>
 			<div class="col-12">
 				<input type="password" id="passwd" name="passwd"
 					placeholder="${ cookie.err.value eq 0 ? '비밀번호 오류': (cookie.err.value eq -2 ? '비밀번호 오류' : '비밀번호')}"
@@ -37,10 +36,15 @@
 		</form>
 	</c:when>
 	<c:when test="${!empty loginUser}">
-		<form action="${ctx }/user/login.do"
-			method="get" name="logout">
-			<h3 id="asid">${loginUser.getName()  }님</h3>
-			<button type="submit" class="btn btn-warning">로그아웃</button>
-		</form>
+		<div id="my">
+			<form action="${ctx }/user/login.do" method="get" name="logout"
+				class="logout">
+				<h5 id="asid">${loginUser.getName()  }님</h5>
+				<button type="submit" class="btn btn-warning" id="logout">로그아웃</button>
+			</form>
+
+			<a href="#" class="btn btn-primary" id="book">내 책</a> <a href="#"
+				class="btn btn-primary" id="rec">내 레시피</a>
+		</div>
 	</c:when>
 </c:choose>

@@ -4816,7 +4816,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .navbar-expand-lg {
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -10668,10 +10668,6 @@ fieldset:disabled .btn {
     margin-left: 1rem !important;
   }
 
-  .ms-lg-4 {
-    margin-left: 1.5rem !important;
-  }
-
   .ms-lg-5 {
     margin-left: 3rem !important;
   }
@@ -12512,4 +12508,21 @@ div#saveCheck {
 #save {
 	position: absolute;
 	left: -999em;
+}
+form.logout{
+	display: flex;
+	align-items: center;
+}
+h5#asid{
+	margin: 0px;
+}
+button#logout{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+a#rec{
+	margin-left: 10px;
+}
+div#my{
+	display: flex;
 }

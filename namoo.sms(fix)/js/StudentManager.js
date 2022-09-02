@@ -27,6 +27,75 @@ StudentManager.prototype.initList=function(){
   }
 }
 
+StudentManager.prototype.empty = function () {
+  let index;
+  for (const num in arguments) {
+    if (!arguments[num]) {
+      index = num;
+      break;
+    }
+    index = arguments.length + 1;
+  }
+
+  return index;
+}
+StudentManager.prototype.getStudent = function () {
+  return studentManager;
+}
+StudentManager.prototype.emptyfocus = function (index) {
+  let arr = ["ssn", "name", "kr", "en", "ma"];
+
+  if (index == arr.length + 1) {
+
+    return arr[0];
+  } else {
+    return arr[index];
+  }
+}
+
+StudentManager.prototype.movefocus = function (id) {
+  if (id == undefined) {
+    document.querySelector("#ssn").focus();
+  } else {
+    document.querySelector(`#${id}`).focus();
+  }
+}
+StudentManager.prototype.resigsterAfterInit = function () {
+  document.querySelector('#ssn').value = '';
+  //이름
+  document.querySelector('#name').value = '';
+  //국어
+  document.querySelector('#kr').value = '';
+  //영어
+  document.querySelector('#en').value = '';
+  //수학
+  document.querySelector('#ma').value = '';
+}
+
+StudentManager.prototype.sortPrinting = function (id) {
+
+  StudentManager.prototype.sorting(id);
+
+  printList = init_list();
+  list = StudentManager.prototype.list();
+  for (let index = 0; index < list.length; index++) {
+    printList = init_list(list[index]);
+    StudentManager.prototype.searchAll(printList);
+  }
+}
+
+StudentManager.prototype.initTagValue = function (id, val) {
+  let arr = ["reg", "remove", "removeall", "sort"];
+  let b = arr.filter(x => x == id)
+  for (const value of arr) { //자바처럼 값을 가지고옴 
+    if (b != value) {
+      opener.document.querySelector(`#${value}`).value = ' ';
+    } else {
+      opener.document.querySelector(`#${id}`).value = val;
+    }
+  }
+}
+
 //학생 등록 
 StudentManager.prototype.add =function(student){
   if(student == undefined){

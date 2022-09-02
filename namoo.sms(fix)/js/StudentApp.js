@@ -92,8 +92,38 @@ document.querySelector("#removeall").addEventListener("click",function(event){
   studentManager.array.length=0;
 })
 
-//이름 and 삭제 
+//삭제 팝업
 document.querySelector("#remove").addEventListener("click",function(event){
+    //학번 
+    ssn=document.querySelector('#ssn').value;
+    //이름
+    name=document.querySelector('#name').value;
+  document.querySelector("#case").setAttribute("style", "display: flex;");
+  let btn1 = document.createElement('button');
+  let h4 =document.createElement('h4');
+  let txt = document.createTextNode(`(${ssn}) ${name}삭제하시겠습니까?`);
+  let txt1 = document.createTextNode(`삭제`);
+  btn1.className='btn btn-dark del';
+  h4.className='h4'
+  btn1.setAttribute("type" ,"button");
+  h4.appendChild(txt);
+  document.querySelector("#case").appendChild(h4);
+  btn1.appendChild(txt1);
+  document.querySelector(".Allbtn").prepend(btn1);
+  
+})
+//이름 and 학번 일치하면  삭제 
+document.querySelector(".cancle").addEventListener("click",function(event){
+  document.querySelector("#case").removeAttribute("style");
+  if(document.querySelector(".del")){
+    let h4 = document.querySelector(".h4");
+    document.querySelector("#case").removeChild(h4);
+    let btn = document.querySelector(".del");
+    document.querySelector(".Allbtn").removeChild(btn);
+  }
+})
+if(document.querySelector(".del")){
+document.querySelector(".del").addEventListener("click",function(event){
   let removeManager = studentManager;
   printList = init_list();
   const removeName = document.querySelector('#name').value;
@@ -108,7 +138,7 @@ document.querySelector("#remove").addEventListener("click",function(event){
     if(removeStudent.length == 0){
       document.querySelector("#list").innerHTML = printList
     }else{
-      if(index ==removeStudent.length)
+      if(index == removeStudent.length)
       {
         continue;
       }else{
@@ -118,8 +148,11 @@ document.querySelector("#remove").addEventListener("click",function(event){
       }
   } 
   }
+  console.log(1);
+  document.querySelector("#case").removeAttribute("style");
 })
 
+}
 document.querySelector("#sort").addEventListener("click",function(event){
   switch (sortVal) {
     case "ssn":

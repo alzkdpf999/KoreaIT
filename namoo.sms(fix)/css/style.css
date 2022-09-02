@@ -65,14 +65,14 @@ li{
   text-align: center;
 }
 #case {
-  display : flex;
-  position: absolute;
+  position: fixed;
   top: 300px;
   background-color: white ;  
   width: 500px;
   height: 200px;
   align-items: center;
-  justify-content: center
+  justify-content: center;
+  display: none;
 }
 .alert-warning{
   color: black;
@@ -87,4 +87,8 @@ h4{
   position: absolute;
   top: 75px;
 
+}
+
+button.del{
+  margin-left: 3px;
 }

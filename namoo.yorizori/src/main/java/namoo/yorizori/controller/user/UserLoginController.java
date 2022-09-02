@@ -21,10 +21,9 @@ public class UserLoginController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String referer = request.getHeader("referer"); // 이전 페이지를가져오기
 		
 		request.getSession().invalidate();
-		response.sendRedirect(referer);
+		response.sendRedirect(request.getContextPath());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

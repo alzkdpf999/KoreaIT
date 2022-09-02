@@ -14,7 +14,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
-			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+			<ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4" id="temp">
 				<li class="nav-item"><a class="nav-link active"
 					aria-current="page" href="${ctx }">홈</a></li>
 				<li class="nav-item"><a class="nav-link" href="${ctx}/cookbook/list.do">요리책 목록</a></li>

@@ -20,33 +20,13 @@
 
 	<!-- Header-->
 
-	<form name="myForm" action="${ctx}/user/login.do" method="post">
-		<input type="hidden" name="id" value="${user.getId() }">
-		<input type="hidden" name="passwd" value="${user.getPasswd() }">
-		</form>
+
 			<!-- Section-->
-			<div class="container px-4 px-lg-5 mt-5">
-				<div class="row gx-2 gx-lg-3 row-cols0 row-cols-md-1 row-cols-xl-1">
-					<div class="titleContent">
-						<h2 class="title">회원 가입을 환영합니다</h2>
-						<ul>
-							<li>아이디 : : ${user.getId() }
-							</li>
-							<li>이 름 : : ${user.getPasswd() }
-							</li>
-							<li>이메일 : : ${user.getEmail() }
-							</li>
-						</ul>
-					</div>
-		
-				</div>
-				<div class="moveLink">
-					<ul>
-						<li><a href="${ctx}">홈으로</a></li>
-						<li><button type="submit" form="myForm">로그인</button></li>
-					</ul>
-				</div>
-			</div>
+			<form action="${ctx }/user/login.do"
+			method="get" name="logout">
+			<h3 id="asid">111님</h3>
+			<button type="submit" class="btn btn-warning">로그아웃</button>
+		</form>
 	<!-- Footer-->
 	<footer class="py-5 bg-dark">
 		<div class="container">
