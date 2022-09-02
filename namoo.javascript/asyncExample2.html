@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<script>
+//Callback 함수를 이용한 비동기 통신
+
+//웹서버 로그인 suc,err는 콜백
+function loginUser(id,passwd,onSuccess,onError){
+  setTimeout(() => {
+    //서버와의 비동기 통신이라 가정
+    if(id=== 'bangry' && passwd === '1111'){
+      onSuccess(id);
+    }else{
+      onError(new Error("회원정보를 확인해주세요."));
+    }
+  },2000);
+}
+//사용자 업무 수신
+function getRole(id,onSuccess,onError){
+  setTimeout(() => {
+    //서버와의 비동기 통신이라 가정
+    if(id === 'bangry'){
+      onSuccess({id : id, role: "Teacher"});
+    }else{
+      onError(new Error("회원정보에 접근 불가합니다."));
+    }
+  },2000);
+}
+//함수 사용
+let id = window.prompt("아이디를 입력하세요.")
+let pw = window.prompt("비밀번호를 입력하세요.")
+
+loginUser(id,pw,function (loginId){
+  //alert(`${loginId}로그인성공`);
+  getRole(
+    loginId,
+    function(user){
+      alert(`아이디:${user.id}, 업무: ${user.role}`);
+    },
+    function(error){
+      alert(error);
+    }
+  )
+},function (error) {
+  alert(error);
+})
+
+</script>
+<body>
+  
+</body>
+</html>
