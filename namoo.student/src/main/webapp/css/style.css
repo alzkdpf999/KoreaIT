@@ -1,0 +1,94 @@
+body{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 100px;
+}
+form{
+  margin: 10px;
+}
+
+table{
+  border: 1px solid blue;
+}
+label{
+  padding: 5px;
+}
+label,input {
+  margin: 4px;
+  
+}
+.form-control{
+  width: 75px;
+}
+button { 
+  margin-top: 4px; 
+  margin-left: 8px;
+}
+button#removeall{
+  margin-left: 3px;
+}
+th{ 
+  text-align: center;
+}
+#score,#insert{
+  width: 75px;
+}
+#register{
+  width: 100px; 
+}
+ul{
+  padding-left: 11px;  
+  margin: 5px;
+}
+li{
+  background-color: gray;
+  position: relative;
+  left: 27px;
+  display: inline-block;
+  border: 1px solid ;
+  width: 72px;
+  margin: 6px;
+  text-align: center;
+  color: white;
+}
+.li_table{
+  margin-top: 2px;
+  border: 1px solid black;
+  
+}
+#rm{
+  padding-left: 2px;
+}
+#buttr{
+  align-items: center;
+  text-align: center;
+}
+#case {
+  position: fixed;
+  top: 300px;
+  background-color: white ;  
+  width: 500px;
+  height: 200px;
+  align-items: center;
+  justify-content: center;
+  display: none;
+}
+.alert-warning{
+  color: black;
+  border: 1px solid black;
+  padding: 16px;
+}
+.Allbtn{
+  position: absolute;
+  top: 130px;
+}
+h4{
+  position: absolute;
+  top: 75px;
+
+}
+
+button.del{
+  margin-left: 3px;
+}
