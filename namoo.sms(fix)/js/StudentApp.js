@@ -59,16 +59,23 @@ document.querySelector("#register").addEventListener("click", function (event) {
   //이름
   name = document.querySelector('#name').value;
   //국어
-  kr = parseInt(document.querySelector('#kr').value);
+  kr = document.querySelector('#kr').value;
   //영어
-  en = parseInt(document.querySelector('#en').value);
+  en = document.querySelector('#en').value;
   //수학
-  ma = parseInt(document.querySelector('#ma').value);
+  ma = document.querySelector('#ma').value;
+  let db = studentManager.filter(ssn);
+  console.log(db.array);
+  console.log(typeof db);
   if (!ssn || !name || !kr || !en || !ma) { // 둘 중 하나 입력 안할때 
     option = "#errcase";
     document.querySelector(option).setAttribute("style", "display: flex;");
     txt = document.createTextNode("정보를 전부 입력해주세요.");
-  } else {
+  } else if(db.length != 0){
+    option = "#errcase";
+    document.querySelector(option).setAttribute("style", "display: flex;");
+    txt = document.createTextNode("이미 존재하는 학번입니다.");
+  }else {
     option = "#case";
     document.querySelector(option).setAttribute("style", "display: flex;");
     let btn1 = document.createElement('button');
@@ -240,28 +247,7 @@ document.querySelector("#ms").addEventListener("click",function(event){
 document.querySelector("#as").addEventListener("click",function(event){
   studentManager.sortPrinting("avg");
 })
-/*
-switch (sortVal) {
-    case "ssn":
-      Careful.prototype.sortPrinting("ssn");
-      break;
-    case "name":
-      Careful.prototype.sortPrinting("name");
-      break;
-    case "kr":
-      Careful.prototype.sortPrinting("kr");
-      break;
-    case "en":
-      Careful.prototype.sortPrinting("en");
-      break;
-    case "math":
-      Careful.prototype.sortPrinting("math");
-      break;
-    case "avg":
-      Careful.prototype.sortPrinting("avg");
-      break;
-  }
-*/
+
 //정렬 부분 
 
 
@@ -284,11 +270,13 @@ document.querySelector("#name").addEventListener("input", function (event) {
 
 document.querySelector("#kr").addEventListener("input", function (event) {
   kr = document.querySelector("#kr").value;
+  
   if (regLimit.test(kr)) {
     document.querySelector("#kr").value = kr.replace(regLimit, '');
   }
   if (regZero.test(kr)) {
     document.querySelector("#kr").value = kr.replace(regZero, '0');
+    console.log(1);
   }
   if (kr >= 100) document.querySelector("#kr").value = 100;
 })

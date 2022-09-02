@@ -27,7 +27,7 @@ StudentManager.prototype.initList=function(){
   }
 }
 
-let init_list = StudentManager.prototype.initList();
+
 
 StudentManager.prototype.empty = function () {
   let index;
@@ -40,9 +40,6 @@ StudentManager.prototype.empty = function () {
   }
 
   return index;
-}
-StudentManager.prototype.getStudent = function () {
-  return studentManager;
 }
 StudentManager.prototype.emptyfocus = function (index) {
   let arr = ["ssn", "name", "kr", "en", "ma"];

@@ -61,6 +61,21 @@
           <button type="button" class="btn btn-dark cancle">취소</button>
         </div>
       </div> 
+      <div class="alert alert-warning alert-dismissible fade show" role="alert" id="errcase" >
+        <div class="Allbtn">
+          <button type="button" class="btn btn-dark ok">확인</button>
+        </div>
+      </div> 
+      <div class="alert alert-warning alert-dismissible fade show" role="alert" id="sortcase" >
+        <div class="Allbtn">
+          <button type="button" class="btn btn-dark " value="ssn" id="ss">학번</button>
+          <button type="button" class="btn btn-dark " value="name" id="ns">이름</button>
+          <button type="button" class="btn btn-dark " value="kr" id="ks">국어</button>
+          <button type="button" class="btn btn-dark " value="en" id="es">영어</button>
+          <button type="button" class="btn btn-dark " value="math" id="ms">수학</button>
+          <button type="button" class="btn btn-dark " value="avg" id="as">평균</button>
+        </div>
+      </div> 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" ></script>
 </body>
 
