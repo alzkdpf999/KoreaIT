@@ -64,7 +64,7 @@ li{
   align-items: center;
   text-align: center;
 }
-#case {
+#case, #errcase, #sortcase{ 
   position: fixed;
   top: 300px;
   background-color: white ;  
@@ -91,4 +91,8 @@ h4{
 
 button.del{
   margin-left: 3px;
+}
+#errcase .ok{
+  margin-right: 12px;
+  margin-left: 0px;
 }
