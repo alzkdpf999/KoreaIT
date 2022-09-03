@@ -34,7 +34,10 @@
     <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.CookbookDao"/>
     <fullyQualifiedTypeName name="namoo.yorizori.common.factory.jdbcDaoFactory"/>
     <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="java.sql.SQLException"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcRecipeDao"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.ProcedureDao"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcProcedureDao"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Procedure"/>
 </qualifiedTypeNameHistroy>

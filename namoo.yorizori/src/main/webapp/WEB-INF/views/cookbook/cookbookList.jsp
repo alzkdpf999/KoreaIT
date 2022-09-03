@@ -34,7 +34,7 @@
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row">
 				<div class="col h2">
-					요리~조리~ <a href="${ctx }/cookbook/form.do"
+					요리~조리~ <a href="${ctx}/cookbook/regist.do"
 						class="btn btn-md btn-primary">요리책 등록</a>
 				</div>
 			</div>
@@ -57,18 +57,19 @@
 								<div class="card-body p-4">
 									<div class="text-center">
 										<!-- book name-->
-										<h5 class="fw-bolder">${book.getBook_name()}</h5>
+										<h5 class="fw-bolder">${book.book_name}</h5>
 										<!-- author-->
-										${book.getAuthor_id()}
+										${book.author_id}
 									</div>
 								</div>
 								<!-- Product actions-->
 								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 									<div class="cook-btn">
-										<a href="" class="btn btn-primary">수정</a 	>
-										<button type="submit" class="btn btn-primary">삭제</button>
-										<button type="submit" class="btn btn-primary">상세보기</button>
+										<a href="" class="btn btn-primary">수정</a>
+										<a href="" class="btn btn-primary">삭제</a>
+										<a href="${ctx}/recipe/list.do?cbid=${book.book_id}" class="btn btn-primary">상세보기</a>
 									</div>
+									
 								</div>
 							</div>
 						</div>

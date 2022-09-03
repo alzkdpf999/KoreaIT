@@ -24,7 +24,6 @@ public class RecipeListController extends HttpServlet {
 		RecipeDao recipeDao = jdbcDaoFactory.getInstance().getRecipeDao();
 		CookbookDao cookbookDao = jdbcDaoFactory.getInstance().getCookbookDao();
 		String book_id = request.getParameter("cbid");
-		System.out.println(book_id);
 	try {
 			request.setAttribute("book",cookbookDao.view_All(book_id));
 			request.setAttribute("recipe_list", recipeDao.view_All(Integer.parseInt(book_id)));

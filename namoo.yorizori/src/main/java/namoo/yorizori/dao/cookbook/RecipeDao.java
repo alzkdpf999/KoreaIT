@@ -9,5 +9,5 @@ public interface RecipeDao {
 	public void regist(Recipe recipe) throws SQLException;
 	public  List<Recipe> view_All(int book_id) throws SQLException;
 	
-	public Recipe image(int recipe_id) throws SQLException;
+	public List<String> image(int recipe_id) throws SQLException;
 }

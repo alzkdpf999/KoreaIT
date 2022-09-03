@@ -34,7 +34,7 @@
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row">
 				<div class="col h2">
-					${book.book_name}<a href="${ctx}/cookbook/form.do"
+					${book.book_name}<a href="${ctx}/recipe/regist.do?cbid=${param.cbid}"
 						class="btn btn-md btn-primary">레시피 등록</a>
 				</div>
 			</div>
@@ -52,8 +52,9 @@
 				<c:forEach var="recipe" items="${recipe_list}">
 						<div class="col mb-5">
 							<div class="card h-70">
-							 <img class="card-img-top"
+							<img class="card-img-top"
               src="${ctx}/recipe/image.do?recipeid=${recipe.recipe_id}" alt="..." />
+              
 								<!-- book details-->
 								<div class="card-body p-4">
 									<div class="text-center">
@@ -67,8 +68,8 @@
 								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 									<div class="cook-btn">
 										<a href="" class="btn btn-primary">수정</a 	>
-										<button type="submit" class="btn btn-primary">삭제</button>
-										<button type="submit" class="btn btn-primary">상세보기</button>
+										<a href="" class="btn btn-primary">삭제</a>
+										<a href="" class="btn btn-primary">상세보기</a>
 									</div>
 								</div>
 							</div>

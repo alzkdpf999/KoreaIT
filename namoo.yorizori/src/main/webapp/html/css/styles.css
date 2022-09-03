@@ -12464,3 +12464,9 @@ input[type=text].id{
   width: 80%;
   float: left;
 }
+#tb{
+	text-align: center;
+}
+#tb tr{
+	vertical-align: middle;
+}

@@ -26,8 +26,7 @@ public class jdbcRecipeDao implements RecipeDao {
 		PreparedStatement pstmt = null;
 		// +는 낭비가 심해서 StringBuilder를 이용한다.
 		StringBuilder sb = new StringBuilder();
-		sb.append(
-				" INSERT INTO recipe(recipe_id, book_id, recipe_name, recipe_time, recipe_level, ingredients, img_cont_type, img_file_name, writer_id)")
+		sb.append(" INSERT INTO recipe(recipe_id, book_id, recipe_name, recipe_time, recipe_level, ingredients, img_cont_type, img_file_name, writer_id)")
 				.append(" VALUES(recipe_seq.NEXTVAL,?,?,?,?,?,?,?,?)");
 
 		try {
@@ -101,23 +100,26 @@ public class jdbcRecipeDao implements RecipeDao {
 	}
 
 	@Override
-	public Recipe image(int recipe_id) throws SQLException {
-		Recipe recipe = null;
+	public List<String> image(int recipe_id) throws SQLException {
+		List<String>image = null;;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		ResultSet result = null;
 		StringBuilder sb = new StringBuilder();
 		sb.append(" SELECT img_cont_type, img_file_name")
-		.append(" FROM recipe").append(" WHERE recipe_id = ?")
+		.append(" FROM recipe")
+		.append(" WHERE recipe_id = 1")
 		.append(" ORDER BY recipe_id");
 		try {
 			con = dataSource.getConnection();
 			String sql = sb.toString();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, recipe_id);
+			//pstmt.setInt(1, recipe_id);
 			result = pstmt.executeQuery();
-			if (result.next()) {
-				recipe = createRecipe(result);
+			image = new ArrayList<String>();
+			while (result.next()) {
+				image.add(result.getString("img_cont_type"));
+				image.add(result.getString("img_file_name"));
 			}
 		} finally {
 			if (result != null)
@@ -127,6 +129,6 @@ public class jdbcRecipeDao implements RecipeDao {
 			if (con != null)
 				con.close(); // 예외 저대로 안발생
 		}
-		return recipe;
+		return image;
 	}
 }

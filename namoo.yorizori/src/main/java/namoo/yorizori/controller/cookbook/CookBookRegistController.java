@@ -28,6 +28,7 @@ public class CookBookRegistController extends HttpServlet {
 		// 로그인 안하면 오류 페이지로 보내주고
 		//일단 보류
 		// 아니면 디스페처로 창 뛰워주기
+		request.getRequestDispatcher("/WEB-INF/views/cookbook/cookbookForm.jsp").forward(request, response);
 	}
 // 등록, 삭제 ,수정 처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

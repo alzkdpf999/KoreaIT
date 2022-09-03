@@ -10,7 +10,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >
   <title>Document</title>
   <script type="module" defer src="${ctx}/js/StudentApp.js"></script>
-  <link href="${ctx }/css/style.css" rel="stylesheet" />
+  <link href="${ctx}/css/style.css" rel="stylesheet" />
 </head>
 
 <body>

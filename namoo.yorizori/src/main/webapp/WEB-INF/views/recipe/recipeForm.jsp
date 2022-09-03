@@ -41,7 +41,7 @@
                 type="text" class="form-control" id="writer_name"
                 value="${loginUser.name}" disabled>
                 <input type="hidden" name="writer_id" value="${loginUser.id}">
-                <input type="hidden" name="book_id" value="">
+                <input type="hidden" name="book_id" value="${param.cbid}">
                 
             </div>
             <div class="col-md-6">
@@ -64,9 +64,9 @@
 
             <div class="col-12" id="recipe_sequence">
               <label for="seq_num1" class="form-label">조리절차</label> <input
-                type="text" class="form-control" id="seq_num1" name="seq_num1">
-              <input type="text" class="form-control" id="seq_num2" name="seq_num2">
-              <input type="text" class="form-control" id="seq_num3" name="seq_num3">
+                type="text" class="form-control" name="seq_num">
+              <input type="text" class="form-control" name="seq_num">
+              <input type="text" class="form-control" name="seq_num">
               <input type="button" class="btn btn-info btn-sm"
                 value="추가">
             </div>
