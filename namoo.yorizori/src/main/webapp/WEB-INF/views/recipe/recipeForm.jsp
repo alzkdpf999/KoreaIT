@@ -78,7 +78,7 @@
 
             <div class="col-12">
               <button type="submit" class="btn btn-primary">등록</button>
-              <a href="" class="btn btn-success">목록</a>
+              <a href="${ctx}/recipe/list.do?cbid=${param.cbid}" class="btn btn-success">목록</a>
             </div>
           </form>
         </div>

@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 import namoo.yorizori.dto.cookbook.Cookbook;
 import namoo.yorizori.dto.cookbook.Recipe;
+import namoo.yorizori.dto.user.User;
 
 public class jdbcRecipeDao implements RecipeDao {
 	private DataSource dataSource;
@@ -108,13 +109,13 @@ public class jdbcRecipeDao implements RecipeDao {
 		StringBuilder sb = new StringBuilder();
 		sb.append(" SELECT img_cont_type, img_file_name")
 		.append(" FROM recipe")
-		.append(" WHERE recipe_id = 1")
+		.append(" WHERE recipe_id = ?")
 		.append(" ORDER BY recipe_id");
 		try {
 			con = dataSource.getConnection();
 			String sql = sb.toString();
 			pstmt = con.prepareStatement(sql);
-			//pstmt.setInt(1, recipe_id);
+			pstmt.setInt(1, recipe_id);
 			result = pstmt.executeQuery();
 			image = new ArrayList<String>();
 			while (result.next()) {
@@ -130,5 +131,77 @@ public class jdbcRecipeDao implements RecipeDao {
 				con.close(); // 예외 저대로 안발생
 		}
 		return image;
+	}
+
+	@Override
+	public Recipe detail(int recipe_id) throws SQLException {
+		Recipe recipe =null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		// +는 낭비가 심해서 StringBuilder를 이용한다.
+		StringBuilder sb = new StringBuilder();
+		sb.append(" Select recipe_id, book_id, recipe_name, recipe_time, recipe_level, ingredients,writer_id")
+				.append(" from recipe")
+				.append(" WHERE recipe_id = ?");
+		try {
+			con = dataSource.getConnection();
+			String sql = sb.toString();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, recipe_id);
+			result = pstmt.executeQuery();
+			if (result.next()) {
+				recipe = new Recipe();
+				recipe.setRecipe_id(result.getInt("recipe_id"));
+				recipe.setBook_id(result.getInt("book_id"));
+				recipe.setRecipe_name(result.getString("recipe_name"));
+				recipe.setRecipe_time(result.getInt("recipe_time"));
+				recipe.setRecipe_level(result.getInt("recipe_level"));
+				recipe.setIngredients(result.getString("ingredients"));
+				recipe.setWriter_id(result.getString("writer_id"));
+				
+			}
+		} finally {
+			if (result != null)
+				result.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (con != null)
+				con.close(); // 예외 저대로 안발생
+		}
+		return recipe;
+	}
+	
+	public String[] recipeId(String book_id) throws SQLException {
+		String[] recipe_id =new String[2];
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet result = null;
+		// +는 낭비가 심해서 StringBuilder를 이용한다.
+		StringBuilder sb = new StringBuilder();
+		sb.append(" select img_cont_type, img_file_name")
+				.append(" from recipe")
+				.append(" where rownum =1 and book_id = ?")
+				.append(" order by recipe_id");
+		
+		try {
+			con = dataSource.getConnection();
+			String sql = sb.toString();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,book_id);
+			result = pstmt.executeQuery();
+			if(result.next()) {
+				recipe_id[0] = result.getString("img_cont_type");
+				recipe_id[1] = result.getString("img_file_name");
+			}
+		} finally {
+			if (result != null)
+				result.close();
+			if (pstmt != null)
+				pstmt.close();
+			if (con != null)
+				con.close(); // 예외 저대로 안발생
+		}
+		return recipe_id;
 	}
 }

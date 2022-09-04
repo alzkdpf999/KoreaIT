@@ -28,16 +28,18 @@
     <fullyQualifiedTypeName name="namoo.yorizori.service.cookbook.CookbookServiceImpl"/>
     <fullyQualifiedTypeName name="namoo.yorizori.common.factory.ServiceFactoryImpl"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Recipe"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.RecipeDao"/>
     <fullyQualifiedTypeName name="javax.security.auth.message.callback.PrivateKeyCallback.Request"/>
-    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.CookbookDao"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.jdbcDaoFactory"/>
     <fullyQualifiedTypeName name="java.io.File"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcRecipeDao"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.ProcedureDao"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcProcedureDao"/>
-    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcRecipeDao"/>
+    <fullyQualifiedTypeName name="java.lang.System"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.RecipeDao"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Procedure"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.jdbcDaoFactory"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
 </qualifiedTypeNameHistroy>

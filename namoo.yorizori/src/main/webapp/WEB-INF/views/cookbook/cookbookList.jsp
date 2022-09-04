@@ -54,12 +54,14 @@
 						<div class="col mb-5">
 							<div class="card h-70">
 								<!-- book details-->
+								<img class="card-img-top"
+              src="${ctx}/cookbook/image.do?book_id=${book.book_id}" alt="..." />
 								<div class="card-body p-4">
 									<div class="text-center">
 										<!-- book name-->
 										<h5 class="fw-bolder">${book.book_name}</h5>
 										<!-- author-->
-										${book.author_id}
+										${book.author_name}
 									</div>
 								</div>
 								<!-- Product actions-->

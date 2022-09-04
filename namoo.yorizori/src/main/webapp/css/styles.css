@@ -12526,3 +12526,19 @@ a#rec{
 div#my{
 	display: flex;
 }
+#tb{
+	text-align: center;
+}
+#tb tr{
+	vertical-align: middle;
+}
+td ul {
+	list-style-type: decimal;
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+td div{
+	    width: 200px;
+    margin: auto;
+}

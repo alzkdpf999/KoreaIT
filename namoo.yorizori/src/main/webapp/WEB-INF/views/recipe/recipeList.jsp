@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+	<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
@@ -36,6 +36,8 @@
 				<div class="col h2">
 					${book.book_name}<a href="${ctx}/recipe/regist.do?cbid=${param.cbid}"
 						class="btn btn-md btn-primary">레시피 등록</a>
+						<a href="${ctx}/cookbook/list.do"
+						class="btn btn-md btn-primary">목록</a>
 				</div>
 			</div>
 			<div class="row" style="height: 15px">
@@ -61,7 +63,7 @@
 										<!-- book name 이미지 불러올때 쓰기${recipe.recipe_id}-->
 										<h5 class="fw-bolder">${recipe.recipe_name}</h5>
 										<!-- author-->
-										${recipe.recipe_time}
+										${recipe.recipe_time}분(난이도: ${recipe.recipe_level})
 									</div>
 								</div>
 								<!-- Product actions-->
@@ -69,7 +71,7 @@
 									<div class="cook-btn">
 										<a href="" class="btn btn-primary">수정</a 	>
 										<a href="" class="btn btn-primary">삭제</a>
-										<a href="" class="btn btn-primary">상세보기</a>
+										<a href="${ctx}/recipe/detail.do?recipeid=${recipe.recipe_id}" class="btn btn-primary">상세보기</a>
 									</div>
 								</div>
 							</div>

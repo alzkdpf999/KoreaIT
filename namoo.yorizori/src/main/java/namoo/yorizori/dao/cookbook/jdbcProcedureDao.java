@@ -25,14 +25,13 @@ public class jdbcProcedureDao implements ProcedureDao {
 		// +는 낭비가 심해서 StringBuilder를 이용한다.
 		StringBuilder sb = new StringBuilder();
 		sb.append(" INSERT INTO recipe_procedure(recipe_id, seq_num, procedure)")
-		  .append(" values(?,cookseq_seq.NEXTVAL,?)");
+		  .append(" values(recipe_seq.CURRVAL,cookseq_seq.NEXTVAL,?)");
 		
 		try {
 			con = dataSource.getConnection();
 			String sql = sb.toString();
 			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, procedure.getRecipe_id());
-			pstmt.setString(2, procedure.getPcd());
+			pstmt.setString(1, procedure.getPcd());
 			pstmt.executeUpdate(); // sql 실행
 
 		}
@@ -80,7 +79,7 @@ public class jdbcProcedureDao implements ProcedureDao {
 		Procedure procedure = new Procedure();
 		procedure.setRecipe_id(result.getString("recipe_id"));
 		procedure.setSeq_num(result.getInt("seq_num"));
-		procedure.setPcd(result.getString("pcd"));
+		procedure.setPcd(result.getString("procedure"));
 		return procedure;
 	}
 }

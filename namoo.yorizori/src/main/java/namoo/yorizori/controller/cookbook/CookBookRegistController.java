@@ -36,10 +36,10 @@ public class CookBookRegistController extends HttpServlet {
 		
 		// request.setCharacterEncoding("utf-8");
 		String book_name = request.getParameter("book_name");
-		String author_id = request.getParameter("author_id");
+		String Username = request.getParameter("Username");
 		String book_desc = request.getParameter("book_desc");
 		Cookbook cookbook = new Cookbook();
-		cookbook.setAuthor_id(author_id);
+		cookbook.setAuthor_id(Username);
 		cookbook.setBook_desc(book_desc);
 		cookbook.setBook_name(book_name);
 		ServiceFactoryImpl.getInstance().getCookbookService().registerCookbook(cookbook);

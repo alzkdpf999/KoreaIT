@@ -16,9 +16,6 @@ public interface CookbookDao {
 	public  List<Cookbook> view_All() throws SQLException;
 	//제목과 설명 보여주기용
 	public Cookbook view_All(String book_id) throws SQLException;
-	//삭제
-	
-	//수정
 	
 	
 }

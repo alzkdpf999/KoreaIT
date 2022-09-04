@@ -1,4 +1,5 @@
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -27,9 +28,7 @@
 	<section>
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row">
-				<div class="col h2 fw-bold">
-					레시피 상세 
-				</div>
+				<div class="col h2 fw-bold">레시피 상세</div>
 			</div>
 		</div>
 
@@ -40,26 +39,27 @@
 				<table class="table table-bordered border-dark table-light" id="tb">
 					<tr>
 						<td class="table-active">레시피명</td>
-						<td>된장찌개</td>
+						<td>${recipe.recipe_name}</td>
 						<td class="table-active">등록자</td>
-						<td>한식매니아</td>
+						<td>${recipe.writer_id}</td>
 					</tr>
 					<tr>
 						<td class="table-active">조리시간</td>
-						<td>30분</td>
+						<td>${recipe.recipe_time}분</td>
 						<td class="table-active">난이도</td>
-						<td>상</td>
+						<td>${recipe.recipe_level}</td>
 					</tr>
 					<tr>
 						<td class="table-active">재료</td>
-						<td colspan="3">된장, 물, 대파, 돼지고기</td>
+						<td colspan="3">${recipe.ingredients}</td>
 					</tr>
 					<tr>
 						<td class="table-active">조리절차</td>
 						<td colspan="3">
 							<ul>
-								<li>1. 물을 넣고 끓인다.</li>
-								<li>2. 끓는 물에 된장을 푼다.</li>
+								<c:forEach var="proc" items="${proc_list}">
+									<li>${proc.pcd}</li>
+								</c:forEach>
 							</ul>
 
 						</td>
@@ -68,13 +68,16 @@
 						<td class="table-active">조리예</td>
 						<td colspan="3">
 							<div class="text-center">
-								<img class="rounded img-thumbnail" style="width: 50rem"
-									src="../assets/dj.jpg" alt="..." />
+								<img class="card-img-top"
+									src="${ctx}/recipe/image.do?recipeid=${param.recipeid}"
+									alt="..." />
 							</div>
 						</td>
 					</tr>
 				</table>
-<a href="#" class="btn btn-md btn-primary">목록</a>
+				<a href="${ctx}/recipe/list.do?cbid=${recipe.book_id}"
+					class="btn btn-md btn-primary"
+					style="margin-bottom: 20px; width: 146px;">목록</a>
 			</div>
 		</div>
 
