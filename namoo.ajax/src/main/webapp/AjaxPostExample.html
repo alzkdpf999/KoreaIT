@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Ajax 비동기 프로그래밍</title>
+</head>
+<script type="module" defer>
+//서버로부터 비동기 데이터 수신
+function getAjaxMessages() {
+  let xmlHttpRequest = new XMLHttpRequest();
+  //xmlHttpRequest.open("get", "helloAjax.jsp?id=bangry&pw=1111"); //get
+  xmlHttpRequest.open("post", "AjaxParameter.jsp"); //post
+  xmlHttpRequest.setRequestHeader("Content-Type","application/x-www-form-urlencoded")
+  //로밍하면서 이벤트 비동기적으로 보내는 화면 로딩중에 보이는 모습
+  xmlHttpRequest.onreadystatechange = function () {
+    //데이터 수신 완료
+    if (xmlHttpRequest.readyState === 4) {
+      if (xmlHttpRequest.status === 200) {
+        document.querySelector("#message").innerHTML = xmlHttpRequest.responseText;
+      } 
+    } else {// 데이터 수신중
+      document.querySelector("#err").innerHTML = "웹서버로부터 데이터 수신중";
+    }
+  }
+  //xmlHttpRequest.send(); get
+  xmlHttpRequest.send("id=bangry&pw=1111")// post
+}
+document.querySelector("#btn").addEventListener("click", function (event) {
+  getAjaxMessages();
+});	
+</script>
+<body>
+	<form action="helloAjax.jsp">
+		<input type="submit" value="서버에서 데이터 수신(동기 처리)">
+	</form>
+	<button id="btn">서버에서 데이터 수신(Ajax 비동기 통신)</button>
+	<h2>
+		<span id="message"></span>
+	</h2>
+	<h2>
+		<span id="err"></span>
+	</h2>
+</body>
+</html>

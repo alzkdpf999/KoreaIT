@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,32 +10,34 @@
 <script>
 
   //동기 프로그래밍
-console.log(1);
-function delayTask(){
-  const delay = Date.now() + 1000;
-  while(Date.now() < delay){}
-  console.log(2);
-}
-delayTask();
-console.log(3);
-//동기 프로그래밍
+  console.log(1);
+  function delayTask() {
+    const delay = Date.now() + 1000;
+    while (Date.now() < delay) { }
+    console.log(2);
+  }
+  delayTask();
+  console.log(3);
+  //동기 프로그래밍
 
-//callback을 이용한 비동기 프로그래밍
-console.log(1);
-setTimeout(function(){
-  console.log(2); 
-},3000);
-console.log(3);
-//비동기 프로그래밍
+  //callback을 이용한 비동기 프로그래밍
+  console.log(1);
+  setTimeout(function () {
+    console.log(2);
+  }, 3000);
+  console.log(3);
+  //비동기 프로그래밍
 
-//비동기적으로 동작하는 함수 정의
-function printDelay(callback,time){
-  setTimeout(callback,time);
-}
-printDelay(()=> console.log("비동기 실행") ,5000);
-console.log("나는 동기실행");
+  //비동기적으로 동작하는 함수 정의
+  function printDelay(callback, time) {
+    setTimeout(callback, time);
+  }
+  printDelay(() => console.log("비동기 실행"), 5000);
+  console.log("나는 동기실행");
 </script>
+
 <body>
-  
+
 </body>
+
 </html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script type="module" defer>
+ document.querySelector("#button").addEventListener("click", requestFetch);
+
+    document.querySelector("#button").addEventListener("click", requestFetch);
+
+    function requestFetch() {
+      let promise = fetch("helloAjax.jsp");
+      promise.then(response => response.text())//아래의 response와 다른 response임
+      .then(response => document.querySelector("#book-list").innerHTML = response)
+      .catch(error => console.error(error));
+    }
+
+  </script>
+</head>
+
+<body>
+  <button id="button">서버에서 txt 수신</button>
+  <h4></h4>
+  <div id="book-list"></div>
+</body>
+
+</html>

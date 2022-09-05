@@ -12240,28 +12240,28 @@ fieldset:disabled .btn {
 input.id {
   background-image: url(/img/human_gray.png);
   background-size: 25px;
-  background-position: 5px center;
+  background-position: 2px center;
   background-repeat: no-repeat
 }
 
 input.passwd {
   background-image: url(/img/lock_gray.png);
   background-size: 19px;
-  background-position: 7px center;
+  background-position: 3px center;
   background-repeat: no-repeat
 }
 
 input.id:focus {
   background-image: url(/img/human.png);
   background-size: 25px;
-  background-position: 5px center;
+  background-position: 2px center;
   background-repeat: no-repeat
 }
 
 input.passwd:focus {
   background-image: url(/img/lock.png);
   background-size: 19px;
-  background-position: 7px center;
+  background-position: 3px center;
   background-repeat: no-repeat
 }
 
@@ -12376,4 +12376,100 @@ input.passwd:focus {
   line-height: 1em;
   z-index: 3;
   text-shadow: 2px 5px 5px rgb(0 0 0 / 45%);
+}
+.logo {
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: center;
+	width: 163px;
+	height: 40px;
+	background-image: url(/img/cookbook-min.png);
+}
+.login{
+	padding: 6px 0px 6px 24px;
+}
+input.signupId{
+	width: 80%;	
+  float: left;
+
+}
+#dbCheckId{
+  margin-left: 10px;
+}
+small{
+  color: slategray;
+}
+#signup{
+  
+  border-radius: 5px;
+  background-color: #00000063;
+  background-color: #e7e9ed;
+}
+
+
+.moveLink li+li::before{
+	content: '';
+	position: absolute;
+	top: 3px;
+	left: 12px;
+	width: 1px;
+	height: 20px;
+	border-radius: .5px;
+	background-color: black;
+}
+
+.moveLink li {
+	position: relative;
+	display: inline-block;
+}
+
+.moveLink li+li {
+	padding-left: 28px;
+}
+
+.moveLink a {
+	font-size: 20px;
+	font-weight: bold;
+	float: left;
+	display: block;
+	color: black;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+}
+.moveLink a:hover {
+	color: gray;
+}
+.titleContent{
+  height: 150px;
+  display: flex;
+  padding-right: 50px;
+  flex-direction: column;
+  align-items: center;
+}
+ul{
+  margin: 15px auto;
+}
+.moveLink ul{
+  padding-left: 0px;
+    padding-right: 50px;
+    display: flex;
+    justify-content: center;
+}
+.title + ul {
+  list-style: none;
+  padding-left: 0px;
+}
+input[type=text].id{
+  width: 80%;
+  float: left;
+}
+#tb{
+	text-align: center;
+}
+#tb tr{
+	vertical-align: middle;
+}
+#recipe_sequence input[type=text]{
+  margin-bottom: 5px;
 }
