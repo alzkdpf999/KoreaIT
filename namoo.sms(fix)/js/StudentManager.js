@@ -27,6 +27,8 @@ StudentManager.prototype.initList=function(){
   }
 }
 
+
+
 StudentManager.prototype.empty = function () {
   let index;
   for (const num in arguments) {
@@ -38,9 +40,6 @@ StudentManager.prototype.empty = function () {
   }
 
   return index;
-}
-StudentManager.prototype.getStudent = function () {
-  return studentManager;
 }
 StudentManager.prototype.emptyfocus = function (index) {
   let arr = ["ssn", "name", "kr", "en", "ma"];
@@ -72,17 +71,6 @@ StudentManager.prototype.resigsterAfterInit = function () {
   document.querySelector('#ma').value = '';
 }
 
-StudentManager.prototype.sortPrinting = function (id) {
-
-  StudentManager.prototype.sorting(id);
-
-  printList = init_list();
-  list = StudentManager.prototype.list();
-  for (let index = 0; index < list.length; index++) {
-    printList = init_list(list[index]);
-    StudentManager.prototype.searchAll(printList);
-  }
-}
 
 StudentManager.prototype.initTagValue = function (id, val) {
   let arr = ["reg", "remove", "removeall", "sort"];
@@ -158,10 +146,23 @@ StudentManager.prototype.searchAll = function(printList){
 }
 
 
+StudentManager.prototype.sortPrinting = function (id) {
+
+  StudentManager.prototype.sorting(id);
+
+  printList = init_list();
+  list = StudentManager.prototype.list();
+  for (let index = 0; index < list.length; index++) {
+    printList = init_list(list[index]);
+    StudentManager.prototype.searchAll(printList);
+  }
+}
 
 StudentManager.prototype.sorting = function (identy) {
+  console.log(identy);
   switch (identy) {
     case "ssn":
+      console.log(this.array);
       this.array.sort(function (x, y) {
         return x.ssn - y.ssn;
       })
@@ -205,5 +206,15 @@ StudentManager.prototype.sorting = function (identy) {
   }
 }
 
+StudentManager.prototype.sortPrinting = function (id) {
+  console.log(id);
+  StudentManager.prototype.sorting(id);
+  printList = init_list();
+  list = StudentManager.prototype.list();
+  for (let index = 0; index < list.length; index++) {
+    printList = init_list(list[index]);
+    StudentManager.prototype.searchAll(printList);
+  }
+}
 export { StudentManager };
 

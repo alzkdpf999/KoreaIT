@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import namoo.yorizori.common.factory.jdbcDaoFactory;
+import namoo.yorizori.dto.cookbook.Procedure;
 import namoo.yorizori.dto.cookbook.Recipe;
 
 /**
@@ -21,31 +22,39 @@ import namoo.yorizori.dto.cookbook.Recipe;
 @WebServlet("/recipe/regist.do")
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 15)
 public class RecipeRegistController extends HttpServlet {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/views/recipe/recipeForm.jsp").forward(request, response);
+		
+	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(request.getHeader("referer"));
+		String imgFileName =null;
+		String contentType =null;
+		String[] procs = request.getParameterValues("seq_num"); //요리 절차 저장
 		String recipeName = request.getParameter("recipe_name");
 		String writer_id = request.getParameter("writer_id");
 		String recipe_time = request.getParameter("recipe_time");
+		String book_id = request.getParameter("book_id");
 		String recipe_level = request.getParameter("recipe_level");
 		String ingredients = request.getParameter("ingredients");
 		Part part = request.getPart("img_file_name");
-		String imgFileName = part.getSubmittedFileName();
-		long fileSize = part.getSize();
-		String contentType = part.getContentType();
-		System.out.println(recipeName);
-		System.out.println(imgFileName);
-		System.out.println(fileSize);
-		System.out.println(contentType);
-		File file = new File("D:/koreaIt/img/");
+		System.out.println(part);
+		File file = new File("C:/Users/user/Desktop/KIT/img/");
 		if (!file.exists()) {
 			file.mkdirs();
 		}
-
 //		업로드 파일 저장
-		part.write(file.getAbsolutePath() + File.separator + imgFileName);
-		System.out.println("파일 저장 완료..");
+		if(!part.getSubmittedFileName().equals("")) {
+			imgFileName = part.getSubmittedFileName();
+			contentType = part.getContentType();
+			part.write(file.getAbsolutePath() + File.separator + imgFileName);	
+		}else {
+			imgFileName = "cookbook-min.png";
+			contentType = "image/png";
+		}
 		Recipe recipe = new Recipe();
+		recipe.setBook_id(Integer.parseInt(book_id));
 		recipe.setRecipe_name(recipeName);
 		recipe.setWriter_id(writer_id);
 		recipe.setRecipe_level(Integer.parseInt(recipe_level));
@@ -54,7 +63,15 @@ public class RecipeRegistController extends HttpServlet {
 		recipe.setImg_file_name(imgFileName);
 		recipe.setIngredients(ingredients);
 		try {
+			//jdbcDaoFactory.getInstance().getProcedureDao().regist(null)
 			jdbcDaoFactory.getInstance().getRecipeDao().regist(recipe);
+			for(String proc : procs) {
+				Procedure procdure = new Procedure();
+				procdure.setPcd(proc);
+				jdbcDaoFactory.getInstance().getProcedureDao().regist(procdure);
+			}
+			
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,5 +79,5 @@ public class RecipeRegistController extends HttpServlet {
 		response.sendRedirect(request.getContextPath());
 
 	}
-
 }
+

@@ -72,17 +72,7 @@ StudentManager.prototype.resigsterAfterInit = function () {
   document.querySelector('#ma').value = '';
 }
 
-StudentManager.prototype.sortPrinting = function (id) {
 
-  StudentManager.prototype.sorting(id);
-
-  printList = init_list();
-  list = StudentManager.prototype.list();
-  for (let index = 0; index < list.length; index++) {
-    printList = init_list(list[index]);
-    StudentManager.prototype.searchAll(printList);
-  }
-}
 
 StudentManager.prototype.initTagValue = function (id, val) {
   let arr = ["reg", "remove", "removeall", "sort"];
@@ -98,16 +88,13 @@ StudentManager.prototype.initTagValue = function (id, val) {
 
 //학생 등록 
 StudentManager.prototype.add =function(student){
-  if(student == undefined){
-    console.log("학생을 입력해주세요");
-  }else{ 
     this.array.push(student);
-  }
 }
 
 //학생 전체목록 조회
-StudentManager.prototype.list= function(){
-  return this.array.slice(0,this.array.length);// 처음부터 끝까지 
+StudentManager.prototype.list= function(arr){
+  if(!arr) return this.array.slice(0,this.array.length);// 처음부터 끝까지 
+  else return arr.array.slice();
   // return this.array.slice();// 처음부터 끝까지  같은 코딩
 }
 
@@ -159,15 +146,15 @@ StudentManager.prototype.searchAll = function(printList){
 
 
 
-StudentManager.prototype.sorting = function (identy) {
+StudentManager.prototype.sorting = function (identy,arr) {
   switch (identy) {
     case "ssn":
-      this.array.sort(function (x, y) {
+      arr.array.sort(function (x, y) {
         return x.ssn - y.ssn;
       })
       break;
     case "name":
-      this.array.sort(function (x, y) {
+      arr.array.sort(function (x, y) {
         if (x.name.charCodeAt(0) == y.name.charCodeAt(0))
           return x.ssn - y.ssn;
         else return x.name.charCodeAt(0) - y.name.charCodeAt(0);
@@ -175,7 +162,7 @@ StudentManager.prototype.sorting = function (identy) {
       })
       break;
     case "kr":
-      this.array.sort(function (x, y) {
+      arr.array.sort(function (x, y) {
 
         if (x.korean == y.korean)
           return x.ssn - y.ssn;
@@ -183,25 +170,37 @@ StudentManager.prototype.sorting = function (identy) {
       })
       break;
     case "en":
-      this.array.sort(function (x, y) {
+      arr.array.sort(function (x, y) {
         if (x.english == y.english)
           return x.ssn - y.ssn;
         else return y.english - x.english;
       })
       break;
     case "math":
-      this.array.sort(function (x, y) {
+      arr.array.sort(function (x, y) {
         if (x.math == y.math)
           return x.ssn - y.ssn;
         else return y.math - x.math;
       })
       break;
     default:
-      this.array.sort(function (x, y) {
+      arr.array.sort(function (x, y) {
         if (x.getAverage() == y.getAverage())
           return x.ssn - y.ssn;
         else return y.getAverage() - x.getAverage();
       })
+  }
+}
+
+StudentManager.prototype.sortPrinting = function (id,arr) {
+  let init_list =StudentManager.prototype.initList();
+  StudentManager.prototype.sorting(id,arr);
+
+  let printList = init_list();
+  let list = StudentManager.prototype.list(arr);
+  for (let index = 0; index < list.length; index++) {
+    printList = init_list(list[index]);
+    StudentManager.prototype.searchAll(printList);
   }
 }
 

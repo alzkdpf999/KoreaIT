@@ -1,5 +1,8 @@
 package namoo.yorizori.common.factory;
 
+import namoo.yorizori.dao.cookbook.CookbookDao;
+import namoo.yorizori.dao.cookbook.ProcedureDao;
+import namoo.yorizori.dao.cookbook.RecipeDao;
 import namoo.yorizori.dao.user.UserDao;
 
 /**
@@ -10,8 +13,7 @@ import namoo.yorizori.dao.user.UserDao;
 public interface DaoFactory {
 	
 	public UserDao getUserDao();
-	
-//	public BoardDao getBoardDao();
-	
-//	public xxxxDao getXXXDao();
+	public CookbookDao getCookbookDao();
+	public RecipeDao getRecipeDao();
+	public ProcedureDao getProcedureDao();
 }

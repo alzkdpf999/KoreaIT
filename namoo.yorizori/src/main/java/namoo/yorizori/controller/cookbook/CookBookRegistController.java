@@ -28,6 +28,7 @@ public class CookBookRegistController extends HttpServlet {
 		// 로그인 안하면 오류 페이지로 보내주고
 		//일단 보류
 		// 아니면 디스페처로 창 뛰워주기
+		request.getRequestDispatcher("/WEB-INF/views/cookbook/cookbookForm.jsp").forward(request, response);
 	}
 // 등록, 삭제 ,수정 처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,10 +36,10 @@ public class CookBookRegistController extends HttpServlet {
 		
 		// request.setCharacterEncoding("utf-8");
 		String book_name = request.getParameter("book_name");
-		String author_id = request.getParameter("author_id");
+		String Username = request.getParameter("Username");
 		String book_desc = request.getParameter("book_desc");
 		Cookbook cookbook = new Cookbook();
-		cookbook.setAuthor_id(author_id);
+		cookbook.setAuthor_id(Username);
 		cookbook.setBook_desc(book_desc);
 		cookbook.setBook_name(book_name);
 		ServiceFactoryImpl.getInstance().getCookbookService().registerCookbook(cookbook);

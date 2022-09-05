@@ -11,8 +11,10 @@ import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
 
 import namoo.yorizori.dao.cookbook.CookbookDao;
+import namoo.yorizori.dao.cookbook.ProcedureDao;
 import namoo.yorizori.dao.cookbook.RecipeDao;
 import namoo.yorizori.dao.cookbook.jdbcCookbookDao;
+import namoo.yorizori.dao.cookbook.jdbcProcedureDao;
 import namoo.yorizori.dao.cookbook.jdbcRecipeDao;
 import namoo.yorizori.dao.user.UserDao;
 import namoo.yorizori.dao.user.jdbcUserDao;
@@ -33,6 +35,7 @@ public class jdbcDaoFactory implements DaoFactory {
 	private UserDao userDao;
 	private CookbookDao cookbookDao;
 	private RecipeDao recipeDao;
+	private ProcedureDao procedureDao;
 	private jdbcDaoFactory() {
 		loadProperties();
 		BasicDataSource ds = new BasicDataSource();
@@ -89,5 +92,11 @@ public class jdbcDaoFactory implements DaoFactory {
 			recipeDao= new jdbcRecipeDao(dataSource);
 		}
 		return recipeDao;
+	}
+	public ProcedureDao getProcedureDao() {
+		if(procedureDao==null) {
+			procedureDao= new jdbcProcedureDao(dataSource);
+		}
+		return procedureDao;
 	}
 }

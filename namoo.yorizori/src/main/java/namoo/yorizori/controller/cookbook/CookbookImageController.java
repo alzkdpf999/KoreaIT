@@ -19,39 +19,46 @@ import namoo.yorizori.dao.cookbook.RecipeDao;
 /**
  * Servlet implementation class RecipeImageController
  */
-@WebServlet("/recipe/image.do")
-public class RecipeImageController extends HttpServlet {
+@WebServlet("/cookbook/image.do")
+public class CookbookImageController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 //		recipe  테이블에서 파일이름과 컨텐츠 타입 읽어오기
-		String recipeid = request.getParameter("recipeid");
+		String[] image = new String[2];
+		String book_id = request.getParameter("book_id");
 		RecipeDao recipeDao = jdbcDaoFactory.getInstance().getRecipeDao();
 		FileInputStream in = null;
 		OutputStream out = null;
-		
+		String contentType = null;
+		String fileName = null;
 		try {
-			List<String> list = recipeDao.image(Integer.parseInt(recipeid));
-			String fileName = list.get(1);
-			String contentType = list.get(0);
+			image = recipeDao.recipeId(book_id);
+			if (image[0] == null) {
+				contentType = "image/png";
+				fileName = "cookbook-min.png";
+			} else {
+				contentType = image[0];
+				fileName = image[1];
+			}
 			response.setContentType(contentType);
-			
+
 			File file = new File("C:/Users/user/Desktop/KIT/img/" + fileName);
 			in = new FileInputStream(file);
 			out = response.getOutputStream();
 			byte[] buffer = new byte[1024];
 			int count = 0;
-			while((count=in.read(buffer)) != -1) {
-				out.write(buffer, 0, count);			
+			while ((count = in.read(buffer)) != -1) {
+				out.write(buffer, 0, count);
 			}
-		} catch (NumberFormatException e) {
-			System.out.println("숫자");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally {
-			if(out != null) out.close();
-			if(in != null) in.close();
+		} finally {
+			if (out != null)
+				out.close();
+			if (in != null)
+				in.close();
 		}
 	}
 

@@ -17,69 +17,72 @@
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${ctx}/css/styles.css" rel="stylesheet" />
+<script type="module" defer src="${ctx}/js/add.js"></script>
 </head>
-<style>
-.card:after {
-	content: '';
-}
-</style>
 <body>
 	<!-- Navigation-->
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<!-- Header-->
 
 	<!-- Section-->
-	<section class="py-5">
-
+	<section>
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row">
-				<div class="col h2">
-					요리~조리~ <a href="${ctx}/cookbook/regist.do"
-						class="btn btn-md btn-primary">요리책 등록</a>
-				</div>
-			</div>
-			<div class="row" style="height: 15px">
-				<p class="col">
-					요리조리는 함께 참여하여 만들어가는 요리책 서비스 입니다.<br> 요리조리와 함께 나만의 레시피를 요리
-					매니아들과 공유해 보세요.
-				</p>
+				<div class="col h2 fw-bold">레시피 상세</div>
 			</div>
 		</div>
 
-		<div class="container px-4 px-lg-5 mt-5">
+		<div class="container px-4 px-lg-5">
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-				<!-- 요리책 목록 -->
-				<c:forEach var="book" items="${book_list}">
-						<div class="col mb-5">
-							<div class="card h-70">
-								<!-- book details-->
+				<!-- 레시피 상세 -->
+				<table class="table table-bordered border-dark table-light" id="tb">
+					<tr>
+						<td class="table-active">레시피명</td>
+						<td>${recipe.recipe_name}</td>
+						<td class="table-active">등록자</td>
+						<td>${recipe.writer_id}</td>
+					</tr>
+					<tr>
+						<td class="table-active">조리시간</td>
+						<td>${recipe.recipe_time}분</td>
+						<td class="table-active">난이도</td>
+						<td>${recipe.recipe_level}</td>
+					</tr>
+					<tr>
+						<td class="table-active">재료</td>
+						<td colspan="3">${recipe.ingredients}</td>
+					</tr>
+					<tr>
+						<td class="table-active">조리절차</td>
+						<td colspan="3">
+							<ul>
+								<c:forEach var="proc" items="${proc_list}">
+									<li>${proc.pcd}</li>
+								</c:forEach>
+							</ul>
+
+						</td>
+					</tr>
+					<tr>
+						<td class="table-active">조리예</td>
+						<td colspan="3">
+							<div class="text-center">
 								<img class="card-img-top"
-              src="${ctx}/cookbook/image.do?book_id=${book.book_id}" alt="..." />
-								<div class="card-body p-4">
-									<div class="text-center">
-										<!-- book name-->
-										<h5 class="fw-bolder">${book.book_name}</h5>
-										<!-- author-->
-										${book.author_name}
-									</div>
-								</div>
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-									<div class="cook-btn">
-										<a href="" class="btn btn-primary">수정</a>
-										<a href="" class="btn btn-primary">삭제</a>
-										<a href="${ctx}/recipe/list.do?cbid=${book.book_id}" class="btn btn-primary">상세보기</a>
-									</div>
-									
-								</div>
+									src="${ctx}/recipe/image.do?recipeid=${param.recipeid}"
+									alt="..." />
 							</div>
-						</div>
-				</c:forEach>
+						</td>
+					</tr>
+				</table>
+				<a href="${ctx}/recipe/list.do?cbid=${recipe.book_id}"
+					class="btn btn-md btn-primary"
+					style="margin-bottom: 20px; width: 146px;">목록</a>
 			</div>
 		</div>
 
 	</section>
+
 	<!-- Footer-->
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<!-- Bootstrap core JS-->

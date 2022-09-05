@@ -22,8 +22,8 @@ public class jdbcCookbookDao implements CookbookDao{
 		PreparedStatement pstmt = null;
 		// +는 낭비가 심해서 StringBuilder를 이용한다.
 		StringBuilder sb = new StringBuilder();
-		sb.append(" INSERT INTO cookbook(book_id,book_name,book_desc,author_id)")
-		  .append(" VALUES(cookbook_seq.NEXTVAL,?,?,?)");
+		sb.append(" INSERT INTO cookbook(book_id,book_name,book_desc,author_id, author_name)")
+		  .append(" VALUES(cookbook_seq.NEXTVAL,?,?,?,?)");
 		
 		try {
 			con = dataSource.getConnection();
@@ -32,6 +32,7 @@ public class jdbcCookbookDao implements CookbookDao{
 			pstmt.setString(1, cookbook.getBook_name());
 			pstmt.setString(2, cookbook.getBook_desc());
 			pstmt.setString(3, cookbook.getAuthor_id());
+			pstmt.setString(4, cookbook.getAuthor_name());
 			pstmt.executeUpdate(); // sql 실행
 
 		}
@@ -49,7 +50,7 @@ public class jdbcCookbookDao implements CookbookDao{
 		ResultSet result = null;
 		// +는 낭비가 심해서 StringBuilder를 이용한다.
 		StringBuilder sb = new StringBuilder();
-		sb.append(" Select book_id,book_name,book_desc,author_id,view_num")
+		sb.append(" Select book_id,book_name,book_desc,author_id,view_num,author_name")
 				.append(" from cookbook")
 				.append(" ORDER BY book_id");
 		
@@ -81,6 +82,7 @@ public class jdbcCookbookDao implements CookbookDao{
 		book.setBook_name(result.getString("book_name"));
 		book.setBook_desc(result.getString("book_desc"));
 		book.setAuthor_id(result.getString("author_id"));
+		book.setAuthor_name(result.getString("author_name"));
 		book.setView_num(result.getString("view_num"));
 		return book;
 	}
@@ -91,7 +93,7 @@ public class jdbcCookbookDao implements CookbookDao{
 		ResultSet result = null;
 		// +는 낭비가 심해서 StringBuilder를 이용한다.
 		StringBuilder sb = new StringBuilder();
-		sb.append(" Select book_id,book_name,book_desc,author_id,view_num")
+		sb.append(" Select book_id,book_name,book_desc,author_id,view_num,author_name")
 				.append(" from cookbook")
 				.append(" WHERE book_id = ?")
 				.append(" ORDER BY book_id");
@@ -115,6 +117,7 @@ public class jdbcCookbookDao implements CookbookDao{
 		}
 		return cookbook;
 	}
+	
 	
 }
 

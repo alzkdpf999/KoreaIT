@@ -30,7 +30,7 @@
 				<div class="col-lg-12">
 					<div class="col-auto h2">요리책 등록</div>
 					<!-- cookbook Form -->
-					<form method="post" action="${ctx }/cookbook/regist.do">
+					<form method="post" action="${ctx}/cookbook/regist.do">
 						<div class="row mb-3">
 							<label for="book_name" class="col-sm-2 col-form-label">요리책명</label>
 							<div class="col-sm-10">
@@ -41,11 +41,11 @@
 							<label for="author" class="col-sm-2 col-form-label">등록자</label>
 							<div class="col-sm-10">
 								<input type="text" class="form-control" disabled
-									id="book_author" value="${loginUser.getName()}"
-									>
+									id="book_author" value="${loginUser.name}"
+									name = "Username">
 							</div>
 						</div>
-						<input type="hidden" value="${loginUser.getId()}" name="author_id">
+						<input type="hidden" value="${loginUser.id}" name="author_id">
 						<div class="row mb-3">
 							<label for="book_desc" class="col-sm-2 col-form-label">설명</label>
 							<div class="col-sm-10">
@@ -56,7 +56,7 @@
 
 						<div class="row mb-3">
 							<div class="col-md-4">
-								<a href="${ctx}/cookbook/list.do" class="btn btn-primary">목록</a>
+								<a href="${ctx}/cookbook/list.do?cbid=${param.cbid}" class="btn btn-primary">목록</a>
 							</div>
 
 							<div class="col-md-4 offset-md-4" style="text-align: right;">

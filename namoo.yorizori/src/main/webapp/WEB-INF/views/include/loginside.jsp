@@ -39,7 +39,7 @@
 		<div id="my">
 			<form action="${ctx }/user/login.do" method="get" name="logout"
 				class="logout">
-				<h5 id="asid">${loginUser.getName()  }님</h5>
+				<h5 id="asid">${loginUser.name}님</h5>
 				<button type="submit" class="btn btn-warning" id="logout">로그아웃</button>
 			</form>
 
