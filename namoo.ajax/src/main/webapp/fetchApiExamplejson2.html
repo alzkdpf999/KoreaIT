@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script type="module" defer>
+
+    document.querySelector("#button").addEventListener("click", sendJSON);
+
+    function sendJSON() {
+      let user = {
+        id: "bangry",
+        name: "jack",
+        age : 20
+      };
+      const option = {
+        method : "post",
+        headers:{
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+
+      fetch("userJson.jsp",option)
+      .then(response => response.json())//아래의 response와 다른 response임
+        .then(response => {
+					let id =response.id;
+					let name =response.name;
+					let age = response.age;
+          document.querySelector("#book-list").innerHTML = `id : ${id} name : ${name} age : ${age}`;
+        })
+        .catch(error => console.error(error));
+    }
+
+  </script>
+</head>
+
+<body>
+  <button id="button">서버에 JSON 전송</button>
+  <h4></h4>
+  <div id="book-list"></div>
+</body>
+
+</html>
