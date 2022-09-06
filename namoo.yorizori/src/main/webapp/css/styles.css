@@ -12539,6 +12539,9 @@ td ul {
   align-items: center;
 }
 td div{
-	    width: 200px;
-    margin: auto;
+	width: 200px;
+  margin: auto;
+}
+#sequence input[type=text]{
+  margin-bottom: 5px;
 }

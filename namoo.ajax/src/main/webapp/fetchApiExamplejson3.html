@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+  <script type="module" defer>
+
+    document.querySelector("#button").addEventListener("click", registUser);
+
+    function registUser() {
+      let user = {
+        id: "bangry",
+        name: "jack",
+        email : "jack@naver.com"
+      };
+      const option = {
+        method : "post",
+        headers:{
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      }
+
+      fetch("users",option)
+      .then(response => response.json())//아래의 response와 다른 response임
+        .then(response => {
+	printList(response);
+        })
+        .catch(error => console.error(error));
+    }
+function printList(response){
+	console.dir(response);
+						//console.log(response.userList.length);
+document.querySelector("h4").innerHTML ="총 회원 수:"+ response.size;	
+		 var table =
+          "<table style='width: 40%' border='1'>" +
+          "  <tr>" +
+          "    <th>아이디</th>" +
+          "    <th>이름</th>" +
+          "    <th>이메일</th>" +
+          "  </tr>";
+for(let i = 0; i< response.userList.length; i++){
+table += "<tr>";
+          let user = response.userList[i];
+          table +="<td>" + user.id + "</td>";
+          table +="<td>" + user.name + "</td>";
+          table +="<td>" + user.email + "</td>";
+          table += "</tr>";
+}
+table+="</table>";
+//let id =response.id;
+					//let name =response.name;
+					//let email = response.email;
+          document.querySelector("#book-list").innerHTML = table;
+}
+  </script>
+</head>
+
+<body>
+  <button id="button">회원가입 및 결과 수신(JSON)</button>
+  <h4></h4>
+  <div id="book-list"></div>
+</body>
+
+</html>

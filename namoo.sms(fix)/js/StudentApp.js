@@ -65,8 +65,7 @@ document.querySelector("#register").addEventListener("click", function (event) {
   //수학
   ma = document.querySelector('#ma').value;
   let db = studentManager.filter(ssn);
-  console.log(db.array);
-  console.log(typeof db);
+
   if (!ssn || !name || !kr || !en || !ma) { // 둘 중 하나 입력 안할때 
     option = "#errcase";
     document.querySelector(option).setAttribute("style", "display: flex;");
@@ -188,7 +187,6 @@ document.querySelector(".ok").addEventListener("click", function (event) {
   document.querySelector("#errcase").removeChild(h4);
   if (result != '') document.querySelector(result).removeAttribute("disabled");
   let index;
-  console.log(result);
   if (result == "") {
 
     index = studentManager.empty(ssn, name, kr, en, ma);
@@ -276,7 +274,6 @@ document.querySelector("#kr").addEventListener("input", function (event) {
   }
   if (regZero.test(kr)) {
     document.querySelector("#kr").value = kr.replace(regZero, '0');
-    console.log(1);
   }
   if (kr >= 100) document.querySelector("#kr").value = 100;
 })
@@ -318,8 +315,6 @@ document.querySelector("#case").addEventListener('click', function (event) {
     const removeSsn = document.querySelector('#ssn').value;
     let removeStudent = removeManager.removefilter(removeSsn, removeName);
     let test = removeManager.removeStudent(removeSsn, removeName, false);
-    console.log(test);
-    console.log(removeStudent);
     studentManager.array.length = 0;
     for (let index = 0; index <= removeStudent.length; index++) {
       if (removeStudent.length == 0) {

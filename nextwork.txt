@@ -1,1 +1,11 @@
-수정할때 삭제 버튼 하나 만들어서 기본 이미지로 해주고
+먼저 input hidden으로 seq_num을 받아오고 
+seq_num과 pcd를 맵에 넣어주고 
+길이를 비교해서 기존과 같으면 업데이트만 
+기존에 비해 작아지면 남아있는것들은 업데이트 나머지는 exist를 0으로 업데이트
+(방법으로는 input hidden으로 일단 원래 있는 seq_num을 가지고 오고 그것들을 다시
+getparameterValues로 받고 다시 입력창을 getparameterValues로 받아서 
+서로 그 길이를 비교 같으면 해시로 넘겨서 업데이트만 
+기존의 것이 더 크면 작은 getparameterValues만큼만 해시맵에 넣어주고 나머지는 
+Arrays.copyOfRange 을 이용해서 잘라내서 업데이트 
+새로운 것이 더 크면 일단 기존의 것들을 해시맵에 저장해서 업데이트 나머진느 
+Arrays.copyOfRange을 이용해서 인서트
