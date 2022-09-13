@@ -43,7 +43,7 @@ document.querySelector("#signup").addEventListener("submit", function(event) {
 	}
 })
 
-
+/*
 document.querySelector("#dbCheckId").addEventListener("click", function(event) {
 	if (valid.isNull(id.value) || !valid.Id(id.value)) {
 		document.querySelector("#idErr").setAttribute("style", "color: red");
@@ -52,3 +52,31 @@ document.querySelector("#dbCheckId").addEventListener("click", function(event) {
 		idErr.removeAttribute("style");
 	}
 })
+*/
+	document.querySelector("input#id").addEventListener("keyup", function(){
+		if(document.querySelector("input#id").value.length < 6 || document.querySelector("input#id").value.length > 8){
+			document.querySelector("#idErr").innerHTML = "아이디 6~8자 사용가능"
+		}else{		
+		let user = {
+			id : document.querySelector("input#id").value
+		};
+		const option = {
+			method: "post",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(user),
+		}
+		fetch("userCheckAjax.jsp", option)
+			.then(response => response.json())//아래의 response와 다른 response임
+			.then(response => {
+				if(response.result){
+					document.querySelector("#idErr").innerHTML = `사용가능`;
+				}else{
+				document.querySelector("#idErr").innerHTML = `사용불가`;	
+				}
+			})
+			.catch(error => console.log("hi"));
+		}
+	
+	});
