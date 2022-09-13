@@ -9,29 +9,36 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import namoo.yorizori.common.factory.ServiceFactoryImpl;
 import namoo.yorizori.common.factory.jdbcDaoFactory;
 import namoo.yorizori.common.web.YZRuntimeException;
-import namoo.yorizori.dao.cookbook.CookbookDao;
 import namoo.yorizori.dao.cookbook.RecipeDao;
 
 /**
  * Servlet implementation class RecipeListController
  */
-@WebServlet("/recipe/list.do")
+@WebServlet(urlPatterns={"/recipe/list.do","/recipe/my/list.do","/recipe/main/list.do"})
 public class RecipeListController extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RecipeDao recipeDao = jdbcDaoFactory.getInstance().getRecipeDao();
-		CookbookDao cookbookDao = jdbcDaoFactory.getInstance().getCookbookDao();
-		String book_id = request.getParameter("cbid");
-	try {
-			request.setAttribute("book",cookbookDao.view_All(book_id));
-			request.setAttribute("recipe_list", recipeDao.view_All(Integer.parseInt(book_id)));
-			request.getRequestDispatcher("/WEB-INF/views/recipe/recipeList.jsp").forward(request, response);
-	}catch (SQLException e) {
-		throw new YZRuntimeException(e.getMessage());
-	}
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		
+		if(request.getRequestURI().contains("my")) {
+			request.setAttribute("page", request.getContextPath()+"/mybook.do");
+		}else if(request.getRequestURI().contains("main")) {
+			request.setAttribute("page", request.getContextPath()+"/index.do");
+		}else {
+			request.setAttribute("page", request.getContextPath()+"/cookbook/list.do");
+		}
+		
+		//request.setAttribute("local", request.getRequestURL());
+		String book_id = request.getParameter("cbid");
+		ServiceFactoryImpl.getInstance().getCookbookService().cookbookview(book_id);
+		request.setAttribute("book", ServiceFactoryImpl.getInstance().getCookbookService().findCookbookById(book_id));
+		request.setAttribute("recipe_list",
+				ServiceFactoryImpl.getInstance().getCookbookService().findRecipeBybookId(Integer.parseInt(book_id)));
+		request.getRequestDispatcher("/WEB-INF/views/recipe/recipeList.jsp").forward(request, response);
+
 	}
 
 }

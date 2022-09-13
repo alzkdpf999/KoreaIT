@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import namoo.yorizori.common.factory.ServiceFactoryImpl;
 import namoo.yorizori.common.factory.jdbcDaoFactory;
 import namoo.yorizori.common.web.YZRuntimeException;
 import namoo.yorizori.dao.cookbook.CookbookDao;
@@ -21,13 +22,9 @@ public class CookBookListController extends HttpServlet {
        
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		CookbookDao cookbookDao = jdbcDaoFactory.getInstance().getCookbookDao();
-		try {
-			request.setAttribute("book_list",cookbookDao.view_All());  
-			request.getRequestDispatcher("/WEB-INF/views/cookbook/cookbookList.jsp").forward(request, response);// 포워드
-		} catch (SQLException e) {
-			throw new YZRuntimeException(e.getMessage());
-		}
+		request.setAttribute("local", request.getHeader("referer"));
+		request.setAttribute("book_list",ServiceFactoryImpl.getInstance().getCookbookService().findCookbookByAll());  
+		request.getRequestDispatcher("/WEB-INF/views/cookbook/cookbookList.jsp").forward(request, response);// 포워드
 	}
 
 

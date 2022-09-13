@@ -34,8 +34,11 @@
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row">
 				<div class="col h2">
-					요리~조리~ <a href="${ctx}/cookbook/regist.do"
+					요리~조리~ 
+					<c:if test="${!empty loginUser}">
+					<a href="${ctx}/cookbook/regist.do"
 						class="btn btn-md btn-primary">요리책 등록</a>
+						</c:if>
 				</div>
 			</div>
 			<div class="row" style="height: 15px">
@@ -67,8 +70,9 @@
 								<!-- Product actions-->
 								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 									<div class="cook-btn">
-										<a href="" class="btn btn-primary">수정</a>
-										<a href="" class="btn btn-primary">삭제</a>
+									<c:if test="${loginUser.id eq book.author_id }">
+										<a href="${ctx}/cookbook/modify.do?cbid=${book.book_id}" class="btn btn-primary">수정</a>
+										</c:if>
 										<a href="${ctx}/recipe/list.do?cbid=${book.book_id}" class="btn btn-primary">상세보기</a>
 									</div>
 									

@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import namoo.yorizori.common.factory.ServiceFactoryImpl;
 import namoo.yorizori.common.factory.jdbcDaoFactory;
 import namoo.yorizori.dao.cookbook.RecipeDao;
 
@@ -27,22 +28,23 @@ public class CookbookImageController extends HttpServlet {
 //		recipe  테이블에서 파일이름과 컨텐츠 타입 읽어오기
 		String[] image = new String[2];
 		String book_id = request.getParameter("book_id");
-		RecipeDao recipeDao = jdbcDaoFactory.getInstance().getRecipeDao();
 		FileInputStream in = null;
 		OutputStream out = null;
-		String contentType = null;
-		String fileName = null;
-		try {
-			image = recipeDao.recipeId(book_id);
-			if (image[0] == null) {
-				contentType = "image/png";
-				fileName = "cookbook-min.png";
-			} else {
-				contentType = image[0];
-				fileName = image[1];
-			}
-			response.setContentType(contentType);
+		
+		image = ServiceFactoryImpl.getInstance().getCookbookService().findCookimage(book_id);
+		if( image[0] ==null|| image[1]== null) {
+			image[0] ="";
+			image[1] = "";
+		}
+		String contentType = image[0];
+		String fileName = image[1];
+		if (contentType.equals("") || fileName.equals("")) {
+			fileName = "cookbook-min.png";
+			contentType = "image/png";
+		}
+		response.setContentType(contentType);
 
+		try {
 			File file = new File("C:/Users/user/Desktop/KIT/img/" + fileName);
 			in = new FileInputStream(file);
 			out = response.getOutputStream();
@@ -51,9 +53,6 @@ public class CookbookImageController extends HttpServlet {
 			while ((count = in.read(buffer)) != -1) {
 				out.write(buffer, 0, count);
 			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			if (out != null)
 				out.close();

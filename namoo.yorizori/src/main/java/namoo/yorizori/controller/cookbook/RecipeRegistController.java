@@ -2,7 +2,6 @@ package namoo.yorizori.controller.cookbook;
 
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -12,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import namoo.yorizori.common.factory.jdbcDaoFactory;
+import namoo.yorizori.common.factory.ServiceFactoryImpl;
 import namoo.yorizori.dto.cookbook.Procedure;
 import namoo.yorizori.dto.cookbook.Recipe;
 
@@ -24,6 +23,7 @@ import namoo.yorizori.dto.cookbook.Recipe;
 public class RecipeRegistController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		request.setAttribute("local", request.getHeader("referer"));
 		request.getRequestDispatcher("/WEB-INF/views/recipe/recipeForm.jsp").forward(request, response);
 		
 	}
@@ -39,7 +39,6 @@ public class RecipeRegistController extends HttpServlet {
 		String recipe_level = request.getParameter("recipe_level");
 		String ingredients = request.getParameter("ingredients");
 		Part part = request.getPart("img_file_name");
-		System.out.println(part);
 		File file = new File("C:/Users/user/Desktop/KIT/img/");
 		if (!file.exists()) {
 			file.mkdirs();
@@ -50,9 +49,10 @@ public class RecipeRegistController extends HttpServlet {
 			contentType = part.getContentType();
 			part.write(file.getAbsolutePath() + File.separator + imgFileName);	
 		}else {
-			imgFileName = "cookbook-min.png";
-			contentType = "image/png";
+			imgFileName = "";
+			contentType = "";
 		}
+		
 		Recipe recipe = new Recipe();
 		recipe.setBook_id(Integer.parseInt(book_id));
 		recipe.setRecipe_name(recipeName);
@@ -62,21 +62,14 @@ public class RecipeRegistController extends HttpServlet {
 		recipe.setImg_cont_type(contentType);
 		recipe.setImg_file_name(imgFileName);
 		recipe.setIngredients(ingredients);
-		try {
-			//jdbcDaoFactory.getInstance().getProcedureDao().regist(null)
-			jdbcDaoFactory.getInstance().getRecipeDao().regist(recipe);
-			for(String proc : procs) {
-				Procedure procdure = new Procedure();
-				procdure.setPcd(proc);
-				jdbcDaoFactory.getInstance().getProcedureDao().regist(procdure);
-			}
-			
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		
+		ServiceFactoryImpl.getInstance().getCookbookService().registerRecipe(recipe);
+		for(String proc : procs) {
+			Procedure procdure = new Procedure();
+			procdure.setPcd(proc);
+			ServiceFactoryImpl.getInstance().getCookbookService().registerProcedure(procdure);
 		}
-		response.sendRedirect(request.getContextPath());
+		response.sendRedirect(request.getContextPath()+"/recipe/list.do?cbid="+book_id);
 
 	}
 }

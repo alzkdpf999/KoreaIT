@@ -18,7 +18,7 @@
 				<li class="nav-item"><a class="nav-link active"
 					aria-current="page" href="${ctx }">홈</a></li>
 				<li class="nav-item"><a class="nav-link" href="${ctx}/cookbook/list.do">요리책 목록</a></li>
-				<li class="nav-item"><a class="nav-link" href="#!">레시피 목록</a></li>
+				<li class="nav-item"><a class="nav-link" href="${ctx}/recipe/all.do">레시피 목록</a></li>
 				<li class="nav-item"><a class="nav-link" href="${ctx}/movie/reserve/list.do">상영 예정작 </a></li>
 
 			</ul>

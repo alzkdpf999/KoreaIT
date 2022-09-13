@@ -17,6 +17,15 @@ public interface CookbookDao {
 	//제목과 설명 보여주기용
 	public Cookbook view_All(String book_id) throws SQLException;
 	
+	public  List<Cookbook> view_mybook(String author_id) throws SQLException;
+	public void modify(Cookbook cookbook) throws SQLException;
+	
+	
+	public void delete(String book_id) throws SQLException;
+	public void viewup(String book_id) throws SQLException;
+	
+	public List<Cookbook> top4view() throws SQLException;
+	
 	
 }
 
