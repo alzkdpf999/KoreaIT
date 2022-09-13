@@ -12545,3 +12545,32 @@ td div{
 #sequence input[type=text]{
   margin-bottom: 5px;
 }
+input#img_file_name{
+	width: 70%
+}
+div#img{
+	display : flex;
+	justify-content: space-between;
+	margin-top: 0px;
+}
+div.modify{
+	    display: flex;
+    justify-content: flex-end;
+}
+button.bt{
+	margin-right: 10px;
+}
+div.alert{
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  padding-right: 16px;
+	z-index: 4;
+	position: fixed;
+	justify-content: center;
+	top: 30%;
+}
+div.rowdel{
+	display: flex;
+    justify-content: flex-end;
+}

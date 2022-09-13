@@ -42,9 +42,11 @@
 							<div class="col-sm-10">
 								<input type="text" class="form-control" disabled
 									id="book_author" value="${loginUser.name}"
-									name = "Username">
+									>
 							</div>
 						</div>
+						<input type="hidden" value="정충효" name = "test">
+						<input type="hidden" value="${loginUser.name}" name = "Username">
 						<input type="hidden" value="${loginUser.id}" name="author_id">
 						<div class="row mb-3">
 							<label for="book_desc" class="col-sm-2 col-form-label">설명</label>
@@ -54,17 +56,11 @@
 							</div>
 						</div>
 
-						<div class="row mb-3">
-							<div class="col-md-4">
-								<a href="${ctx}/cookbook/list.do?cbid=${param.cbid}" class="btn btn-primary">목록</a>
-							</div>
-
-							<div class="col-md-4 offset-md-4" style="text-align: right;">
-								<button type="submit" class="btn btn-primary">등록</button>
-							</div>
+						<div class="col-12 modify">
+						<button type="submit" class="btn btn-primary bt">등록</button>
+						<a href="${local}" class="btn btn-primary">목록</a>
 						</div>
 					</form>
-
 
 				</div>
 			</div>

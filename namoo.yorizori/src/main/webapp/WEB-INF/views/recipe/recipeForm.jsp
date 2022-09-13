@@ -61,10 +61,11 @@
 
               <div class="col-12" id="sequence">
                 <label for="seq_num1" class="form-label">조리절차</label> <input type="text" class="form-control"
-                  id="seq_num">
-                <input type="text" class="form-control" id="seq_num">
-                <input type="text" class="form-control thrid" id="seq_num">
+                  id="seq_num" name="seq_num">
+                <input type="text" class="form-control" id="seq_num" name="seq_num">
+                <input type="text" class="form-control thrid" id="seq_num" name="seq_num">
               </div>
+              
               <div class="col-12" id="recipe_sequence">
                 <input type="button" class="btn btn-info btn-sm" value="추가" id="add">
                 <input type="button" class="btn btn-info btn-sm" value="삭제" id="del">
@@ -75,14 +76,15 @@
                 <input type="file" class="form-control" id="img_file_name" name="img_file_name">
               </div>
 
-              <div class="col-12">
-                <button type="submit" class="btn btn-primary">등록</button>
-                <a href="${ctx}/recipe/list.do?cbid=${param.cbid}" class="btn btn-success">목록</a>
+              <div class="col-12 modify">
+                <button type="submit" class="btn btn-primary bt">등록</button>
+                <a href="${local }" class="btn btn-success">목록</a>
               </div>
             </form>
           </div>
         </div>
       </div>
+      
     </section>
 
     <!-- Footer-->

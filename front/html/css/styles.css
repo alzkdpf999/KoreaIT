@@ -4816,7 +4816,7 @@ fieldset:disabled .btn {
   }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .navbar-expand-lg {
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -10668,10 +10668,6 @@ fieldset:disabled .btn {
     margin-left: 1rem !important;
   }
 
-  .ms-lg-4 {
-    margin-left: 1.5rem !important;
-  }
-
   .ms-lg-5 {
     margin-left: 3rem !important;
   }
@@ -12241,14 +12237,16 @@ input.id {
   background-image: url(/img/human_gray.png);
   background-size: 25px;
   background-position: 2px center;
-  background-repeat: no-repeat
+  background-repeat: no-repeat;
+  width: 140px;
 }
 
 input.passwd {
   background-image: url(/img/lock_gray.png);
   background-size: 19px;
   background-position: 3px center;
-  background-repeat: no-repeat
+  background-repeat: no-repeat;
+    width: 140px;
 }
 
 input.id:focus {
@@ -12377,14 +12375,7 @@ input.passwd:focus {
   z-index: 3;
   text-shadow: 2px 5px 5px rgb(0 0 0 / 45%);
 }
-.logo {
-	display: inline-block;
-	background-repeat: no-repeat;
-	background-position: center;
-	width: 163px;
-	height: 40px;
-	background-image: url(/img/cookbook-min.png);
-}
+
 .login{
 	padding: 6px 0px 6px 24px;
 }
@@ -12441,7 +12432,6 @@ small{
 	color: gray;
 }
 .titleContent{
-  height: 150px;
   display: flex;
   padding-right: 50px;
   flex-direction: column;
@@ -12460,9 +12450,81 @@ ul{
   list-style: none;
   padding-left: 0px;
 }
-input[type=text].id{
-  width: 80%;
+input[type=text].idCheck{
+  width: 70%;
   float: left;
+}
+div.checkBtn{
+  display: flex;
+  justify-content: center;
+}
+form.checkForm{
+  margin: 30px;
+}
+#Checkid,#cancle{
+  margin: 0px 20px;
+}
+.err::placeholder{
+	color: red;
+}
+h5.result{
+	display: flex;
+	justify-content: center;
+}
+
+div#saveCheck {
+	display: flex;
+	justify-content: space-between;
+	padding: 0px;
+}
+
+#saveCheck span.text {
+	font-size: 11px;
+	margin-left: 2px;
+	color: gray;
+	opacity: 0.8;
+}
+
+.circle {
+	display: inline-block; /* 영역적용가능해짐 */
+	width: 15px;
+	height: 15px;
+	border: 1px solid rgb(118, 118, 118);
+	box-sizing: border-box;
+	border-radius: 10px; /* 모서리둥글게 처리 */
+	position: relative;
+	top: 4px;
+	cursor: pointer; /* 마우스 올렸을때 손모양 처리 */
+	background: no-repeat center/70% url(/img/check_gray.png);
+}
+
+#save:checked+.circle {
+	background-color: #67ca67;
+	border-color: #67ca67;
+	background-image: url(/img/check_white.png);
+}
+
+/* 체크박스는 display:none;을 주면 데이터 처리가 안됨 */
+#save {
+	position: absolute;
+	left: -999em;
+}
+form.logout{
+	display: flex;
+	align-items: center;
+}
+h5#asid{
+	margin: 0px;
+}
+button#logout{
+	margin-left: 10px;
+	margin-right: 10px;
+}
+a#rec{
+	margin-left: 10px;
+}
+div#my{
+	display: flex;
 }
 #tb{
 	text-align: center;
@@ -12470,6 +12532,36 @@ input[type=text].id{
 #tb tr{
 	vertical-align: middle;
 }
-#recipe_sequence input[type=text]{
+td ul {
+	list-style-type: decimal;
+	display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+td div{
+	width: 200px;
+  margin: auto;
+}
+#sequence input[type=text]{
   margin-bottom: 5px;
+}
+input#img_file_name{
+	width: 70%
+}
+div#img{
+	display : flex;
+	justify-content: space-between;
+	margin-top: 0px;
+}
+div.modify{
+	    display: flex;
+    justify-content: flex-end;
+}
+button.bt{
+	margin-right: 10px;
+}
+div.alert{
+  display: none;
+  flex-direction: column;
+  align-items: center;
 }

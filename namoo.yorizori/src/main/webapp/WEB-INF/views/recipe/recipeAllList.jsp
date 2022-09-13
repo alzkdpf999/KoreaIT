@@ -1,3 +1,4 @@
+	
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -17,6 +18,7 @@
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
 <link href="${ctx}/css/styles.css" rel="stylesheet" />
+<script type="module" defer src="${ctx}/js/popControl.js"></script>
 </head>
 <style>
 .card:after {
@@ -34,51 +36,45 @@
 		<div class="container px-4 px-lg-5 mt-5">
 			<div class="row">
 				<div class="col h2">
-					요리~조리~ 
-					<c:if test="${!empty loginUser}">
-					<a href="${ctx}/cookbook/regist.do"
-						class="btn btn-md btn-primary">요리책 등록</a>
-						</c:if>
+					모든 레시피 
 				</div>
-			</div>
-			<div class="row" style="height: 15px">
-				<p class="col">
-					요리조리는 함께 참여하여 만들어가는 요리책 서비스 입니다.<br> 요리조리와 함께 나만의 레시피를 요리
-					매니아들과 공유해 보세요.
-				</p>
 			</div>
 		</div>
 
 		<div class="container px-4 px-lg-5 mt-5">
 			<div
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+				id="delpop">
 				<!-- 요리책 목록 -->
-				<c:forEach var="book" items="${book_list}">
-						<div class="col mb-5">
-							<div class="card h-70">
-								<!-- book details-->
-								<img class="card-img-top"
-              src="${ctx}/cookbook/image.do?book_id=${book.book_id}" alt="..." />
-								<div class="card-body p-4">
-									<div class="text-center">
-										<!-- book name-->
-										<h5 class="fw-bolder">${book.book_name}</h5>
-										<!-- author-->
-										${book.author_name}
-									</div>
+				<c:forEach var="recipe" items="${recipe_list}">
+					<div class="col mb-5">
+						<div class="card h-70">
+							<img class="card-img-top"
+								src="${ctx}/recipe/image.do?recipeid=${recipe.recipe_id}"
+								alt="..." />
+
+							<!-- book details-->
+							<div class="card-body p-4">
+								<div class="text-center">
+									<!-- book name 이미지 불러올때 쓰기${recipe.recipe_id}-->
+									<h5 class="fw-bolder">${recipe.recipe_name}</h5>
+									<!-- author-->
+									${recipe.recipe_time}분(난이도: ${recipe.recipe_level eq 3 ? '상' : (recipe.recipe_level eq 2 ? '중' : '하')})
 								</div>
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-									<div class="cook-btn">
-									<c:if test="${loginUser.id eq book.author_id }">
-										<a href="${ctx}/cookbook/modify.do?cbid=${book.book_id}" class="btn btn-primary">수정</a>
-										</c:if>
-										<a href="${ctx}/recipe/list.do?cbid=${book.book_id}" class="btn btn-primary">상세보기</a>
-									</div>
-									
+							</div>
+							<!-- Product actions-->
+							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+								<div class="cook-btn">
+									<c:if test="${loginUser.id eq recipe.writer_id }">
+										<a href="${ctx}/recipe/modify.do?recipeid=${recipe.recipe_id}"
+											class="btn btn-primary">수정</a>
+									</c:if>
+									<a href="${ctx}/recipe/detail.do?recipeid=${recipe.recipe_id}"
+										class="btn btn-primary">상세보기</a>
 								</div>
 							</div>
 						</div>
+					</div>
 				</c:forEach>
 			</div>
 		</div>

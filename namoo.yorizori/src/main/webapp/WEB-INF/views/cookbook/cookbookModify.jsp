@@ -34,7 +34,7 @@
 						<div class="row mb-3">
 							<label for="book_name" class="col-sm-2 col-form-label">요리책명</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control" id="book_name" name="book_name">
+								<input type="text" class="form-control" id="book_name" name="book_name" value="${book.book_name }">
 							</div>
 						</div>
 						<div class="row mb-3">
@@ -45,23 +45,18 @@
 									>
 							</div>
 						</div>
-						<input type="hidden" value="${loginUser.getId() }" name="author_id">
 						<div class="row mb-3">
 							<label for="book_desc" class="col-sm-2 col-form-label">설명</label>
 							<div class="col-sm-10">
 								<textarea class="form-control" id="book_desc" name="book_desc"
-									rows="5"></textarea>
+									rows="5">${book.book_desc}</textarea>
 							</div>
 						</div>
 
-						<div class="row mb-3">
-							<div class="col-md-4">
-								<a href="${ctx}/cookbook/list.do" class="btn btn-primary">목록</a>
-							</div>
-
-							<div class="col-md-4 offset-md-4" style="text-align: right;">
-								<button type="submit" class="btn btn-primary">수정</button>
-							</div>
+							<input type="hidden" value="${param.cbid }" name="book_id">
+							<div class="col-12 modify" style="text-align: right;">
+								<button type="submit" class="btn btn-primary bt	">수정</button>
+								<a href="${local}" class="btn btn-primary">목록</a>
 						</div>
 					</form>
 

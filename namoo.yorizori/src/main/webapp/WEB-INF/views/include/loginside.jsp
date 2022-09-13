@@ -43,7 +43,7 @@
 				<button type="submit" class="btn btn-warning" id="logout">로그아웃</button>
 			</form>
 
-			<a href="#" class="btn btn-primary" id="book">내 책</a> <a href="#"
+			<a href="${ctx}/mybook.do" class="btn btn-primary" id="book">내 책</a> <a href="${ctx}/myrecipe.do"
 				class="btn btn-primary" id="rec">내 레시피</a>
 		</div>
 	</c:when>

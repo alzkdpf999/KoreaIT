@@ -7,7 +7,6 @@
     <fullyQualifiedTypeName name="namoo.yorizori.dao.user.UserDao"/>
     <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
     <fullyQualifiedTypeName name="javax.servlet.http.Cookie"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.dto.user.User"/>
     <fullyQualifiedTypeName name="org.apache.tomcat.util.net.ApplicationBufferHandler"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dao.user.jdbcUserDao"/>
     <fullyQualifiedTypeName name="org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport"/>
@@ -22,20 +21,14 @@
     <fullyQualifiedTypeName name="java.awt.Checkbox"/>
     <fullyQualifiedTypeName name="namoo.yorizori.service.external.CrawlingService"/>
     <fullyQualifiedTypeName name="javax.sql.DataSource"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Cookbook"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcCookbookDao"/>
     <fullyQualifiedTypeName name="namoo.yorizori.common.web.YZRuntimeException"/>
     <fullyQualifiedTypeName name="namoo.yorizori.service.cookbook.CookbookServiceImpl"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.ServiceFactoryImpl"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Recipe"/>
-    <fullyQualifiedTypeName name="javax.security.auth.message.callback.PrivateKeyCallback.Request"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.CookbookDao"/>
     <fullyQualifiedTypeName name="java.io.File"/>
     <fullyQualifiedTypeName name="java.lang.Exception"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.ProcedureDao"/>
-    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcProcedureDao"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcRecipeDao"/>
     <fullyQualifiedTypeName name="java.lang.System"/>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.RecipeDao"/>
     <fullyQualifiedTypeName name="java.lang.Integer"/>
     <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Procedure"/>
@@ -51,4 +44,24 @@
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="java.io.BufferedReader"/>
     <fullyQualifiedTypeName name="com.google.gson.Gson"/>
+=======
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.ProcedureDao"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.jdbcDaoFactory"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcCookbookDao"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Procedure"/>
+    <fullyQualifiedTypeName name="java.security.Provider.Service"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Recipe"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.RecipeDao"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dao.cookbook.jdbcProcedureDao"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dto.cookbook.Cookbook"/>
+    <fullyQualifiedTypeName name="javax.security.auth.message.callback.PrivateKeyCallback.Request"/>
+    <fullyQualifiedTypeName name="java.sql.SQLException"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.dto.user.User"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="namoo.yorizori.common.factory.ServiceFactoryImpl"/>
+    <fullyQualifiedTypeName name="org.apache.taglibs.standard.tag.common.fmt.ParseDateSupport"/>
+    <fullyQualifiedTypeName name="java.lang.Integer"/>
+>>>>>>> d72b9f1cc58e09641c17291cf5627959287faf80
 </qualifiedTypeNameHistroy>

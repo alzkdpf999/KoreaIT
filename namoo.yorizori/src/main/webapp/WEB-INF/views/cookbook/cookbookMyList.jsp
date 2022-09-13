@@ -73,7 +73,7 @@
 									<c:if test="${loginUser.id eq book.author_id }">
 										<a href="${ctx}/cookbook/modify.do?cbid=${book.book_id}" class="btn btn-primary">수정</a>
 										</c:if>
-										<a href="${ctx}/recipe/list.do?cbid=${book.book_id}" class="btn btn-primary">상세보기</a>
+										<a href="${ctx}/recipe/my/list.do?cbid=${book.book_id}" class="btn btn-primary">상세보기</a>
 									</div>
 									
 								</div>

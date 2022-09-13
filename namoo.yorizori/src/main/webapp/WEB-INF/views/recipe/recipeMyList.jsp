@@ -1,3 +1,4 @@
+	
 <%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
@@ -16,63 +17,57 @@
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
 	rel="stylesheet" />
 <!-- Core theme CSS (includes Bootstrap)-->
-<link href="${ctx }/css/styles.css" rel="stylesheet" />
+<link href="${ctx}/css/styles.css" rel="stylesheet" />
+<script type="module" defer src="${ctx}/js/popControl.js"></script>
 </head>
-<!-- <script type="module" defer src="${ctx}/js/err.js"></script> -->
+<script type="text/javascript">
+</script>
+<style>
+.card:after {
+	content: '';
+}
+</style>
 <body>
 	<!-- Navigation-->
 	<jsp:include page="/WEB-INF/views/include/header.jsp"></jsp:include>
 	<!-- Header-->
-	<header class="bg-dark py-5">
-		<div class="container px-4 px-lg-5 my-5">
-			<div class="text-center text-white">
-				<h1 class="display-4 fw-bolder text-warning">요리조리 요리책 서비스</h1>
-				<p class="lead fw-normal text-white-50 mb-0">세상의 모든 레시피가 여기에</p>
-			</div>
-		</div>
-	</header>
+
 	<!-- Section-->
+		<c:forEach var="list" items="${Hashlist}">
+	
 	<section class="py-5">
-		<div class="content px-4 px-lg-5 mt-5 container">
-		<h3>요리 책</h3>
-			<div
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-				<c:forEach var="book" items="${cooktop}">
-						<div class="col mb-5">
-							<div class="card h-70">
-								<!-- book details-->
-								<img class="card-img-top"
-              src="${ctx}/cookbook/image.do?book_id=${book.book_id}" alt="..." />
-								<div class="card-body p-4">
-									<div class="text-center">
-										<!-- book name-->
-										<h5 class="fw-bolder">${book.book_name}</h5>
-										<!-- author-->
-										${book.author_name}
-									</div>
-								</div>
-								<!-- Product actions-->
-								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-									<div class="cook-btn">
-									<c:if test="${loginUser.id eq book.author_id }">
-										<a href="${ctx}/cookbook/modify.do?cbid=${book.book_id}" class="btn btn-primary">수정</a>
-										</c:if>
-										<a href="${ctx}/recipe/main/list.do?cbid=${book.book_id}" class="btn btn-primary">상세보기</a>
-									</div>
-									
-								</div>
-							</div>
-						</div>
-				</c:forEach>
+
+		<div class="container px-4 px-lg-5 mt-5">
+			<div class="row">
+				<div class="col h2">
+					${list.key.book_name}<a
+						href="${ctx}/recipe/regist.do?cbid=${param.cbid}"
+						class="btn btn-md btn-primary">레시피 등록</a> 
+					<c:if test="${loginUser.id eq list.key.author_id }">
+						<a class="btn btn-md btn-danger" id="bookdel">요리책 삭제</a>
+					</c:if>
+				</div>
+			</div>
+			<div class="row" style="height: 15px">
+				<p class="col">${list.key.book_desc}</p>
 			</div>
 		</div>
-	</section>
-	<section class="py-5">
-		<div class="content px-4 px-lg-5 mt-5 container">
-		<h3>레시피</h3>
+
+		<div class="container px-4 px-lg-5 mt-5">
 			<div
-				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-				<c:forEach var="recipe" items="${recipetop}">
+				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
+				id="delpop">
+				<div class="alert alert-warning alert-dismissible show" role="alert"
+					id="alert">
+					<h4>책을 삭제 하시겠습니까?</h4>
+					<h6>레시피도 모두 삭제됩니다.</h6>
+					<div class="Allbtn">
+						<a href="${ctx}/cookbook/delete.do?cbid=${param.cbid}"
+							class="btn btn-danger del">삭제</a> <a class="btn btn-dark cancle">취소</a>
+					</div>
+				</div>
+				<!-- 요리책 목록 -->
+							<c:forEach var="recipe" items="${list.value}">
 					<div class="col mb-5">
 						<div class="card h-70">
 							<img class="card-img-top"
@@ -102,9 +97,12 @@
 						</div>
 					</div>
 				</c:forEach>
+			
 			</div>
 		</div>
+
 	</section>
+		</c:forEach>
 	<!-- Footer-->
 	<jsp:include page="/WEB-INF/views/include/footer.jsp"></jsp:include>
 	<!-- Bootstrap core JS-->
