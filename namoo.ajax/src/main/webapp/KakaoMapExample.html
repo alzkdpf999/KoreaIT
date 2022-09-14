@@ -15,10 +15,10 @@
 		        level: 7, // 지도의 확대 레벨
 		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
 		    }; 
-        kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+        /* kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
 		console.log('지도에서 클릭한 위치의 좌표는 ' + mouseEvent.latLng.toString() + ' 입니다.');
 	});	
-		// 지도를 생성한다 
+ */		// 지도를 생성한다 
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
     var marker = new kakao.maps.Marker({
 		    position: new kakao.maps.LatLng(37.56682, 126.97865), // 마커의 좌표
