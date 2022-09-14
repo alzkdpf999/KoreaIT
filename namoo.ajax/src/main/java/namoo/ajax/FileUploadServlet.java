@@ -23,12 +23,16 @@ public class FileUploadServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		Part infile = request.getPart("infile");
-		File file = new File("C:/Users/user/Desktop/KIT/img/");
+		
+		File file = new File("D:/koreaIt/img/");
 		String comments = request.getParameter("commnets");
 		System.out.println(infile.getSubmittedFileName());
 		System.out.println(infile.getSize());
-		
+		if (!file.exists()) {
+			file.mkdirs();
+		}
 		infile.write(file.getAbsolutePath() + File.separator + infile.getSubmittedFileName());
+		
 		response.setContentType("text/plain; charset=utf-8");
 		PrintWriter out  =response.getWriter();
 		out.print("파일 정상 업로드 처리 ");

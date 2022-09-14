@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google API USE</title>
+  <script type="module" defer>
+    //구글 API 사용
+    document.querySelector("#booklistBtn").addEventListener("click", booklist);
+    //Google book open API list
+    function booklist() {
+      //option 기본적으로 get
+
+      /* const option = {
+         method: "get",
+         headers: {
+           "Content-Type": "application/json",
+         }
+       }
+     }*/
+      const url = "https://www.googleapis.com/books/v1/volumes?q=java";
+      fetch(url)
+        .then(response => response.json())//아래의 response와 다른 response임
+        .then(response => {
+          
+          printBookList(response);
+        })
+        .catch(error => console.error(error));
+    }
+    function printBookList(response) {
+      console.dir(response);
+      //console.log(response.userList.length);
+      document.querySelector("h4").innerHTML = "검색된 책 갯수:" + response.totalItems;
+      var table =
+        "<table style='width: 40%' border='1'>" +
+        "  <tr>" +
+        "    <th>제목</th>" +
+        "    <th>저자</th>" +
+        "    <th>출판인자</th>" +
+        "  </tr>";
+      for (let i = 0; i < response.items.length; i++) {
+        table += "<tr>";
+        let book = response.items[i];
+        table += "<td>" + book.volumeInfo.title + "</td>";
+        table += "<td>" + book.volumeInfo.authors + "</td>";
+        table += "<td>" + book.publishedDate + "</td>";
+        table += "</tr>";
+      }
+      table += "</table>";
+      //let id =response.id;
+      //let name =response.name;
+      //let email = response.email;
+      document.querySelector("#book-list").innerHTML = table;
+    }
+
+  </script>
+</head>
+
+<body>
+  <button id="booklistBtn">책 목록</button>
+  <h4></h4>
+  <div id="book-list"></div>
+</body>
+
+</html>
