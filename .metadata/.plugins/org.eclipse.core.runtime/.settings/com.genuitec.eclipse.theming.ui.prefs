@@ -1,19 +1,24 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=6b35e56139f86db6a50b88c6477efb1edb50f628
+>>>>>>>=d72b9f1cc58e09641c17291cf5627959287faf80
 PEFontSize=11
 applyBackground=false
 approved.defs.file.last.changed.time=1649720987000
 codetogether.announce.displayed=true
-configurationInstallLocation=/C\:/Users/user/eclipse/java-2022-06/eclipse/
+configurationInstallLocation=/C\:/Users/Administrator/eclipse/jee-2022-03/eclipse/
 ct.reengagement.display.after=1665828052796
 ct.upsell.display.after=1655124115900
 eclipse.preferences.version=1
 iconcolormode=primary
 iconreplacement=true
 includeThemingInOomph=false
+<<<<<<< HEAD
 last.download.attempt.time=1663160719866
 lastConfiguration=1663160711337
+=======
+last.download.attempt.time=1663150301047
+lastConfiguration=1663149626846
+>>>>>>> ccb133f7a58a9bca2ca0e19a5a5fc3fa5a327149
 newinstall=false
 overridePEFontSize=false
 showWelcomeDialog=false

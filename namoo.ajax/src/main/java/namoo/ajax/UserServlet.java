@@ -22,7 +22,7 @@ import com.google.gson.reflect.TypeToken;
 /**
  * 자바에서 json 파싱(object <-> JSOM)
  */
-@WebServlet("/users")
+@WebServlet("/users1")
 public class UserServlet extends HttpServlet {
 	//디비 데이터를 현재 서블릿에서 json으로 필요한 데이터만 뽑는
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
