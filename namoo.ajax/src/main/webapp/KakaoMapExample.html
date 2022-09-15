@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>다음 지도 API</title>
+	<title>카카오 지도 API</title>
 </head>
 <body>
 	<div id="map" style="width:800px;height:500px;"></div>
@@ -11,7 +11,7 @@
 	<script>
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		    mapOption = {
-		        center: new kakao.maps.LatLng(37.57793, 127.01608), // 지도의 중심좌표
+		        center: new kakao.maps.LatLng(37.6543996, 127.0605617), // 지도의 중심좌표
 		        level: 7, // 지도의 확대 레벨
 		        mapTypeId : kakao.maps.MapTypeId.ROADMAP // 지도종류
 		    }; 
@@ -20,10 +20,25 @@
 	});	
  */		// 지도를 생성한다 
 		var map = new kakao.maps.Map(mapContainer, mapOption); 
-    var marker = new kakao.maps.Marker({
-		    position: new kakao.maps.LatLng(37.56682, 126.97865), // 마커의 좌표
+  
+	
+	
+    kakao.maps.event.addListener(map, 'click', function (mouseEvent) {
+		console.log('지도에서 클릭한 위치의 좌표는 ' + mouseEvent.latLng.toString() + ' 입니다.');
+		var marker = new kakao.maps.Marker({
+		    position: new kakao.maps.LatLng(37.6543996, 127.0605617), // 마커의 좌표
 		    map: map // 마커를 표시할 지도 객체
 		});
+	});
+    
+    var customOverlay = new kakao.maps.CustomOverlay({
+		map: map,
+		content: '<div style="padding:0 5px;background:#fff;">HTML코드를 입력해주세요 :D</div>', 
+		position: new kakao.maps.LatLng(37.6543996, 127.0605617), // 커스텀 오버레이를 표시할 좌표
+		xAnchor: 0.5, // 컨텐츠의 x 위치
+		yAnchor: 0 // 컨텐츠의 y 위치
+	});
+
 	</script>
 </body>
 </html>

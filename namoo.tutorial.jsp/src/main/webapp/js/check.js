@@ -43,7 +43,6 @@ document.querySelector("#signup").addEventListener("submit", function(event) {
 	}
 })
 
-/*
 document.querySelector("#dbCheckId").addEventListener("click", function(event) {
 	if (valid.isNull(id.value) || !valid.Id(id.value)) {
 		document.querySelector("#idErr").setAttribute("style", "color: red");
@@ -52,8 +51,7 @@ document.querySelector("#dbCheckId").addEventListener("click", function(event) {
 		idErr.removeAttribute("style");
 	}
 })
-*/
-	document.querySelector("input#id").addEventListener("keyup", function(){
+/*	document.querySelector("input#id").addEventListener("keyup", function(){
 		if(document.querySelector("input#id").value.length < 6 || document.querySelector("input#id").value.length > 8){
 			document.querySelector("#idErr").innerHTML = "아이디 6~8자 사용가능"
 		}else{		
@@ -79,4 +77,4 @@ document.querySelector("#dbCheckId").addEventListener("click", function(event) {
 			.catch(error => console.log("hi"));
 		}
 	
-	});
+	});*/

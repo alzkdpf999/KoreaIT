@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import namoo.yorizori.common.factory.ServiceFactoryImpl;
 import namoo.yorizori.common.factory.jdbcDaoFactory;
+import namoo.yorizori.common.web.YZRuntimeException;
 import namoo.yorizori.dao.cookbook.RecipeDao;
 
 /**
@@ -50,8 +51,8 @@ public class RecipeImageController extends HttpServlet {
 			while((count=in.read(buffer)) != -1) {
 				out.write(buffer, 0, count);			
 			}
-		} catch (NumberFormatException e) {
-			System.out.println("숫자");
+		} catch (Exception e) {
+			throw new YZRuntimeException(e.getMessage());
 		} finally {
 			if(out != null) out.close();
 			if(in != null) in.close();

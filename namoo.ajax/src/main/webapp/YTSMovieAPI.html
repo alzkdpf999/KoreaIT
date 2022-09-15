@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Google API USE</title>
+  <script type="module" defer>
+//CORS = 보안 위배
+    document.querySelector("#booklistBtn").addEventListener("click", movielist);
+    function movielist() {
+
+      const url = "albums";
+      fetch(url)
+        .then(response => response.json())//아래의 response와 다른 response임
+        .then(response => {
+          console.dir(response);
+        })
+        .catch(error => console.error(error));
+    }
+  </script>
+</head>
+
+<body>
+  <button id="booklistBtn">영화 목록</button>
+  <h4></h4>
+  <div id="book-list"></div>
+</body>
+
+</html>

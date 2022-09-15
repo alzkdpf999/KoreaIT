@@ -32,7 +32,6 @@ public class CookBookRegistController extends HttpServlet {
 		String Username = request.getParameter("Username");
 		String book_desc = request.getParameter("book_desc");
 		String UserId = request.getParameter("author_id");
-		System.out.println(request.getAttribute("local"));
 		Cookbook cookbook = new Cookbook();
 		cookbook.setAuthor_name(Username);
 		cookbook.setBook_desc(book_desc);

@@ -16,15 +16,17 @@ import namoo.yorizori.common.factory.ServiceFactoryImpl;
 public class MainviewController extends HttpServlet {
 	@Override
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("cooktop", ServiceFactoryImpl.getInstance().getCookbookService().top4Cookbook());
-		request.setAttribute("recipetop",ServiceFactoryImpl.getInstance().getCookbookService().top4Recipe());
-		request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
+		process(request,response);
 		}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		process(request,response);
 		
+	}
+	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("cooktop", ServiceFactoryImpl.getInstance().getCookbookService().top4Cookbook());
 		request.setAttribute("recipetop",ServiceFactoryImpl.getInstance().getCookbookService().top4Recipe());
 		request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
+		
 	}
 
 }

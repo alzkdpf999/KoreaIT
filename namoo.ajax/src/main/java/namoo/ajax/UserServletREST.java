@@ -45,7 +45,6 @@ public class UserServletREST extends HttpServlet {
 		out.print(objectString);
 		out.close();
 	}
-
 //회원가입 처리(REST)
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
