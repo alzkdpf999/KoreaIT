@@ -29,7 +29,7 @@
           <div class="col-lg-9">
             <div class="col-auto h2">레시피 등록</div>
             <!-- recipe Form -->
-            <form class="row g-3" action="${ctx}/recipe/regist.do" method="post" enctype="multipart/form-data">
+            <form class="row g-3" action="${ctx}/recipe/regist.do" method="post" enctype="multipart/form-data" id="recipeform">
               <div class="col-md-6">
                 <label for="recipe_name" class="form-label">레시피명</label> <input type="text" class="form-control"
                   id="recipe_name" name="recipe_name">
@@ -79,6 +79,7 @@
               <div class="col-12 modify">
                 <button type="submit" class="btn btn-primary bt">등록</button>
                 <a href="${local }" class="btn btn-success">목록</a>
+                <input type="hidden" name="local" value="${local }">
               </div>
             </form>
           </div>

@@ -41,11 +41,8 @@
 			<div class="row">
 				<div class="col h2">
 					${list.key.book_name}<a
-						href="${ctx}/recipe/regist.do?cbid=${param.cbid}"
+						href="${ctx}/recipe/regist.do?cbid=${list.key.book_id}"
 						class="btn btn-md btn-primary">레시피 등록</a> 
-					<c:if test="${loginUser.id eq list.key.author_id }">
-						<a class="btn btn-md btn-danger" id="bookdel">요리책 삭제</a>
-					</c:if>
 				</div>
 			</div>
 			<div class="row" style="height: 15px">
@@ -57,15 +54,7 @@
 			<div
 				class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center"
 				id="delpop">
-				<div class="alert alert-warning alert-dismissible show" role="alert"
-					id="alert">
-					<h4>책을 삭제 하시겠습니까?</h4>
-					<h6>레시피도 모두 삭제됩니다.</h6>
-					<div class="Allbtn">
-						<a href="${ctx}/cookbook/delete.do?cbid=${param.cbid}"
-							class="btn btn-danger del">삭제</a> <a class="btn btn-dark cancle">취소</a>
-					</div>
-				</div>
+				
 				<!-- 요리책 목록 -->
 							<c:forEach var="recipe" items="${list.value}">
 					<div class="col mb-5">
@@ -87,10 +76,10 @@
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="cook-btn">
 									<c:if test="${loginUser.id eq recipe.writer_id }">
-										<a href="${ctx}/recipe/modify.do?recipeid=${recipe.recipe_id}"
+										<a href="${ctx}/recipe/myrecipe/modify.do?recipeid=${recipe.recipe_id}"
 											class="btn btn-primary">수정</a>
 									</c:if>
-									<a href="${ctx}/recipe/detail.do?recipeid=${recipe.recipe_id}"
+									<a href="${ctx}/recipe/myrecipe/detail.do?recipeid=${recipe.recipe_id}"
 										class="btn btn-primary">상세보기</a>
 								</div>
 							</div>

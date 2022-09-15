@@ -58,6 +58,7 @@
 
 						<div class="col-12 modify">
 						<button type="submit" class="btn btn-primary bt">등록</button>
+						<input type="hidden" name="local" value="${local }">
 						<a href="${local}" class="btn btn-primary">목록</a>
 						</div>
 					</form>

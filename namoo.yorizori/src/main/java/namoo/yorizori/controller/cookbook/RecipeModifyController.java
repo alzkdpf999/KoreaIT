@@ -22,22 +22,36 @@ import namoo.yorizori.dto.cookbook.Recipe;
 /**
  * Servlet implementation class RecipeModifyController
  */
-@WebServlet("/recipe/modify.do")
+@WebServlet(urlPatterns={"/recipe/modify.do","/recipe/all/modify.do","/recipe/my/modify.do","/recipe/myrecipe/modify.do","/recipe/main/modify.do"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 15)
 public class RecipeModifyController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("local", request.getHeader("referer"));
+		if(request.getRequestURI().contains("my")) {
+			if(request.getRequestURI().contains("myrecipe")) {
+				request.setAttribute("page", request.getContextPath()+"/myrecipe.do");
+			}else {
+			request.setAttribute("page", request.getContextPath()+"/recipe/my/list.do");
+			}
+		}else if(request.getRequestURI().contains("main")) {
+			request.setAttribute("page", request.getContextPath()+"/recipe/main/list.do");
+		}else if(request.getRequestURI().contains("all")){
+			request.setAttribute("page", request.getContextPath()+"/recipe/all.do");
+		}else {
+			request.setAttribute("page", request.getContextPath()+"/recipe/list.do");
+		}
 		String recipe_id = request.getParameter("recipeid");
 		request.setAttribute("recipe", ServiceFactoryImpl.getInstance().getCookbookService().findRecipeById(Integer.parseInt(recipe_id)));
 		request.setAttribute("proc_list", ServiceFactoryImpl.getInstance().getCookbookService().findProcedureByrecipeid(Integer.parseInt(recipe_id)));
 		request.getRequestDispatcher("/WEB-INF/views/recipe/recipemodify.jsp").forward(request, response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProcedureDao procedureDao = jdbcDaoFactory.getInstance().getProcedureDao();
+		
 		HashMap<String,String> pcdMap = new HashMap<>();
 		String[] procs = request.getParameterValues("seq_num"); //요리 절차 저장
 		String[] nums = request.getParameterValues("num");
+		String local = request.getParameter("local");
 		String recipeName = request.getParameter("recipe_name");
 		String recipe_time = request.getParameter("recipe_time");
 		String recipe_level = request.getParameter("recipe_level");
@@ -52,6 +66,7 @@ public class RecipeModifyController extends HttpServlet {
 		if (!file.exists()) {
 			file.mkdirs();
 		}
+		System.out.println(local);
 		if(!part.getSubmittedFileName().equals("")) {
 			imgFileName = part.getSubmittedFileName();
 			contentType = part.getContentType();
@@ -97,7 +112,8 @@ public class RecipeModifyController extends HttpServlet {
 		recipe.setIngredients(ingredients);
 		recipe.setRecipe_id(Integer.parseInt(recipeid));
 		ServiceFactoryImpl.getInstance().getCookbookService().modifyrecipe(recipe);
-		response.sendRedirect(request.getContextPath()+"/recipe/list.do?cbid="+book_id);
+		
+		response.sendRedirect(local);
 	}
 
 }

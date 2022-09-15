@@ -14,24 +14,22 @@ import namoo.yorizori.dto.cookbook.Cookbook;
 /**
  * Servlet implementation class CookBookRegistController
  */
-@WebServlet("/cookbook/regist.do")
+@WebServlet(urlPatterns={"/cookbook/regist.do","/cookbook/my/regist.do"})
 public class CookBookRegistController extends HttpServlet {
 // 조회
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
 		request.setAttribute("local", request.getHeader("referer"));
 		request.getRequestDispatcher("/WEB-INF/views/cookbook/cookbookForm.jsp").forward(request, response);
 	}
-// 등록, 삭제 ,수정 처리
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		//request.setCharacterEncoding("utf-8");
+		System.out.println(request.getHeader("referer"));
 		String book_name = request.getParameter("book_name");
 		String Username = request.getParameter("Username");
 		String book_desc = request.getParameter("book_desc");
 		String UserId = request.getParameter("author_id");
+		String local = request.getParameter("local");
 		Cookbook cookbook = new Cookbook();
 		cookbook.setAuthor_name(Username);
 		cookbook.setBook_desc(book_desc);
@@ -39,7 +37,8 @@ public class CookBookRegistController extends HttpServlet {
 		cookbook.setAuthor_id(UserId);
 		ServiceFactoryImpl.getInstance().getCookbookService().registerCookbook(cookbook);
 		request.setAttribute("cookbook", cookbook);
-		response.sendRedirect(request.getContextPath()+"/cookbook/list.do");
+		response.sendRedirect(local);
+		//response.sendRedirect(request.getContextPath()+"/cookbook/list.do");
 		
 	}
 

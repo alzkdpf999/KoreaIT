@@ -39,7 +39,7 @@
 		</div>
 
 		<div class="container px-4 px-lg-5">
-			<form class="row g-3" action="${ctx}/recipe/delete.do" method="post">
+			<form class="row g-3" action="${ctx}/recipe/${move}delete.do" method="post">
 				<div
 					class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 rowdel">
 					<!-- 레시피 상세 -->
@@ -84,12 +84,21 @@
 					</table>
 					<input type="hidden" name="recipeid" value="${param.recipeid}">
 					<input type="hidden" name="book_id" value="${recipe.book_id}">
+					<input type="hidden" value="${page}">
 					<div class="col-12 modify">
 						<c:if test="${loginUser.id eq recipe.writer_id }">
-							<button type="submit" class="btn btn-primary bt">삭제</button>
+							<button type="submit" class="btn btn-primary bt" >삭제</button>
 						</c:if>
-						<a href="${local}"
-							class="btn btn-success">목록</a>
+						<c:choose>
+							<c:when
+								test="${page eq '/yorizori/recipe/all.do' }">
+								<a href="${page}" class="btn btn-success">목록</a>
+							</c:when>
+							<c:otherwise>	
+								<a href="${page}?cbid=${recipe.book_id}" class="btn btn-success">목록</a>
+							</c:otherwise>
+						</c:choose>
+
 					</div>
 				</div>
 			</form>

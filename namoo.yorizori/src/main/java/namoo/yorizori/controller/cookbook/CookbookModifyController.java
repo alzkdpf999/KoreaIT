@@ -33,7 +33,7 @@ public class CookbookModifyController extends HttpServlet {
 		cookbook.setBook_desc(book_desc);
 		cookbook.setBook_id(book_id);
 		ServiceFactoryImpl.getInstance().getCookbookService().modifyCookbook(cookbook);
-		response.sendRedirect(request.getContextPath()+"/cookbook/list.do");
+		response.sendRedirect(local);
 	}
 
 }

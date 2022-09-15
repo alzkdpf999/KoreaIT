@@ -56,6 +56,7 @@
 							<input type="hidden" value="${param.cbid }" name="book_id">
 							<div class="col-12 modify" style="text-align: right;">
 								<button type="submit" class="btn btn-primary bt	">수정</button>
+								<input type="hidden" name="local" value=${local }>
 								<a href="${local}" class="btn btn-primary">목록</a>
 						</div>
 					</form>

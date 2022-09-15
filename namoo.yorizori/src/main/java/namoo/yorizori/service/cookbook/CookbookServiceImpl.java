@@ -188,6 +188,7 @@ public class CookbookServiceImpl implements CookbookService{
 	public void delcookbook(String book_id) {
 		try {
 			cookbookDao.delete(book_id);
+			recipeDao.deleteCookbook(book_id);
 		} catch (Exception e) {
 			throw new YZRuntimeException(e.getMessage());
 		}

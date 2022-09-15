@@ -262,6 +262,30 @@ public class jdbcRecipeDao implements RecipeDao {
 		
 	}
 
+	public void deleteCookbook(String book_id) throws SQLException {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		// +는 낭비가 심해서 StringBuilder를 이용한다.
+		StringBuilder sb = new StringBuilder();
+		sb.append(" UPDATE recipe set exist = 0")
+				.append(" where book_id =? and exist = 1");
+
+		try {
+			con = dataSource.getConnection();
+			String sql = sb.toString();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, book_id);
+			
+			pstmt.executeUpdate(); // sql 실행
+
+		} finally {
+			if (pstmt != null)
+				pstmt.close();
+			if (con != null)
+				con.close(); // 예외 저대로 안발생
+		}
+		
+	}
 	@Override
 	public void viewup(String recipe_id) throws SQLException {
 		Connection con = null;

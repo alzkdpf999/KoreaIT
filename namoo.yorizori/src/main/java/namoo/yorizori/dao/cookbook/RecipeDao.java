@@ -21,7 +21,8 @@ public interface RecipeDao {
 	
 	public void delete(String recipe_id) throws SQLException;
 	public void viewup(String recipe_id) throws SQLException;
-	
+	public void deleteCookbook(String book_id) throws SQLException;
 	public List<Recipe> top4view() throws SQLException;
+	
 }
 

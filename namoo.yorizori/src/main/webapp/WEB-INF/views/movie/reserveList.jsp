@@ -29,9 +29,9 @@
 			<div class="row gx-2 gx-lg-3 row-cols0 row-cols-md-1 row-cols-xl-1 justify-content-center">
 				<div class="titleContent col mb-5">
 				
-					<h2 class="title">외부 크롤링 서비스를 이용한 CGV 상영예정장</h2>
-					<table>
-						<c:forEach var="movie" items="${list }" varStatus="state">
+					<h2 class="title">CGV 상영예정장 TOP 10</h2>
+					<table  class="table table-striped-columns table-dark">
+						<c:forEach var="movie" items="${list }" varStatus="state" begin="0" end="9">
 							<tr>
 								<td>${state.count }</td>
 								<td>${movie.title }</td>
