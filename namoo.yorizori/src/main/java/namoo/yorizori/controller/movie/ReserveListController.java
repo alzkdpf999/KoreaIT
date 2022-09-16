@@ -22,6 +22,7 @@ public class ReserveListController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		CrawlingService crawlingService = ServiceFactoryImpl.getInstance().getCrawlingService();
 		List<Movie> list = crawlingService.reserveMovieList();
+		//request.getServletContext().getAttribute("ctx"); 리스너 받아오기
 		System.out.println(list.size());
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("/WEB-INF/views/movie/reserveList.jsp").forward(request, response);
