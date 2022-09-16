@@ -22,21 +22,23 @@ public class RecipeListController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String book_id = request.getParameter("cbid");
 		
 		if(request.getRequestURI().contains("my")) {
 			request.setAttribute("page", request.getContextPath()+"/mybook.do");
+			request.setAttribute("move", "my/");
 		}else if(request.getRequestURI().contains("main")) {
 			request.setAttribute("page", request.getContextPath()+"/index.do");
+			request.setAttribute("move", "main/");
 		}else {
 			request.setAttribute("page", request.getContextPath()+"/cookbook/list.do");
 		}
 		
-		//request.setAttribute("local", request.getRequestURL());
-		String book_id = request.getParameter("cbid");
+
+		
 		ServiceFactoryImpl.getInstance().getCookbookService().cookbookview(book_id);
 		request.setAttribute("book", ServiceFactoryImpl.getInstance().getCookbookService().findCookbookById(book_id));
-		request.setAttribute("recipe_list",
-				ServiceFactoryImpl.getInstance().getCookbookService().findRecipeBybookId(Integer.parseInt(book_id)));
+		request.setAttribute("recipe_list",ServiceFactoryImpl.getInstance().getCookbookService().findRecipeBybookId(Integer.parseInt(book_id)));
 		request.getRequestDispatcher("/WEB-INF/views/recipe/recipeList.jsp").forward(request, response);
 
 	}

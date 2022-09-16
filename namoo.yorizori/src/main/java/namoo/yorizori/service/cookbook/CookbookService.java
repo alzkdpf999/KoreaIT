@@ -35,6 +35,7 @@ public interface CookbookService {
 	public void delrecipe(String recipdeid);
 	public void delcookbook(String book_id);
 	
+	
 	public void cookbookview(String book_id);
 	public void recipeview(String recipeid);
 	

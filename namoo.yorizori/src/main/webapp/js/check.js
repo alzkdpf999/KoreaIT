@@ -53,6 +53,7 @@ const email = document.querySelector("#email").value;
 })
 
 
+
 document.querySelector("#dbCheckId").addEventListener("click", function(event) {
 	const id = document.querySelector(".signupId").value;
 	console.log(!valid.Id(id)+":"+id);

@@ -18,7 +18,7 @@ import namoo.yorizori.dto.cookbook.Recipe;
 /**
  * Servlet implementation class RecipeRegistController
  */
-@WebServlet("/recipe/regist.do")
+@WebServlet(urlPatterns={"/recipe/regist.do","/recipe/my/regist.do","/recipe/myrecipe/regist.do","/recipe/main/regist.do"})
 @MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1, maxFileSize = 1024 * 1024 * 10, maxRequestSize = 1024 * 1024 * 15)
 public class RecipeRegistController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,6 +38,7 @@ public class RecipeRegistController extends HttpServlet {
 		String book_id = request.getParameter("book_id");
 		String recipe_level = request.getParameter("recipe_level");
 		String ingredients = request.getParameter("ingredients");
+		String local = request.getParameter("local");
 		Part part = request.getPart("img_file_name");
 		File file = new File("C:/Users/user/Desktop/KIT/img/");
 		if (!file.exists()) {
@@ -69,7 +70,8 @@ public class RecipeRegistController extends HttpServlet {
 			procdure.setPcd(proc);
 			ServiceFactoryImpl.getInstance().getCookbookService().registerProcedure(procdure);
 		}
-		response.sendRedirect(request.getContextPath()+"/recipe/list.do?cbid="+book_id);
+		response.sendRedirect(local);
+		//response.sendRedirect(request.getContextPath()+"/recipe/list.do?cbid="+book_id);
 
 	}
 }

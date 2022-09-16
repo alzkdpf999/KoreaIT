@@ -1,4 +1,4 @@
-document.querySelector("div.h2").addEventListener("click", function(event) {
+document.querySelector("body").addEventListener("click", function(event) {
 	if (event.target && event.target.id == "bookdel") {
 		document.querySelector("div#alert").setAttribute("style", "display:flex");
 	}

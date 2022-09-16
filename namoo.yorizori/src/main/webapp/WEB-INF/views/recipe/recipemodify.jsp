@@ -37,7 +37,7 @@
 					<div class="col-auto h2">레시피 등록</div>
 					<!-- recipe Form -->
 					<form class="row g-3" action="${ctx}/recipe/modify.do"
-						method="post" enctype="multipart/form-data">
+						method="post" enctype="multipart/form-data" id="recipeform">
 						<div class="col-md-6">
 							<label for="recipe_name" class="form-label">레시피명</label> <input
 								type="text" class="form-control" id="recipe_name"
@@ -101,11 +101,20 @@
 						<input type="hidden" name="book_id" value="${recipe.book_id }">
 						<div class="col-12 modify">
 							<button type="submit" class="btn btn-primary bt">수정</button>
-							<a href="${ctx}/recipe/list.do?cbid=${recipe.book_id}"
-								class="btn btn-success">목록</a> <input type="hidden"
+						<c:choose>
+							<c:when
+								test="${page eq '/yorizori/recipe/all.do' }">
+								<a href="${page}" class="btn btn-success">목록</a>
+							</c:when>
+							<c:otherwise>	
+								<a href="${page}?cbid=${recipe.book_id}" class="btn btn-success">목록</a>
+							</c:otherwise>
+						</c:choose>
+						<input type="hidden"
 								name="imgFileName" value="${recipe.img_file_name}"> <input
 								type="hidden" name="contentType" value="${recipe.img_cont_type}">
 						</div>
+						<input type="hidden" name="local" value=${local }>
 					</form>
 				</div>
 			</div>
@@ -119,7 +128,7 @@
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- Core theme JS-->
-	<script src="${ctx }/js/scripts.js"></script>
+	<script src="${ctx}/js/scripts.js"></script>
 </body>
 
 </html>

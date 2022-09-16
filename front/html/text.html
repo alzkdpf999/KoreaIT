@@ -10,23 +10,248 @@
     <link href="/css/styles.css" rel="stylesheet" />
 </head>
 <body>
-    <form method="post" action="userCheck.jsp" class="checkForm">
-        <div class="mb-3">
-            <label for='id' class='form-label'>아이디</label>
-            <div id="ui">
-                <input type="text" class="form-control idCheck" id="id" name="id" placeholder="Id" value="${id}"
-                    style="color:green">
-                <button type="submit" class="check btn btn-primary" id="dbCheckId" >중복체크</button>
-            </div>
-        </div>
+    <div class="titleContent col mb-5">
+				
+        <h2 class="title">외부 크롤링 서비스를 이용한 CGV 상영예정장</h2>
+        <table>
+            
+                <tbody><tr>
+                    <td>1</td>
+                    <td>공조2-인터내셔날</td>
+                    <td>예매율 39.3%</td>
+                </tr>
+            
+                <tr>
+                    <td>2</td>
+                    <td>늑대사냥</td>
+                    <td>예매율 10.0%</td>
+                </tr>
+            
+                <tr>
+                    <td>3</td>
+                    <td>탑건-매버릭</td>
+                    <td>예매율 5.9%</td>
+                </tr>
+            
+                <tr>
+                    <td>4</td>
+                    <td>알라딘</td>
+                    <td>예매율 5.8%</td>
+                </tr>
+            
+                <tr>
+                    <td>5</td>
+                    <td>아바타 리마스터링</td>
+                    <td>예매율 5.8%</td>
+                </tr>
+            
+                <tr>
+                    <td>6</td>
+                    <td>육사오</td>
+                    <td>예매율 5.2%</td>
+                </tr>
+            
+                <tr>
+                    <td>7</td>
+                    <td>인생은 뷰티풀: 비타돌체</td>
+                    <td>예매율 3.5%</td>
+                </tr>
+            
+                <tr>
+                    <td>8</td>
+                    <td>시맨틱 에러-더 무비</td>
+                    <td>예매율 3.4%</td>
+                </tr>
+            
+                <tr>
+                    <td>9</td>
+                    <td>극장판 엄마 까투리-도시로 간 까투리 가족</td>
+                    <td>예매율 3.2%</td>
+                </tr>
+            
+                <tr>
+                    <td>10</td>
+                    <td>드래곤볼 슈퍼: 슈퍼 히어로</td>
+                    <td>예매율 2.3%</td>
+                </tr>
+            
+                <tr>
+                    <td>11</td>
+                    <td>귀멸의 칼날-장구저택 편</td>
+                    <td>예매율 1.6%</td>
+                </tr>
+            
+                <tr>
+                    <td>12</td>
+                    <td>인생은 아름다워</td>
+                    <td>예매율 1.5%</td>
+                </tr>
+            
+                <tr>
+                    <td>13</td>
+                    <td>비스트</td>
+                    <td>예매율 1.5%</td>
+                </tr>
+            
+                <tr>
+                    <td>14</td>
+                    <td>홈리스</td>
+                    <td>예매율 1.3%</td>
+                </tr>
+            
+                <tr>
+                    <td>15</td>
+                    <td>둠둠</td>
+                    <td>예매율 1.2%</td>
+                </tr>
+            
+                <tr>
+                    <td>16</td>
+                    <td>오! 마이 고스트</td>
+                    <td>예매율 1.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>17</td>
+                    <td>극장판 5등분의 신부</td>
+                    <td>예매율 0.9%</td>
+                </tr>
+            
+                <tr>
+                    <td>18</td>
+                    <td>9명의 번역가</td>
+                    <td>예매율 0.8%</td>
+                </tr>
+            
+                <tr>
+                    <td>19</td>
+                    <td>헌트</td>
+                    <td>예매율 0.7%</td>
+                </tr>
+            
+                <tr>
+                    <td>20</td>
+                    <td>극장판 5등분의 신부</td>
+                    <td>예매율 0.9%</td>
+                </tr>
+            
+                <tr>
+                    <td>21</td>
+                    <td>귀멸의 칼날-나타구모산 편</td>
+                    <td>예매율 0.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>22</td>
+                    <td>귀멸의 칼날-주합회의·나비저택 편</td>
+                    <td>예매율 0.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>23</td>
+                    <td>[아트&amp;다이닝] 몽 생 미셸, 신비로운 천혜의 요새</td>
+                    <td>예매율 0.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>24</td>
+                    <td>[콘서트&amp;다이닝]피카소의 식탁</td>
+                    <td>예매율 0.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>25</td>
+                    <td>[요가&amp;브런치]내 몸을 느껴보는 테라피 요가</td>
+                    <td>예매율 0.0%</td>
+                </tr>
+            
+                <tr>
+                    <td>26</td>
+                    <td>EBS친구들 씽씽 댄스파티</td>
+                    <td>예매율 0.0%</td>
+                </tr>
+            
+                <tr>
+                    <td>27</td>
+                    <td>[사이다경제_사계강의(가을)] 취득부터 처분까지, 부동산 세금의 모든 것</td>
+                    <td>예매율 0.0%</td>
+                </tr>
+            
+                <tr>
+                    <td>28</td>
+                    <td>늑대사냥</td>
+                    <td>예매율 10.0%</td>
+                </tr>
+            
+                <tr>
+                    <td>29</td>
+                    <td>아바타 리마스터링</td>
+                    <td>예매율 5.8%</td>
+                </tr>
+            
+                <tr>
+                    <td>30</td>
+                    <td>프린세스 아야</td>
+                    <td>예매율 0.2%</td>
+                </tr>
+            
+                <tr>
+                    <td>31</td>
+                    <td>썬더버드</td>
+                    <td>예매율 0.0%</td>
+                </tr>
+            
+                <tr>
+                    <td>32</td>
+                    <td>[씨네뮤지엄] 미덕이 넘치는 바로크 미술의 거장, 루벤스</td>
+                    <td>예매율 0.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>33</td>
+                    <td>달이 지는 밤</td>
+                    <td>예매율 0.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>34</td>
+                    <td>아이의 노랫소리를 들려줘</td>
+                    <td>예매율 0.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>35</td>
+                    <td>독립보행1(서울인디애니페스트2022)</td>
+                    <td>예매율 0.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>36</td>
+                    <td>독립보행2(서울인디애니페스트2022)</td>
+                    <td>예매율 0.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>37</td>
+                    <td>새벽비행1(서울인디애니페스트2022)</td>
+                    <td>예매율 0.1%</td>
+                </tr>
+            
+                <tr>
+                    <td>38</td>
+                    <td>개막작 섹션(서울인디애니페스트2022)</td>
+                    <td>예매율 0.0%</td>
+                </tr>
+            
+                <tr>
+                    <td>39</td>
+                    <td>독립보행3(서울인디애니페스트2022)</td>
+                    <td>예매율 0.0%</td>
+                </tr>
+            
+        </tbody></table>
 
-        <div class="checkBtn">
-            <button type="button" name="CheckId" id="CheckId" class="dbCheckId btn btn-success">사용하기</button>
-            <button type="button" name="cancle" id="cancle" class="cancle btn btn-danger">취소</button>
-        </div>
-    </form>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/scripts.js"></script>
+    </div>
 </body>
 
 </html>

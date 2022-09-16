@@ -54,9 +54,6 @@
 								<!-- Product actions-->
 								<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 									<div class="cook-btn">
-									<c:if test="${loginUser.id eq book.author_id }">
-										<a href="${ctx}/cookbook/modify.do?cbid=${book.book_id}" class="btn btn-primary">수정</a>
-										</c:if>
 										<a href="${ctx}/recipe/main/list.do?cbid=${book.book_id}" class="btn btn-primary">상세보기</a>
 									</div>
 									
@@ -90,12 +87,8 @@
 							</div>
 							<!-- Product actions-->
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-								<div class="cook-btn">
-									<c:if test="${loginUser.id eq recipe.writer_id }">
-										<a href="${ctx}/recipe/modify.do?recipeid=${recipe.recipe_id}"
-											class="btn btn-primary">수정</a>
-									</c:if>
-									<a href="${ctx}/recipe/detail.do?recipeid=${recipe.recipe_id}"
+								<div class="cook-btn">	
+									<a href="${ctx}/recipe/main/detail.do?recipeid=${recipe.recipe_id}"
 										class="btn btn-primary">상세보기</a>
 								</div>
 							</div>

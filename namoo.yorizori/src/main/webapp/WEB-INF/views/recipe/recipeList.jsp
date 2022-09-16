@@ -87,10 +87,10 @@
 							<div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
 								<div class="cook-btn">
 									<c:if test="${loginUser.id eq recipe.writer_id }">
-										<a href="${ctx}/recipe/modify.do?recipeid=${recipe.recipe_id}"
+										<a href="${ctx}/recipe/${move}modify.do?recipeid=${recipe.recipe_id}"
 											class="btn btn-primary">수정</a>
 									</c:if>
-									<a href="${ctx}/recipe/detail.do?recipeid=${recipe.recipe_id}"
+									<a href="${ctx}/recipe/${move}detail.do?recipeid=${recipe.recipe_id}"
 										class="btn btn-primary">상세보기</a>
 								</div>
 							</div>
