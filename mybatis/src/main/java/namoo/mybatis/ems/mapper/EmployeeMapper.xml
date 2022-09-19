@@ -53,6 +53,7 @@
 		WHERE  salary BETWEEN #{min} AND #{max} 
 		ORDER BY salary DESC
 		<!-- WHERE salary &gt;= #{min} AND salary &lt;= #{max} -->
+		<!-- 비교연산은 위에걸로 써야함 꺽새는 에러로 나옴 -->
 	</select>
 	
 	<!-- 성(last_name)으로 사원 검색(like 검색) -->
@@ -70,16 +71,17 @@
 	
 	<!-- HashMap을 이용한 검색 : 조인 시 사용 -->
 	<select id="findByJoin"   resultType="map">
-		SELECT e.employee_id     "id", 
-		       e.first_name      "firstName", 
-		       e.last_name       "lastName", 
-		       d.department_name "departmentName" 
+		SELECT e.employee_id     "id",  <!--키1 -->
+		       e.first_name      "firstName", <!--키2 -->
+		       e.last_name       "lastName", <!--키3 -->
+		       d.department_name "departmentName"  <!--키4 -->
 		FROM   employees e 
 		       JOIN departments d 
 		         ON e.department_id = d.department_id 
 	</select>
 	
 	<!-- 자주 사용되고, 자바빈의 속성이름과 테이블 컬럼이름이 다른 경우 resultMap 선언 -->
+	<!-- 보통 위에 선언함 -->
 	<resultMap  id="employee" type="namoo.mybatis.ems.dto.Employee">
 		<result property="id"           column="employee_id"/>
 		<result property="email"        column="email"/>
