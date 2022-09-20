@@ -8,7 +8,8 @@ import org.apache.ibatis.annotations.Select;
 
 import namoo.mybatis.ems.dto.Employee;
 
-/**
+/** 요즘 추세 xml 자체도 안만듬 하
+ * 하지만 호불호 갈림
  * Annotation으로 SQL 매핑
  */
 public interface EmployeeMapper2 {

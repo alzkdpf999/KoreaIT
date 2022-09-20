@@ -133,7 +133,7 @@
 	
 	<!-- 사원 정보 수정(set, if 태그를 이용한 동적 SQL) -->
 	<update id="update2" parameterType="Employee">
-		UPDATE employees
+		UPDATE emp
 		<set>
 	        <if test="firstName != null">first_name = #{firstName},</if>
 	        <if test="lastName != null">last_name = #{lastName},</if>

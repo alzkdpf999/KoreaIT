@@ -1,6 +1,5 @@
 import { Student } from "./Student.js";
 import { StudentManager } from "./StudentManager.js";
-import { Careful } from "./Careful.js"
 function StudentApp() {
 
 }

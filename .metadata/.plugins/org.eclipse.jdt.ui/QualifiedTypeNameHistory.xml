@@ -1,40 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="java.awt.image.RescaleOp"/>
-    <fullyQualifiedTypeName name="com.google.gson.Gson"/>
-    <fullyQualifiedTypeName name="java.io.PrintWriter"/>
-    <fullyQualifiedTypeName name="org.apache.catalina.connector.Response"/>
-    <fullyQualifiedTypeName name="java.net.URL"/>
-    <fullyQualifiedTypeName name="java.net.HttpURLConnection"/>
-    <fullyQualifiedTypeName name="java.io.BufferedReader"/>
-    <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
-    <fullyQualifiedTypeName name="java.io.InputStreamReader"/>
-    <fullyQualifiedTypeName name="javax.security.auth.message.callback.PrivateKeyCallback.Request"/>
-    <fullyQualifiedTypeName name="org.apache.taglibs.standard.tag.common.fmt.RequestEncodingSupport"/>
-<<<<<<< HEAD
-    <fullyQualifiedTypeName name="java.util.HashMap"/>
-    <fullyQualifiedTypeName name="namoo.mybatis.ems.dto.Employee"/>
-=======
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeEach"/>
-    <fullyQualifiedTypeName name="namoo.junit.SomeServiceImpl"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.AfterEach"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeAll"/>
-    <fullyQualifiedTypeName name="java.lang.Thread"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Timeout"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.params.ParameterizedTest"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.params.provider.ValueSource"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.RepeatedTest"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.RepetitionInfo"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.TestMethodOrder"/>
-    <fullyQualifiedTypeName name="java.lang.reflect.Method"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.MethodOrderer"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.MethodOrderer.MethodName"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Order"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Disabled"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Assertions"/>
-    <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
-    <fullyQualifiedTypeName name="java.lang.System"/>
->>>>>>> 8bf551884922870fe120560df36f05ec8d67e8c7
+    <fullyQualifiedTypeName name="namoo.mybatis.ems.mapper.EmployeeMapper"/>
+    <fullyQualifiedTypeName name="namoo.mybatis.ems.dto.Employee"/>
+    <fullyQualifiedTypeName name="org.junit.jupiter.api.Disabled"/>
 </qualifiedTypeNameHistroy>

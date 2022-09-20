@@ -22,7 +22,7 @@ public interface EmployeeMapper {
 	public void create(Employee employee);
 	
 	/** 사원 정보 수정 */
-	public void update(int id , String firstName , String lastName , int salary);
+	public void update2(Employee employee);
 	
 	/** 사원 정보 삭제 */
 	public void delete(int id);

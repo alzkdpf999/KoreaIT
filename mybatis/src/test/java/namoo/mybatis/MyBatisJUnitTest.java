@@ -32,9 +32,9 @@ public class MyBatisJUnitTest {
 			e.printStackTrace();
 		}
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-		sqlSession = sqlSessionFactory.openSession(); // Auto Commit
-		//sqlSession = sqlSessionFactory.openSession(false); //트랜잭션을 직접 관리할때 이렇게함
-		sqlSession = sqlSessionFactory.openSession();
+		sqlSession = sqlSessionFactory.openSession(); // Auto Commit 아님 트랜잭션을 직접 관리할때 이렇게함
+		//sqlSession = sqlSessionFactory.openSession(true); // Auto Commit
+		sqlSession = sqlSessionFactory.openSession();//default false
 		System.out.println("sqlSession 생성 완료..");
 	}
 	
@@ -137,7 +137,8 @@ public class MyBatisJUnitTest {
 	
 	@Test
 	@Disabled
-	public void test9(){
+	public void test9(){ 
+		//급여만 변경
 		Employee emp = new Employee();
 		emp.setId(200);
 		emp.setFirstName("볶이");
@@ -147,8 +148,23 @@ public class MyBatisJUnitTest {
 		sqlSession.commit();
 		System.out.println("사원정보 수정 완료");
 	}
+	@Test
+	@Disabled
+	public void test9_2(){
+		//firstName, LastName, salary 모두 변경
+		Employee emp = new Employee();
+		emp.setId(200);
+		emp.setFirstName("볶이");
+		emp.setLastName("떡");
+		emp.setSalary(70000);
+		sqlSession.update(namespace + ".update2", emp);
+		sqlSession.commit();
+		System.out.println("사원정보 수정 완료");
+	}
+	
 	
 	@Test
+	@Disabled
 	public void test10(){
 		System.out.println("==================== 검색타입별 사원 검색(동적SQL 활용) ========================");
 		Map<String, Object> searchParams = new HashMap<String, Object>();

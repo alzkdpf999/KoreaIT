@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import namoo.mybatis.ems.dto.Employee;
@@ -32,6 +33,7 @@ public class EmployeeMapperTest2 {
 	}
 	
 	@Test
+	@Disabled
 	public void test1(){
 		System.out.println("==================== 전체사원 조회 ========================");
 		EmployeeMapper2 mapper = sqlSession.getMapper(EmployeeMapper2.class);
@@ -42,6 +44,7 @@ public class EmployeeMapperTest2 {
 	}
 	
 	@Test
+//	@Disabled
 	public void test2(){
 		System.out.println("==================== 사원번호로 사원조회 ========================");
 		EmployeeMapper2 mapper = sqlSession.getMapper(EmployeeMapper2.class);
