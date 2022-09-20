@@ -33,7 +33,7 @@ public class MyBatisJUnitTest {
 		}
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
 		sqlSession = sqlSessionFactory.openSession(); // Auto Commit
-		//sqlSession = sqlSessionFactory.openSession(false);
+		//sqlSession = sqlSessionFactory.openSession(false); //트랜잭션을 직접 관리할때 이렇게함
 		sqlSession = sqlSessionFactory.openSession();
 		System.out.println("sqlSession 생성 완료..");
 	}
