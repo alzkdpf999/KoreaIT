@@ -11,6 +11,7 @@ public interface StudentMapper {
 	//전체 학생
 	public List<Student> findAll();
 	
+	
 	//학번 조회
 	public Student findBySsn(int ssn);
 	
@@ -19,7 +20,7 @@ public interface StudentMapper {
 	//동적 검색
 	public List<Student> search(Map<String, Object> map);
 	//학생 등록
-	public void create(Student employee);
+	public void create(Student student);
 	
 	//학생 삭제
 	public void delete(Map<String,Object> map);
@@ -32,5 +33,6 @@ public interface StudentMapper {
 	
 	public List<Student> listByPage(Params params);
 	public int countByPage(Params params);
+	
 	
 }

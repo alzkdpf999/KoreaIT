@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -54,6 +55,11 @@
         <ul>
           <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
         </ul>
+        <c:forEach var="student" items="${list}">
+          <ul>
+          <li>${student.ssn}</li><li>${student.name}</li><li>${student.korean}</li><li>${student.english}</li><li>${student.math}</li><li>${10}</li>
+          </ul>
+          </c:forEach>
       </div>
       <div class="pagination"> 
         <a href="#">&laquo;</a> <a href="#">1</a> <a class="active"

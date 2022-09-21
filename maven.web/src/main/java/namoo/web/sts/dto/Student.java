@@ -55,6 +55,9 @@ public class Student {
 		return "Student [ssn=" + ssn + ", name=" + name + ", korean=" + korean + ", math=" + math + ", english="
 				+ english + "]";
 	}
+	public int avg() {
+		return (this.english+ this.math+this.korean)/3; 
+	}
 	
 	
 	

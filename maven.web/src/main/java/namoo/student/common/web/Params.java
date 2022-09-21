@@ -8,26 +8,35 @@ package namoo.student.common.web;
 public class Params {
 	private int page;            /** 사용자 선택 페이지 */
 	private int searchList=10;        /** 조회 목록 개수 */
-	private int pageSize=3;        /** 출력 페이지 개수 */
+	private int pageSize=3; /** 출력 페이지 개수 */
+	private String sortType="ssn";
 	private String searchType="all";   /** 검색 유형 */
 	private String searchValue;  /** 검색 값 */
 	
 	
 	public Params() {
-		this(1,10,3,"all",null);
+		this(1,10,3,"ssn","all",null);
 	}
 	
-	public Params(int page,int searchList, String searchType, String searchValue) {
-		this(page, 10 ,3, null, null);
-	}
 	
-	public Params(int page, int searchList,int pageSize, String searchType, String searchValue) {
+	public Params(int page, int searchList,int pageSize,String sortType, String searchType, String searchValue) {
 		this.page = page;
 		this.searchList = searchList;
 		this.pageSize = pageSize;
+		this.sortType = sortType;
 		this.searchType = searchType;
 		this.searchValue = searchValue;
 	}
+
+	public String getSortType() {
+		return sortType;
+	}
+
+
+	public void setSortType(String sortType) {
+		this.sortType = sortType;
+	}
+
 
 	public int getPage() {
 		return page;

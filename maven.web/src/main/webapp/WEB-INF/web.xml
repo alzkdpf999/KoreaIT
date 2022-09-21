@@ -13,14 +13,15 @@
 	</welcome-file-list>
 
  <servlet>
- 	<description>메인페이지 등록</description>
- 	<servlet-name>main</servlet-name>
- 	<jsp-file>/WEB-INF/views/index.jsp</jsp-file>
-</servlet>
-<servlet-mapping>
-	<servlet-name>main</servlet-name>
-	<url-pattern>/students</url-pattern>
-</servlet-mapping>
-  
+    <servlet-name>HelloServlet</servlet-name>
+    <servlet-class>namoo.web.sts.controller.student.StudentListController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>HelloServlet</servlet-name>
+    <url-pattern>/students</url-pattern>
+  </servlet-mapping>
+  <listener>
+      <listener-class>namoo.student.common.web.ServletContextInitListener</listener-class>
+  </listener>
   
 </web-app>
