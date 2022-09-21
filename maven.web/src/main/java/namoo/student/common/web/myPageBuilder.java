@@ -123,7 +123,7 @@ public class myPageBuilder {
 	
 	/** 동적 쿼리스트링 반환 */
 	public String getQueryString(int page) {
-		String queryString = "?page=" + page +"&searchList=" + params.getSearchList()+ "&type=" + params.getSearchType() + "&value=" + params.getSearchValue(); 
+		String queryString = "?page=" + page + "&type=" + params.getSearchType() + "&value=" + params.getSearchValue(); 
 		return queryString;
 	}
 	

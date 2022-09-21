@@ -9,14 +9,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" >
   <title>Document</title>
-  <script type="module" defer src="${ctx}/js/StudentApp.js"></script>
-  <link href="${ctx}/css/style.css" rel="stylesheet" />
-  <link href="${ctx}/css/pagination.css" rel="stylesheet" />
+  <script type="module" defer src="${ctp}/js/StudentApp.js"></script>
+  <link href="${ctp}/css/style.css" rel="stylesheet" />
+  <link href="${ctp}/css/pagination.css" rel="stylesheet" />
 </head>
 
 <body>
   <h3 id="h3">KOREA IT ACADEMY 중학교 성적 관리</h3>
-
+<input type="hidden" value="${ctp }">
   <form action="">
     <table class="table table-striped table-dark" id="table">
       <tr>

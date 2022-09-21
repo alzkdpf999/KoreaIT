@@ -7,21 +7,21 @@ package namoo.student.common.web;
  */
 public class Params {
 	private int page;            /** 사용자 선택 페이지 */
-	private int searchList;        /** 조회 목록 개수 */
-	private int pageSize;        /** 출력 페이지 개수 */
-	private String searchType;   /** 검색 유형 */
+	private int searchList=10;        /** 조회 목록 개수 */
+	private int pageSize=3;        /** 출력 페이지 개수 */
+	private String searchType="all";   /** 검색 유형 */
 	private String searchValue;  /** 검색 값 */
 	
 	
 	public Params() {
-		this(1, 10, 3, null, null);
+		this(1,10,3,"all",null);
 	}
 	
-	public Params(int page, int searchList, String searchType, String searchValue) {
-		this(page, searchList, 3, null, null);
+	public Params(int page,int searchList, String searchType, String searchValue) {
+		this(page, 10 ,3, null, null);
 	}
 	
-	public Params(int page, int searchList, int pageSize, String searchType, String searchValue) {
+	public Params(int page, int searchList,int pageSize, String searchType, String searchValue) {
 		this.page = page;
 		this.searchList = searchList;
 		this.pageSize = pageSize;
@@ -41,17 +41,12 @@ public class Params {
 		return searchList;
 	}
 
-	public void setsearchList(int listSize) {
-		this.searchList = listSize;
-	}
+	
 	
 	public int getPageSize() {
 		return pageSize;
 	}
 
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
 
 	public String getSearchType() {
 		return searchType;

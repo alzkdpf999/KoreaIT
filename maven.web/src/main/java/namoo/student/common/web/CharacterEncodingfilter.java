@@ -16,7 +16,7 @@ import javax.servlet.http.HttpFilter;
  */
 @WebFilter(
 		description = "문자인코딩 필터", 
-		urlPatterns = { "*.do" }, 
+		urlPatterns = { "*" }, 
 		initParams = { 
 				@WebInitParam(name = "encoding", value = "utf-8")
 		})

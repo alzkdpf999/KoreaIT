@@ -10,7 +10,7 @@ public class ServletContextInitListener implements ServletContextListener {
 	public void contextInitialized(ServletContextEvent sce) {
 		System.out.println("서블릿 컨테이너 초기화 됨...");
 		String appName = sce.getServletContext().getContextPath();
-		sce.getServletContext().setAttribute("ctx", appName);
-		//지금 상황에서는 /yorizori를 받아와서 sce에 저장
+		sce.getServletContext().setAttribute("ctp", appName);
+		//지금 상황에서는 /students를 받아와서 sce에 저장
 	}
 }

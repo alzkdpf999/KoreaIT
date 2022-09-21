@@ -120,6 +120,7 @@
 	                      english,
 	                      math
 	               FROM students
+	 <if test="searchType != null">
 			<choose>
 				<when test="searchType == 'ssn'">
 				WHERE ssn = #{searchValue}
@@ -130,6 +131,7 @@
 				<otherwise>
 				</otherwise>
 			</choose>
+			</if>
 			WHERE  request_page = #{page}
 			ORDER BY ssn ASC))
 </select>
