@@ -227,22 +227,39 @@ document.querySelector("#sort").addEventListener("click", function (event) {
   document.querySelector(option).appendChild(h4);
 })
 document.querySelector("#ss").addEventListener("click",function(event){
-  studentManager.sortPrinting("ssn");
+  studentManager.sortPrinting("ssn",studentManager);
+  document.querySelector("#sort").removeAttribute("disabled");
+  document.querySelector("#sortcase").removeAttribute("style");
 })
 document.querySelector("#ns").addEventListener("click",function(event){
-  studentManager.sortPrinting("name");
+  studentManager.sortPrinting("name",studentManager);
+  document.querySelector("#sort").removeAttribute("disabled");
+    document.querySelector("#sortcase").removeAttribute("style");
+
 })
 document.querySelector("#ks").addEventListener("click",function(event){
-  studentManager.sortPrinting("kr");
+  studentManager.sortPrinting("kr",studentManager);
+  document.querySelector("#sort").removeAttribute("disabled");
+    document.querySelector("#sortcase").removeAttribute("style");
+
 })
 document.querySelector("#es").addEventListener("click",function(event){
-  studentManager.sortPrinting("en");
+  studentManager.sortPrinting("en",studentManager);
+    document.querySelector("#sortcase").removeAttribute("style");
+    document.querySelector("#sort").removeAttribute("disabled");
+
 })
 document.querySelector("#ms").addEventListener("click",function(event){
-  studentManager.sortPrinting("math");
+  studentManager.sortPrinting("math",studentManager);
+  document.querySelector("#sort").removeAttribute("disabled");
+    document.querySelector("#sortcase").removeAttribute("style");
+
 })
 document.querySelector("#as").addEventListener("click",function(event){
-  studentManager.sortPrinting("avg");
+  studentManager.sortPrinting("avg",studentManager);
+  document.querySelector("#sort").removeAttribute("disabled");
+    document.querySelector("#sortcase").removeAttribute("style");
+
 })
 
 //정렬 부분 

@@ -1,53 +1,14 @@
-import { Student } from "./Student.js";
 import { StudentManager } from "./StudentManager.js";
 function StudentApp() {
 
 }
-let studentManager = new StudentManager();
-
-studentManager.movefocus();
-let printList;
-let out, kr, ssn, name, en, ma;
-let list;
 const regExp = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\" |a-z|A-Z |ㄱ-ㅎ|ㅏ-ㅣ|가-힣]/g;
 const regNum = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\" |0-9]/g;
 const regLimit = /[^0-9]/g;
 const regZero = /^0[0-9]+$/g;
 
-let init_list = studentManager.initList();
-//이름 검색
-document.querySelector("#search").addEventListener("click", function (event) {
-  printList = init_list();
-  let searchAllManager = studentManager;
-  const findname = document.querySelector('#name').value;
-  let findStudentname = searchAllManager.idfilter(findname);
-  if (findStudentname.length == 0) {
-    document.querySelector("#list").innerHTML = printList
-  } else {
-    for (let index = 0; index < findStudentname.length; index++) {
-      printList = init_list(findStudentname[index]);
-      searchAllManager.listAll(printList);
-    }
-  }
-})
-
-//학번 조회
-document.querySelector("#smsearch ").addEventListener("click", function (event) {
-  printList = init_list();
-  let searchStudentManager = studentManager;
-  const findSsn = document.querySelector('#ssn').value;
-  let findStudent = searchStudentManager.filter(findSsn);
-  if (findStudent == 0) {
-    document.querySelector("#list").innerHTML = printList
-  } else {
-    for (let index = 0; index < findStudent.length; index++) {
-      printList = init_list(findStudent[index]);
-      searchStudentManager.listAll(printList);
-    }
-  }
-})
-//등록 부분
-//등록 팝업
+let out, kr, ssn, name, en, ma;
+let studentManager = new StudentManager();
 document.querySelector("#register").addEventListener("click", function (event) {
   let h4 = document.createElement('h4');
   let option;
@@ -63,17 +24,17 @@ document.querySelector("#register").addEventListener("click", function (event) {
   en = document.querySelector('#en').value;
   //수학
   ma = document.querySelector('#ma').value;
-  let db = studentManager.filter(ssn);
+  //let db = studentManager.filter(ssn);
 
   if (!ssn || !name || !kr || !en || !ma) { // 둘 중 하나 입력 안할때 
     option = "#errcase";
     document.querySelector(option).setAttribute("style", "display: flex;");
     txt = document.createTextNode("정보를 전부 입력해주세요.");
-  } else if(db.length != 0){
+  }/* else if(){
     option = "#errcase";
     document.querySelector(option).setAttribute("style", "display: flex;");
     txt = document.createTextNode("이미 존재하는 학번입니다.");
-  }else {
+  }*/else {
     option = "#case";
     document.querySelector(option).setAttribute("style", "display: flex;");
     let btn1 = document.createElement('button');
@@ -89,19 +50,7 @@ document.querySelector("#register").addEventListener("click", function (event) {
   h4.appendChild(txt);
   document.querySelector(option).appendChild(h4);
 })
-//등록 부분
 
-//전체검색
-document.querySelector("#allSearch").addEventListener("click", function (event) {
-  printList = init_list();
-  let list = studentManager.list()
-  for (let index = 0; index < list.length; index++) {
-    printList = init_list(list[index]);
-    studentManager.searchAll(printList);
-  }
-})
-
-//전체 삭제
 document.querySelector("#removeall").addEventListener("click", function (event) {
   let h4 = document.createElement('h4');
   let option;
@@ -131,7 +80,6 @@ document.querySelector("#removeall").addEventListener("click", function (event) 
   document.querySelector(option).appendChild(h4);
 })
 
-//삭제 팝업
 document.querySelector("#remove").addEventListener("click", function (event) {
   let h4 = document.createElement('h4');
   let option;
@@ -202,53 +150,7 @@ document.querySelector(".ok").addEventListener("click", function (event) {
     }
   }
 })
-//삭제 부분 
 
-//정렬 부분
-document.querySelector("#sort").addEventListener("click", function (event) {
-  let h4 = document.createElement('h4');
-  document.querySelector(".ok").value = "#sort"
-  document.querySelector("#sort").setAttribute("disabled", "disabled");
-  let option;
-  let txt;
-  let empty = studentManager.array.length;
-  if (empty == 0) { //이름 학번 둘다 입력
-    option = "#errcase";
-    document.querySelector(option).setAttribute("style", "display: flex;");
-    txt = document.createTextNode(`학생이 존재하지 않습니다.`);
-  }else{
-    option = "#sortcase"
-    document.querySelector(option).setAttribute("style", "display: flex;");
-    txt = document.createTextNode("정렬 방법을 선택주세요.");
-
-  }
-  h4.className = 'h4';
-  h4.appendChild(txt);
-  document.querySelector(option).appendChild(h4);
-})
-document.querySelector("#ss").addEventListener("click",function(event){
-  studentManager.sortPrinting("ssn");
-})
-document.querySelector("#ns").addEventListener("click",function(event){
-  studentManager.sortPrinting("name");
-})
-document.querySelector("#ks").addEventListener("click",function(event){
-  studentManager.sortPrinting("kr");
-})
-document.querySelector("#es").addEventListener("click",function(event){
-  studentManager.sortPrinting("en");
-})
-document.querySelector("#ms").addEventListener("click",function(event){
-  studentManager.sortPrinting("math");
-})
-document.querySelector("#as").addEventListener("click",function(event){
-  studentManager.sortPrinting("avg");
-})
-
-//정렬 부분 
-
-
-// 입력 부분
 document.querySelector("#ssn").addEventListener("input", function (event) {
 
   ssn = document.querySelector("#ssn").value;
@@ -296,9 +198,30 @@ document.querySelector("#ma").addEventListener("input", function (event) {
   }
   if (ma >= 100) document.querySelector("#ma").value = 100;
 })
-// 입력 부분
 
-//동적으로 생성된 버튼 동작 부분
+document.querySelector("#sort").addEventListener("click", function (event) {
+  let h4 = document.createElement('h4');
+  document.querySelector(".ok").value = "#sort"
+  document.querySelector("#sort").setAttribute("disabled", "disabled");
+  let option;
+  let txt;
+  let empty = 1;
+  if (empty == 0) { //이름 학번 둘다 입력
+    option = "#errcase";
+    document.querySelector(option).setAttribute("style", "display: flex;");
+    txt = document.createTextNode(`학생이 존재하지 않습니다.`);
+  }else{
+    option = "#sortcase"
+    document.querySelector(option).setAttribute("style", "display: flex;");
+    txt = document.createTextNode("정렬 방법을 선택주세요.");
+
+  }
+  h4.className = 'h4';
+  h4.appendChild(txt);
+  document.querySelector(option).appendChild(h4);
+})
+ 	
+
 document.querySelector("#case").addEventListener('click', function (event) {
   let h4 = document.querySelector(".h4");
   let btn;
@@ -308,35 +231,36 @@ document.querySelector("#case").addEventListener('click', function (event) {
     document.querySelector(".Allbtn").removeChild(btn);
     document.querySelector("#case").removeAttribute("style");
     document.querySelector("#case").removeChild(h4);
-    let removeManager = studentManager;
-    printList = init_list();
-    const removeName = document.querySelector('#name').value;
-    const removeSsn = document.querySelector('#ssn').value;
-    let removeStudent = removeManager.removefilter(removeSsn, removeName);
-    let test = removeManager.removeStudent(removeSsn, removeName, false);
-    studentManager.array.length = 0;
-    for (let index = 0; index <= removeStudent.length; index++) {
-      if (removeStudent.length == 0) {
-        document.querySelector("#list").innerHTML = printList
-      } else {
-        if (index == removeStudent.length) {
-          continue;
-        } else {
-          printList = init_list(removeStudent[index])
-          removeManager.searchAll(printList);
-          studentManager.array.push(removeStudent[index]);
-        }
-      }
-    }
+ 
     document.querySelector("#remove").removeAttribute("disabled");
     studentManager.resigsterAfterInit();
   } else if (event.target && event.target.id == 'reg') {
-
+		
     btn = document.querySelector("#reg");
     document.querySelector(".Allbtn").removeChild(btn);
     document.querySelector("#case").removeAttribute("style");
     document.querySelector("#case").removeChild(h4);
-    //학번 
+    
+    let student = {
+	  //학번 
+    ssn : document.querySelector('#ssn').value,
+    //이름
+    name : document.querySelector('#name').value,
+    //국어
+    kr : parseInt(document.querySelector('#kr').value),
+    //영어
+    en : parseInt(document.querySelector('#en').value),
+    //수학
+    ma : parseInt(document.querySelector('#ma').value)
+};
+const option = {
+	method: "post",
+	headers : {
+		"Content-Type":"application/json",
+	},
+	body: JSON.stringify(student),
+}
+  //학번 
     ssn = document.querySelector('#ssn').value;
     //이름
     name = document.querySelector('#name').value;
@@ -346,14 +270,7 @@ document.querySelector("#case").addEventListener('click', function (event) {
     en = parseInt(document.querySelector('#en').value);
     //수학
     ma = parseInt(document.querySelector('#ma').value);
-    studentManager.add(new Student(ssn, name, kr, en, ma))
-    let array = studentManager.array;
-    printList = init_list();
-    list = studentManager.list();
-    for (let index = 0; index < list.length; index++) {
-      printList = init_list(list[index])
-      studentManager.searchAll(printList);
-    }
+
     if (ssn && name && kr && en && ma) studentManager.resigsterAfterInit();
 
   } else if (event.target && event.target.id == 'delAll') {
@@ -361,9 +278,37 @@ document.querySelector("#case").addEventListener('click', function (event) {
     document.querySelector(".Allbtn").removeChild(btn);
     document.querySelector("#case").removeAttribute("style");
     document.querySelector("#case").removeChild(h4);
-    printList = init_list();
-    document.querySelector("#list").innerHTML = printList
-    studentManager.array.length = 0;
+ 
     document.querySelector("#removeall").removeAttribute("disabled");
   }
+})
+
+document.querySelector("#ss").addEventListener("click",function(event){
+  document.querySelector("#sort").removeAttribute("disabled");
+  document.querySelector("#sortcase").removeAttribute("style");
+})
+document.querySelector("#ns").addEventListener("click",function(event){
+  document.querySelector("#sort").removeAttribute("disabled");
+    document.querySelector("#sortcase").removeAttribute("style");
+
+})
+document.querySelector("#ks").addEventListener("click",function(event){
+  document.querySelector("#sort").removeAttribute("disabled");
+    document.querySelector("#sortcase").removeAttribute("style");
+
+})
+document.querySelector("#es").addEventListener("click",function(event){
+    document.querySelector("#sortcase").removeAttribute("style");
+    document.querySelector("#sort").removeAttribute("disabled");
+
+})
+document.querySelector("#ms").addEventListener("click",function(event){
+  document.querySelector("#sort").removeAttribute("disabled");
+    document.querySelector("#sortcase").removeAttribute("style");
+
+})
+document.querySelector("#as").addEventListener("click",function(event){
+  document.querySelector("#sort").removeAttribute("disabled");
+    document.querySelector("#sortcase").removeAttribute("style");
+
 })
