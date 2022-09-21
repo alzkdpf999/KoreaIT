@@ -4,4 +4,7 @@
     <fullyQualifiedTypeName name="namoo.mybatis.ems.mapper.EmployeeMapper"/>
     <fullyQualifiedTypeName name="namoo.mybatis.ems.dto.Employee"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.Disabled"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.lang.Object"/>
 </qualifiedTypeNameHistroy>

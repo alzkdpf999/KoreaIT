@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="namoo.web.sts.mapper.StudentMapper">
+
+<select id="findAll" resultType="Student">
+	SELECT ssn
+				 name
+				 korean
+				 english
+				 math
+	FROM   students
+	ORDER  BY ssn ASC
+</select>
+
+<select id="findBySsn" parameterType="int" resultType="Student">
+	SELECT ssn
+				 name
+				 korean
+				 english
+				 math
+	FROM   students
+	WHERE  ssn = #{value}
+	ORDER BY ssn ASC
+</select>
+
+<select id="findeByname" parameterType="string" resultType="Student">
+	SELECT ssn
+				 name
+				 korean
+				 english
+				 math
+	FROM   students
+	WHERE  name = #{value}
+	ORDER BY ssn ASC
+</select>
+<insert id="create" parameterType="Student">
+	INSERT INTO students
+							(ssn,
+							 name,
+							 korean,
+							 english,
+							 math)
+	VALUES		  (#{ssn},
+							 #{name},
+							 #{korean},
+							 #{english},
+							 #{math})
+</insert>
+<delete id="delete" parameterType="map">
+	DELETE FROM students
+	WHERE  ssn = #{ssn} AND name= #{name}
+</delete>
+
+<delete id="delete" parameterType="map">
+	DELETE FROM students
+	WHERE  ssn = #{ssn} AND name= #{name}
+</delete>
+
+<delete id="deleteAll" parameterType="map">
+	DELETE FROM students
+	WHERE  1 = 1 
+</delete>
+
+<select id="sortStudent" parameterType="string"></select>
+
+<select id="search" parameterType="map" resultType="Student">
+		SELECT ssn 
+		       name 
+		       korean
+		       english
+					 math
+		FROM   students
+		<if test="type != null">
+			<choose>
+				<when test="type == 'ssn'">
+				WHERE ssn = #{value}
+				</when>
+				<when test="type == 'name'">
+				WHERE name = #{value}
+				</when>
+				<otherwise></otherwise>
+			</choose>
+		</if>
+		ORDER BY ssn ASC
+	</select>
+	
+<select id="countByPage" parameterType="Params" resultType="int">
+	SELECT COUNT(ssn) count
+	FROM 	 students
+	<if test="searchType != null">
+			<choose>
+				<when test="searchType == 'ssn'">
+				WHERE ssn = #{searchValue}
+				</when>
+				<when test="searchType == 'name'">
+				WHERE name = #{searchValue}
+				</when>
+				<otherwise></otherwise>
+			</choose>
+		</if>
+</select>
+
+<select id="listByPage" parameterType="Params" resultType="Students">
+	SELECT ssn
+				 name
+				 korean
+				 english
+				 math
+	FROM   (SELECT CEIL(rownum / 10) "request_page",
+	               ssn,
+	               name,
+	               korean,
+	               english,
+	               math
+	        FROM ( SELECT ssn,
+	                      name,
+	                      korean,
+	                      english,
+	                      math
+	               FROM students
+			<choose>
+				<when test="searchType == 'ssn'">
+				WHERE ssn = #{searchValue}
+				</when>
+				<when test="searchType == 'name'">
+				WHERE name = #{searchValue}
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+			WHERE  request_page = #{page}
+			ORDER BY ssn ASC))
+</select>
+</mapper>

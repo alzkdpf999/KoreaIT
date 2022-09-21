@@ -8,8 +8,10 @@
 
 	<!-- MyBatis에서 사용할 자바클래스(JavaBean) 별칭 등록 -->
 	<typeAliases>
-		<typeAlias type="namoo.mybatis.ems.dto.Employee"
-			alias="Employee" />
+		<typeAlias type="namoo.web.sts.dto.Student"
+			alias="Student" />
+			<typeAlias type="namoo.student.common.web.Params"
+			alias="Params" />
 	</typeAliases>
 
 	<!-- 다수의 Database에 접근하거나 개발, 테스트, 운영 환경에 맞는 다중 환경 설정 지원 -->
@@ -39,9 +41,9 @@
 	<!-- SQL XML Mapper 파일 설정 -->
 	<mappers>
 		<!-- 클래스패스에 위치한 XML 매퍼 파일 지정 -->
-		<mapper resource="namoo/mybatis/ems/mapper/EmployeeMapper.xml" />
+		<mapper resource="namoo/web/sts/mapper/StudentMapper.xml" />
 		<!-- Annotation Mapper 인퍼페이스를 사용하는 인터페이스 위치 지정 -->
-		<mapper class="namoo.mybatis.ems.mapper.EmployeeMapper2" />
+		<!-- <mapper class="namoo.mybatis.ems.mapper.EmployeeMapper2" /> -->
 	</mappers>
 
 </configuration>
