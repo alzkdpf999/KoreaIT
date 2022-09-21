@@ -243,15 +243,15 @@ document.querySelector("#case").addEventListener('click', function (event) {
     
     let student = {
 	  //학번 
-    ssn : document.querySelector('#ssn').value,
+    ssn : parseInt(document.querySelector('#ssn').value),
     //이름
     name : document.querySelector('#name').value,
     //국어
-    kr : parseInt(document.querySelector('#kr').value),
+    korean : parseInt(document.querySelector('#kr').value),
     //영어
-    en : parseInt(document.querySelector('#en').value),
+    english : parseInt(document.querySelector('#en').value),
     //수학
-    ma : parseInt(document.querySelector('#ma').value)
+    math : parseInt(document.querySelector('#ma').value)
 };
 const option = {
 	method: "post",
@@ -260,6 +260,12 @@ const option = {
 	},
 	body: JSON.stringify(student),
 }
+	fetch("students",option)
+	.then(response => response.json())
+	.then(response => {
+		printList(response);
+	})
+	.catch(error => console.error(error));
   //학번 
     ssn = document.querySelector('#ssn').value;
     //이름
@@ -312,3 +318,20 @@ document.querySelector("#as").addEventListener("click",function(event){
     document.querySelector("#sortcase").removeAttribute("style");
 
 })
+
+function printList(response){
+						console.dir(response)
+		 var table =`<ul>
+  <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
+</ul>`;
+          
+for(let i = 0; i< response.length; i++){
+table += `<ul>`;
+          let student = response[i];
+          let avg = (student.korean + student.english +student.math) /3;
+          table +=`<li>${student.ssn}</li><li>${student.name}</li><li>${student.korean}</li><li>${student.english}</li><li>${student.math}</li><li>${avg.toFixed(2)}</li>`;
+          table += `</ul>`;
+}
+
+          document.querySelector("#list").innerHTML = table;
+}
