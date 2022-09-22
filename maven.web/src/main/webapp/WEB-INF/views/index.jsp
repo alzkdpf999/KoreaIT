@@ -57,7 +57,7 @@
         </ul>
         <c:forEach var="student" items="${list}">
           <ul>
-          <li>${student.ssn}</li><li>${student.name}</li><li>${student.korean}</li><li>${student.english}</li><li>${student.math}</li><li>${10}</li>
+          <li>${student.ssn}</li><li>${student.name}</li><li>${student.korean}</li><li>${student.english}</li><li>${student.math}</li><li>${student.avg()}</li>
           </ul>
           </c:forEach>
       </div>

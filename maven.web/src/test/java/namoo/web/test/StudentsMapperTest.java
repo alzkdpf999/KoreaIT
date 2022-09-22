@@ -57,9 +57,12 @@ public class StudentsMapperTest {
 //	@Disabled
 	public void test3() {
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-		Params params = new Params(1,10,3,"ssn","all","");
+		Params params = new Params(1,10,3,"avg","all","");
 		List<Student> list =mapper.listByPage(params);
-		System.out.println(list);
+		for(Student st : list) {
+			System.out.println(st.avg());		
+		}
+		
 	}
 	@Test
 	@Disabled

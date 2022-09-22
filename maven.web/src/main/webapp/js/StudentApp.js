@@ -329,7 +329,7 @@ for(let i = 0; i< response.length; i++){
 table += `<ul>`;
           let student = response[i];
           let avg = (student.korean + student.english +student.math) /3;
-          table +=`<li>${student.ssn}</li><li>${student.name}</li><li>${student.korean}</li><li>${student.english}</li><li>${student.math}</li><li>${avg.toFixed(2)}</li>`;
+          table +=`<li>${student.ssn}</li><li>${student.name}</li><li>${student.korean}</li><li>${student.english}</li><li>${student.math}</li><li>${student.avg()}</li>`;
           table += `</ul>`;
 }
 

@@ -7,7 +7,6 @@ public class Student {
 	private int math;
 	private int english;
 	
-	
 
 	public Student() {
 	}
@@ -55,8 +54,10 @@ public class Student {
 		return "Student [ssn=" + ssn + ", name=" + name + ", korean=" + korean + ", math=" + math + ", english="
 				+ english + "]";
 	}
-	public int avg() {
-		return (this.english+ this.math+this.korean)/3; 
+	public String avg() {
+		double avg = (this.english+ this.math+this.korean)/3.0;
+		String avgNum = String.format("%.2f", avg);
+		return avgNum;
 	}
 	
 	

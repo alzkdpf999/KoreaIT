@@ -29,9 +29,10 @@ import namoo.web.sts.mapper.StudentMapper;
  */
 @WebServlet("/students")
 public class StudentListController extends HttpServlet {
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SqlSession sqlSession = null;	
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		SqlSession sqlSession = null;
 		String resource = "mybatis-config.xml";
 		Reader reader = null;
 		try {
@@ -40,20 +41,22 @@ public class StudentListController extends HttpServlet {
 			e.printStackTrace();
 		}
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-		sqlSession = sqlSessionFactory.openSession();//Auto commit 아님
-	
-	StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-	Params params = new Params(1,10,3,"ssn","all","");
-	List<Student> list =mapper.listByPage(params);
-	int cnt =mapper.countByPage(params);
-	myPageBuilder pageBuilder = new myPageBuilder(params, cnt);
-	pageBuilder.build();
-	request.setAttribute("list", list);
-	request.setAttribute("page", pageBuilder);
-	request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
+		sqlSession = sqlSessionFactory.openSession();// Auto commit 아님
+
+		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+		Params params = new Params(1, 10, 3, "ssn", "all", "");
+		List<Student> list = mapper.listByPage(params);
+		int cnt = mapper.countByPage(params);
+		myPageBuilder pageBuilder = new myPageBuilder(params, cnt);
+		pageBuilder.build();
+		request.setAttribute("list", list);
+		request.setAttribute("page", pageBuilder);
+		request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
 	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		SqlSession sqlSession = null;	
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		SqlSession sqlSession = null;
 		String resource = "mybatis-config.xml";
 		Reader reader = null;
 		try {
@@ -62,10 +65,10 @@ public class StudentListController extends HttpServlet {
 			e.printStackTrace();
 		}
 		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-		sqlSession = sqlSessionFactory.openSession();//Auto commit 아님
-		
-		//역직렬화
-		PrintWriter out =response.getWriter();
+		sqlSession = sqlSessionFactory.openSession();// Auto commit 아님
+
+		// 역직렬화
+		PrintWriter out = response.getWriter();
 		BufferedReader in = request.getReader();
 		Gson gson = new Gson();
 		Student student = gson.fromJson(in, Student.class);
@@ -73,12 +76,12 @@ public class StudentListController extends HttpServlet {
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
 		mapper.create(student);
 		sqlSession.commit();
-		Params params = new Params(1,10,3,"ssn","all","");
-		List<Student> list =mapper.listByPage(params);
-		String  resultJson = gson.toJson(list);
+		Params params = new Params(1, 10, 3, "ssn", "all", "");
+		List<Student> list = mapper.listByPage(params);
+		String resultJson = gson.toJson(list);
 		out.print(resultJson);
 		in.close();
 		out.close();
-	
+
 	}
 }

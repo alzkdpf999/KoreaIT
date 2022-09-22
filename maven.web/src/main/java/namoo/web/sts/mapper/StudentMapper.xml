@@ -116,7 +116,8 @@
 	                      name,
 	                      korean,
 	                      english,
-	                      math
+	                      math,
+	               TRUNC((korean+english+math)/3,2) "avg"
 	               FROM students
 	 <if test="searchType != null">
 			<choose>
@@ -145,6 +146,9 @@
 				</when>
 				<when test="sortType == 'math'">
 				ORDER BY math DESC))
+				</when>
+				<when test="sortType == 'avg'">
+				ORDER BY "avg" DESC))
 				</when>
 				<otherwise>
 				</otherwise>
