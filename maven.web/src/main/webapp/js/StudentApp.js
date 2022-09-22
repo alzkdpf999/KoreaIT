@@ -319,6 +319,16 @@ document.querySelector("#as").addEventListener("click",function(event){
 
 })
 
+window.onload = function(){
+	fetch("students")
+	.then(response => response.json())
+	.then(response => {
+		console.dir(response);
+		printList(response);
+	})
+	.catch(error => console.error(error));
+}
+
 function printList(response){
 						console.dir(response)
 		 var table =`<ul>
@@ -328,8 +338,8 @@ function printList(response){
 for(let i = 0; i< response.length; i++){
 table += `<ul>`;
           let student = response[i];
-          let avg = (student.korean + student.english +student.math) /3;
-          table +=`<li>${student.ssn}</li><li>${student.name}</li><li>${student.korean}</li><li>${student.english}</li><li>${student.math}</li><li>${student.avg()}</li>`;
+          let avg = ((student.korean + student.english + student.math)/3).toFixed(2);
+          table +=`<li>${student.ssn}</li><li>${student.name}</li><li>${student.korean}</li><li>${student.english}</li><li>${student.math}</li><li>${avg}</li>`;
           table += `</ul>`;
 }
 

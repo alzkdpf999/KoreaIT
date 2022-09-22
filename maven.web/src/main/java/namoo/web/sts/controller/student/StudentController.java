@@ -23,12 +23,13 @@ import namoo.student.common.web.Params;
 import namoo.student.common.web.myPageBuilder;
 import namoo.web.sts.dto.Student;
 import namoo.web.sts.mapper.StudentMapper;
+import namoo.web.sts.service.StudentServiceImpl;
 
 /**
  * Servlet implementation class StudentListController
  */
 @WebServlet("/students")
-public class StudentListController extends HttpServlet {
+public class StudentController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -46,12 +47,16 @@ public class StudentListController extends HttpServlet {
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
 		Params params = new Params(1, 10, 3, "ssn", "all", "");
 		List<Student> list = mapper.listByPage(params);
+		
 		int cnt = mapper.countByPage(params);
 		myPageBuilder pageBuilder = new myPageBuilder(params, cnt);
 		pageBuilder.build();
-		request.setAttribute("list", list);
-		request.setAttribute("page", pageBuilder);
-		request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
+		PrintWriter out = response.getWriter();
+		Gson gson = new Gson();
+		String resultJson = gson.toJson(list);
+		out.print(resultJson);
+		out.close();
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -72,11 +77,13 @@ public class StudentListController extends HttpServlet {
 		BufferedReader in = request.getReader();
 		Gson gson = new Gson();
 		Student student = gson.fromJson(in, Student.class);
-		System.out.println(student);
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
 		mapper.create(student);
 		sqlSession.commit();
 		Params params = new Params(1, 10, 3, "ssn", "all", "");
+		int cnt = mapper.countByPage(params);
+		myPageBuilder pageBuilder = new myPageBuilder(params, cnt);
+		pageBuilder.build();
 		List<Student> list = mapper.listByPage(params);
 		String resultJson = gson.toJson(list);
 		out.print(resultJson);

@@ -14,12 +14,15 @@
 
  <servlet>
     <servlet-name>HelloServlet</servlet-name>
-    <servlet-class>namoo.web.sts.controller.student.StudentListController</servlet-class>
+    <servlet-class>namoo.web.sts.controller.student.StudentController</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>HelloServlet</servlet-name>
-    <url-pattern>/students</url-pattern>
+    <url-pattern>/students/*</url-pattern>
   </servlet-mapping>
+  
+  
+
   <listener>
       <listener-class>namoo.student.common.web.ServletContextInitListener</listener-class>
   </listener>

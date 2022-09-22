@@ -21,7 +21,6 @@ public class CookbookDeleteController extends HttpServlet {
 	
 	ServiceFactoryImpl.getInstance().getCookbookService().delcookbook(book_id);
 	
-	
 	if(request.getHeader("referer").contains("my")) {
 		if(request.getHeader("referer").contains("myrecipe")) {
 			response.sendRedirect(request.getContextPath()+"/myrecipe.do");
