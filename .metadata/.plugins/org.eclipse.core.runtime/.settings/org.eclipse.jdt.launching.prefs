@@ -1,9 +1,5 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=8bf551884922870fe120560df36f05ec8d67e8c7
+>>>>>>>=68b8f5b06ffa4c59d05dcadecc9c4035d7b02f39
 eclipse.preferences.version=1
-<<<<<<< HEAD
-org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1663839235710" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1663839235710" name\="jdk-11.0.15.1" path\="C\:\\Program Files\\Java\\jdk-11.0.15.1"/>\r\n    </vmType>\r\n</vmSettings>\r\n
-=======
-org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1663765634168" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1663765634168" name\="jdk-11.0.16" path\="C\:\\Program Files\\Java\\jdk-11.0.16"/>\r\n    </vmType>\r\n</vmSettings>\r\n
->>>>>>> 68b8f5b06ffa4c59d05dcadecc9c4035d7b02f39
+org.eclipse.jdt.launching.PREF_VM_XML=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?>\r\n<vmSettings defaultVM\="57,org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType13,1663927090018" defaultVMConnector\="">\r\n    <vmType id\="org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType">\r\n        <vm id\="1663765634168" name\="jdk-11.0.16" path\="C\:\\Program Files\\Java\\jdk-11.0.16"/>\r\n        <vm id\="1663927090018" javadocURL\="https\://docs.oracle.com/en/java/javase/11/docs/api/" name\="jdk-11.0.15.1" path\="C\:\\Program Files\\Java\\jdk-11.0.15.1"/>\r\n    </vmType>\r\n</vmSettings>\r\n

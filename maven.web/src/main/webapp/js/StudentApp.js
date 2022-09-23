@@ -416,7 +416,6 @@ window.onload = function() {
 }
 
 function printList(response) {
-	console.dir(response)
 	var table = `<ul>
   <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
 </ul>`;
@@ -430,4 +429,7 @@ function printList(response) {
 	}
 
 	document.querySelector("#list").innerHTML = table;
+}
+function printPagination(response){
+	
 }
