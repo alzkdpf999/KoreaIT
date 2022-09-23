@@ -14,4 +14,5 @@
     <fullyQualifiedTypeName name="java.io.PrintWriter"/>
     <fullyQualifiedTypeName name="java.lang.String"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
+    <fullyQualifiedTypeName name="namoo.web.sts.service.StudentServiceImpl"/>
 </qualifiedTypeNameHistroy>
