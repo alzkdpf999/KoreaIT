@@ -2,7 +2,9 @@ package namoo.web.test;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -44,7 +46,7 @@ public class StudentsMapperTest {
 		sqlSession.commit();
 	}
 	@Test
-	@Disabled
+//	@Disabled
 	public void test2() {
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
 		List<Student> list = mapper.findAll();
@@ -54,7 +56,7 @@ public class StudentsMapperTest {
 	}
 	
 	@Test
-//	@Disabled
+	@Disabled
 	public void test3() {
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
 		Params params = new Params(1,10,3,"avg","all","");
@@ -72,5 +74,32 @@ public class StudentsMapperTest {
 		int list =mapper.countByPage(params);
 		System.out.println(list);
 	}
+	@Test
+	@Disabled
+	public void test5() {
+		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+		Student st = mapper.check(0);
+		System.out.println(st);
+	}
+	@Test
+	@Disabled
+	public void test6() {
+		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+		Map<String, Object> test = new HashMap<>();
+		test.put("name", "qw");
+		test.put("ssn","2");
+		mapper.delete(test);
+		sqlSession.commit();
+	}
+	@Test
+	@Disabled
+	public void test7() {
+		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
+		Map<String, Object> test = new HashMap<>();
+		test.put("name", "qw");
+		test.put("ssn","2");
+		mapper.search(test);
+	}
+//	@Test
 	
 }
