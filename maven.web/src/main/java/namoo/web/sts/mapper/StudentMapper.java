@@ -18,7 +18,7 @@ public interface StudentMapper {
 	//이름으로 검색
 	public List<Student> findByName(String name);
 	//동적 검색
-	public List<Student> search(Map<String, Object> map);
+	public Student search(Map<String, Object> map);
 	//학생 등록
 	public void create(Student student);
 	
@@ -33,6 +33,8 @@ public interface StudentMapper {
 	
 	public List<Student> listByPage(Params params);
 	public int countByPage(Params params);
+	
+	public Student check(int ssn);
 	
 	
 }
