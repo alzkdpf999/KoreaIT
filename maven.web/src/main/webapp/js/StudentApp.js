@@ -7,7 +7,7 @@ const regNum = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\" |0-9]/g;
 const regLimit = /[^0-9]/g;
 const regZero = /^0[0-9]+$/g;
 
-let out, kr, ssn, name, en, ma;
+let kr, ssn, name, en, ma;
 let studentManager = new StudentManager();
 document.querySelector("#register").addEventListener("click", function(event) {
 	let h4 = document.createElement('h4');
@@ -25,17 +25,12 @@ document.querySelector("#register").addEventListener("click", function(event) {
 	en = document.querySelector('#en').value;
 	//수학
 	ma = document.querySelector('#ma').value;
-	//let db = studentManager.filter(ssn);
 
 	if (!ssn || !name || !kr || !en || !ma) { // 둘 중 하나 입력 안할때 
 		option = "#errcase";
 		document.querySelector(option).setAttribute("style", "display: flex;");
 		txt = document.createTextNode("정보를 전부 입력해주세요.");
-	}/*else if(result == "fail"){
-    option = "#errcase";
-    document.querySelector(option).setAttribute("style", "display: flex;");
-    txt = document.createTextNode("이미 존재하는 학번입니다.");
-  }*/else {
+	} else {
 		option = "#case";
 		document.querySelector(option).setAttribute("style", "display: flex;");
 		let btn1 = document.createElement('button');
@@ -217,7 +212,7 @@ document.querySelector("#case").addEventListener('click', function(event) {
 		document.querySelector(".Allbtn").removeChild(btn);
 		document.querySelector("#case").removeAttribute("style");
 		document.querySelector("#case").removeChild(h4);
-let student = {
+		let student = {
 			//학번 
 			ssn: ssn,
 			//이름
@@ -234,8 +229,8 @@ let student = {
 			.then(response => response.json())
 			.then(response => {
 				if (!response.check) {
-					
-				document.querySelector("#errcase").setAttribute("style", "display: flex;");
+
+					document.querySelector("#errcase").setAttribute("style", "display: flex;");
 					txt = document.createTextNode("학생이 존재하지 않습니다.");
 					h4 = document.createElement('h4');;
 					h4.setAttribute("id", "h4");
@@ -244,15 +239,17 @@ let student = {
 
 					document.querySelector("#errcase").appendChild(h4);
 					printList(response);
-				}else {
+					printPagination(response)
+				} else {
 					printList(response);
+					printPagination(response)
 				}
 			})
 			.catch(error => console.error(error));
 		document.querySelector("#remove").removeAttribute("disabled");
 		studentManager.resigsterAfterInit();
 	} else if (event.target && event.target.id == 'reg') {
-	ssn = document.querySelector('#ssn').value;
+		ssn = document.querySelector('#ssn').value;
 		//이름
 		name = document.querySelector('#name').value;
 		//국어
@@ -265,7 +262,7 @@ let student = {
 		document.querySelector(".Allbtn").removeChild(btn);
 		document.querySelector("#case").removeAttribute("style");
 		document.querySelector("#case").removeChild(h4);
-		
+
 
 		let student = {
 			//학번 
@@ -289,7 +286,10 @@ let student = {
 		fetch("students?page=1", option)
 			.then(response => response.json())
 			.then(response => {
-				if (response.check) printList(response);
+				if (response.check) {
+					printList(response);
+					printPagination(response)
+				}
 				else {
 					document.querySelector("#errcase").setAttribute("style", "display: flex;");
 					txt = document.createTextNode("이미 존재하는 학번입니다.");
@@ -300,6 +300,7 @@ let student = {
 
 					document.querySelector("#errcase").appendChild(h4);
 					printList(response);
+					printPagination(response)
 				}
 			})
 			.catch(error => console.error(error));
@@ -324,8 +325,8 @@ let student = {
 			.then(response => response.json())
 			.then(response => {
 				if (!response.check) {
-					
-				document.querySelector("#errcase").setAttribute("style", "display: flex;");
+
+					document.querySelector("#errcase").setAttribute("style", "display: flex;");
 					txt = document.createTextNode("학생이 존재하지 않습니다.");
 					h4 = document.createElement('h4');;
 					h4.setAttribute("id", "h4");
@@ -333,7 +334,7 @@ let student = {
 					h4.appendChild(txt);
 					document.querySelector("#errcase").appendChild(h4);
 					printList(response);
-				}else {
+				} else {
 					printList(response);
 				}
 			})
@@ -344,79 +345,179 @@ let student = {
 //이름 검색
 document.querySelector("#search").addEventListener("click", function(event) {
 	const findname = document.querySelector('#name').value;
-	fetch(`students/name/${findname}?page=1`)
+	fetch(`students/name/${findname}?page=1&sort=ssn`)
 		.then(response => response.json())
 		.then(response => {
-			console.dir(response);
 			printList(response);
+			printPagination(response)
 		})
 		.catch(error => console.error(error));
 })
-
+//학번검색
 document.querySelector("#smsearch").addEventListener("click", function(event) {
 	const findssn = document.querySelector('#ssn').value;
-	fetch(`students/ssn/${findssn}?page=1`)
+	fetch(`students/ssn/${findssn}?page=1&sort=ssn`)
 		.then(response => response.json())
 		.then(response => {
-			console.dir(response);
 			printList(response);
+			printPagination(response)
+		})
+		.catch(error => console.error(error));
+})
+//전체검색
+document.querySelector("#allSearch").addEventListener("click", function(event) {
+	fetch(`students?page=1&sort=ssn`)
+		.then(response => response.json())
+		.then(response => {
+			printList(response);
+			printPagination(response);
 		})
 		.catch(error => console.error(error));
 })
 
-document.querySelector("#allSearch").addEventListener("click", function (event) {
-  fetch(`students?page=1`)
-		.then(response => response.json())
-		.then(response => {
-			console.dir(response);
-			printList(response);
-		})
-		.catch(error => console.error(error));
-})
-
-
+//정렬
 document.querySelector("#ss").addEventListener("click", function(event) {
 	document.querySelector("#sort").removeAttribute("disabled");
+	console.log(document.querySelector("#type").value);
+	let type = document.querySelector("#type").value;
+	let val = document.querySelector("#value").value;
+	let url;
+	if (type != "all") {
+		url = `students/${type}/${val}/?page=1&sort=ssn`
+	} else {
+		url = "students?page=1&sort=ssn"
+	}
+	fetch(url)
+		.then(response => response.json())
+		.then(response => {
+			printList(response);
+			printPagination(response);
+
+		})
+		.catch(error => console.error(error));
 	document.querySelector("#sortcase").removeAttribute("style");
 })
 document.querySelector("#ns").addEventListener("click", function(event) {
 	document.querySelector("#sort").removeAttribute("disabled");
+	let type = document.querySelector("#type").value;
+	let val = document.querySelector("#value").value;
+	let url;
+	if (type != "all") {
+		url = `students/${type}/${val}/?page=1&sort=name`
+	} else {
+		url = "students?page=1&sort=name"
+	}
+	fetch(url)
+		.then(response => response.json())
+		.then(response => {
+			printList(response);
+			printPagination(response);
+
+		})
+		.catch(error => console.error(error));
 	document.querySelector("#sortcase").removeAttribute("style");
 
 })
 document.querySelector("#ks").addEventListener("click", function(event) {
 	document.querySelector("#sort").removeAttribute("disabled");
+	let type = document.querySelector("#type").value;
+	let val = document.querySelector("#value").value;
+	let url;
+	if (type != "all") {
+		url = `students/${type}/${val}/?page=1&sort=korean`
+	} else {
+		url = "students?page=1&sort=korean"
+	}
+	fetch(url)
+		.then(response => response.json())
+		.then(response => {
+			printList(response);
+			printPagination(response);
+
+		})
+		.catch(error => console.error(error));
 	document.querySelector("#sortcase").removeAttribute("style");
 
 })
 document.querySelector("#es").addEventListener("click", function(event) {
 	document.querySelector("#sortcase").removeAttribute("style");
+	let type = document.querySelector("#type").value;
+	let val = document.querySelector("#value").value;
+	let url;
+	if (type != "all") {
+		url = `students/${type}/${val}/?page=1&sort=english`
+	} else {
+		url = "students?page=1&sort=english"
+	}
+	fetch(url)
+		.then(response => response.json())
+		.then(response => {
+			printList(response);
+			printPagination(response);
+
+		})
+		.catch(error => console.error(error));
 	document.querySelector("#sort").removeAttribute("disabled");
 
 })
 document.querySelector("#ms").addEventListener("click", function(event) {
 	document.querySelector("#sort").removeAttribute("disabled");
+	let type = document.querySelector("#type").value;
+	let val = document.querySelector("#value").value;
+	let url;
+	if (type != "all") {
+		url = `students/${type}/${val}/?page=1&sort=math`
+	} else {
+		url = "students?page=1&sort=math"
+	}
+	fetch(url)
+		.then(response => response.json())
+		.then(response => {
+			printList(response);
+			printPagination(response);
+
+		})
+		.catch(error => console.error(error));
 	document.querySelector("#sortcase").removeAttribute("style");
 
 })
 document.querySelector("#as").addEventListener("click", function(event) {
 	document.querySelector("#sort").removeAttribute("disabled");
+	let type = document.querySelector("#type").value;
+	let val = document.querySelector("#value").value;
+	let url;
+	if (type != "all") {
+		url = `students/${type}/${val}/?page=1&sort=avg`
+	} else {
+		url = "students?page=1&sort=avg"
+	}
+	fetch(url)
+		.then(response => response.json())
+		.then(response => {
+			printList(response);
+			printPagination(response);
+
+		})
+		.catch(error => console.error(error));
 	document.querySelector("#sortcase").removeAttribute("style");
 
 })
 
 window.onload = function() {
-	fetch("students?page=1")
+
+
+	fetch("students?page=1&sort=ssn")
 		.then(response => response.json())
 		.then(response => {
-			console.dir(response);
 			printList(response);
+			printPagination(response);
+
 		})
 		.catch(error => console.error(error));
 }
 
 function printList(response) {
-	var table = `<ul>
+	let table = `<ul>
   <li>학번</li><li>이름</li><li>국어</li><li>영어</li><li>수학</li><li>평균</li>
 </ul>`;
 
@@ -426,10 +527,106 @@ function printList(response) {
 		let avg = ((student.korean + student.english + student.math) / 3).toFixed(2);
 		table += `<li>${student.ssn}</li><li>${student.name}</li><li>${student.korean}</li><li>${student.english}</li><li>${student.math}</li><li>${avg}</li>`;
 		table += `</ul>`;
-	}
 
+	}
 	document.querySelector("#list").innerHTML = table;
 }
-function printPagination(response){
-	
+
+
+function printPagination(response) {
+
+	let paging = "";
+	let pageBulid = response.page;
+	let params = pageBulid.params;
+	if (params.page <= 1) {
+		paging += `<a>&laquo;</a> <a>&lt;</a>`
+	} else {
+		paging += `<a id="start" data-value="${1}">&laquo;</a> <a id="prior" data-value="${params.page - 1}">&lt;</a>`
+	}
+	for (let k = pageBulid.startPage; k <= pageBulid.endPage; k++) {
+		if (k == params.page) {
+			paging += `<a class="active">${k}</a>`
+		} else {
+			paging += `<a id="pageNum" data-value="${k}" name="${k}">${k}</a>`
+		}
+	}
+	if (params.page == pageBulid.endPage) {
+		console.log("params.page == pageBulid.endPage")
+		if (!(params.page == pageBulid.pageCount)) {
+			paging += `<a id="nextstart" data-value="${pageBulid.nextStartpage}" >&gt;</a>`
+			paging += `<a id="nextend" data-value="${pageBulid.pageCount}">&raquo;</a>`
+		} else {
+			paging += `<a>&gt;</a> <a>&raquo;</a>`
+		}
+	} else {
+		paging += `<a id="next" data-value="${params.page + 1}">&gt;</a>`
+		paging += `<a id="end" data-value="${pageBulid.pageCount}">&raquo;</a>`
+	}
+	paging += `<input id="type" type="hidden" value=${response.page.params.searchType}>`
+	paging += `<input id="value" type="hidden" value=${response.page.params.searchValue}>`
+	paging += `<input id="sortType" type="hidden" value=${response.page.params.sortType}>`
+
+	document.querySelector(".pagination").innerHTML = paging;
+
 }
+
+document.querySelector(".pagination").addEventListener("click", function(event) {
+	let type = document.querySelector("#type").value;
+	let val = document.querySelector("#value").value;
+	let sort = document.querySelector("#sortType").value;
+	let url;
+	let bool = (type != "all") ? true : false;
+	if (event.target.id) {
+		if (event.target && event.target.id == "start") {
+			if (bool) {
+				url = `students/${type}/${val}/?page=1&sort=${sort}`
+			} else {
+				url = `students?page=1&sort=${sort}`
+			}
+		} else if (event.target && event.target.id == "prior") {
+			if (bool) {
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+			} else {
+				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+			}
+		} else if (event.target && event.target.id == "nextstart") {
+			if (bool) {
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+			} else {
+				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+			}
+		} else if (event.target && event.target.id == "nextend") {
+			if (bool) {
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+			} else {
+				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+			}
+		} else if (event.target && event.target.id == "next") {
+			if (bool) {
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+			} else {
+				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+			}
+		} else if (event.target && event.target.id == "end") {
+			if (bool) {
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+			} else {
+				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+			}
+		} else if (event.target && event.target.id == "pageNum") {
+			if (bool) {
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+			} else {
+				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+			}
+		}
+			fetch(`${url}`)
+		.then(response => response.json())
+		.then(response => {
+			printList(response);
+			printPagination(response);
+		})
+		.catch(error => console.error(error));
+	}
+
+})

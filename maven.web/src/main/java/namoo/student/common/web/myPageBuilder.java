@@ -16,8 +16,9 @@ public class myPageBuilder {
 	private int startPage;            /** 현재 페이지 목록의 시작 번호 */
 	private int endPage;              /** 현재 페이지 목록의 마지막 번호 */
 	private int nextStartPage;        /** 다음 페이지 목록의 마지막 번호 */
-	public myPageBuilder() {}
 	
+	
+	public myPageBuilder() {}
 	/**
 	 * @param params           요청 파라메터
 	 * @param totalRowCount    검색타입별 검색된 행의 수
@@ -91,6 +92,23 @@ public class myPageBuilder {
 				+ listNo + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
 
+	
+	public boolean pageListLessOne() {
+		return params.getPage() <= 1;
+	}
+	public boolean  pageListEqPageCount() {
+		return params.getPage() == pageCount;
+	}
+	public boolean pageListEqEndPage() {
+		return params.getPage() == endPage;
+	}
+	
+	/** 동적 쿼리스트링 반환 */
+	public String getQueryString(int page) {
+		String queryString = "?page=" + page + "&sort=" + params.getSortType(); 
+		return queryString;
+	}
+	
 	/** 페이징 계산 */
 	public void build(){
 		// DB로부터 검색된 행의 수에 따른 전체페이지수 계산
@@ -111,22 +129,5 @@ public class myPageBuilder {
 		}
 	
 	}
-	public boolean pageListLessOne() {
-		return params.getPage() <= 1;
-	}
-	public boolean  pageListEqPageCount() {
-		return params.getPage() == pageCount;
-	}
-	public boolean pageListEqEndPage() {
-		return params.getPage() == endPage;
-	}
-	
-	/** 동적 쿼리스트링 반환 */
-	public String getQueryString(int page) {
-		String queryString = "?page=" + page + "&type=" + params.getSearchType() + "&value=" + params.getSearchValue(); 
-		return queryString;
-	}
-	
-	
 	
 }

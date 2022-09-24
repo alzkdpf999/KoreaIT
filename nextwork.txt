@@ -1,0 +1,45 @@
+function printPagination(response){
+	
+	let paging="";
+	let pageBulid = response.page;
+	let params = pageBulid.params;
+	if(params.page <= 1){
+		paging += `<a>&laquo;</a> <a>&lt;</a>`
+	}else{ 
+		paging += `<a onclick="${aTagClick(params,1,response.exist)}">&laquo;</a> <a onclick="${aTagClick(params,params.page-1,response.exist)}">&lt;</a>`
+	}																																																
+	for(let k =pageBulid.startPage; k <= pageBulid.endPage;k++){
+		if(k == params.page){
+			paging +=`<a class="active">${k}</a>`
+		}else{
+			paging += `<a onclick="${aTagClick(params,k,response.exist)}">${k}</a>`
+		}
+	}
+	if(params.page == pageBulid.endpage){
+		if(!(params.page == pageBulid.pagecont)){
+			paging += `<a onclick="${aTagClick(params,pageBulid.nextStartpage,response.exist)}">&gt;</a>`
+			paging += `<a onclick="${aTagClick(params,pageBulid.pageCount,response.exist)}">&raquo;</a>`
+		}else{
+			paging += `<a>&gt;</a> <a>&raquo;</a>`
+		}
+	}else{
+		paging += `<a onclick="${aTagClick(params,params.page+1,response.exist)}">&gt;</a>`
+		paging += `<a onclick="${aTagClick(params,pageBulid.pageCount,response.exist)}">&raquo;</a>`
+	}
+	document.querySelector(".pagination").innerHTML = paging;
+}
+function aTagClick(params,page,bool){
+	let url;
+	if(bool){
+		url = `students/${params.searchType}/${params.searchValue}?page=${page}&sort=${params.sortType}`;
+	}else{
+		url =`students?page=${page}&sort=${params.sortType}`
+	}
+	fetch(`${url}`)
+		.then(response => response.json())
+		.then(response => {
+			printList(response);
+			printPagination(response);
+		})
+		.catch(error => console.error(error));
+}

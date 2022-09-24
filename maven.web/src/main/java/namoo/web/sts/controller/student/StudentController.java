@@ -19,6 +19,7 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+import org.apache.ibatis.type.IntegerTypeHandler;
 
 import com.google.gson.Gson;
 
@@ -26,6 +27,7 @@ import namoo.student.common.web.Params;
 import namoo.student.common.web.myPageBuilder;
 import namoo.web.sts.dto.Student;
 import namoo.web.sts.mapper.StudentMapper;
+import namoo.web.sts.service.StudentServiceImpl;
 
 /**
  * Servlet implementation class StudentListController
@@ -35,31 +37,38 @@ public class StudentController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		/// grade/students/name/a::1
 		System.out.println(request.getRequestURI() + "::" + request.getParameter("page"));
-		SqlSession sqlSession = null;
-		String resource = "mybatis-config.xml";
-		Reader reader = null;
-		try {
-			reader = Resources.getResourceAsReader(resource);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-		sqlSession = sqlSessionFactory.openSession();// Auto commit 아님
+		String[] path = request.getRequestURI().split("/");
+		String type = path[path.length - 2];
+		String value = path[path.length - 1];
+		String sortType = request.getParameter("sort");
+		String page = request.getParameter("page");
+		if(page == null || page.equals("")) page ="1";
+		if(sortType == null || sortType.equals("")) sortType = "ssn";
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		SqlSession sqlSession = StudentServiceImpl.getInstance().setUp();
+		
 		Gson gson = new Gson();
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-		Params params = new Params(1, 10, 3, "ssn", "all", "");
+		Params params = null;
+		if(path.length > 3) {
+			params = new Params(Integer.parseInt(page),10,3,sortType,type,value);
+			resultMap.put("exist",true);
+		}else {
+			params = new Params(Integer.parseInt(page), 10, 3, sortType, "all", "");
+			resultMap.put("exist",false);
+		}
 		List<Student> list = mapper.listByPage(params);
-
 		int cnt = mapper.countByPage(params);
 		myPageBuilder pageBuilder = new myPageBuilder(params, cnt);
 		pageBuilder.build();
+
 		PrintWriter out = response.getWriter();
-		Map<String, Object> resultMap = new HashMap<String, Object>();
+		
 		resultMap.put("page", pageBuilder);
 		resultMap.put("student", list);
-
+		
+		
 		String resultJson = gson.toJson(resultMap);
 
 		out.print(resultJson);
@@ -69,16 +78,7 @@ public class StudentController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		SqlSession sqlSession = null;
-		String resource = "mybatis-config.xml";
-		Reader reader = null;
-		try {
-			reader = Resources.getResourceAsReader(resource);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-		sqlSession = sqlSessionFactory.openSession();// Auto commit 아님
+		SqlSession sqlSession = StudentServiceImpl.getInstance().setUp();
 
 		// 역직렬화
 		PrintWriter out = response.getWriter();
@@ -114,18 +114,8 @@ public class StudentController extends HttpServlet {
 	@Override
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		System.out.println(request.getRequestURI() + "::" + request.getParameter("page"));
 		String[] path = request.getRequestURI().split("/");
-		SqlSession sqlSession = null;
-		String resource = "mybatis-config.xml";
-		Reader reader = null;
-		try {
-			reader = Resources.getResourceAsReader(resource);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		SqlSessionFactory sqlSessionFactory = new SqlSessionFactoryBuilder().build(reader);
-		sqlSession = sqlSessionFactory.openSession();// Auto commit 아님
+		SqlSession sqlSession = StudentServiceImpl.getInstance().setUp();
 		PrintWriter out = response.getWriter();
 		BufferedReader in = request.getReader();
 		Gson gson = new Gson();
@@ -145,13 +135,13 @@ public class StudentController extends HttpServlet {
 			} else {
 				mapper.delete(delMap);
 				resultMap.put("check", true);
-				
+
 			}
 		} else {
 			List<Student> list = mapper.findAll();
-			if(list.size() == 0) {
+			if (list.size() == 0) {
 				resultMap.put("check", false);
-			}else {
+			} else {
 				resultMap.put("check", true);
 				mapper.deleteAll();
 			}

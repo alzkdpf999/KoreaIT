@@ -130,7 +130,7 @@
 				ORDER BY ssn ASC))
 				</when>
 				<when test="sortType == 'name'">
-				ORDER BY name DESC))
+				ORDER BY name ASC))
 				</when>
 				<when test="sortType == 'korean'">
 				ORDER BY korean DESC))

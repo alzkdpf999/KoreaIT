@@ -17,6 +17,7 @@ import org.junit.jupiter.api.Test;
 import namoo.student.common.web.Params;
 import namoo.web.sts.dto.Student;
 import namoo.web.sts.mapper.StudentMapper;
+import namoo.web.sts.service.StudentServiceImpl;
 
 public class StudentsMapperTest {
 	SqlSession sqlSession;	
@@ -48,6 +49,7 @@ public class StudentsMapperTest {
 	@Test
 //	@Disabled
 	public void test2() {
+		StudentServiceImpl.getInstance().setUp();
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
 		List<Student> list = mapper.findAll();
 		for (Student employee : list) {
