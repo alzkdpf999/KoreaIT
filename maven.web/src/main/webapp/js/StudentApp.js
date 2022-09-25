@@ -205,6 +205,9 @@ document.querySelector("#case").addEventListener('click', function(event) {
 
 	//삭제
 	if (event.target && event.target.id == 'del') {
+		if(document.querySelector("#seqBtn").classList.contains("active")){
+			document.querySelector("#seqBtn").classList.remove("active")
+		}
 		ssn = document.querySelector('#ssn').value;
 		//이름
 		name = document.querySelector('#name').value;
@@ -249,6 +252,9 @@ document.querySelector("#case").addEventListener('click', function(event) {
 		document.querySelector("#remove").removeAttribute("disabled");
 		studentManager.resigsterAfterInit();
 	} else if (event.target && event.target.id == 'reg') {
+		if(document.querySelector("#seqBtn").classList.contains("active")){
+			document.querySelector("#seqBtn").classList.remove("active")
+		}
 		ssn = document.querySelector('#ssn').value;
 		//이름
 		name = document.querySelector('#name').value;
@@ -314,7 +320,9 @@ document.querySelector("#case").addEventListener('click', function(event) {
 		document.querySelector(".Allbtn").removeChild(btn);
 		document.querySelector("#case").removeAttribute("style");
 		document.querySelector("#case").removeChild(h4);
-
+		if(document.querySelector("#seqBtn").classList.contains("active")){
+			document.querySelector("#seqBtn").classList.remove("active")
+		}
 		const option = {
 			method: "delete",
 			headers: {
@@ -345,6 +353,9 @@ document.querySelector("#case").addEventListener('click', function(event) {
 //이름 검색
 document.querySelector("#search").addEventListener("click", function(event) {
 	const findname = document.querySelector('#name').value;
+	if(document.querySelector("#seqBtn").classList.contains("active")){
+			document.querySelector("#seqBtn").classList.remove("active")
+		}
 	fetch(`students/name/${findname}?page=1&sort=ssn`)
 		.then(response => response.json())
 		.then(response => {
@@ -356,6 +367,9 @@ document.querySelector("#search").addEventListener("click", function(event) {
 //학번검색
 document.querySelector("#smsearch").addEventListener("click", function(event) {
 	const findssn = document.querySelector('#ssn').value;
+	if(document.querySelector("#seqBtn").classList.contains("active")){
+			document.querySelector("#seqBtn").classList.remove("active")
+		}
 	fetch(`students/ssn/${findssn}?page=1&sort=ssn`)
 		.then(response => response.json())
 		.then(response => {
@@ -366,6 +380,9 @@ document.querySelector("#smsearch").addEventListener("click", function(event) {
 })
 //전체검색
 document.querySelector("#allSearch").addEventListener("click", function(event) {
+	if(document.querySelector("#seqBtn").classList.contains("active")){
+			document.querySelector("#seqBtn").classList.remove("active")
+		}
 	fetch(`students?page=1&sort=ssn`)
 		.then(response => response.json())
 		.then(response => {
@@ -381,11 +398,12 @@ document.querySelector("#ss").addEventListener("click", function(event) {
 	console.log(document.querySelector("#type").value);
 	let type = document.querySelector("#type").value;
 	let val = document.querySelector("#value").value;
+	let seq = document.querySelector("#seq").value;
 	let url;
 	if (type != "all") {
-		url = `students/${type}/${val}/?page=1&sort=ssn`
+		url = `students/${type}/${val}/?page=1&sort=ssn&seq=${seq}`
 	} else {
-		url = "students?page=1&sort=ssn"
+		url = `students?page=1&sort=ssn&seq=${seq}`
 	}
 	fetch(url)
 		.then(response => response.json())
@@ -399,13 +417,14 @@ document.querySelector("#ss").addEventListener("click", function(event) {
 })
 document.querySelector("#ns").addEventListener("click", function(event) {
 	document.querySelector("#sort").removeAttribute("disabled");
+	let seq = document.querySelector("#seq").value;
 	let type = document.querySelector("#type").value;
 	let val = document.querySelector("#value").value;
 	let url;
 	if (type != "all") {
-		url = `students/${type}/${val}/?page=1&sort=name`
+		url = `students/${type}/${val}/?page=1&sort=name&seq=${seq}`
 	} else {
-		url = "students?page=1&sort=name"
+		url = `students?page=1&sort=name&seq=${seq}`
 	}
 	fetch(url)
 		.then(response => response.json())
@@ -421,12 +440,13 @@ document.querySelector("#ns").addEventListener("click", function(event) {
 document.querySelector("#ks").addEventListener("click", function(event) {
 	document.querySelector("#sort").removeAttribute("disabled");
 	let type = document.querySelector("#type").value;
+	let seq = document.querySelector("#seq").value;
 	let val = document.querySelector("#value").value;
 	let url;
 	if (type != "all") {
-		url = `students/${type}/${val}/?page=1&sort=korean`
+		url = `students/${type}/${val}/?page=1&sort=korean&seq=${seq}`
 	} else {
-		url = "students?page=1&sort=korean"
+		url = `students?page=1&sort=korean&seq=${seq}`
 	}
 	fetch(url)
 		.then(response => response.json())
@@ -443,11 +463,12 @@ document.querySelector("#es").addEventListener("click", function(event) {
 	document.querySelector("#sortcase").removeAttribute("style");
 	let type = document.querySelector("#type").value;
 	let val = document.querySelector("#value").value;
+	let seq = document.querySelector("#seq").value;
 	let url;
 	if (type != "all") {
-		url = `students/${type}/${val}/?page=1&sort=english`
+		url = `students/${type}/${val}/?page=1&sort=english&seq=${seq}`
 	} else {
-		url = "students?page=1&sort=english"
+		url = `students?page=1&sort=english&seq=${seq}`
 	}
 	fetch(url)
 		.then(response => response.json())
@@ -463,12 +484,13 @@ document.querySelector("#es").addEventListener("click", function(event) {
 document.querySelector("#ms").addEventListener("click", function(event) {
 	document.querySelector("#sort").removeAttribute("disabled");
 	let type = document.querySelector("#type").value;
+	let seq = document.querySelector("#seq").value;
 	let val = document.querySelector("#value").value;
 	let url;
 	if (type != "all") {
-		url = `students/${type}/${val}/?page=1&sort=math`
+		url = `students/${type}/${val}/?page=1&sort=math&seq=${seq}`
 	} else {
-		url = "students?page=1&sort=math"
+		url = `students?page=1&sort=math&seq=${seq}`
 	}
 	fetch(url)
 		.then(response => response.json())
@@ -485,11 +507,12 @@ document.querySelector("#as").addEventListener("click", function(event) {
 	document.querySelector("#sort").removeAttribute("disabled");
 	let type = document.querySelector("#type").value;
 	let val = document.querySelector("#value").value;
+	let seq = document.querySelector("#seq").value;
 	let url;
 	if (type != "all") {
-		url = `students/${type}/${val}/?page=1&sort=avg`
+		url = `students/${type}/${val}/?page=1&sort=avg&seq=${seq}`
 	} else {
-		url = "students?page=1&sort=avg"
+		url = `students?page=1&sort=avg&seq=${seq}`
 	}
 	fetch(url)
 		.then(response => response.json())
@@ -565,7 +588,7 @@ function printPagination(response) {
 	paging += `<input id="type" type="hidden" value=${response.page.params.searchType}>`
 	paging += `<input id="value" type="hidden" value=${response.page.params.searchValue}>`
 	paging += `<input id="sortType" type="hidden" value=${response.page.params.sortType}>`
-
+	paging += `<input id="seq" type="hidden" value=${response.page.params.seq}>`
 	document.querySelector(".pagination").innerHTML = paging;
 
 }
@@ -574,50 +597,51 @@ document.querySelector(".pagination").addEventListener("click", function(event) 
 	let type = document.querySelector("#type").value;
 	let val = document.querySelector("#value").value;
 	let sort = document.querySelector("#sortType").value;
+	let seq = document.querySelector("#seq").value;
 	let url;
 	let bool = (type != "all") ? true : false;
 	if (event.target.id) {
 		if (event.target && event.target.id == "start") {
 			if (bool) {
-				url = `students/${type}/${val}/?page=1&sort=${sort}`
+				url = `students/${type}/${val}/?page=1&sort=${sort}&seq=${seq}`
 			} else {
-				url = `students?page=1&sort=${sort}`
+				url = `students?page=1&sort=${sort}&seq=${seq}`
 			}
 		} else if (event.target && event.target.id == "prior") {
 			if (bool) {
-				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			} else {
-				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			}
 		} else if (event.target && event.target.id == "nextstart") {
 			if (bool) {
-				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			} else {
-				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			}
 		} else if (event.target && event.target.id == "nextend") {
 			if (bool) {
-				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			} else {
-				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			}
 		} else if (event.target && event.target.id == "next") {
 			if (bool) {
-				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			} else {
-				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			}
 		} else if (event.target && event.target.id == "end") {
 			if (bool) {
-				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			} else {
-				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			}
 		} else if (event.target && event.target.id == "pageNum") {
 			if (bool) {
-				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students/${type}/${val}/?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			} else {
-				url = `students?page=${event.target.dataset.value}&sort=${sort}`
+				url = `students?page=${event.target.dataset.value}&sort=${sort}&seq=${seq}`
 			}
 		}
 			fetch(`${url}`)
@@ -629,4 +653,35 @@ document.querySelector(".pagination").addEventListener("click", function(event) 
 		.catch(error => console.error(error));
 	}
 
+})
+
+document.querySelector("#seqBtn").addEventListener("click",function(event){
+	let type = document.querySelector("#type").value;
+	let val = document.querySelector("#value").value;
+	let sort = document.querySelector("#sortType").value;
+	let url;
+	let bool = (type != "all") ? true : false;
+	if(document.querySelector("#seqBtn").classList.contains("active")){
+		document.querySelector("#seqBtn").classList.remove("active");
+		if (bool) {
+				url = `students/${type}/${val}/?page=1&sort=${sort}&seq=order`
+			} else {
+				url = `students?page=1&sort=${sort}&seq=order`
+			}
+	}else{
+		document.querySelector("#seqBtn").classList.add("active");
+			if (bool) {
+				url = `students/${type}/${val}/?page=1&sort=${sort}&seq=inverse`
+			} else {
+				url = `students?page=1&sort=${sort}&seq=inverse`
+			}
+	}
+	console.log(url);
+	fetch(`${url}`)
+		.then(response => response.json())
+		.then(response => {
+			printList(response);
+			printPagination(response);
+		})
+		.catch(error => console.error(error));
 })

@@ -125,6 +125,7 @@
 				</otherwise>
 			</choose>
 			</if>
+			<if test="seq == 'order'">
 				<choose>
 				<when test="sortType == 'ssn'">
 				ORDER BY ssn ASC))
@@ -147,6 +148,31 @@
 				<otherwise>
 				</otherwise>
 			</choose>
+			</if>
+			<if test="seq == 'inverse'">
+				<choose>
+				<when test="sortType == 'ssn'">
+				ORDER BY ssn DESC))
+				</when>
+				<when test="sortType == 'name'">
+				ORDER BY name DESC))
+				</when>
+				<when test="sortType == 'korean'">
+				ORDER BY korean ASC))
+				</when>
+				<when test="sortType == 'english'">
+				ORDER BY english ASC))
+				</when>
+				<when test="sortType == 'math'">
+				ORDER BY math ASC))
+				</when>
+				<when test="sortType == 'avg'">
+				ORDER BY "avg" ASC))
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+			</if>
 			WHERE  "request_page" = #{page}
 </select> 
 </mapper>

@@ -47,7 +47,7 @@ public class StudentsMapperTest {
 		sqlSession.commit();
 	}
 	@Test
-//	@Disabled
+	@Disabled
 	public void test2() {
 		StudentServiceImpl.getInstance().setUp();
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
@@ -58,10 +58,10 @@ public class StudentsMapperTest {
 	}
 	
 	@Test
-	@Disabled
+//	@Disabled
 	public void test3() {
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-		Params params = new Params(1,10,3,"avg","all","");
+		Params params = new Params(1,10,3,"avg","all","","inverse");
 		List<Student> list =mapper.listByPage(params);
 		for(Student st : list) {
 			System.out.println(st.avg());		
@@ -72,7 +72,7 @@ public class StudentsMapperTest {
 	@Disabled
 	public void test4() {
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
-		Params params = new Params(1,10,3,"ssn","all","");
+		Params params = new Params(1,10,3,"ssn","all","","inverse");
 		int list =mapper.countByPage(params);
 		System.out.println(list);
 	}

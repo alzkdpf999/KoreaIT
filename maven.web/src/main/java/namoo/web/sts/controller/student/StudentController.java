@@ -43,6 +43,8 @@ public class StudentController extends HttpServlet {
 		String value = path[path.length - 1];
 		String sortType = request.getParameter("sort");
 		String page = request.getParameter("page");
+		String seq = request.getParameter("seq");
+		if(seq == null || seq.equals("")) seq = "order";
 		if(page == null || page.equals("")) page ="1";
 		if(sortType == null || sortType.equals("")) sortType = "ssn";
 		Map<String, Object> resultMap = new HashMap<String, Object>();
@@ -52,10 +54,10 @@ public class StudentController extends HttpServlet {
 		StudentMapper mapper = sqlSession.getMapper(StudentMapper.class);
 		Params params = null;
 		if(path.length > 3) {
-			params = new Params(Integer.parseInt(page),10,3,sortType,type,value);
+			params = new Params(Integer.parseInt(page),10,3,sortType,type,value,seq);
 			resultMap.put("exist",true);
 		}else {
-			params = new Params(Integer.parseInt(page), 10, 3, sortType, "all", "");
+			params = new Params(Integer.parseInt(page), 10, 3, sortType, "all", "",seq);
 			resultMap.put("exist",false);
 		}
 		List<Student> list = mapper.listByPage(params);
@@ -96,7 +98,7 @@ public class StudentController extends HttpServlet {
 			resultMap.put("check", false);
 		}
 
-		Params params = new Params(1, 10, 3, "ssn", "all", "");
+		Params params = new Params(1, 10, 3, "ssn", "all", "","order");
 		int cnt = mapper.countByPage(params);
 		myPageBuilder pageBuilder = new myPageBuilder(params, cnt);
 		pageBuilder.build();
@@ -147,7 +149,7 @@ public class StudentController extends HttpServlet {
 			}
 		}
 		sqlSession.commit();
-		Params params = new Params(1, 10, 3, "ssn", "all", "");
+		Params params = new Params(1, 10, 3, "ssn", "all", "","order");
 		int cnt = mapper.countByPage(params);
 		myPageBuilder pageBuilder = new myPageBuilder(params, cnt);
 		pageBuilder.build();

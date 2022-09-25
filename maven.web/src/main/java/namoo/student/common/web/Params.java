@@ -12,21 +12,32 @@ public class Params {
 	private String sortType="ssn";
 	private String searchType="all";   /** 검색 유형 */
 	private String searchValue;  /** 검색 값 */
-	
+	private String seq = "order";
 	
 	public Params() {
-		this(1,10,3,"ssn","all",null);
+		this(1,10,3,"ssn","all",null,"order");
 	}
 	
 	
-	public Params(int page, int searchList,int pageSize,String sortType, String searchType, String searchValue) {
+	public Params(int page, int searchList,int pageSize,String sortType, String searchType, String searchValue,String seq) {
 		this.page = page;
 		this.searchList = searchList;
 		this.pageSize = pageSize;
 		this.sortType = sortType;
 		this.searchType = searchType;
 		this.searchValue = searchValue;
+		this.seq = seq;
 	}
+
+	public String getSeq() {
+		return seq;
+	}
+
+
+	public void setSeq(String seq) {
+		this.seq = seq;
+	}
+
 
 	public String getSortType() {
 		return sortType;
