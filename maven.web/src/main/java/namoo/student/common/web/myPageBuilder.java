@@ -92,17 +92,6 @@ public class myPageBuilder {
 				+ listNo + ", startPage=" + startPage + ", endPage=" + endPage + "]";
 	}
 
-	
-	public boolean pageListLessOne() {
-		return params.getPage() <= 1;
-	}
-	public boolean  pageListEqPageCount() {
-		return params.getPage() == pageCount;
-	}
-	public boolean pageListEqEndPage() {
-		return params.getPage() == endPage;
-	}
-	
 	/** 동적 쿼리스트링 반환 */
 	public String getQueryString(int page) {
 		String queryString = "?page=" + page + "&sort=" + params.getSortType(); 
