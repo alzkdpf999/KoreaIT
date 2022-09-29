@@ -32,6 +32,4 @@ public class StudentServiceImpl implements StudentService {
 		sqlSession = sqlSessionFactory.openSession();//Auto commit 아님
 		return sqlSession;
 	}
-	
-
 }

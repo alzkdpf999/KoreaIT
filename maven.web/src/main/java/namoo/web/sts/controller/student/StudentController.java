@@ -34,7 +34,7 @@ import namoo.web.sts.service.StudentServiceImpl;
  */
 @WebServlet("/students")
 public class StudentController extends HttpServlet {
-
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		System.out.println(request.getRequestURI() + "::" + request.getParameter("page"));

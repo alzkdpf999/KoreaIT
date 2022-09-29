@@ -11,7 +11,7 @@ import namoo.web.sts.dto.Student;
 /**
  * 사용자 관리 서비스
  * 
- * @author 김기정
+ * @author 
  *
  */
 public interface StudentService {
