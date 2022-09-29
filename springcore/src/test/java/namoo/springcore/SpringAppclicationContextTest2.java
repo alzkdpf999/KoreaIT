@@ -22,12 +22,14 @@ public class SpringAppclicationContextTest2 {
 	@BeforeEach
 	public void setUp() {
 		// 스프링 컨테이너 생성
+		//web지원안함
 		applicationContext = new AnnotationConfigApplicationContext(AppConfig2.class);
 		//타입으로 검색 이게 더 유용함
 //		userService = applicationContext.getBean(UserService.class);
 		//이름으로 검색
 		userService = applicationContext.getBean("userServiceImpl",UserService.class);
-		System.out.println(userService);
+		UserService userService2 = applicationContext.getBean("userServiceImpl",UserService.class);
+		System.out.println(userService == userService2);
 	}
 
 	@Test
