@@ -7,4 +7,12 @@
     <fullyQualifiedTypeName name="namoo.student.common.factory.ServiceFactoryImpl"/>
     <fullyQualifiedTypeName name="namoo.web.sts.service.StudentServiceImpl"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+    <fullyQualifiedTypeName name="java.sql.Connection"/>
+    <fullyQualifiedTypeName name="java.util.Map"/>
+    <fullyQualifiedTypeName name="java.util.HashMap"/>
+    <fullyQualifiedTypeName name="java.util.Collection"/>
+    <fullyQualifiedTypeName name="java.util.Iterator"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="java.util.ArrayList"/>
+    <fullyQualifiedTypeName name="namoo.springcore.user.User"/>
 </qualifiedTypeNameHistroy>

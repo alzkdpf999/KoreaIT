@@ -7,6 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+
+//@Component
+@Repository
 public class MemoryUserRepository implements UserRepository {
 	private Map<String, User> map = new HashMap<String, User>();
 
@@ -17,7 +22,8 @@ public class MemoryUserRepository implements UserRepository {
 
 	@Override
 	public User findById(String id) {
-		return map.get(id);
+//		return map.get(id);
+		return new User("1","2","3","4");
 	}
 
 	@Override

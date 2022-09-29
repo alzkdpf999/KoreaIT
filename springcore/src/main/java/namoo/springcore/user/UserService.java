@@ -8,7 +8,7 @@ import java.util.List;
  * 업무 이름과 비슷하게 하는게 좋음
  */
 public interface UserService {
-	public void registUser();
+	public void registUser(User user);
 	public User findUser(String id);
 	public List<User> findUsers();
 }
