@@ -109,3 +109,6 @@ ALTER TABlE recipe_procedure ADD exist NUMBER(1) DEFAULT 1;
 ALTER TABlE cookbook ADD exist NUMBER(1) DEFAULT 1;
 ALTER TABlE recipe ADD exist NUMBER(1) DEFAULT 1;
 
+
+
+https://applepick.tistory.com/120 //맥북 오라클
