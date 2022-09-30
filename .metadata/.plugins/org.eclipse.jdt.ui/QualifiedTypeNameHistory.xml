@@ -2,7 +2,6 @@
 <qualifiedTypeNameHistroy>
     <fullyQualifiedTypeName name="namoo.student.common.web.Params"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.type.IntegerTypeHandler"/>
-    <fullyQualifiedTypeName name="namoo.web.sts.service.StudentService"/>
     <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSessionFactory"/>
     <fullyQualifiedTypeName name="namoo.student.common.factory.ServiceFactoryImpl"/>
     <fullyQualifiedTypeName name="java.sql.Connection"/>
@@ -13,6 +12,7 @@
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="java.util.ArrayList"/>
     <fullyQualifiedTypeName name="namoo.springcore.user.User"/>
+<<<<<<< HEAD
     <fullyQualifiedTypeName name="org.junit.jupiter.api.BeforeEach"/>
     <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
     <fullyQualifiedTypeName name="namoo.springcore.user.UserRepository"/>
@@ -44,4 +44,13 @@
     <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
     <fullyQualifiedTypeName name="org.springframework.context.annotation.Scope"/>
     <fullyQualifiedTypeName name="namoo.springcore.user.UserService"/>
+=======
+    <fullyQualifiedTypeName name="java.security.Provider.Service"/>
+    <fullyQualifiedTypeName name="namoo.student.common.factory.Service"/>
+    <fullyQualifiedTypeName name="org.apache.ibatis.session.SqlSession"/>
+    <fullyQualifiedTypeName name="namoo.web.sts.mapper.StudentMapper"/>
+    <fullyQualifiedTypeName name="namoo.web.sts.service.StudentService"/>
+    <fullyQualifiedTypeName name="namoo.web.sts.service.StudentServiceImpl"/>
+    <fullyQualifiedTypeName name="namoo.student.common.factory.ServiceImpl"/>
+>>>>>>> 22c6b16e61910f63a641b5790747ed99991f10dd
 </qualifiedTypeNameHistroy>
