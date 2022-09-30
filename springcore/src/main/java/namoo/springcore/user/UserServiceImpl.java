@@ -2,6 +2,8 @@ package namoo.springcore.user;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -21,6 +23,10 @@ public class UserServiceImpl implements UserService {
 		this.userRepository=userRepository;
 	}
 	
+	@PostConstruct //의존관계 주입 끝나고 실행
+	public void init() {
+		System.out.println("init.....호출");
+	}
 	
 	@Override
 	public void registUser(User user) {

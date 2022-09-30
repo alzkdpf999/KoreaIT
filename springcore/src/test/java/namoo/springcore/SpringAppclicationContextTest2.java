@@ -25,9 +25,9 @@ public class SpringAppclicationContextTest2 {
 		//web지원안함
 		applicationContext = new AnnotationConfigApplicationContext(AppConfig2.class);
 		//타입으로 검색 이게 더 유용함
-//		userService = applicationContext.getBean(UserService.class);
+		userService = applicationContext.getBean(UserService.class);
 		//이름으로 검색
-		userService = applicationContext.getBean("userServiceImpl",UserService.class);
+//		userService = applicationContext.getBean("userServiceImpl",UserService.class);
 		UserService userService2 = applicationContext.getBean("userServiceImpl",UserService.class);
 		System.out.println(userService == userService2);
 	}
@@ -48,5 +48,15 @@ public class SpringAppclicationContextTest2 {
 		userService.findUser("bangry");
 		System.out.println("2");
 		System.out.println(userService.findUser("bangry"));
+	}
+	@Test
+	@Order(3)
+	public void bean() {
+		String[] names= applicationContext.getBeanDefinitionNames();
+		System.out.println("빈 목록");
+		for(String name : names) {
+			Object bean = applicationContext.getBean(name);
+			System.out.println(name + "::" +bean);
+		}
 	}
 }
