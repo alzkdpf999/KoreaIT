@@ -4,3 +4,7 @@ GET https://www.googleapis.com/books/v1/volumes?q=java
 # YTX 하나는 주석 
 # 3개는 구분하는 용
 GET https://yts.torrentbay.to/api/v2/list_movies.json?limit=50
+
+###
+
+POST http://localhost/board/regist

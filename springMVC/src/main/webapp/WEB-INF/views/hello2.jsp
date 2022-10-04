@@ -8,5 +8,6 @@
 <body>
 ModelAndView에 저장하기
 ${name}
+${today }
 </body>
 </html>
