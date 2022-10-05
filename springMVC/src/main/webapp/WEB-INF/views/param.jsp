@@ -6,8 +6,8 @@
 <title></title>
 </head>
 <body>
-ModelAndView에 저장하기
-${name}
-${today }
+파라미터 받기
+${name }
+${age }
 </body>
 </html>

@@ -6,8 +6,6 @@
 <title></title>
 </head>
 <body>
-ModelAndView에 저장하기
-${name}
-${today }
+요청 방식 구현하기입니다.
 </body>
 </html>
