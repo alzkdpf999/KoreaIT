@@ -1,8 +1,7 @@
 package namoo.springmvc.dto.user;
-
 /**
- * User DTO
- * @author 김기정
+ * 
+ * @author 정충효
  *
  */
 public class User {

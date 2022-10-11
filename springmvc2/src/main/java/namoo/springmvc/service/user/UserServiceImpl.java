@@ -18,6 +18,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void registUser(User user) {
+		userMapper.create(user);
 	}
 
 	@Override

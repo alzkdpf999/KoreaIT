@@ -2,7 +2,7 @@ package namoo.yorizori.dto.cookbook;
 
 /**
  * Cookbook DTO
- * @author 김기정
+ * @author 정충효
  *
  */
 public class Cookbook {
