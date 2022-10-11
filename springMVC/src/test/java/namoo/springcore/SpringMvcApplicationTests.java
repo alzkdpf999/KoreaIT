@@ -8,6 +8,7 @@ class SpringMvcApplicationTests {
 
 	@Test
 	void contextLoads() {
+		System.out.println("ddddddddd");
 	}
 
 }
