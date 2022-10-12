@@ -14,5 +14,5 @@ public interface UserService {
 	public void registUser(User user);
 	public User findUser(String id);
 	public List<User> findUsers();
-
+	public void updateUser(User user);
 }

@@ -30,7 +30,11 @@ class UserServiceTest {
 	}
 	@Test
 	public void regist() {
-		User user = new User("spring","spring","spring","spring");
+		User user = new User();
+		user.setId("spring");
+		user.setEmail("spring");
+		user.setName("spring");
+		user.setPasswd("spring");
 		userService.registUser(user);
 		System.out.println(user);
 		

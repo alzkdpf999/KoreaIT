@@ -31,4 +31,10 @@ public class UserServiceImpl implements UserService {
 		return userMapper.findAll();
 	}
 
+	@Override
+	public void updateUser(User user) {
+		return userMapper.create(user);
+		
+	}
+	
 }

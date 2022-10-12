@@ -27,11 +27,17 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<a href="/users/form" class="btn btn-primary float-end">회원 등록</a>
+				<form method="get" action="/users&id=bangry">
+					<input type="text" name="searchValue" placeholder="Search..">
+					<button type="button" class="btn btn-primary" >검색</button>
+					<a href="/users/form" class="btn btn-primary float-end">회원 등록</a>
+				</form>
+
 			</div>
 		</div>
 		<hr class="my-4">
 		<div>
+
 			<table class="table">
 				<thead>
 					<tr>

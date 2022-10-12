@@ -25,6 +25,9 @@ dependencies {
 	implementation group: 'com.oracle.database.jdbc', name: 'ojdbc8', version: '21.5.0.0'
 	// https://mvnrepository.com/artifact/org.mybatis.spring.boot/mybatis-spring-boot-starter
 	implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.2.2'
+	
+	//Lombok 설치 
+	compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.18.22'
 }
 
 tasks.named('test') {

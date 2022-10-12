@@ -20,6 +20,8 @@ public interface UserMapper {
 	/** 회원 전체 목록 조회 */
 	public  List<User> findAll();
 	
+	/** 회원 정보 수정 */
+	public void update(User user);
 	
 
 }

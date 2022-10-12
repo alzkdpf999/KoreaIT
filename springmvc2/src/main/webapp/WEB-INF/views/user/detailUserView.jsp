@@ -48,12 +48,12 @@
 		<hr class="my-4">
 		<div class="row">
 			<div class="col">
-				<button class="w-100 btn btn-primary btn-lg" onclick="#"
-					type="button">회원정보 수정</button>
+					<a href="/users/edit" class="w-100 btn btn-primary btn-lg">회원정보 수정</a>
+			
 			</div>
 			<div class="col">
-				<button class="w-100 btn btn-secondary btn-lg" onclick=""
-					type="button">회원 목록</button>
+			<a href="/users" class="w-100 btn btn-primary btn-lg">회원 목록</a>
+				
 			</div>
 		</div>
 	</div>

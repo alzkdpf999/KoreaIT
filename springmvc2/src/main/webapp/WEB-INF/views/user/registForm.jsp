@@ -48,8 +48,7 @@
             type="submit">회원 등록</button>
         </div>
         <div class="col">
-          <button class="w-100 btn btn-secondary btn-lg" onclick=""
-            type="reset">취소</button>
+        	<a href="/users" class="w-100 btn btn-primary btn-lg">회원 목록</a>
         </div>
       </div>
     </form>
