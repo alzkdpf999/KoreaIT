@@ -43,12 +43,12 @@ public class UserLoginController extends HttpServlet {
 		if (loginUser != null) {
 			loginSession.setAttribute("loginUser", loginUser);
 			//loginSession.setAttribute("test",referer);
-			if (saveCheck != null) { // 저장 체크 x
+			if (saveCheck != null) { // 저장 체크 o
 				Cookie idCookie = new Cookie("id", loginUser.getId());
 				idCookie.setPath("/");
 				idCookie.setMaxAge(60 * 60 * 24 * 30);
 				response.addCookie(idCookie);
-			} else { // 저장 체크 o
+			} else { // 저장 체크 x
 				Cookie[] cookies = request.getCookies();
 				if (cookies != null) {
 					for (Cookie cookie : cookies) {

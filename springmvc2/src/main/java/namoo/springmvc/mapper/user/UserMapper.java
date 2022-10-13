@@ -1,6 +1,7 @@
 package namoo.springmvc.mapper.user;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
@@ -21,7 +22,7 @@ public interface UserMapper {
 	public  List<User> findAll();
 	
 	/** 회원 정보 수정 */
-	public void update(User user);
+	public void update(Map<String, Object> map);
 	
 
 }

@@ -1,6 +1,7 @@
 package namoo.springmvc.service.user;
 
 import java.util.List;
+import java.util.Map;
 
 import namoo.springmvc.dto.user.User;
 
@@ -14,5 +15,5 @@ public interface UserService {
 	public void registUser(User user);
 	public User findUser(String id);
 	public List<User> findUsers();
-	public void updateUser(User user);
+	public void updateUser(Map<String, Object> map);
 }
