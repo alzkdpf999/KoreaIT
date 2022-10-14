@@ -6,13 +6,10 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
 import namoo.springJPA.entity.user.User;
-import namoo.springJPA.repository.user.JpaUserRepositoryDATA;
-import namoo.springJPA.repository.user.SpringDataJpaUserRepository;
 import namoo.springJPA.repository.user.UserRepository;
 
 @SpringBootTest
@@ -70,7 +67,7 @@ public class JPATEST {
 		userRepository.update(user);
 		log.info("사용자 생성{}",user);
 	}
-//	@Test
+	@Test
 //	@Disabled
 	public void test5() {
 		List<User> user =  userRepository.findName("sp");

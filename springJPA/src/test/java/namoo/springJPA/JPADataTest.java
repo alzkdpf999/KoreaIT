@@ -6,7 +6,6 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
@@ -28,14 +27,23 @@ public class JPADataTest {
 	private UserRepository userRepository;
 
 	@Test
+	@Disabled
 	public void test5() {
 		List<User> user = userRepository.findName("sp");
 		log.info("{}", user);
 	}
 
 	@Test
+//	@Disabled
+	public void test2() {
+		List<User> findUser = userRepository.findAll();
+		log.info("찾는 사용자{}",findUser);
+	}
+	@Test
+//	@Disabled
 	public void test6() {
-		List<User> user = userRepository.findByName("spring");
+		List<User> user = userRepository.findName("a");
 		log.info("{}", user);
 	}
+
 }
