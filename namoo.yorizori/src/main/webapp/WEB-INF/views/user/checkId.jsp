@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+<link rel="icon" type="image/x-icon" href="${ctx }/assets/favicon.ico" />
 <!-- Bootstrap icons-->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"

@@ -112,3 +112,5 @@ ALTER TABlE recipe ADD exist NUMBER(1) DEFAULT 1;
 
 
 https://applepick.tistory.com/120 //맥북 오라클
+
+ERDCLOUD 데이터모델링 무료 툴
