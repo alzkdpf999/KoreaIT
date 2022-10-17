@@ -2,6 +2,9 @@ package namoo.springJPA.repository.user;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import namoo.springJPA.entity.user.User;
 
 /**
@@ -30,4 +33,6 @@ public interface UserRepository {
 	public List<User> findByName(String name);
 	
 	public List<User> findLastName(String lastName);
+	
+	public Page<User> findUsers(String id, String email,Pageable pageable);
 }

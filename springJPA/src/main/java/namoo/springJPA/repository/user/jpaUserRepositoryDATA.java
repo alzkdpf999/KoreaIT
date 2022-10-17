@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -64,5 +66,7 @@ public class jpaUserRepositoryDATA implements UserRepository {
 		return userRepository.findAllByNameStartingWith(lastName);
 	}
 	
-
+	public Page<User> findUsers(String id, String email,Pageable pageable){
+		return userRepository.findAllByIdContainingOrEmailContaining(id, email, pageable);
+	}
 }

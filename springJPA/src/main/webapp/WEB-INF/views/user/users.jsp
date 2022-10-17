@@ -27,7 +27,7 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<form method="get" action="/users/search">
+				<form method="get" action="/pages/search">
 					<input type="text" name="id" placeholder="Search..">
 					<button type="button" class="btn btn-primary">검색</button>
 					<a href="/users/form" class="btn btn-primary float-end">회원 등록</a>
@@ -37,7 +37,7 @@
 		</div>
 		<hr class="my-4">
 		<div>
-
+		<h3>${pageResults.totalElements}</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -48,20 +48,20 @@
 					</tr>
 				</thead>
 				<tbody>
-					<c:if test="${empty users}">
+					<c:if test="${empty pageResults}">
 						<tr>
 							<td><a href="/users/${user.id}"> ${user.id}</a></td>
 							<td>${user.name}</td>
-							<td><a href="mailto:bangry@gmail.com">${user.email}</a></td>
+							<td><a href="mailto:${user.email}">${user.email}</a></td>
 							<td>${user.regdate}</td>
 						</tr>
 					</c:if>
-					<c:if test="${!empty users}">
-						<c:forEach var="user" items="${users}">
+					<c:if test="${!empty pageResults}">
+						<c:forEach var="user" items="${pageResults.content}">
 							<tr>
 								<td><a href="/users/${user.id}"> ${user.id}</a></td>
 								<td>${user.name}</td>
-								<td><a href="mailto:bangry@gmail.com">${user.email}</a></td>
+								<td><a href="mailto:${user.email}">${user.email}</a></td>
 								<td>${user.regdate}</td>
 							</tr>
 						</c:forEach>
