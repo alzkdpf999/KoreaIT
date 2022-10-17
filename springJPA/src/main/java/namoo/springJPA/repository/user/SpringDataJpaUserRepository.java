@@ -10,5 +10,7 @@ public interface SpringDataJpaUserRepository  extends JpaRepository<User, String
 	List<User> findAllByNameContaining(String name);
 	
 	List<User> findAllByName(String name);
+	
+	List<User> findAllByNameStartingWith(String lastName);
 }
  	

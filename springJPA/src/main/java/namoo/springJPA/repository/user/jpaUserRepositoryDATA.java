@@ -58,4 +58,11 @@ public class jpaUserRepositoryDATA implements UserRepository {
 		return userRepository.findAllByName(name);
 	}
 
+	@Override
+	public List<User> findLastName(String lastName) {
+		// TODO Auto-generated method stub
+		return userRepository.findAllByNameStartingWith(lastName);
+	}
+	
+
 }

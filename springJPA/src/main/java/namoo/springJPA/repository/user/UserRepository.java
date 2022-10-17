@@ -28,4 +28,6 @@ public interface UserRepository {
 	public List<User> findName(String name);
 	
 	public List<User> findByName(String name);
+	
+	public List<User> findLastName(String lastName);
 }

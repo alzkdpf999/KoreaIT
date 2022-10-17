@@ -3,6 +3,7 @@ package namoo.springJPA;
 import java.util.List;
 
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,16 +35,26 @@ public class JPADataTest {
 	}
 
 	@Test
-//	@Disabled
+	@Disabled
 	public void test2() {
 		List<User> findUser = userRepository.findAll();
 		log.info("찾는 사용자{}",findUser);
 	}
 	@Test
-//	@Disabled
+	@Disabled
+	@DisplayName("findName")
 	public void test6() {
 		List<User> user = userRepository.findName("a");
-		log.info("{}", user);
+		for (User user2 : user) {
+			log.info("이름 으로 찾기 {}", user2);
+		}
+		
+	}
+	@Test
+	@DisplayName("lastname")
+	void test7() {
+		List<User> user = userRepository.findLastName("a");
+		log.info("성으로 {}",user);
 	}
 
 }
