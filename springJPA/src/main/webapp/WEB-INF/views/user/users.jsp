@@ -27,9 +27,9 @@
 		</div>
 		<div class="row">
 			<div class="col">
-				<form method="get" action="/pages/search">
-					<input type="text" name="id" placeholder="Search..">
-					<button type="button" class="btn btn-primary">검색</button>
+				<form method="get" action="/pages">
+					<input type="text" name="value" placeholder="Search..">
+					<button type="submit" class="btn btn-primary">검색</button>
 					<a href="/users/form" class="btn btn-primary float-end">회원 등록</a>
 				</form>
 
@@ -37,7 +37,7 @@
 		</div>
 		<hr class="my-4">
 		<div>
-		<h3>${pageResults.totalElements}</h3>
+			<h3>${pageResults.totalElements}</h3>
 			<table class="table">
 				<thead>
 					<tr>
@@ -69,8 +69,74 @@
 
 				</tbody>
 			</table>
+
 		</div>
 	</div>
+	<nav aria-label="Page navigation example">
+		<ul class="pagination justify-content-center">
+			<c:choose>
+				<c:when test="${empty param.value }">
+					<c:choose>
+						<c:when test="${pageResults.hasPrevious()}">
+							<li class="page-item"><a class="page-link"
+								href="?page=${pageResults.number -1  } ">Previous</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link">Previous</a></li>
+						</c:otherwise>
+					</c:choose>
+					<!-- 0부터 시작하므로 end < 0 으로 나온다 따라서 이렇게 해준다. -->
+					<c:if test="${endPage > -1 }">
+						<c:forEach begin="${startPage}" end="${endPage }" step="1"
+							varStatus="status">
+							<li class="page-item"><a class="page-link"
+								href="?page=${status.index }">${status.index+1 }</a></li>
+						</c:forEach>
+					</c:if>
+
+					<c:choose>
+						<c:when test="${pageResults.hasNext()}">
+							<li class="page-item"><a class="page-link"
+								href="?page=${pageResults.number +1}">Next</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link">Next</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:when>
+
+				<c:otherwise>
+					<c:choose>
+						<c:when test="${pageResults.hasPrevious()}">
+							<li class="page-item"><a class="page-link"
+								href="?value=${param.value }&page=${pageResults.number -1 } ">Previous</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link">Previous</a></li>
+						</c:otherwise>
+					</c:choose>
+					<c:if test="${endPage > -1 }">
+						<c:forEach begin="${startPage}" end="${endPage }" step="1"
+							varStatus="status">
+							<li class="page-item"><a class="page-link"
+								href="?value=${param.value }&page=${status.index }">${status.index+1 }</a></li>
+						</c:forEach>
+					</c:if>
+					<c:choose>
+						<c:when test="${pageResults.hasNext()}">
+							<li class="page-item"><a class="page-link"
+								href="?value=${param.value }&page=${pageResults.number +1}">Next</a></li>
+						</c:when>
+						<c:otherwise>
+							<li class="page-item"><a class="page-link">Next</a></li>
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
+
+
+			</c:choose>
+		</ul>
+	</nav>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
