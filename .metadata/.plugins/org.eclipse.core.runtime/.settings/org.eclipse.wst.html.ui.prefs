@@ -1,6 +1,21 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
 >>>>>>>=5c31bafa4db1bea14fd0ad3eeef88f44a6ae1e6f
+commentBorder=\#8C3FC8 | null | null | null | null | null
+commentText=\#8C3FC8 | null | null | null | null | null
+declBoder=\#F7C527 | null | null | null | null | null
+doctypeExternalId=\#F7C527 | null | null | null | null | null
+doctypeExternalPubref=\#F7C527 | null | null | null | null | null
+doctypeExtrenalSysref=\#F7C527 | null | null | null | null | null
+doctypeName=\#F7C527 | null | null | null | null | null
 eclipse.preferences.version=1
+entityReference=\#EC691E | null | null | null | null | null
 newFileTemplateName=New HTML File (5)
 org.eclipse.wst.sse.ui.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="true" context\="html_new" deleted\="false" description\="html 5" enabled\="true" name\="New HTML File leaf">&lt;\!DOCTYPE html&gt;\r\n&lt;html xmlns\:th\="http\://www.thymeleaf.org"&gt;\r\n&lt;head&gt;\r\n&lt;meta charset\="utf-8"&gt;\r\n&lt;title&gt;Insert title here&lt;/title&gt;\r\n&lt;/head&gt;\r\n&lt;body&gt;\r\n${cursor}\r\n&lt;/body&gt;\r\n&lt;/html&gt;</template></templates>
+overriddenByCSS=,commentBorder,commentText,declBoder,doctypeExternalId,doctypeExternalPubref,doctypeExtrenalSysref,doctypeName,entityReference,tagAttributeEquals,tagAttributeName,tagAttributeValue,tagBorder,tagName,xmlContent,
+tagAttributeEquals=\#FFFFFF | null | null | null | null | null
+tagAttributeName=\#357A8F | null | null | null | null | null
+tagAttributeValue=\#477488 | null | null | null | null | null
+tagBorder=\#3C758D | null | null | null | null | null
+tagName=\#357A92 | null | null | null | null | null
+xmlContent=\#FFFFFF | null | null | null | null | null

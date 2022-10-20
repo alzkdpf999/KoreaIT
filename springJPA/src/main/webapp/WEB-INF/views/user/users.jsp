@@ -89,7 +89,7 @@
 					<c:if test="${endPage > -1 }">
 						<c:forEach begin="${startPage}" end="${endPage }" step="1"
 							varStatus="status">
-							<li class="page-item"><a class="page-link"
+							<li class="page-item  ${ pageResults.number == status.index ? 'active' : ''}"><a class="page-link"
 								href="?page=${status.index }">${status.index+1 }</a></li>
 						</c:forEach>
 					</c:if>
@@ -118,7 +118,7 @@
 					<c:if test="${endPage > -1 }">
 						<c:forEach begin="${startPage}" end="${endPage }" step="1"
 							varStatus="status">
-							<li class="page-item"><a class="page-link"
+							<li class="page-item ${ pageResults.number  == status.index ? 'active' : ''}"><a class="page-link "
 								href="?value=${param.value }&page=${status.index }">${status.index+1 }</a></li>
 						</c:forEach>
 					</c:if>
