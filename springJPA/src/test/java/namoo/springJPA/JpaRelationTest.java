@@ -60,7 +60,7 @@ public class JpaRelationTest {
 	
 	@Test
 	@DisplayName("이 방법을 사용해야함")
-	@Disabled
+//	@Disabled
 	public void test2() {
 		// Team 생성 및 저장
 		Team insertTeam = new Team();
@@ -90,7 +90,7 @@ public class JpaRelationTest {
 		teamRepository.save(teamB);
 		// 기존 회원 팀 변경
 		findMember.setTeam(teamB);
-		memberRepository.save(findMember);
+//		memberRepository.save(findMember);
 		log.info("팀 정보 수정 완료: {}", findMember);
 	}
 	}
