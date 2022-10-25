@@ -6,6 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 
 import lombok.AllArgsConstructor;
@@ -32,6 +33,11 @@ public class Member {
 	@ManyToOne //팀안에 맴버가 여러명 이므로 주인만 CUD가능
 	@JoinColumn(name = "team_id")
 	private Team team; // 조인 이므로 그 객체를 받아옴 
+	
+	@OneToOne
+	@JoinColumn(name="locker_id")
+	private Locker locker;
+	
 	private String name; // 회원 이름
 	private int age; // 회원 나이
 }
