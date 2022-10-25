@@ -1,131 +1,82 @@
 package namoo.springJPA;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import lombok.extern.slf4j.Slf4j;
-import namoo.springJPA.entity.user.Member;
-import namoo.springJPA.entity.user.Team;
-import namoo.springJPA.repository.user.JpaMemberRepository;
-import namoo.springJPA.repository.user.JpaTeamRepository;
+import namoo.springJPA.entity.user.User;
+import namoo.springJPA.repository.user.UserRepository;
 
+@SpringBootTest
+@Transactional /*rollback 과 commit을 관리해줌 테스트에서는 롤백을 저절로 실행해줌 안쓰면 오토 커밋*/ 
+@Slf4j
 /**
- * JPArelation
- * 
+ * JPATest
  * @author 정충효
  *
  */
-@SpringBootTest
-@Slf4j
 public class JPATEST {
-	@Autowired
-	private JpaMemberRepository memberRepository;
-	@Autowired
-	private JpaTeamRepository teamRepository;
 
+	@Autowired
+	private UserRepository userRepository;
+	
 	@Test
 	@Disabled
-	@DisplayName("잘못된 방법")
-	public void jpaTest() {
-		// Team 생성 및 저장
-		Team insertTeam = new Team();
-		insertTeam.setName("TeamA");
-		teamRepository.save(insertTeam);
-
-		// Member 생성 및 저장
-		Member insertMember = new Member();
-		insertMember.setName("홍길동");
-		insertMember.setAge(10);
-		//insertMember.setTeamId(insertTeam.getId());
-		memberRepository.save(insertMember);
-		log.info("테이블 생성 및 저장 완료!");
-		// 조회 시 2번 조회해야 한다.
-		Optional<Member> optional = memberRepository.findById(insertMember.getId());
-		if (optional.isPresent()) {
-			Member findMember = optional.get();
-			// 참조를 이용해서 팀정보 조회
-			Optional<Team> optional2 = teamRepository.findById(insertTeam.getId());
-			if (optional2.isPresent()) {
-				Team findTeam = optional2.get();
-				log.info("회원명, 팀명 : {}, {}", findMember.getName(), findTeam.getName());
-
-			}
-		}
+	public void test1() {
+		List<User> list = userRepository.findAll();
+		log.info("실행하는 객체 출력 :::{}",userRepository.getClass().getName());
+		log.info("사용자 수 {}",list.size());
+		log.info("사용자 목록 {}",list);
 	}
 	
 	@Test
-	@DisplayName("이 방법을 사용해야함")
 	@Disabled
 	public void test2() {
-		// Team 생성 및 저장
-		Team insertTeam = new Team();
-		insertTeam.setName("TeamA");
-		teamRepository.save(insertTeam);
-		
-		// Member 생성 및 저장
-		Member insertMember = new Member();
-		insertMember.setName("홍길동");
-		insertMember.setAge(10);
-		insertMember.setTeam(insertTeam); // 단방향 연관관계 설정(참조 저장)
-		memberRepository.save(insertMember);
-		log.info("테이블 생성 및 저장 완료!");
-		
-		// 한번만 조회하면 된다.
-		Optional<Member> optional = memberRepository.findById(insertMember.getId());
-		if(optional.isPresent()) {
-		Member findMember = optional.get();
-		// 참조를 이용해서 팀정보 조회
-		Team findTeam = findMember.getTeam();
-		log.info("회원명, 팀명 : {}, {}", findMember.getName(), findTeam.getName());
-
-		// 연관관계 수정
-		// 새로운 팀 생성
-		Team teamB = new Team();
-		teamB.setName("TeamB");
-		teamRepository.save(teamB);
-		// 기존 회원 팀 변경
-		findMember.setTeam(teamB);
-		memberRepository.save(findMember);
-		log.info("팀 정보 수정 완료: {}", findMember);
-	}
+		User findUser = userRepository.findById("bangry");
+		log.info("찾는 사용자{}",findUser);
 	}
 	
 	@Test
-	@DisplayName("양방향 관계")
-//	@Disabled
+//	@Commit//실제 반영을 해보고 싶으면 이걸 선언
+	@Disabled
 	public void test3() {
-		// Team 생성 및 저장
-		Team insertTeam = new Team();
-		insertTeam.setName("TeamA");
-		teamRepository.save(insertTeam);
-		// Member 생성 및 저장
-		Member insertMember1 = new Member();
-		insertMember1.setName("홍길동");
-		insertMember1.setAge(10);
-		insertMember1.setTeam(insertTeam);
-		Member insertMember2 = new Member();
-		insertMember2.setName("김길동");
-		insertMember2.setAge(20);
-		insertMember2.setTeam(insertTeam);
-		memberRepository.save(insertMember1);
-		memberRepository.save(insertMember2);
+		User user = new User();
+		user.setEmail("emailporm@naver.com");
+		user.setId("idport");
+		user.setPasswd("pswport");
+		user.setName("nameport");
+		userRepository.create(user);
+		log.info("사용자 생성{}",user);
 		
-		List<Member> list = insertTeam.getMembers();
-		log.info("size: {}",list.size());
-		for(Member mem : list) {
-			log.info("등록회원{}", mem);
-		}
+	}
+
+	@Test
+//	@Commit//실제 반영을 해보고 싶으면 이걸 선언
+	@Disabled
+	public void test4() {
+		User user = new User();
+		user.setEmail("emailportup@naver.com");
+		user.setId("idport");
+		user.setPasswd("pswupda");
+		user.setName("nameport");
+		userRepository.update(user);
+		log.info("사용자 생성{}",user);
+	}
+	@Test
+//	@Disabled
+	public void test5() {
+		List<User> user =  userRepository.findName("sp");
+		log.info("{}",user);
+	}
+	@Test
+	public void test6() {
+		List<User> user =  userRepository.findByName("spring");
+		log.info("{}",user);
 	}
 	
-	@Test
-	@DisplayName("조회")
-	public void test4() {
-		
-	}
 }
