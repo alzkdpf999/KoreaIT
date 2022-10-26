@@ -1,77 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.SpringBootApplication"/>
-    <fullyQualifiedTypeName name="org.springframework.boot.test.context.SpringBootTest"/>
-    <fullyQualifiedTypeName name="org.springframework.boot.autoconfigure.AutoConfiguration"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Repository"/>
-    <fullyQualifiedTypeName name="java.lang.String"/>
-    <fullyQualifiedTypeName name="org.springframework.data.web.config.SpringDataJacksonConfiguration"/>
-    <fullyQualifiedTypeName name="namoo.springJPA.repository.user.SpringDataJpaUserRepository"/>
-    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
-    <fullyQualifiedTypeName name="org.springframework.data.jpa.repository.Query"/>
-    <fullyQualifiedTypeName name="java.sql.Date"/>
-    <fullyQualifiedTypeName name="java.util.Date"/>
-    <fullyQualifiedTypeName name="java.text.SimpleDateFormat"/>
-    <fullyQualifiedTypeName name="java.text.ParseException"/>
-    <fullyQualifiedTypeName name="net.bytebuddy.asm.Advice.OffsetMapping.Sort"/>
-    <fullyQualifiedTypeName name="org.springframework.data.domain.Sort"/>
-    <fullyQualifiedTypeName name="java.awt.print.Pageable"/>
-<<<<<<< HEAD
-=======
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
->>>>>>> a34025d071cea57785ead185f687e45fbd7cb0c9
-    <fullyQualifiedTypeName name="org.springframework.data.domain.Page"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-    <fullyQualifiedTypeName name="org.springframework.data.domain.Pageable"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestMapping"/>
-<<<<<<< HEAD
-    <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
-=======
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="namoo.springJPA.repository.user.UserRepository"/>
->>>>>>> a34025d071cea57785ead185f687e45fbd7cb0c9
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
-    <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
-    <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.RequestParam"/>
-    <fullyQualifiedTypeName name="org.springframework.data.domain.PageRequest"/>
-    <fullyQualifiedTypeName name="org.springframework.data.web.PageableDefault"/>
-    <fullyQualifiedTypeName name="org.springframework.data.web.PageableHandlerMethodArgumentResolver"/>
-<<<<<<< HEAD
-    <fullyQualifiedTypeName name="namoo.springJPA.entity.user.User"/>
-    <fullyQualifiedTypeName name="javax.websocket.server.ServerEndpoint"/>
-    <fullyQualifiedTypeName name="namoo.springJPA.Service.Service"/>
-    <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
-    <fullyQualifiedTypeName name="namoo.springJPA.repository.user.UserRepository"/>
-    <fullyQualifiedTypeName name="org.springframework.stereotype.Service"/>
-    <fullyQualifiedTypeName name="javax.persistence.Id"/>
-    <fullyQualifiedTypeName name="org.hibernate.annotations.ManyToAny"/>
-    <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
-    <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
-    <fullyQualifiedTypeName name="javax.persistence.OneToMany"/>
-    <fullyQualifiedTypeName name="java.util.ArrayList"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Disabled"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Test"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.DisplayName"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="namoo.springJPA.entity.user.Member"/>
-    <fullyQualifiedTypeName name="javax.persistence.TableGenerator"/>
-    <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
-=======
-    <fullyQualifiedTypeName name="namoo.springJPA.entity.user.Team"/>
-    <fullyQualifiedTypeName name="org.junit.jupiter.api.Disabled"/>
-    <fullyQualifiedTypeName name="java.util.List"/>
-    <fullyQualifiedTypeName name="javax.transaction.Transactional"/>
-    <fullyQualifiedTypeName name="lombok.extern.slf4j.Slf4j"/>
-    <fullyQualifiedTypeName name="org.springframework.context.annotation.EnableAspectJAutoProxy"/>
-    <fullyQualifiedTypeName name="javax.persistence.Entity"/>
-    <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
-    <fullyQualifiedTypeName name="namoo.springJPA.entity.user.Member"/>
-    <fullyQualifiedTypeName name="javax.persistence.OneToOne"/>
-    <fullyQualifiedTypeName name="java.util.Optional"/>
-    <fullyQualifiedTypeName name="java.util.concurrent.locks.Lock"/>
-    <fullyQualifiedTypeName name="namoo.springJPA.entity.user.Locker"/>
-    <fullyQualifiedTypeName name="namoo.springJPA.repository.user.JpaLockerRepository"/>
->>>>>>> a34025d071cea57785ead185f687e45fbd7cb0c9
+    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.Before"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.After"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.AfterReturning"/>
+    <fullyQualifiedTypeName name="org.aopalliance.intercept.Joinpoint"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.annotation.AfterThrowing"/>
+    <fullyQualifiedTypeName name="namoo.springJPA.aop.TimeTraceAspect"/>
+    <fullyQualifiedTypeName name="java.lang.Throwable"/>
+    <fullyQualifiedTypeName name="org.aspectj.lang.JoinPoint"/>
 </qualifiedTypeNameHistroy>
