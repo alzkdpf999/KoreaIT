@@ -51,7 +51,8 @@ document.querySelector("#dbCheckId").addEventListener("click", function(event) {
 		idErr.removeAttribute("style");
 	}
 })
-/*	document.querySelector("input#id").addEventListener("keyup", function(){
+/*	 비동기 쳌
+document.querySelector("input#id").addEventListener("keyup", function(){
 		if(document.querySelector("input#id").value.length < 6 || document.querySelector("input#id").value.length > 8){
 			document.querySelector("#idErr").innerHTML = "아이디 6~8자 사용가능"
 		}else{		
